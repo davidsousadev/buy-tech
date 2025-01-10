@@ -13,7 +13,7 @@ const validateFieldAsync = async (input, endpoint, errorSpanId) => {
 
         try {
             // Faz a requisição para a API
-            const response = await fetch(`http://127.0.0.1:8000/clientes/${endpoint}?${input.name}=${value}`);
+            const response = await fetch(`https://api-buy-tech.onrender.com/clientes/${endpoint}?${input.name}=${value}`);
 
             if (response.ok) {
                 // Campo válido
