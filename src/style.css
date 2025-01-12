@@ -1,76 +1,89 @@
-*{
+/* Geral */
+* {
   margin: 0;
   padding: 0;
 }
-body{
+
+body {
   background-color: #006dfa;
   color: #FFF;
 }
-header{
-  /* border: 1px red solid; */
+
+a {
+  text-decoration: none;
+  color: #FFF;
+}
+
+/* Header */
+header {
   height: 15vh;
   padding: 10px;
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   justify-content: space-between;
 }
-h1{
+
+h1 {
   margin-top: 50px;
   white-space: nowrap;
-  /* border: 1px red solid; */
 }
-div#search{
-  /* border: 1px red solid; */
-  display: block;
+
+/* Campo de busca */
+div#search {
+  display: flex;
+  align-items: center;
   background-color: #FFF;
   border-radius: 50px;
   margin-top: 50px;
-  margin-left: -700px;
-  width: 500px;
+  width: 400px;
   height: 35px;
+  padding: 0 10px;
 }
-header div#search i.bx-search-alt-2{
+
+div#search input {
+  flex: 1;
+  border: none;
+  border-radius: 50px;
+  padding: 8px 12px;
+  font-size: 14px;
+  outline: none;
+}
+
+div#search input::placeholder {
+  color: #999;
+}
+
+header div#search i.bx-search-alt-2 {
   color: #006dfa;
-  float: right;
-  display: block;
-  margin-top: 10px;
-  margin-right: 10px;
+  margin-left: 10px;
+  font-size: 20px;
 }
-a{
-  text-decoration: none;
-}
-header i.bx.bx-user{
+
+header i.bx.bx-user {
   border-radius: 50px;
   padding: 5px;
   margin-top: 50px;
   height: 18px;
   border: 1px #FFF solid;
   display: block;
-  text-decoration: none;
-}
-main{
-  /* border: 1px red solid; */
-  display: block;
-  height: 80vh;
-}
-footer{
-  /* border: 1px red solid; */
-  height: 5vh;
-  
-  top: 100vh;
-  margin-top: 100vh;
-  margin: auto;
-  text-align: center;
-}
-a{
-  color: #FFF;
 }
 
+/* Main e Footer */
+main {
+  height: 80vh;
+}
+
+footer {
+  height: 5vh;
+  text-align: center;
+}
+
+/* Formulário */
 .container {
-  max-width: 400px;
+  max-width: 900px;
   margin: 50px auto;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: #FFF;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -85,55 +98,137 @@ form {
   flex-direction: column;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+td {
+  padding: 15px;
+  vertical-align: top;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+td:first-child, td:last-child {
+  height: 100%;
+}
+
 label {
   margin-top: 10px;
-  color: #0056b3; /* Azul médio */
+  color: #0056b3;
 }
 
 input {
-  padding: 8px;
-  margin-top: 5px;
-  border: 1px solid #99ccff; /* Azul suave */
+  padding: 10px;
+  border: 1px solid #99ccff;
   border-radius: 4px;
   transition: border-color 0.3s ease-in-out;
+  width: 100%;
+  font-size: 14px;
 }
 
 input:focus {
   outline: none;
-  border-color: #0066cc; /* Azul vivo ao focar */
+  border-color: #0066cc;
 }
 
 input:invalid {
-  border-color: red; /* Vermelho para validação inválida */
+  border-color: #ccc;
 }
 
 input:valid {
-  border-color: green; /* Verde para validação válida */
+  border-color: green;
 }
 
 button {
   margin-top: 20px;
-  padding: 10px;
-  background-color: #007bff; /* Azul principal */
-  color: #ffffff;
+  padding: 12px;
+  background-color: #007bff;
+  color: #FFF;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 100%;
+  font-size: 16px;
 }
 
 button:hover {
-  background-color: #0056b3; /* Azul escuro ao passar o mouse */
+  background-color: #0056b3;
 }
 
 #responseMessage {
   margin-top: 15px;
   text-align: center;
-  color: #d9534f; /* Vermelho para mensagens de erro */
+  color: #d9534f;
+}
+
+/* Espaço fixo para mensagens de erro */
+.error-message-container {
+  min-height: 30px;  /* Define a altura mínima para o espaço das mensagens */
+  margin-top: 5px;
 }
 
 .error-message {
   color: red;
   font-size: 0.9em;
   margin-top: 5px;
+}
+
+/* Mensagem de sucesso ou erro */
+#messageBox {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
+
+#messageBox.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+#messageBox.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+input[type="date"], input[type="text"], input[type="email"] {
+  font-size: 14px;
+}
+
+input[disabled] {
+  background-color: #f0f0f0;
+}
+
+/* Ajustando o tamanho do botão Consultar CEP */
+#btnCep {
+  height: 35px; 
+  padding: 0 10px; 
+  font-size: 14px; 
+  border: 1px solid #99ccff; 
+  border-radius: 50px; 
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer; 
+  width: 105%; 
+  transition: background-color 0.3s ease;
+}
+
+#btnCep:hover {
+  background-color: #0056b3; /* Cor do botão ao passar o mouse */
+}
+
+#btnCep:focus {
+  outline: none; /* Remove o contorno padrão */
+  border-color: #0066cc; /* Cor da borda ao focar */
+}
+
+.container-confirmacao{
+  color: #0056b3;
 }
