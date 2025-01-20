@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buy Tech</title>
-  <link rel="stylesheet" href="src/style.css">
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
@@ -54,23 +48,36 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <div class="logo-search">
-        <a href="index.html"><h1>BUY TECH</h1></a>
-    <div id="search">
-        <input type="text" placeholder="Buscar produto...">
-        <i class='bx bx-search-alt-2'></i>
-    </div>
-    </div>
-    <div class="icones">
-        <a href="#"><i class='bx bx-cart'></i></a>
-        <a href="#"><i class='bx bx-sun'></i></a>
-        <a href="logar.html"><i class='bx bx-user'></i>
-    </div>
-    </a>
-</header>
-  <main></main>
-  <footer>Contato: <a href="email:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
-  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <header>
+        <div class="logo-search">
+            <a href="index.html"><h1>BUY TECH</h1></a>
+        <div id="search">
+            <input type="text" placeholder="Buscar produto...">
+            <i class='bx bx-search-alt-2'></i>
+        </div>
+        </div>
+        <div class="icones">
+            <i class='bx bx-cart'></i>
+            <i class='bx bx-sun'></i>
+            <a href="logar.html"><i class='bx bx-user'></i>
+        </div>
+        </a>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2>Bem-vindo(a) de volta</h2>
+            <form id="formCadastro">  
+            </form>
+            <a href="cadastrar.html">Cadastre-se</a>
+            <div id="loader" style="display:none;">...</div>
+            <div id="messageBox"></div>
+        </div>
+    </main>
+    
+    <footer>Contato: <a href="mailto:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script type="module" src="src/scripts/main.js"></script>
+    <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
 </body>
 </html>
