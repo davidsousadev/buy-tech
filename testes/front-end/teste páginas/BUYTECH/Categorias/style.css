@@ -1,0 +1,190 @@
+/* Estilo Geral */
+body {
+    background-color: #004aad;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Footer */
+.footer {
+    height: 100px;
+    background-color: #0096FF;
+    margin-top: auto;
+}
+
+
+
+/* Cabeçalho */
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #004aad;
+    color: white;
+}
+
+.logo {
+    font-size: 24px;
+    font-family: "Electrolize", serif;
+    letter-spacing: 2px;
+    padding-right: 40px;
+    -webkit-text-stroke-width: 0.7px;
+    -webkit-text-stroke-color: aqua;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.search-bar input {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    width: 200px;
+}
+
+.search-bar button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    padding-left: 20px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+.actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.actions img {
+    width: 20px;
+    height: 20px;
+}
+
+
+.promo-container {
+    text-align: center;
+}
+
+.title {
+    font-size: 2em;
+    margin: 40px;
+    color: white;
+    text-align: center;
+    font-family: "Electrolize", serif;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: aqua;
+}
+
+.promo-table {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    /* 5 itens por linha */
+    gap: 15px;
+    /* Espaçamento entre os itens */
+    justify-items: center;
+    background-color: #0096FF;
+    padding: 20px;
+    margin: 20px;
+}
+
+.promo-item {
+    background-color: #66ccff;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    width: 200px;
+    box-sizing: border-box;
+    font-size: 1.1em;
+    height: 200px
+}
+
+.promo-item:hover {
+    background-color: blue;
+}
+
+/* Menu */
+.header .menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 20px;
+    background-color: #004aad;
+}
+
+.menu {
+    list-style-type: none;
+}
+
+.menu li {
+    position: relative;
+    list-style-type: none;
+}
+
+.menu li a {
+    display: block;
+    text-decoration: none;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-btn img {
+    width: 25px;
+    height: 25px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.menu li a:hover {
+    color: blue;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    
+    
+
+}
+
+/* Mostrar submenu ao passar o mouse */
+.dropdown:hover .submenu {
+    display: block;
+    color: black;
+}
+
