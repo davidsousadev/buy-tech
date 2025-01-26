@@ -1,6 +1,6 @@
 export const handleFormSubmission = async () => {
     const form = document.getElementById('formCadastro');
-    const submitButton = document.getElementById('submitButton'); // Assumindo que o botão de submit tenha o id 'submitButton'
+    const submitButton = document.getElementById('submitButton');
 
     if (form) {
         form.addEventListener('submit', async (event) => {
@@ -21,18 +21,29 @@ export const handleFormSubmission = async () => {
 
             // Verifica se todos os campos obrigatórios estão preenchidos
             if (!formData.nome || !formData.email || !formData.cpf || !formData.data_nascimento || !formData.telefone || !formData.cep || !formData.password || !formData.confirm_password) {
-                displayMessage('Todos os campos devem ser preenchidos.');
+                mostrarNotificacao("Todos os campos devem ser preenchidos.", {
+                    cor: "#F44336",
+                    duracao: 4000,
+                    movimentoEntrada: "deslizar",
+                    movimentoSaida: "esvair",
+                    posicao: "bottom-right"
+                });
+                
                 return;
             }
 
             // Verifica se as senhas são iguais
             if (formData.password !== formData.confirm_password) {
-                displayMessage('As senhas não coincidem.');
+                mostrarNotificacao("As senhas não coincidem.", {
+                    cor: "#F44336",
+                    duracao: 4000,
+                    movimentoEntrada: "deslizar",
+                    movimentoSaida: "esvair",
+                    posicao: "bottom-right"
+                });
+                
                 return;
             }
-
-            // Exibe os dados enviados para depuração
-            console.log('Dados enviados para a API:', formData);
 
             // Exibe o loader e desabilita o botão
             displayLoader(true);
@@ -55,31 +66,41 @@ export const handleFormSubmission = async () => {
                 disableSubmitButton(false);
 
                 if (response.ok) {
-                    displayMessage('Cadastro realizado com sucesso!', 'success');
+                    mostrarNotificacao("Cadastro realizado com sucesso!", {
+                        cor: "#F44336",
+                        duracao: 4000,
+                        movimentoEntrada: "deslizar",
+                        movimentoSaida: "esvair",
+                        posicao: "bottom-right"
+                    });
                     window.location.href = './confirmacao.html';
                 } else {
                     // Exibe mensagens de erro específicas com base na resposta da API
-                    displayMessage(result.detail || 'Erro ao realizar o cadastro.');
+                    mostrarNotificacao(result.detail || 'Erro ao realizar o cadastro.', {
+                        cor: "#F44336",
+                        duracao: 4000,
+                        movimentoEntrada: "deslizar",
+                        movimentoSaida: "esvair",
+                        posicao: "bottom-right"
+                    });
                 }
             } catch (error) {
                 console.error('Erro ao enviar os dados:', error);
                 // Esconde o loader e habilita o botão novamente
                 displayLoader(false);
                 disableSubmitButton(false);
-                displayMessage('Erro ao enviar os dados. Tente novamente.');
+                mostrarNotificacao("Erro ao enviar os dados. Tente novamente.", {
+                    cor: "#F44336",
+                    duracao: 4000,
+                    movimentoEntrada: "deslizar",
+                    movimentoSaida: "esvair",
+                    posicao: "bottom-right"
+                });
             }
         });
     }
 };
 
-// Função para exibir mensagens de sucesso ou erro
-const displayMessage = (message, type = 'error') => {
-    const messageBox = document.getElementById('messageBox');
-    if (messageBox) {
-        messageBox.textContent = message;
-        messageBox.style.color = type === 'success' ? 'green' : 'red';
-    }
-};
 
 // Função para exibir/esconder o loader
 const displayLoader = (isLoading) => {

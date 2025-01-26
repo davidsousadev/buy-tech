@@ -75,13 +75,6 @@ export function configurarEventosCPF() {
                 const response = await fetch(`https://api-buy-tech.onrender.com/clientes/verificar-cpf?cpf=${cpfInput.value}`);
                 if (response.ok) {
                     cpfInput.style.borderColor = 'green';
-                    mostrarNotificacao("CPF válido!", {
-                        cor: "#4CAF50",
-                        duracao: 4000,
-                        movimentoEntrada: "deslizar",
-                        movimentoSaida: "esvair",
-                        posicao: "bottom-right"
-                    });
                 } else {
                     const result = await response.json();
                     cpfInput.style.borderColor = 'red';

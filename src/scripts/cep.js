@@ -64,13 +64,6 @@ export const handleCepValidation = () => {
                 document.getElementById('rua').value = data.logradouro || data.street || '';
 
                 cepInput.style.borderColor = 'green';
-                mostrarNotificacao('Endereço encontrado!', {
-                    cor: "#4CAF50",
-                    duracao: 4000,
-                    movimentoEntrada: "deslizar",
-                    movimentoSaida: "esvair",
-                    posicao: "bottom-right"
-                });
             } catch (error) {
                 cepInput.style.borderColor = 'red';
                 mostrarNotificacao(error.message, {

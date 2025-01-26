@@ -30,7 +30,7 @@
      <meta property="og:image" content="https://"> -->
 
      <meta property="og:locale" content="pt_BR">
-     <script type="text/javascript" async src="https://connect.facebook.net/en_US/fbevents.js"></script>
+     <!-- <script type="text/javascript" async src="https://connect.facebook.net/pt_BR/fbevents.js"></script> -->
      
      <!-- Meta tags do Twitter -->
      <meta name="twitter:card" content="summary_large_image">
@@ -67,9 +67,15 @@
     <main>
         <div class="container">
             <h2>Bem-vindo(a) de volta</h2>
-            <form id="formCadastro">  
-            </form>
-            <a href="cadastrar.html">Cadastre-se</a>
+            <form id="formLogin"> 
+                <label for="email">Email</label> 
+                <input type="text" id="email" name="email" placeholder="Digite seu email">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" placeholder="Digite sua senha">
+                <input type="submit" id="submitButton" name="entrar" value="Login">
+            </form>            
+            <button id="recuperar">Esqueceu a senha?</button>
+            <a href="cadastrar.html">Crie sua conta</a>
             <div id="loader" style="display:none;">...</div>
             <div id="messageBox"></div>
         </div>
@@ -77,7 +83,8 @@
     
     <footer>Contato: <a href="mailto:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <script type="module" src="src/scripts/main.js"></script>
+    <script type="module" src="src/scripts/login.js"></script>
     <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
+    
 </body>
 </html>

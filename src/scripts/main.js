@@ -7,7 +7,6 @@ import { validatePasswordsMatch } from './senha.js';
 import { configurarEventosTelefone } from './telefone.js';
 import { validateComplement } from './complemento.js';
 import { handleFormSubmission } from './form.js';
-
 document.addEventListener('DOMContentLoaded', () => {
 
     // Validação de Nome (mínimo de 10 caracteres)

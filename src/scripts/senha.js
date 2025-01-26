@@ -37,13 +37,6 @@ export const validatePasswordsMatch = () => {
     if (password === confirmPassword) {
         document.getElementById('password').style.borderColor = 'green';
         document.getElementById('confirmPassword').style.borderColor = 'green';
-        mostrarNotificacao("Senhas coincidem!", {
-            cor: "#4CAF50",
-            duracao: 4000,
-            movimentoEntrada: "deslizar",
-            movimentoSaida: "esvair",
-            posicao: "bottom-right"
-        });
     } else {
         document.getElementById('password').style.borderColor = 'red';
         document.getElementById('confirmPassword').style.borderColor = 'red';

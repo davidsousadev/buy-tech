@@ -27,13 +27,6 @@ export const validateEmail = async () => {
             const response = await fetch(`https://api-buy-tech.onrender.com/clientes/verificar-email?${emailInput.name}=${value}`);
             if (response.ok) {
                 emailInput.style.borderColor = 'green';
-                mostrarNotificacao("E-mail Válido!", {
-                    cor: "#4CAF50",
-                    duracao: 4000,
-                    movimentoEntrada: "deslizar",
-                    movimentoSaida: "esvair",
-                    posicao: "bottom-right"
-                });
             } else {
                 const result = await response.json();
                 emailInput.style.borderColor = 'red';

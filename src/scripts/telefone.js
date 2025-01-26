@@ -46,13 +46,6 @@ export function configurarEventosTelefone() {
             });
         } else {
             telefoneInput.style.borderColor = 'green';
-            mostrarNotificacao("Telefone válido!", {
-                cor: "#4CAF50",
-                duracao: 4000,
-                movimentoEntrada: "deslizar",
-                movimentoSaida: "esvair",
-                posicao: "bottom-right"
-            });
         }
     });
 }

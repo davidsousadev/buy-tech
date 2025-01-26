@@ -18,13 +18,6 @@ export const validateAge = () => {
 
     if (age >= 18) {
         document.getElementById('dataNascimento').style.borderColor = 'green';
-        mostrarNotificacao("Você tem mais de 18 anos!", {
-            cor: "#4CAF50",
-            duracao: 4000,
-            movimentoEntrada: "deslizar",
-            movimentoSaida: "esvair",
-            posicao: "bottom-right"
-        });
     } else {
         document.getElementById('dataNascimento').style.borderColor = 'red';
         mostrarNotificacao("Você precisa ter mais de 18 anos.", {
