@@ -37,7 +37,7 @@ if (token) {
             throw new Error(`Erro ao autenticar: ${response.statusText}`);
         }
         else{
-            document.cookie = 'authToken=; Max-Age=0; path=/;';
+           // document.cookie = 'authToken=; Max-Age=0; path=/;';
             window.location.href = './index.html'; 
         }
         const result = await response.json();
