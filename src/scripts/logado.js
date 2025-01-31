@@ -38,7 +38,7 @@ if (token) {
         }
         else{
            // document.cookie = 'authToken=; Max-Age=0; path=/;';
-            window.location.href = './index.html'; 
+            //window.location.href = './index.html'; 
         }
         const result = await response.json();
         console.table(result);
