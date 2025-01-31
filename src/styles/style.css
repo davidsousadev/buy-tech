@@ -16,7 +16,6 @@ a {
 
 /* Header */
 header {
-  
   padding: 10px;
   display: flex;
   flex-direction: row;
@@ -75,7 +74,7 @@ header div#search i.bx-search-alt-2 {
   margin: 15px;
   scale: 3;
 }
-header i.bx.bx-user {
+header i.bx.bx-user, i.bx.bxs-user-circle {
   border-radius: 100px;
   border: 1px #FFF solid;
   padding: 1px;
@@ -83,17 +82,23 @@ header i.bx.bx-user {
 
 /* Main e Footer */
 main {
-  height: 80vh;
+  display: block;
+  position: relative;
+  height: 100%;
 }
 
 footer {
   height: 5vh;
   text-align: center;
+  display: block;
+  bottom: 0;
+  width: 100%;
 }
 
 /* Formulário */
 .container {
   max-width: 900px;
+  height: 100%;
   margin: 50px auto;
   padding: 20px;
   background-color: #15B0F8;
@@ -101,7 +106,10 @@ footer {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   display: block;
 }
-
+.fromcadastro{
+  height: 100%;
+  display: block;
+}
 h2 {
   text-align: center;
   color: #000000;

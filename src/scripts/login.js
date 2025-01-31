@@ -36,7 +36,7 @@ export const login = async () => {
                     // Armazena o token no cookie com tempo de expiração
                     document.cookie = `authToken=${result.access_token}; path=/; max-age=${7 * 24 * 60 * 60}`;
                     displayMessage('Logado com sucesso!', 'success');
-                    window.location.href = './logado.html';
+                    window.location.href = './index.html';
                 } else {
                     displayMessage(result.detail || 'Erro ao realizar o login.');
                 }
