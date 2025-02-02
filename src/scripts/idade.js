@@ -16,7 +16,7 @@ export const validateAge = () => {
         age--;
     }
 
-    if (age >= 18) {
+    if (age >= 18 && age <= 120) {
         document.getElementById('dataNascimento').style.borderColor = 'green';
     } else {
         document.getElementById('dataNascimento').style.borderColor = 'red';

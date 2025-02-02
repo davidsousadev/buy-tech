@@ -3,19 +3,21 @@ export function formatarCPF(cpfInput) {
     let cpf = cpfInput.value.replace(/\D/g, '');
 
     if (cpf.length <= 3) {
-        cpfInput.value = cpf;
+        cpf = cpf;
     } else if (cpf.length <= 6) {
-        cpfInput.value = cpf.replace(/(\d{3})(\d{1,3})/, '$1.$2');
+        cpf = cpf.replace(/(\d{3})(\d{1,3})/, '$1.$2');
     } else if (cpf.length <= 9) {
-        cpfInput.value = cpf.replace(/(\d{3})(\d{3})(\d{1,3})/, '$1.$2.$3');
+        cpf = cpf.replace(/(\d{3})(\d{3})(\d{1,3})/, '$1.$2.$3');
     } else {
-        cpfInput.value = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, '$1.$2.$3-$4');
+        cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, '$1.$2.$3-$4');
     }
+    
+    cpfInput.value = cpf; // Apenas aqui alteramos o valor do campo
 }
 
-// Permitir apenas números no campo de CPF
+// Permitir apenas números no campo de CPF sem modificar diretamente o valor do campo
 export function somenteNumerosCPF(cpfInput) {
-    cpfInput.value = cpfInput.value.replace(/\D/g, '');
+    return cpfInput.value.replace(/\D/g, '');
 }
 
 // Validar CPF
@@ -49,16 +51,20 @@ export function validarCPF(cpf) {
 // Adicionar eventos de input e blur ao CPF
 export function configurarEventosCPF() {
     const cpfInput = document.getElementById('cpf');
+
+    // Evento de entrada (teclado)
     cpfInput.addEventListener('input', () => {
-        somenteNumerosCPF(cpfInput); // Remove os caracteres não numéricos
-        formatarCPF(cpfInput); // Aplica a formatação do CPF
+        let valorFormatado = somenteNumerosCPF(cpfInput);
+        cpfInput.value = valorFormatado; // Mantém apenas os números
+        formatarCPF(cpfInput); // Aplica a formatação
     });
 
+    // Evento de perda de foco
     cpfInput.addEventListener('blur', async () => {
-        formatarCPF(cpfInput); // Aplica a formatação final quando o campo perde o foco
+        formatarCPF(cpfInput); // Aplica a formatação final
 
         // Validação do CPF
-        if (!validarCPF(cpfInput.value)) {
+        if ( !validarCPF(cpfInput.value) && cpfInput.value !== '') {
             cpfInput.style.borderColor = 'red';
             mostrarNotificacao("CPF inválido.", {
                 cor: "#F44336",
@@ -67,24 +73,32 @@ export function configurarEventosCPF() {
                 movimentoSaida: "esvair",
                 posicao: "bottom-right"
             });
-        } else {
-            cpfInput.style.borderColor = 'green';
+            return;
+        } 
 
-            // Verificação de duplicidade na API
-            try {
-                const response = await fetch(`https://api-buy-tech.onrender.com/clientes/verificar-cpf?cpf=${cpfInput.value}`);
+        cpfInput.style.borderColor = 'green';
+
+        
+            if (validarCPF(cpfInput.value) && cpfInput.value !== ''){
+              // Verificação de duplicidade na API
+            try {  
+
+                const response = await fetch(`https://api-buy-tech.onrender.com/clientes/verificar-cpf?cpf=${somenteNumerosCPF(cpfInput)}`);
                 if (response.ok) {
-                    cpfInput.style.borderColor = 'green';
-                } else {
                     const result = await response.json();
-                    cpfInput.style.borderColor = 'red';
-                    mostrarNotificacao(result.detail || "Valor inválido.", {
-                        cor: "#F44336",
-                        duracao: 4000,
-                        movimentoEntrada: "deslizar",
-                        movimentoSaida: "esvair",
-                        posicao: "bottom-right"
-                    });
+
+                    if (result.cpf === true) {
+                        cpfInput.style.borderColor = 'green';
+                    } else {
+                        cpfInput.style.borderColor = 'red';
+                        mostrarNotificacao("Valor inválido já em uso.", {
+                            cor: "#F44336",
+                            duracao: 4000,
+                            movimentoEntrada: "deslizar",
+                            movimentoSaida: "esvair",
+                            posicao: "bottom-right"
+                        });
+                    }
                 }
             } catch (error) {
                 cpfInput.style.borderColor = 'red';
@@ -96,6 +110,7 @@ export function configurarEventosCPF() {
                     posicao: "bottom-right"
                 });
             }
-        }
+    }
     });
+
 }

@@ -1,8 +1,6 @@
 export const handleFormSubmission = async () => {
     const form = document.getElementById('formCadastro');
-    const submitButton = document.getElementById('submitButton');
-
-    if (form) {
+       if (form) {
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
 
@@ -48,8 +46,8 @@ export const handleFormSubmission = async () => {
             // Exibe o loader e desabilita o botão
             displayLoader(true);
             disableSubmitButton(true);
-
             try {
+                console.log(formData)
                 const response = await fetch('https://api-buy-tech.onrender.com/clientes/cadastrar', {
                     method: 'POST',
                     body: JSON.stringify(formData),
@@ -106,7 +104,7 @@ export const handleFormSubmission = async () => {
 const displayLoader = (isLoading) => {
     const loader = document.getElementById('loader');
     if (loader) {
-        loader.style.display = isLoading ? 'block' : 'none';
+        loader.style.display = isLoading ? 'flex' : 'none';
     }
 };
 

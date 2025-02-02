@@ -69,8 +69,9 @@
     </header>
 
     <main>
+        <div id="loader" class="loader"><img src="src/imagens/loading.gif" alt="Carregando"></div>
         <div class="container">
-            <h2>Crie sua conta</h2>
+            <h2>Crie sua conta - Cliente</h2>
             <form id="formCadastro">
                 <table>
                     <tr>
@@ -99,7 +100,7 @@
                           <label for="confirmPassword">Confirmar Senha:</label>
                           <input type="password" id="confirmPassword" name="confirmPassword" required>
 
-                          <h3>Pessoa jurídica? <a href="#">Clique aqui</a></h3>
+                          <h3>Pessoa jurídica? <a href="cadastrar-pessoa-juridica.html">Clique aqui</a></h3>
                           <a class="btn_logar" href="logar.html">Logar</a>
                       </td>
                       
@@ -123,7 +124,7 @@
                             <input type="text" id="rua" name="rua" disabled>
 
                             <label for="complemento">Complemento:</label>
-                            <input type="text" id="complemento" name="complemento" placeholder="Exemplo: Rua 100 nº 1">
+                            <input type="text" id="complemento" name="complemento" placeholder="Exemplo: Rua 100 nº 1" required>
 
                             <button type="submit" id="submitButton">Cadastrar</button>
                             
@@ -134,7 +135,7 @@
                 
                 
             </form>
-            <div id="loader" style="display:none;">...</div>
+            
             <div id="messageBox"></div>
         </div>
     </main>

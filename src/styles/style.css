@@ -298,3 +298,18 @@ input[disabled] {
   margin-left: 25%;
 }
 
+.loader{
+  display: none;
+  z-index: 2;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 74, 173, 0.4);
+  img {
+    width: 100px;
+}
+  
+}

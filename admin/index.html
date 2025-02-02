@@ -44,50 +44,37 @@
      <meta name="keywords" content="projeto, IFPI, software">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="src/styles/style.css">
+    <link rel="stylesheet" href="../src/styles/style.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     
-    <!-- Scripts -->
-    <script type="module" src="src/scripts/logado.js"></script>
+
 
 </head>
 <body>
     <header>
-        <div class="logo-search">
-            <a href="index.html"><h1>BUY TECH</h1></a>
-        <div id="search">
-            <input type="text" placeholder="Buscar produto...">
-            <i class='bx bx-search-alt-2'></i>
-        </div>
-        </div>
-        <div class="icones">
-            <i class='bx bx-cart'></i>
-            <i class='bx bx-sun'></i>
-            <a href="logar.html" ><i class='bx bx-user' id="avatar"></i>
-        </div>
-        </a>
+        <h1>BUY - TECH</h1>
     </header>
 
     <main>
-        <div id="loader" class="loader"><img src="src/imagens/loading.gif" alt="Carregando"></div>
         <div class="container">
-            <h2>Bem-vindo(a) de volta</h2>
+            <h2>Admin</h2>
             <form id="formLogin"> 
                 <label for="email">Email</label> 
-                <input type="text" id="email" name="email" placeholder="Digite seu email" v>
+                <input type="text" id="email" name="email" placeholder="Digite seu email">
                 <label for="password">Senha</label>
-                <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+                <input type="password" id="password" name="password" placeholder="Digite sua senha">
                 <input type="submit" id="submitButton" name="entrar" value="Login">
             </form>            
             <button id="recuperar">Esqueceu a senha?</button>
             <a href="cadastrar.html" class="btn_logar">Crie sua conta</a>
+            <div id="loader" style="display:none;">...</div>
             <div id="messageBox"></div>
         </div>
     </main>
     
     <footer>Contato: <a href="mailto:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <script type="module" src="src/scripts/login.js"></script>
+    <script type="module" src="../src/scripts/login.js"></script>
     <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
     
 </body>
