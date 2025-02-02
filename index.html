@@ -62,16 +62,28 @@
     <div class="icones">
         <a href="#"><i class='bx bx-cart'></i></a>
         <a href="#"><i class='bx bx-sun'></i></a>
-        <a href="logar.html" ><i class='bx bx-user' id="avatar"></i>
-
+        <a href="#" onclick="verificaLogin()" onmouseover="toggleDrawer()" id="btnLogin"><i class='bx bx-user' id="avatar"></i>
     </div>
     </a>
 </header>
   <main>
+    <div class="destaques"></div>
     <div class=container></div>
+    <div class="opcoes">
+      <div class="opcoes_perfil" id="opcoes_perfil" onmouseleave="toggleDrawer()">
+        <ul>
+          <li><a href="gerenciar-conta.html">Gerenciar Conta</a></li>
+          <li><a href="atualizar-perfil.html">Atualizar Perfil</a></li>
+          <li><a href="notificacoes.html">Notificações</a></li>
+          <li><a href="pedidos.html">Pedidos</a></li>
+          <li><button onclick="logout()">Sair</button></li>
+          
+        </ul>
+      </div>
+    </div>
   </main>
   <footer>Contato: <a href="email:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-
+  <script src="src/scripts/index.js" defer></script>
 </body>
 </html>

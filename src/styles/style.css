@@ -82,7 +82,10 @@ header i.bx.bx-user, i.bx.bxs-user-circle {
 
 /* Main e Footer */
 main {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
   position: relative;
   height: 100%;
 }
@@ -97,7 +100,7 @@ footer {
 
 /* Formulário */
 .container {
-  max-width: 900px;
+  width: 50%;
   height: 100%;
   margin: 50px auto;
   padding: 20px;
@@ -312,4 +315,32 @@ input[disabled] {
     width: 100px;
 }
   
+}
+
+.opcoes, .destaques{
+  width: 25%;
+  
+  height: 50vh;
+}
+#opcoes_perfil{
+  border: 1px #999 solid;/*  */
+  background-color: #002752;
+  display: none;
+  width: 80%;
+  margin: auto;
+  li{
+    list-style-type: none;
+    text-align: end;
+    padding: 10px;
+    font-size: 15pt;
+  }
+  a{
+    /* display: block; */
+  }
+  a:hover{
+    cursor: pointer;
+    
+    background-color: #007bff;
+    color: #FFF;
+  }
 }
