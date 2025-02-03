@@ -1,12 +1,12 @@
- // Função para obter o valor do cookie "authToken"
+ // Função para obter o valor do cookie "authTokenAdmin"
  const getCookie = (name) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
 };
 
-const token = getCookie('authToken');
+const token = getCookie('authTokenAdmin');
 
-if (token) {
+if (!token) {
     window.location.href = './index.html'; 
 }

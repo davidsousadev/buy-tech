@@ -74,7 +74,7 @@ header div#search i.bx-search-alt-2 {
   margin: 15px;
   scale: 3;
 }
-header i.bx.bx-user, i.bx.bxs-user-circle {
+header i.bx.bx-user, i.bx.bxs-user-circle, i.bx.bx-exit {
   border-radius: 100px;
   border: 1px #FFF solid;
   padding: 1px;
@@ -124,19 +124,25 @@ form {
 }
 
 /*Login formLogin*/
-#formLogin{
+#formLogin, #formLoginAdmin{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  label{
+    display: block;
+    position: relative;
+    width: 100%;
+  }
   #submitButton{
-    display: flex;
-    align-items: center;
+    display: block;
     flex-direction: column;
     justify-content: center;
     margin-top: 10px;
-    margin-left: 45%;
     width: 100px;
     height: 50px;
   }
   input{
-    width: 98%;
+    width: 96%;
   }
 }
 
@@ -334,13 +340,16 @@ input[disabled] {
     padding: 10px;
     font-size: 15pt;
   }
-  a{
-    /* display: block; */
-  }
   a:hover{
     cursor: pointer;
     
     background-color: #007bff;
     color: #FFF;
   }
+}
+
+#exit{ 
+  padding: 2px;
+  font-size: 20pt;
+  margin-left: -50px;
 }
