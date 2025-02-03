@@ -31,7 +31,7 @@ export const login = async () => {
                 if (response.ok) {
                     // Armazena o token no cookie com tempo de expiração
                     document.cookie = `authToken=${result.access_token}; path=/; max-age=${7 * 24 * 60 * 60}`;
-                    window.location.href = './index.html';
+                    window.location.href = 'area_restrita.html';
                 } else {
                     mostrarNotificacao(`${result.detail}`, {
                         cor: "#F44336",
