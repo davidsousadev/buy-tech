@@ -58,15 +58,13 @@
     <main>
         <div class="container">
             <h2>Admin</h2>
-            <form id="formLogin"> 
+            <form id="formLoginAdmin"> 
                 <label for="email">Email</label> 
                 <input type="text" id="email" name="email" placeholder="Digite seu email">
                 <label for="password">Senha</label>
                 <input type="password" id="password" name="password" placeholder="Digite sua senha">
                 <input type="submit" id="submitButton" name="entrar" value="Login">
             </form>            
-            <button id="recuperar">Esqueceu a senha?</button>
-            <a href="cadastrar.html" class="btn_logar">Crie sua conta</a>
             <div id="loader" style="display:none;">...</div>
             <div id="messageBox"></div>
         </div>
@@ -74,7 +72,8 @@
     
     <footer>Contato: <a href="mailto:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <script type="module" src="../src/scripts/login.js"></script>
+    <script type="module" src="../src/scripts/loginAdmin.js"></script>
+
     <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
     
 </body>
