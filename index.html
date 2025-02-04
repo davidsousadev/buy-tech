@@ -60,9 +60,9 @@
     </div>
     </div>
     <div class="icones">
-        <a href="#"><i class='bx bx-cart'></i></a>
+        <a href="#" onclick="buyCart()"><i class='bx bx-cart'></i></a>
         <a href="#"><i class='bx bx-sun'></i></a>
-        <a href="#" onclick="verificaLogin()" onmouseover="toggleDrawer()" id="btnLogin"><i class='bx bx-user' id="avatar"></i>
+        <a href="#" onclick="opcoes()" id="btnLogin"><i class='bx bx-user' id="avatar"></i>
     </div>
     </a>
 </header>
@@ -70,7 +70,13 @@
     <div class="destaques"></div>
     <div class=container></div>
     <div class="opcoes">
-      <div class="opcoes_perfil" id="opcoes_perfil" onmouseleave="toggleDrawer()">
+      <div class="itens_carrinho" id="itens_carrinho">
+        <ul>
+          <p id="lista_itens"></p>
+          <li><button onclick="pedido()" id="finalizar_pedido">Finalizar Pedido</button></li>
+        </ul>
+      </div>
+      <div class="opcoes_perfil" id="opcoes_perfil">
         <ul>
           <li><a href="gerenciar-conta.html">Gerenciar Conta</a></li>
           <li><a href="atualizar-perfil.html">Atualizar Perfil</a></li>

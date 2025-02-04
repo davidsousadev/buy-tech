@@ -19,38 +19,8 @@ const token = getCookie('authToken');
 
 if (token) {
     const tokenData = decodeToken(token);
-    console.table(tokenData); 
+    //console.table(tokenData); 
     const avatar = document.getElementById('avatar');
     avatar.classList.remove('bx-user');
     avatar.classList.add('bxs-user-circle');
-
-    // Função assíncrona para fazer a requisição à API
-    async function authenticate() {
-        try {
-            const response = await fetch('https://api-buy-tech.onrender.com/clientes/autenticar', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                },
-            });
-
-            if (!response.ok) {
-                document.cookie = 'authToken=; Max-Age=0; path=/;';
-                throw new Error(`Erro ao autenticar: ${response.statusText}`);
-            } else {
-                // document.cookie = 'authToken=; Max-Age=0; path=/;';
-                // window.location.href = './index.html'; 
-            }
-
-            const result = await response.json();
-            console.table(result);
-            
-        } catch (error) {
-            console.error('Erro ao enviar os dados:', error);
-        }
-    }
-
-    // Chama a função de autenticação
-    authenticate();
 }

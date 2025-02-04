@@ -74,7 +74,7 @@ header div#search i.bx-search-alt-2 {
   margin: 15px;
   scale: 3;
 }
-header i.bx.bx-user, i.bx.bxs-user-circle, i.bx.bx-exit {
+header i.bx.bx-user, i.bx.bxs-user-circle {
   border-radius: 100px;
   border: 1px #FFF solid;
   padding: 1px;
@@ -124,25 +124,19 @@ form {
 }
 
 /*Login formLogin*/
-#formLogin, #formLoginAdmin{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  label{
-    display: block;
-    position: relative;
-    width: 100%;
-  }
+#formLogin{
   #submitButton{
-    display: block;
+    display: flex;
+    align-items: center;
     flex-direction: column;
     justify-content: center;
     margin-top: 10px;
+    margin-left: 45%;
     width: 100px;
     height: 50px;
   }
   input{
-    width: 96%;
+    width: 98%;
   }
 }
 
@@ -347,9 +341,22 @@ input[disabled] {
     color: #FFF;
   }
 }
-
-#exit{ 
-  padding: 2px;
-  font-size: 20pt;
-  margin-left: -50px;
+#itens_carrinho{
+  border: 1px #999 solid;/*  */
+  background-color: #002752;
+  display: none;
+  width: 80%;
+  margin: auto;
+  li{
+    list-style-type: none;
+    text-align: end;
+    padding: 10px;
+    font-size: 15pt;
+  }
+  a:hover{
+    cursor: pointer;
+    
+    background-color: #007bff;
+    color: #FFF;
+  }
 }
