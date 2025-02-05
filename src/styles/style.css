@@ -295,7 +295,7 @@ input[disabled] {
   color: #0056b3;
 }
 
-.btn_logar{
+.btn_logar, .btncadastrarProdutos{
   margin-top: 20px;
   padding: 10px;
   display: block;

@@ -24,7 +24,7 @@ if (token) {
     exit.classList.add('bx-exit');
     // Função assíncrona para fazer a requisição à API
     async function authenticate() {
-        try {
+        /*try {
             const response = await fetch('https://api-buy-tech.onrender.com/admins/autenticar', {
                 method: 'GET',
                 headers: {
@@ -43,7 +43,7 @@ if (token) {
             
         } catch (error) {
             console.error('Erro ao enviar os dados:', error);
-        }
+        }*/
     }
 
     // Chama a função de autenticação

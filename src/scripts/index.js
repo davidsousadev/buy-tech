@@ -3,8 +3,9 @@ function getCookie(name){
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
 };
-const itens_carrinho = document.getElementById('itens_carrinho');
+
 function buyCart(){
+    const itens_carrinho = document.getElementById('itens_carrinho');
     var token = getCookie('authToken');
     if (token) {
         if (opcoes_perfil.style.display==='block'){
@@ -13,7 +14,6 @@ function buyCart(){
         if (itens_carrinho.style.display==='block'){
             itens_carrinho.style.display = 'none';
         }
-        else{
             // Função assíncrona para fazer a requisição à API
         async function authenticate() {
             //console.log(token);
@@ -47,13 +47,10 @@ function buyCart(){
         itens_carrinho.style.display = 'block';      
     }
 
-    
-
-    }
-
 }
-const opcoes_perfil = document.getElementById('opcoes_perfil');
+
 function toggleDrawer() {
+    const opcoes_perfil = document.getElementById('opcoes_perfil');
     var token = getCookie('authToken');
     if (token) {
         if (itens_carrinho.style.display==='block'){
