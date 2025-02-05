@@ -148,7 +148,7 @@ form.addEventListener('submit', async (event) => {
     const formData = new FormData(form);
 
     try {
-        const response = await fetch('http://127.0.0.1:8000/clientes/cadastrar', {
+        const response = await fetch('https://api-buy-tech.onrender.com/clientes/cadastrar', {
             method: 'POST',
             body: JSON.stringify(Object.fromEntries(formData)),
             headers: { 'Content-Type': 'application/json' },

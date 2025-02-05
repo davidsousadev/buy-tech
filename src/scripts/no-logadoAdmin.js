@@ -7,6 +7,6 @@
 
 const token = getCookie('authTokenAdmin');
 
-if (!token) {
-    window.location.href = './index.html'; 
+if (token) {
+    window.location.href = 'painel_administrativo.html'; 
 }

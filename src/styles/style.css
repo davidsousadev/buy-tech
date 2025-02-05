@@ -74,7 +74,7 @@ header div#search i.bx-search-alt-2 {
   margin: 15px;
   scale: 3;
 }
-header i.bx.bx-user, i.bx.bxs-user-circle {
+header i.bx.bx-user, i.bx.bxs-user-circle, i.bx.bxs-exit, #exit {
   border-radius: 100px;
   border: 1px #FFF solid;
   padding: 1px;
@@ -121,23 +121,28 @@ h2 {
 form {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-/*Login formLogin*/
-#formLogin{
+/*Login formLogin formLoginAdmin*/
+#formLogin, #formLoginAdmin{
+  label{
+    display: block;
+    width: 100%;
+  }
+  input{
+    width: 96%;
+  }
   #submitButton{
-    display: flex;
+    display: block;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     margin-top: 10px;
-    margin-left: 45%;
-    width: 100px;
+    width: 25%;
     height: 50px;
   }
-  input{
-    width: 98%;
-  }
+  
 }
 
 table {
@@ -347,6 +352,7 @@ input[disabled] {
   display: none;
   width: 80%;
   margin: auto;
+
   li{
     list-style-type: none;
     text-align: end;
@@ -359,4 +365,39 @@ input[disabled] {
     background-color: #007bff;
     color: #FFF;
   }
+}
+
+#exit{
+  font-size: 25pt;
+  margin-left: -50px;
+}
+
+#cards{
+
+  i{
+    position: absolute;
+    font-size: 150pt;
+    color: #004AAD;
+  }
+ul{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+} 
+
+a{
+  background-color: #FFF;
+  width: 200px;
+  height: 200px;
+  list-style-type: none;
+  padding: 10px;
+  margin: 10px;
+  margin-bottom: 30px;
+}
+li{
+  margin-top: 215px;
+  
+  text-align: center;
+}
 }

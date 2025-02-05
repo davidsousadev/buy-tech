@@ -48,12 +48,12 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     
     <!-- Scripts -->
-    <script type="module" src="../src/scripts/logadoAdmin.js"></script>
+    <script type="module" src="../src/scripts/no-logadoAdmin.js"></script>
 
 </head>
 <body>
     <header>
-        <h1>BUY - TECH</h1> <a href="#" ><i class='bx 'id="exit"></i></a>
+        <h1>BUY - TECH</h1>
     </header>
 
     <main>
@@ -62,9 +62,9 @@
             <h2>Admin</h2>
             <form id="formLoginAdmin"> 
                 <label for="email">Email</label> 
-                <input type="text" id="email" name="email" placeholder="Digite seu email">
+                <input type="text" id="email" name="email" placeholder="Digite seu email" v>
                 <label for="password">Senha</label>
-                <input type="password" id="password" name="password" placeholder="Digite sua senha">
+                <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
                 <input type="submit" id="submitButton" name="entrar" value="Login">
             </form>            
         </div>

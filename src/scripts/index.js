@@ -74,6 +74,24 @@ function logout() {
     window.location.href = './logar.html'; // Redireciona para a página de login
 };
 
+// Função de logoutAdmin
+function logoutAdmin(qtd) {
+    // Remove o cookie "authTokenAdmin"
+    document.cookie = 'authTokenAdmin=; Max-Age=0; path=/;';
+    if (qtd===0){
+        var voltar = '.';
+        window.location.href = `${voltar}/index.html`; // Redireciona para a página de login
+    }
+    else{
+        var voltar = '';
+        for (var i = 0; i < qtd; i++) {
+            voltar += '../';  
+        }  
+        window.location.href = `${voltar}index.html`; // Redireciona para a página de login       
+    }
+};
+
+
 function opcoes(){
     var token = getCookie('authToken');
     if (!token) {

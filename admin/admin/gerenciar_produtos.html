@@ -44,26 +44,33 @@
          <meta name="keywords" content="projeto, IFPI, software">
     
         <!-- Styles -->
-        <link rel="stylesheet" href="../src/styles/style.css">
+        <link rel="stylesheet" href="../../src/styles/style.css">
         <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     
         <!-- Scripts -->
-        <script type="module" src="../src/scripts/logadoAdmin.js"></script>
-        <script type="module" src="../src/scripts/no-logadoAdmin.js"></script>  
+        <script type="module" src="../../src/scripts/logadoAdmin.js"></script>
     </head>
 <body>
     <header>
-        <h1>BUY - TECH</h1> <a href="#"><i class='bx 'id="exit" onclick="logout()"></i></a>
+        <h1>BUY - TECH</h1> <a href="#"><i class='bx 'id="exit" onclick="logoutAdmin()"></i></a>
     </header>
 
     <main>
         <div class="container">
-            <a href="index.html">Voltar</a>
+            <div id="cards">
+                <ul>
+                    <a href="produtos/listar_produtos.html"><li>Listar Produtos</li></a>
+                    <a href="produtos/cadastrar_produtos.html"><li>Cadastrar Produtos</li></a>
+                    <a href="produtos/atualizar_produtos.html"><li>Atualizar Produtos</li></a>
+                    <a href="#" onclick="logoutAdmin(1)"><li>Sair</li></a>
+                </ul>
+            </div>
         </div>
     </main>
     
     <footer>Contato: <a href="mailto:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="../../src/scripts/index.js" defer></script>
     <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
 </body>
 </html>

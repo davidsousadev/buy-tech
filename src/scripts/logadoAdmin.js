@@ -19,11 +19,9 @@ const token = getCookie('authTokenAdmin');
 
 if (token) {
     const tokenData = decodeToken(token);
-    console.table(tokenData); 
+    //console.table(tokenData); 
     const exit = document.getElementById('exit');
     exit.classList.add('bx-exit');
-    
-
     // Função assíncrona para fazer a requisição à API
     async function authenticate() {
         try {
@@ -38,13 +36,10 @@ if (token) {
             if (!response.ok) {
                 document.cookie = 'authTokenAdmin=; Max-Age=0; path=/;';
                 throw new Error(`Erro ao autenticar: ${response.statusText}`);
-            } else {
-                // document.cookie = 'authToken=; Max-Age=0; path=/;';
-                // window.location.href = './index.html'; 
             }
 
             const result = await response.json();
-            console.table(result);
+            console.log(result.id);
             
         } catch (error) {
             console.error('Erro ao enviar os dados:', error);
@@ -53,4 +48,7 @@ if (token) {
 
     // Chama a função de autenticação
     authenticate();
+}
+else{
+    window.location.href = 'index.html'; 
 }
