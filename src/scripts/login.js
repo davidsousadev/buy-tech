@@ -18,7 +18,7 @@ export const login = async () => {
             disableSubmitButton(true);
 
             try {
-                const response = await fetch('https://api-buy-tech.onrender.com//clientes/logar', {
+                const response = await fetch('https://api-buy-tech.onrender.com/clientes/logar', {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     headers: { 'Content-Type': 'application/json' },

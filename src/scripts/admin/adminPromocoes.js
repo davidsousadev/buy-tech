@@ -3,7 +3,7 @@ function listarCategorias(editar) {
     if (token) {
         async function authenticate() {
             try {
-                const response = await fetch('https://api-buy-tech.onrender.com//categorias', {
+                const response = await fetch('https://api-buy-tech.onrender.com/categorias', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ async function atualizarCategoria(id, novoNome) {
     if (!token) return;
 
     try {
-        const response = await fetch(`https://api-buy-tech.onrender.com//categorias/${id}`, {
+        const response = await fetch(`https://api-buy-tech.onrender.com/categorias/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

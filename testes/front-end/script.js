@@ -13,7 +13,7 @@ const validateFieldAsync = async (input, endpoint, errorSpanId) => {
 
         try {
             // Faz a requisição para a API
-            const response = await fetch(`https://api-buy-tech.onrender.com//clientes/${endpoint}?${input.name}=${value}`);
+            const response = await fetch(`https://api-buy-tech.onrender.com/clientes/${endpoint}?${input.name}=${value}`);
 
             if (response.ok) {
                 // Campo válido
@@ -148,7 +148,7 @@ form.addEventListener('submit', async (event) => {
     const formData = new FormData(form);
 
     try {
-        const response = await fetch('https://api-buy-tech.onrender.com//clientes/cadastrar', {
+        const response = await fetch('https://api-buy-tech.onrender.com/clientes/cadastrar', {
             method: 'POST',
             body: JSON.stringify(Object.fromEntries(formData)),
             headers: { 'Content-Type': 'application/json' },

@@ -3,7 +3,7 @@ function listarPedidos(editar) {
     if (token) {
         async function authenticate() {
             try {
-                const response = await fetch('https://api-buy-tech.onrender.com//pedidos', {
+                const response = await fetch('https://api-buy-tech.onrender.com/pedidos', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -49,7 +49,7 @@ async function atualizarPedido(id, novoNome) {
     if (!token) return;
 
     try {
-        const response = await fetch(`https://api-buy-tech.onrender.com//pedido/${id}`, {
+        const response = await fetch(`https://api-buy-tech.onrender.com/pedido/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

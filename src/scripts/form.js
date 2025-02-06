@@ -58,7 +58,7 @@ export const handleFormSubmission = async () => {
             disableSubmitButton(true);
             try {
                 console.log(formData)
-                const response = await fetch('https://api-buy-tech.onrender.com//clientes/cadastrar', {
+                const response = await fetch('https://api-buy-tech.onrender.com/clientes/cadastrar', {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     headers: { 'Content-Type': 'application/json' },
@@ -155,7 +155,7 @@ export const handleFormSubmission = async () => {
             disableSubmitButton(true);
             try {
                 console.log(formData)
-                const response = await fetch('https://api-buy-tech.onrender.com//clientes/cadastrar', {
+                const response = await fetch('https://api-buy-tech.onrender.com/clientes/cadastrar', {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     headers: { 'Content-Type': 'application/json' },
@@ -238,7 +238,7 @@ export const handleFormSubmission = async () => {
             try {
                 const token = getCookie('authTokenAdmin');
                 if (token) {
-                const response = await fetch('https://api-buy-tech.onrender.com//produtos', {
+                const response = await fetch('https://api-buy-tech.onrender.com/produtos', {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     headers: { 
