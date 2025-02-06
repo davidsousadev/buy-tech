@@ -7,8 +7,7 @@ const getCookie = (name) => {
 export const handleFormSubmission = async () => {
     const formCadastroCliente = document.getElementById('formCadastroCliente');
     const formCadastroPessoaJuridica = document.getElementById('formCadastroPessoaJuridica');
-    const formCadastroProdutoAdmin = document.getElementById('formCadastroProdutoAdmin');
-    
+
 
     if (formCadastroCliente) {
         formCadastroCliente.addEventListener('submit', async (event) => {
@@ -189,94 +188,6 @@ export const handleFormSubmission = async () => {
                         posicao: "bottom-right"
                     });
                 }
-            } catch (error) {
-                console.error('Erro ao enviar os dados:', error);
-                // Esconde o loader e habilita o botão novamente
-                displayLoader(false);
-                disableSubmitButton(false);
-                mostrarNotificacao("Erro ao enviar os dados. Tente novamente.", {
-                    cor: "#F44336",
-                    duracao: 4000,
-                    movimentoEntrada: "deslizar",
-                    movimentoSaida: "esvair",
-                    posicao: "bottom-right"
-                });
-            }
-        });
-    }
-    if (formCadastroProdutoAdmin) {
-        formCadastroProdutoAdmin.addEventListener('submit', async (event) => {
-            event.preventDefault();
-
-            // Criação do objeto com os dados aceitos pela API
-            let formData = {
-                nome: document.getElementById('nome').value,
-                preco: document.getElementById('preco').value,
-                foto: document.getElementById('foto').value,
-                marca: document.getElementById('marca').value,
-                categoria: document.getElementById('categoria').value,
-                descricao: document.getElementById('descricao').value,
-                quantidade: document.getElementById('quantidade').value
-            };
-
-            // Verifica se todos os campos obrigatórios estão preenchidos
-            if (!formData.nome || !formData.preco || !formData.foto || !formData.marca || !formData.categoria || !formData.descricao || !formData.quantidade) {
-                mostrarNotificacao("Todos os campos devem ser preenchidos.", {
-                    cor: "#F44336",
-                    duracao: 4000,
-                    movimentoEntrada: "deslizar",
-                    movimentoSaida: "esvair",
-                    posicao: "bottom-right"
-                });
-                
-                return;
-            }
-
-            // Exibe o loader e desabilita o botão
-            displayLoader(true);
-            disableSubmitButton(true);
-            try {
-                const token = getCookie('authTokenAdmin');
-                if (token) {
-                const response = await fetch('https://api-buy-tech.onrender.com/produtos', {
-                    method: 'POST',
-                    body: JSON.stringify(formData),
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                     }
-                    
-                });
-
-                const result = await response.json();
-
-                // Exibe a resposta da API no console para depuração
-                console.log('Resposta da API:', result);
-
-                // Esconde o loader e habilita o botão novamente
-                displayLoader(false);
-                disableSubmitButton(false);
-
-                if (response.ok) {
-                    mostrarNotificacao("Cadastro realizado com sucesso!", {
-                        cor: "#F44336",
-                        duracao: 4000,
-                        movimentoEntrada: "deslizar",
-                        movimentoSaida: "esvair",
-                        posicao: "bottom-right"
-                    });
-                    window.location.href = './listar_produtos.html';
-                } else {
-                    // Exibe mensagens de erro específicas com base na resposta da API
-                    mostrarNotificacao(result.detail || 'Erro ao realizar o cadastro.', {
-                        cor: "#F44336",
-                        duracao: 4000,
-                        movimentoEntrada: "deslizar",
-                        movimentoSaida: "esvair",
-                        posicao: "bottom-right"
-                    });
-                }
-            }
             } catch (error) {
                 console.error('Erro ao enviar os dados:', error);
                 // Esconde o loader e habilita o botão novamente

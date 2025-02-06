@@ -50,7 +50,7 @@
     <!-- Scripts -->
     <script type="module" src="src/scripts/logado.js"></script> 
 </head>
-<body>
+<body onload="listarProdutos()">
   <header>
     <div class="logo-search">
         <a href="index.html"><h1>BUY TECH</h1></a>
@@ -60,34 +60,39 @@
     </div>
     </div>
     <div class="icones">
-        <a href="#" onclick="buyCart()"><i class='bx bx-cart'></i></a>
+        <a href="#" onclick="buyCart()" id="btnCart"><i class='bx bx-cart'></i></a>
         <a href="#"><i class='bx bx-sun'></i></a>
         <a href="#" onclick="opcoes()" id="btnLogin"><i class='bx bx-user' id="avatar"></i>
     </div>
     </a>
 </header>
-  <main>
-    <div class="destaques"></div>
-    <div class=container></div>
-    <div class="opcoes">
-      <div class="itens_carrinho" id="itens_carrinho">
-        <ul>
-          <p id="lista_itens"></p>
-          <li><button onclick="pedido()" id="finalizar_pedido">Finalizar Pedido</button></li>
-        </ul>
-      </div>
-      <div class="opcoes_perfil" id="opcoes_perfil">
-        <ul>
-          <li><a href="gerenciar-conta.html">Gerenciar Conta</a></li>
-          <li><a href="atualizar-perfil.html">Atualizar Perfil</a></li>
-          <li><a href="notificacoes.html">Notificações</a></li>
-          <li><a href="pedidos.html">Pedidos</a></li>
-          <li><button onclick="logout()">Sair</button></li>
-          
-        </ul>
-      </div>
+<main>
+  <div class="destaques"></div>
+  <div class="container">
+    <!-- Skeleton Loader
+    <div class="skeleton skeleton-card"></div>
+    <div class="skeleton skeleton-card"></div>
+    <div class="skeleton skeleton-card"></div> -->
+    <ul id="lista_produtos"></ul>
+  </div>
+  <div class="opcoes">
+    <div class="itens_carrinho" id="itens_carrinho">
+      <ul>
+        <p id="lista_itens"></p>
+        <li><button onclick="pedido()" id="finalizar_pedido">Finalizar Pedido</button></li>
+      </ul>
     </div>
-  </main>
+    <div class="opcoes_perfil" id="opcoes_perfil">
+      <ul>
+        <li><a href="gerenciar-conta.html">Gerenciar Conta</a></li>
+        <li><a href="atualizar-perfil.html">Atualizar Perfil</a></li>
+        <li><a href="notificacoes.html">Notificações</a></li>
+        <li><a href="pedidos.html">Pedidos</a></li>
+        <li><button onclick="logout()">Sair</button></li>
+      </ul>
+    </div>
+  </div>
+</main>
   <footer>Contato: <a href="email:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
   <script src="src/scripts/index.js" defer></script>
