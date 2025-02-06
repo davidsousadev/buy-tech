@@ -56,6 +56,20 @@ div#search input {
 div#search input::placeholder {
   color: #999;
 }
+header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  h2{
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 50pt;
+    color: #fff;
+    position: absolute;
+    z-index: -3;
+  }
+}
 
 header div#search i.bx-search-alt-2 {
   color: #006dfa;
@@ -100,7 +114,7 @@ footer {
 
 /* Formulário */
 .container {
-  width: 50%;
+  width: 65%;
   height: 100%;
   margin: 50px auto;
   padding: 20px;
@@ -373,7 +387,11 @@ input[disabled] {
 }
 
 #cards{
-
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  
   i{
     position: absolute;
     font-size: 150pt;
@@ -391,8 +409,8 @@ a{
   width: 200px;
   height: 200px;
   list-style-type: none;
-  padding: 10px;
-  margin: 10px;
+  padding: 12px;
+  margin: 12px;
   margin-bottom: 30px;
 }
 li{

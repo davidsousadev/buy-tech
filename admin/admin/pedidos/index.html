@@ -44,33 +44,30 @@
          <meta name="keywords" content="projeto, IFPI, software">
     
         <!-- Styles -->
-        <link rel="stylesheet" href="../../src/styles/style.css">
+        <link rel="stylesheet" href="../../../src/styles/style.css">
         <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     
         <!-- Scripts -->
-        <script type="module" src="../../src/scripts/logadoAdmin.js"></script>
+        <script type="module" src="../../../src/scripts/logadoAdmin.js"></script>
     </head>
-<body>
+<body onload="listarPedidos(false)">
     <header>
-        <h1>BUY - TECH</h1> <a href="#"><i class='bx 'id="exit" onclick="logoutAdmin(1)"></i></a>
+        <h1>BUY - TECH</h1> <a href="#"><i class='bx 'id="exit" onclick="logoutAdmin(3)"></i></a>
     </header>
 
     <main>
         <div class="container">
-            <div id="cards">
-                <ul>
-                    <a href="perfis/index.html"><i class='bx bx-list-ol'></i></i><li>Listar Perfis</li></a>
-                    <a href="perfis/cadastrar_perfis.html"><i class='bx bx-list-plus'></i><li>Cadastrar Perfis</li></a>
-                    <a href="perfis/desativar_perfis.html"><i class='bx bx-list-check'></i><li>Desativar Perfis</li></a>
-                    <a href="../painel_administrativo.html"><i class='bx bx-arrow-back'></i><li>Voltar</li></a>
-                </ul>
-            </div>
+            <ol id="listar_de_pedidos"></ol>
+            <div id="cards"><ul>
+                <a href="../gerenciar_pedidos.html"><i class='bx bx-arrow-back'></i><li>Voltar</li></a>
+            </ul></div>
         </div>
     </main>
     
     <footer>Contato: <a href="mailto:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <script src="../../src/scripts/index.js" defer></script>
+    <script src="../../../src/scripts/index.js" defer></script>
+    <script src="../../../src/scripts/admin/adminPedidos.js" defer></script>
     <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
 </body>
 </html>

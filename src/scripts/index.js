@@ -18,7 +18,7 @@ function buyCart(){
         async function authenticate() {
             //console.log(token);
             try {
-                const response = await fetch('https://api-buy-tech.onrender.com/carrinhos', {
+                const response = await fetch('https://api-buy-tech.onrender.com//carrinhos', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

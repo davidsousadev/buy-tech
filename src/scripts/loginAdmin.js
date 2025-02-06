@@ -18,7 +18,7 @@ export const login = async () => {
             disableSubmitButton(true);
 
             try {
-                const response = await fetch('https://api-buy-tech.onrender.com/admins/logar', {
+                const response = await fetch('https://api-buy-tech.onrender.com//admins/logar', {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     headers: { 'Content-Type': 'application/json' },
@@ -31,7 +31,7 @@ export const login = async () => {
                 if (response.ok) {
                     // Armazena o token no cookie com tempo de expiração
                     document.cookie = `authTokenAdmin=${result.access_token}; path=/; max-age=${7 * 24 * 60 * 60}`;
-                    window.location.href = 'painel_administrativo.html';
+                    window.location.href = './painel_administrativo.html';
                 } else {
                     mostrarNotificacao(`${result.detail}`, {
                         cor: "#F44336",

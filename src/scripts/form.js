@@ -8,7 +8,9 @@ export const handleFormSubmission = async () => {
     const formCadastroCliente = document.getElementById('formCadastroCliente');
     const formCadastroPessoaJuridica = document.getElementById('formCadastroPessoaJuridica');
     const formCadastroProdutoAdmin = document.getElementById('formCadastroProdutoAdmin');
-       if (formCadastroCliente) {
+    
+
+    if (formCadastroCliente) {
         formCadastroCliente.addEventListener('submit', async (event) => {
             event.preventDefault();
 
@@ -56,7 +58,7 @@ export const handleFormSubmission = async () => {
             disableSubmitButton(true);
             try {
                 console.log(formData)
-                const response = await fetch('https://api-buy-tech.onrender.com/clientes/cadastrar', {
+                const response = await fetch('https://api-buy-tech.onrender.com//clientes/cadastrar', {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     headers: { 'Content-Type': 'application/json' },
@@ -153,7 +155,7 @@ export const handleFormSubmission = async () => {
             disableSubmitButton(true);
             try {
                 console.log(formData)
-                const response = await fetch('https://api-buy-tech.onrender.com/clientes/cadastrar', {
+                const response = await fetch('https://api-buy-tech.onrender.com//clientes/cadastrar', {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     headers: { 'Content-Type': 'application/json' },
@@ -236,11 +238,14 @@ export const handleFormSubmission = async () => {
             try {
                 const token = getCookie('authTokenAdmin');
                 if (token) {
-                const response = await fetch('https://api-buy-tech.onrender.com/produtos', {
+                const response = await fetch('https://api-buy-tech.onrender.com//produtos', {
                     method: 'POST',
                     body: JSON.stringify(formData),
-                    headers: { 'Content-Type': 'application/json' },
-                    'Authorization': `Bearer ${token}`,
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                     }
+                    
                 });
 
                 const result = await response.json();
@@ -287,6 +292,7 @@ export const handleFormSubmission = async () => {
             }
         });
     }
+    
 };
 
 

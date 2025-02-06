@@ -83,7 +83,7 @@ export function configurarEventosCPF() {
               // Verificação de duplicidade na API
             try {  
 
-                const response = await fetch(`https://api-buy-tech.onrender.com/clientes/verificar-cpf?cpf=${somenteNumerosCPF(cpfInput)}`);
+                const response = await fetch(`https://api-buy-tech.onrender.com//clientes/verificar-cpf?cpf=${somenteNumerosCPF(cpfInput)}`);
                 if (response.ok) {
                     const result = await response.json();
 
