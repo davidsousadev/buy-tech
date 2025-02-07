@@ -1,50 +1,52 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
-    
-        <!-- Meta tag's-->
-        <meta name="author" content="David Sousa da Silva / Pedro Igor Vieira da Silva / Symon Mendes Silva">
-        <meta name="designer" content="David Sousa da Silva / Pedro Igor Vieira da Silva / Symon Mendes Silva">
-        <meta name="developer" content="David Sousa da Silva / Pedro Igor Vieira da Silva / Symon Mendes Silva">
-        <meta name="editor" content="VS Code">
-        <meta name="distribution" content="global">
-        <meta name="contact" content="davidk1k3k@gmail.com">
-        <meta name="reply-to" content="contato.buytech@gmail.com">
-    
-        <title>Buy Tech</title>
-    
-        <!-- Meta tags Google -->
-        <meta name="robots" content="index, follow">
-        <meta name="google" content="nositelinkssearchbox">
-        <meta name="google" content="notranslate">
-        <script async src="https://www.google-analytics.com/analytics.js"></script>
-    
-        <!-- Meta tags do Meta (Facebook) -->
-        <meta property="og:title" content="Buy Tech">
-        <meta property="og:description" content="Projeto integrador - Desenvolvimento de Sistemas - IFPI">
-        <meta property="og:type" content="website">
-        <meta property="og:locale" content="pt_BR">
-        
-        <!-- Meta tags do Twitter -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:site" content="@davidsousadev">
-        <meta name="twitter:title" content="Buy Tech">
-        <meta name="twitter:description" content="Projeto integrador - Desenvolvimento de Sistemas - IFPI">
-    
-        <!-- Meta tags gerais para SEO -->
-        <meta name="description" content="Projeto integrador - Desenvolvimento de Sistemas - IFPI">
-        <meta name="keywords" content="projeto, IFPI, software">
-    
-        <!-- Styles -->
-        <link rel="stylesheet" href="../../../src/styles/style.css">
-        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    
-        <!-- Scripts -->
-        <script type="module" src="../../../src/scripts/logadoAdmin.js"></script>
-    </head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+
+    <!-- Meta tag's-->
+    <meta name="author" content="David Sousa da Silva / Pedro Igor Vieira da Silva / Symon Mendes Silva">
+    <meta name="designer" content="David Sousa da Silva / Pedro Igor Vieira da Silva / Symon Mendes Silva">
+    <meta name="developer" content="David Sousa da Silva / Pedro Igor Vieira da Silva / Symon Mendes Silva">
+    <meta name="editor" content="VS Code">
+    <meta name="distribution" content="global">
+    <meta name="contact" content="davidk1k3k@gmail.com">
+    <meta name="reply-to" content="contato.buytech@gmail.com">
+
+    <title>Buy Tech</title>
+
+    <!-- Meta tags Google -->
+    <meta name="robots" content="index, follow">
+    <meta name="google" content="nositelinkssearchbox">
+    <meta name="google" content="notranslate">
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+
+    <!-- Meta tags do Meta (Facebook) -->
+    <meta property="og:title" content="Buy Tech">
+    <meta property="og:description" content="Projeto integrador - Desenvolvimento de Sistemas - IFPI">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+
+    <!-- Meta tags do Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@davidsousadev">
+    <meta name="twitter:title" content="Buy Tech">
+    <meta name="twitter:description" content="Projeto integrador - Desenvolvimento de Sistemas - IFPI">
+
+    <!-- Meta tags gerais para SEO -->
+    <meta name="description" content="Projeto integrador - Desenvolvimento de Sistemas - IFPI">
+    <meta name="keywords" content="projeto, IFPI, software">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../../src/styles/style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script type="module" src="../../../src/scripts/logadoAdmin.js"></script>
+</head>
+
 <body>
     <header>
         <h1>BUY - TECH</h1> <a href="#"><i class='bx ' id="exit" onclick="logoutAdmin(2)"></i></a>
@@ -58,42 +60,56 @@
                 <table>
                     <tr>
                         <td>
-                          <label for="nome">Nome do Produto:</label>
-                          <input type="text" id="nome" name="nome" placeholder="Ex. PC Gamer" required>
-                          
-                          <label for="preco">Preço:</label>
-                          <input type="number" id="preco" name="preco" placeholder="1500,00" required>
-                          
-                          <label for="foto">Link da foto do produto:</label>
-                          <input type="text" id="foto" name="foto" placeholder="Ex. https://imagem.com/pc-gamer.png" required>
+                            <label for="nome">Nome do Produto:</label>
+                            <input type="text" id="nome" name="nome" placeholder="Ex. PC Gamer" required>
 
-                          <label for="marca">Marca:</label>
-                          <input type="text" id="marca" name="marca" placeholder="Ex. NPC - New PC" required>
-                          
-                          <label for="categoria">Categoria:</label>
-                          <input type="number" id="categoria" name="categoria" placeholder="Lista de categorias" required>
-                          
-                          <label for="descricao">Descrição:</label>
-                          <input type="text" id="descricao" placeholder="PC GAMER AMD RYZEN 5 5600GT+A520M+16GB 3200+NVME 500GB+500W BIVOLT+GABINETE GAMER 3 FANS+MONITOR 21,5 100HZ HDMI+TECLADO E MOUSE GAMER RGB" name="descricao" required>
-                          
-                          <label for="quantidade_estoque">Quantidade:</label>
-                          <input type="number" id="quantidade_estoque" name="quantidade_estoque" required>
-                          
-                          <label for="personalizado">Personalizado:</label>
-                          <input type="checkbox" id="personalizado" name="personalizado">
-                          
-                          <button type="submit" id="submitButton">Cadastrar</button>
-                      </td>
+                            <label for="preco">Preço:</label>
+                            <input type="number" id="preco" name="preco" placeholder="1500" required>
+
+                            <label for="foto">Link da foto do produto:</label>
+                            <input type="text" id="foto" name="foto" placeholder="Ex. https://imagem.com/pc-gamer.png"
+                                required>
+
+                            <label for="marca">Marca:</label>
+                            <input type="text" id="marca" name="marca" placeholder="Ex. NPC - New PC" required>
+
+                            <label for="categoria">Categoria:</label>
+                            <select id="categoria" name="categoria" required>
+                                <option value="">...</option>
+                            </select>
+
+                            <label for="descricao">Descrição:</label>
+                            <input type="text" id="descricao"
+                                placeholder="PC GAMER AMD RYZEN 5 5600GT+A520M+16GB 3200+NVME 500GB+500W BIVOLT+GABINETE GAMER 3 FANS+MONITOR 21,5 100HZ HDMI+TECLADO E MOUSE GAMER RGB"
+                                name="descricao" required>
+
+                            <label for="quantidade_estoque">Quantidade:</label>
+                            <input type="number" id="quantidade_estoque" name="quantidade_estoque" required>
+
+                            <label for="personalizado">Personalizado:</label>
+                            <input type="checkbox" id="personalizado" name="personalizado">
+
+                            <button type="submit" id="submitButton">Cadastrar</button>
+                        </td>
                     </tr>
                 </table>
             </form>
+            <div id="cards">
+                <ul>
+                    <a href="../gerenciar_produtos.html"><i class='bx bx-arrow-back'></i>
+                        <li>Voltar</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
         </div>
     </main>
-    
+
     <footer>Contato: <a href="mailto:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script src="../../../src/scripts/index.js" defer></script>
     <script src="../../../src/scripts/admin/adminProdutos.js" defer></script>
     <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
 </body>
+
 </html>

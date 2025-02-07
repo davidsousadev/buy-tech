@@ -45,19 +45,18 @@
   <meta name="keywords" content="projeto, IFPI, software">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="src/styles/style.css">
-  <link rel="stylesheet" href="src/styles/index.css">
-  <link rel="stylesheet" href="src/styles/menu.css">
+  <link rel="stylesheet" href="../src/styles/style.css">
+  <link rel="stylesheet" href="../src/styles/menu.css">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
   <!-- Scripts -->
-  <script type="module" src="src/scripts/logadoCliente.js"></script>
+  <script type="module" src="../src/scripts/logadoCliente.js"></script>
 </head>
 
-<body onload="listarProdutos()">
+<body>
   <header>
     <div class="logo-search">
-      <a href="index.html">
+      <a href="../index.html">
         <h1>BUY TECH</h1>
       </a>
       <div id="search">
@@ -75,7 +74,7 @@
   <main>
     <div class="destaques"></div>
     <div class="container">
-      <ul id="lista_produtos"></ul>
+      <ul id="detalhesProduto"></ul>
     </div>
     <div class="opcoes">
       <div class="itens_carrinho" id="itens_carrinho">
@@ -87,20 +86,20 @@
       <div class="opcoes_perfil" id="opcoes_perfil">
         <ul>
           <li>Saldo: R$ <span id="saldo"></span></li>
-          <li><a href="cliente/gerenciar-conta.html">Gerenciar Conta</a></li>
-          <li><a href="cliente/atualizar-perfil.html">Atualizar Perfil</a></li>
-          <li><a href="cliente/notificacoes.html">Notificações</a></li>
-          <li><a href="cliente/pedidos.html">Pedidos</a></li>
-          <li><button onclick="logout(0)">Sair</button></li>
+          <li><a href="gerenciar-conta.html">Gerenciar Conta</a></li>
+          <li><a href="atualizar-perfil.html">Atualizar Perfil</a></li>
+          <li><a href="notificacoes.html">Notificações</a></li>
+          <li><a href="pedidos.html">Pedidos</a></li>
+          <li><button onclick="logout(1)">Sair</button></li>
         </ul>
       </div>
     </div>
   </main>
   <footer>Contato: <a href="email:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-  <script src="src/scripts/index.js" defer></script>
-  <script src="src/scripts/menu.js" defer></script>
-  <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
+  <script src="../src/scripts/index.js" defer></script>
+  <script src="../src/scripts/menu.js" defer></script>
+  <script src="../src/scripts/detalhesProduto.js" defer></script>
 </body>
 
 </html>

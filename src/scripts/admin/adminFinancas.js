@@ -14,11 +14,11 @@ function listarCategorias(editar) {
                 if (result && result.length > 0) {
                     const listar_de_categorias = document.getElementById("listar_de_categorias");
                     listar_de_categorias.innerHTML = "";
-                
+
                     result.forEach((categoria) => {
                         const li = document.createElement("li");
                         li.innerHTML = `<span id="categoria-nome-${categoria.id}">${categoria.nome}</span>`;
-                        
+
                         if (editar) {
                             li.innerHTML += ` <button onclick="editarCategoria(${categoria.id}, '${categoria.nome}')">Editar</button>`;
                         }

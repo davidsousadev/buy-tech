@@ -1,6 +1,6 @@
 export const login = async () => {
     const form = document.getElementById('formLoginAdmin');
-        if (form) {
+    if (form) {
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
 

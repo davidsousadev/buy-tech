@@ -1,0 +1,179 @@
+.search {
+  background-color: transparent;
+  width: 10px;
+  height: 10px;
+  margin-top: -10px;
+  margin-left: -50px;
+}
+
+.search:hover {
+  background-color: transparent;
+}
+
+.opcoes,
+.destaques {
+  width: 25%;
+
+  height: 50vh;
+}
+
+#opcoes_perfil {
+  border: 1px #999 solid;
+  /*  */
+  background-color: #002752;
+  display: none;
+  width: 80%;
+  margin: auto;
+
+  li {
+    list-style-type: none;
+    text-align: end;
+    padding: 10px;
+    font-size: 15pt;
+  }
+
+  a:hover {
+    cursor: pointer;
+
+    background-color: #007bff;
+    color: #FFF;
+  }
+}
+
+#itens_carrinho {
+  border: 1px #999 solid;
+  background-color: #002752;
+  display: none;
+  width: 70%;
+  margin: auto;
+  z-index: 10;
+  border-radius: 10px;
+
+  li {
+    list-style-type: none;
+    text-align: end;
+    padding: 5px;
+    font-size: 15pt;
+  }
+
+  #finalizar_pedido {
+    display: none;
+  }
+
+  a:hover {
+    cursor: pointer;
+
+    background-color: #007bff;
+    color: #FFF;
+  }
+}
+
+
+.card-carrinho {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 10px;
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+}
+
+.card-carrinho:hover {
+  transform: scale(1.05);
+}
+
+.card-carrinho-img {
+  width: 25%;
+  height: 25%;
+
+  display: block;
+  margin: auto;
+}
+
+.card-carrinho-quantity {
+  color: #007bff;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+
+  strong {
+    margin-top: 10px;
+    display: flex;
+    font-size: 14pt;
+  }
+
+  span {
+    text-align: start;
+    margin-top: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+input {
+  width: 25px;
+  height: 10px;
+  text-align: center;
+}
+
+.card-carrinho-title {
+  margin-top: -15px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+
+}
+
+.card-carrinho-brand {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+
+}
+
+.card-carrinho-price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+#btn-cart {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+.btn-cart {
+  border: red 1px solid;
+  color: white;
+  margin: 10px;
+  margin-top: 10px;
+  width: 50%;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-cart:hover {
+  background-color: #0056b3;
+}
+
+.btn-cart {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-cart:hover {
+  background-color: #0056b3;
+}

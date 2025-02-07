@@ -35,7 +35,7 @@ export const handleFormSubmission = async () => {
                     movimentoSaida: "esvair",
                     posicao: "bottom-right"
                 });
-                
+
                 return;
             }
 
@@ -48,7 +48,7 @@ export const handleFormSubmission = async () => {
                     movimentoSaida: "esvair",
                     posicao: "bottom-right"
                 });
-                
+
                 return;
             }
 
@@ -132,7 +132,7 @@ export const handleFormSubmission = async () => {
                     movimentoSaida: "esvair",
                     posicao: "bottom-right"
                 });
-                
+
                 return;
             }
 
@@ -145,7 +145,7 @@ export const handleFormSubmission = async () => {
                     movimentoSaida: "esvair",
                     posicao: "bottom-right"
                 });
-                
+
                 return;
             }
 
@@ -203,7 +203,7 @@ export const handleFormSubmission = async () => {
             }
         });
     }
-    
+
 };
 
 

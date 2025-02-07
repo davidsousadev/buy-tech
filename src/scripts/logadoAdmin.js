@@ -40,7 +40,7 @@ if (token) {
 
             const result = await response.json();
             console.log(result.id);
-            
+
         } catch (error) {
             console.error('Erro ao enviar os dados:', error);
         }
@@ -49,6 +49,7 @@ if (token) {
     // Chama a função de autenticação
     //authenticate();
 }
-else{
-    window.location.href = '../index.html'; 
+else {
+    window.location.href = '../index.html';
 }
+

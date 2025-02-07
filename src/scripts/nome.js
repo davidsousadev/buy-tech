@@ -1,7 +1,7 @@
 export const nomeValido = () => {
     const nomeInput = document.getElementById('nome');
     nomeInput.addEventListener('blur', () => {
-            const value = nomeInput.value.trim();
+        const value = nomeInput.value.trim();
         if (value === '') {
             nomeInput.style.borderColor = '#ccc';
             return;
@@ -18,5 +18,5 @@ export const nomeValido = () => {
         } else {
             nomeInput.style.borderColor = 'green';
         }
-        });
-    }
+    });
+}

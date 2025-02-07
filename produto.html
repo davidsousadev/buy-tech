@@ -46,7 +46,6 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="src/styles/style.css">
-  <link rel="stylesheet" href="src/styles/index.css">
   <link rel="stylesheet" href="src/styles/menu.css">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
@@ -54,7 +53,7 @@
   <script type="module" src="src/scripts/logadoCliente.js"></script>
 </head>
 
-<body onload="listarProdutos()">
+<body>
   <header>
     <div class="logo-search">
       <a href="index.html">
@@ -75,7 +74,7 @@
   <main>
     <div class="destaques"></div>
     <div class="container">
-      <ul id="lista_produtos"></ul>
+      <ul id="detalhesProduto"></ul>
     </div>
     <div class="opcoes">
       <div class="itens_carrinho" id="itens_carrinho">
@@ -100,7 +99,7 @@
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
   <script src="src/scripts/index.js" defer></script>
   <script src="src/scripts/menu.js" defer></script>
-  <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
+  <script src="src/scripts/detalhesProduto.js" defer></script>
 </body>
 
 </html>

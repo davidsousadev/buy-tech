@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Configurar eventos para o campo E-mail
     validateEmail();
-    
+
     // Configurar eventos para o campo CPF
-    configurarEventosCPF();    
+    configurarEventosCPF();
 
     // Chama a função de validação de Idade
     validateAge();

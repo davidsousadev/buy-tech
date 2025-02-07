@@ -11,7 +11,7 @@ export function formatarCPF(cpfInput) {
     } else {
         cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, '$1.$2.$3-$4');
     }
-    
+
     cpfInput.value = cpf; // Apenas aqui alteramos o valor do campo
 }
 
@@ -64,7 +64,7 @@ export function configurarEventosCPF() {
         formatarCPF(cpfInput); // Aplica a formatação final
 
         // Validação do CPF
-        if ( !validarCPF(cpfInput.value) && cpfInput.value !== '') {
+        if (!validarCPF(cpfInput.value) && cpfInput.value !== '') {
             cpfInput.style.borderColor = 'red';
             mostrarNotificacao("CPF inválido.", {
                 cor: "#F44336",
@@ -74,14 +74,14 @@ export function configurarEventosCPF() {
                 posicao: "bottom-right"
             });
             return;
-        } 
+        }
 
         cpfInput.style.borderColor = 'green';
 
-        
-            if (validarCPF(cpfInput.value) && cpfInput.value !== ''){
-              // Verificação de duplicidade na API
-            try {  
+
+        if (validarCPF(cpfInput.value) && cpfInput.value !== '') {
+            // Verificação de duplicidade na API
+            try {
 
                 const response = await fetch(`https://api-buy-tech.onrender.com/clientes/verificar-cpf?cpf=${somenteNumerosCPF(cpfInput)}`);
                 if (response.ok) {
@@ -110,7 +110,7 @@ export function configurarEventosCPF() {
                     posicao: "bottom-right"
                 });
             }
-    }
+        }
     });
 
 }

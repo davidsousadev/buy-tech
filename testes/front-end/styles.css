@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #e6f2ff; /* Fundo azul claro */
+    background-color: #e6f2ff;
+    /* Fundo azul claro */
 }
 
 .container {
@@ -14,7 +15,8 @@ body {
 
 h1 {
     text-align: center;
-    color: #004080; /* Azul escuro */
+    color: #004080;
+    /* Azul escuro */
 }
 
 form {
@@ -24,34 +26,40 @@ form {
 
 label {
     margin-top: 10px;
-    color: #0056b3; /* Azul médio */
+    color: #0056b3;
+    /* Azul médio */
 }
 
 input {
     padding: 8px;
     margin-top: 5px;
-    border: 1px solid #99ccff; /* Azul suave */
+    border: 1px solid #99ccff;
+    /* Azul suave */
     border-radius: 4px;
     transition: border-color 0.3s ease-in-out;
 }
 
 input:focus {
     outline: none;
-    border-color: #0066cc; /* Azul vivo ao focar */
+    border-color: #0066cc;
+    /* Azul vivo ao focar */
 }
 
 input:invalid {
-    border-color: red; /* Vermelho para validação inválida */
+    border-color: red;
+    /* Vermelho para validação inválida */
 }
 
 input:valid {
-    border-color: green; /* Verde para validação válida */
+    border-color: green;
+    /* Verde para validação válida */
 }
 
 button {
     margin-top: 20px;
     padding: 10px;
-    background-color: #007bff; /* Azul principal */
+    background-color: #007bff;
+    /* Azul principal */
     color: #ffffff;
     border: none;
     border-radius: 4px;
@@ -60,13 +68,15 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3; /* Azul escuro ao passar o mouse */
+    background-color: #0056b3;
+    /* Azul escuro ao passar o mouse */
 }
 
 #responseMessage {
     margin-top: 15px;
     text-align: center;
-    color: #d9534f; /* Vermelho para mensagens de erro */
+    color: #d9534f;
+    /* Vermelho para mensagens de erro */
 }
 
 .error-message {

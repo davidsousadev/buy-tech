@@ -14,11 +14,11 @@ function listarPedidos(editar) {
                 if (result && result.length > 0) {
                     const listar_de_pedidos = document.getElementById("listar_de_pedidos");
                     listar_de_pedidos.innerHTML = "";
-                
+
                     result.forEach((pedido) => {
                         const li = document.createElement("li");
                         li.innerHTML = `<span id="categoria-nome-${pedido.id}">${pedido.nome}</span>`;
-                        
+
                         if (editar) {
                             li.innerHTML += ` <button onclick="editarCategoria(${pedido.id}, '${pedido.nome}')">Editar</button>`;
                         }

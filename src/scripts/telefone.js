@@ -14,7 +14,7 @@ export function formatarTelefone(telefoneInput) {
 
 // Permitir apenas números no campo de telefone
 export function somenteNumeros(telefoneInput) {
-    telefoneInput.value = telefoneInput.value.replace(/\D/g, ''); 
+    telefoneInput.value = telefoneInput.value.replace(/\D/g, '');
 }
 
 // Validar telefone com 11 dígitos (formato: (XX) XXXXX-XXXX)
