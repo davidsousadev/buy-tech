@@ -52,14 +52,18 @@
     <script type="module" src="../../../src/scripts/logadoAdmin.js"></script>
 </head>
 
-<body onload="listarCategorias(false)">
+<body onload="listarEEditarPerfisAdmin()">
     <header>
         <h1>BUY - TECH</h1> <a href="#"><i class='bx ' id="exit" onclick="logoutAdmin(2)"></i></a>
     </header>
 
     <main>
         <div class="container">
-            <ol id="listar_de_categorias"></ol>
+            <ol id="listar_de_perfis_admins"></ol>
+            <hr>
+            <ol id="listar_de_perfis_clientes"></ol>
+            <hr>
+            <ol id="listar_de_perfis_revendedores"></ol>
             <div id="cards">
                 <ul>
                     <a href="../gerenciar_perfis.html"><i class='bx bx-arrow-back'></i>

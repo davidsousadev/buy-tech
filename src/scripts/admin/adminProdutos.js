@@ -244,7 +244,7 @@ if (formCadastroProdutoAdmin) {
     }
 }
 
-
+// Lista categorias e manda para o select
 document.addEventListener("DOMContentLoaded", async function () {
     const categoriaSelect = document.getElementById("categoria");
 
