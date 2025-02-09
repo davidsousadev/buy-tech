@@ -46,44 +46,51 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="../src/styles/style.css">
-    <link rel="stylesheet" href="src/styles/menu.css">
   <link rel="stylesheet" href="../src/styles/menu.css">
+  <link rel="stylesheet" href="../src/styles/detalhes.css">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
   <!-- Scripts -->
   <script type="module" src="../src/scripts/logadoCliente.js"></script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
 </head>
 
 <body>
   <header>
     <div class="logo-search">
-      <a href="../index.html">
+      <a href="index.html">
         <h1>BUY TECH</h1>
       </a>
       <div id="search">
         <input type="text" placeholder="Buscar produto..." id="barSearch">
-        <button class="search" id="searchBtn"><i class='bx bx-search-alt-2'></i></button>
-    </div>    
+        <a class="search" id="searchBtn"><i class='bx bx-search-alt-2'></i></a>
+      </div>
     </div>
     <div class="icones">
-      <a href="#" onclick="buyCart()" id="btnCart"><i class='bx bx-cart'></i></a>
       <a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a>
-      <a href="#" onclick="opcoes()" id="btnLogin"><i class='bx bx-user' id="avatar"></i>
+      <a href="#" onclick="opcoes(1)" id="btnLogin"><i class='bx bx-user' id="avatar"></i>
     </div>
     </a>
   </header>
   <main>
     <div class="destaques"></div>
     <div class="container">
-      <ul id="detalhesProduto"></ul>
+      <ul>
+        <p id="lista_itens"></p>
+      </ul>
+      <form id="formCadastroPedido">
+        <input type="text" id="cupom_de_desconto" placeholder="Digite o cupom" />
+        <button id="verifica_cupom_de_desconto" type="button">Verificar Cupom</button>
+        <span>Frete: </span><span id="cep"></span><span id="valorFrete"></span>
+        <label>Opção de pagamento:</label>
+        <input type="checkbox" id="opcao_de_pagamento" name="opcao_de_pagamento">
+        <button id="confirmar_pedido" type="submit">Confirmar Pedido</button>
+      </form>
+
     </div>
     <div class="opcoes">
-      <div class="itens_carrinho" id="itens_carrinho">
-        <ul>
-          <p id="lista_itens"></p>
-          <li><button onclick="pedido()" id="finalizar_pedido">Finalizar Pedido</button></li>
-        </ul>
-      </div>
+
       <div class="opcoes_perfil" id="opcoes_perfil">
         <ul>
           <li>Saldo: R$ <span id="saldo"></span></li>
@@ -98,9 +105,8 @@
   </main>
   <footer>Contato: <a href="email:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-  <script src="../src/scripts/index.js" defer></script>
-  <script src="../src/scripts/menu.js" defer></script>
-  <script src="../src/scripts/detalhesProduto.js" defer></script>
+  <script src="../src/scripts/detalhesPedido.js" defer></script>
+  <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
 </body>
 
 </html>

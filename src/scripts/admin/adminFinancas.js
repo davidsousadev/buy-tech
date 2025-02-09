@@ -19,8 +19,8 @@ function listarCategorias(editar) {
                 const result = await response.json();
 
                 if (result && result.length > 0) {
-                    const listar_de_categorias = document.getElementById("listar_de_categorias");
-                    listar_de_categorias.innerHTML = "";
+                    const lista_de_categorias = document.getElementById("lista_de_categorias");
+                    lista_de_categorias.innerHTML = "";
 
                     result.forEach((categoria) => {
                         const li = document.createElement("li");
@@ -30,7 +30,7 @@ function listarCategorias(editar) {
                             li.innerHTML += ` <button onclick="editarCategoria(${categoria.id}, '${categoria.nome}')">Editar</button>`;
                         }
 
-                        listar_de_categorias.appendChild(li);
+                        lista_de_categorias.appendChild(li);
                     });
                 } else {
                     console.log("Nenhuma categoria encontrada");

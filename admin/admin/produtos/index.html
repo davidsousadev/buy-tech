@@ -46,11 +46,14 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="../../../src/styles/style.css">
+    <link rel="stylesheet" href="../../../src/styles/admin/lista-conteudo.css">
     <link rel="stylesheet" href="../../../src/styles/menu.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script type="module" src="../../../src/scripts/logadoAdmin.js"></script>
+<!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
 <body onload="listarProdutos(false)">
@@ -63,7 +66,7 @@
             <select style="display: none;" id="categoria" name="categoria" required>
                 <option value="">...</option>
             </select>
-            <ol id="listar_de_produtos"></ol>
+            <ol id="lista_de_produtos"></ol>
             <div id="cards">
                 <ul>
                     <a href="../gerenciar_produtos.html"><i class='bx bx-arrow-back'></i>

@@ -35,8 +35,6 @@ if (token) {
             });
 
             if (response.ok) {
-                //document.cookie = 'authTokenAdmin=; Max-Age=0; path=/;';
-                //throw new Error(`Erro ao autenticar: ${response.statusText}`);
                 const result = await response.json();
                 const saldo = document.getElementById('saldo');
                 saldo.innerHTML = result.pontos_fidelidade.toFixed(2);

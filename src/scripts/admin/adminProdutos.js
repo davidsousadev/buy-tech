@@ -23,18 +23,30 @@ function listarProdutos(editar) {
                 const result = await response.json();
 
                 if (result && result.length > 0) {
-                    const listar_de_produtos = document.getElementById("listar_de_produtos");
-                    listar_de_produtos.innerHTML = "";
+                    const lista_de_produtos = document.getElementById("lista_de_produtos");
+                    lista_de_produtos.innerHTML = "";
 
                     result.forEach((produto) => {
                         const li = document.createElement("li");
-                        li.innerHTML = `<span id="produto-nome-${produto.id}">${produto.nome}</span>`;
-
+                        li.classList.add("produto-item");
+                    
+                        li.innerHTML = `
+                            <div class="produto-card">
+                                <div class="produto-imagem">
+                                    <img src="${produto.foto}" alt="${produto.nome}" class="produto-foto">
+                                </div>
+                                <div class="produto-info">
+                                    <span class="produto-nome">${produto.nome}</span>
+                                    <span class="produto-preco">Preço: R$ ${produto.preco.toFixed(2)}</span>
+                                    <span class="produto-descricao">${produto.descricao}</span>
+                                </div>
+                            </div>
+                        `;
                         if (editar) {
                             li.innerHTML += ` <button onclick="editarProduto(${produto.id}, '${produto.nome}')">Editar</button>`;
                         }
 
-                        listar_de_produtos.appendChild(li);
+                        lista_de_produtos.appendChild(li);
                     });
                 } else {
                     console.log("Nenhuma produto encontrada");
@@ -95,7 +107,7 @@ if (formCadastroProdutoAdmin) {
 
     // Se ID existir, preenche o formulário
     if (idProduto) {
-        async function carregarProduto() {
+        async function carregarCategoria() {
             try {
                 const response = await fetch(`https://api-buy-tech.onrender.com/produtos/${idProduto}`, {
                     method: 'GET',
@@ -127,7 +139,7 @@ if (formCadastroProdutoAdmin) {
                 });
             }
         }
-        carregarProduto();
+        carregarCategoria();
 
         // Evento para atualizar produto
         formCadastroProdutoAdmin.addEventListener('submit', async (event) => {
@@ -144,7 +156,7 @@ if (formCadastroProdutoAdmin) {
             };
 
             try {
-                const response = await fetch(`https://api-buy-tech.onrender.com/produtos/${idProduto}`, {
+                const response = await fetch(`https://api-buy-tech.onrender.com/produtos/${idCategoria}`, {
                     method: 'PATCH',
                     body: JSON.stringify(formData),
                     headers: {

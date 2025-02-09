@@ -1,0 +1,139 @@
+#lista-categorias {
+    list-style-type: none;
+    padding: 0;
+}
+
+.categoria-item {
+    margin: 15px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.categoria-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.categoria-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.categoria-id, .categoria-nome, .categoria-criacao {
+    font-size: 14px;
+    color: #555;
+}
+
+.categoria-id {
+    font-weight: bold;
+}
+
+.categoria-nome {
+    font-style: italic;
+}
+
+.categoria-criacao {
+    color: #777;
+}
+
+#lista-produtos {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.produto-item {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.produto-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.produto-imagem {
+    margin-bottom: 10px;
+    .produto-foto {
+        width: 50px; /* Reduz a largura da imagem */
+        height: 50px; /* Reduz a altura da imagem */
+        object-fit: cover; /* Faz a imagem se ajustar ao tamanho sem deformar */
+        border-radius: 5px; /* Bordas arredondadas para uma aparência mais suave */
+    }
+}
+
+
+
+.produto-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.produto-nome {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
+
+.produto-preco {
+    font-size: 12px;
+    color: #007BFF;
+}
+
+.produto-descricao {
+    font-size: 10px;
+    color: #777;
+}
+
+/* Estilo para cada item da lista */
+.usuario-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Estilo para os dados do usuário */
+.usuario-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.usuario-id,
+.usuario-nome,
+.usuario-email {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Estilo para o botão */
+.usuario-status button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.usuario-status button:hover {
+    background-color: #0056b3;
+}

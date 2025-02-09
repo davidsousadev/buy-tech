@@ -20,14 +20,14 @@ async function listaItensCarrinho() {
             });
 
             const resultadoItensCarrinho = await response.json();
-
             if (resultadoItensCarrinho.detail) {
                 if (resultadoItensCarrinho.detail === "Token expirado!") {
                     document.cookie = 'authTokenCliente=; Max-Age=0; path=/;';
                     window.location.href = './logar.html';
                 }
                 if (resultadoItensCarrinho.detail === "Carrinho vazio!") {
-                    lista_itens.innerHTML = "<p>Seu carrinho está vazio.</p>";
+                    finalizar_pedido.style.display = "none";
+                    lista_itens.innerHTML = `<p class="carrinho-vazio-texto">Seu carrinho está vazio.</p>`;
                 }
                 return;
             }
@@ -43,8 +43,8 @@ async function listaItensCarrinho() {
                         },
                     });
 
-                    const produtoDetalhes = await produtoResponse.json(); // Renomeei esta variável
-                    
+                    const produtoDetalhes = await produtoResponse.json();
+
                     const li = document.createElement("li");
                     var total_item = (produto.quantidade * produtoDetalhes.preco).toFixed(2);
                     valorTotalItens += parseFloat(total_item);
@@ -57,7 +57,7 @@ async function listaItensCarrinho() {
                                 <p class="card-carrinho-brand">Marca: ${produtoDetalhes.marca}</p>
                                 <p class="card-carrinho-price">R$ ${produtoDetalhes.preco.toFixed(2)}</p>
                                 <div class="card-carrinho-quantity">
-                                    <strong>Quantidade: <input type="number" id="quantidade_${produto.produto_codigo}" value="${produto.quantidade}" min="1"></strong>
+                                    <strong>Quantidade: <input type="number" id="quantidade_${produto.produto_codigo}" value="${produto.quantidade}" min="0"></strong>
                                     
                                     <span>Total: R$ ${total_item}</span>
                                 </div>
@@ -69,13 +69,13 @@ async function listaItensCarrinho() {
                             </div>
                         </div>
                     `;
-                    
+
                     lista_itens.appendChild(li);
                 } catch (error) {
                     console.error("Erro ao buscar detalhes do produto:", error);
                 }
             }
-            
+
             const total = document.createElement("li");
             total.innerHTML = `Total itens: R$: ${valorTotalItens.toFixed(2)}`;
             lista_itens.appendChild(total);
@@ -170,10 +170,20 @@ function logout(qtd) {
     }
 };
 
-function opcoes() {
+function opcoes(qtd) {
     var token = getCookie('authTokenCliente');
     if (!token) {
-        window.location.href = 'logar.html';
+        if (qtd === 0) {
+            var voltar = '.';
+            window.location.href = `${voltar}/logar.html`; // Redireciona para a página de login
+        }
+        else {
+            var voltar = '';
+            for (var i = 0; i < qtd; i++) {
+                voltar += '../';
+            }
+            window.location.href = `${voltar}logar.html`; // Redireciona para a página de login       
+        }
     }
     else {
         toggleDrawer();
@@ -186,7 +196,32 @@ function pedido() {
         window.location.href = 'logar.html';
     }
     else {
-        window.location.href = 'cliente/pedido.html';
+        async function authenticate() {
+            try {
+                const response = await fetch('https://api-buy-tech.onrender.com/clientes/autenticar', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                });
+    
+                if (response.ok) {
+                    const result = await response.json();
+                    const saldo = document.getElementById('saldo');
+                    window.location.href = `cliente/pedido.html?id=${result.id}`;
+                }
+    
+                
+                
+            } catch (error) {
+                console.error('Erro ao enviar os dados:', error);
+            }
+        }
+    
+        // Chama a função de autenticação
+        authenticate();
+        
     }
 }
 

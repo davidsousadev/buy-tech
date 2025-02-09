@@ -34,12 +34,12 @@ if (token) {
             });
 
             if (!response.ok) {
-                document.cookie = 'authTokenAdmin=; Max-Age=0; path=/;';
+                //document.cookie = 'authTokenAdmin=; Max-Age=0; path=/;';
                 throw new Error(`Erro ao autenticar: ${response.statusText}`);
             }
 
             const result = await response.json();
-            console.log(result.id);
+            //console.log(result.id);
 
         } catch (error) {
             console.error('Erro ao enviar os dados:', error);
@@ -47,7 +47,7 @@ if (token) {
     }
 
     // Chama a função de autenticação
-    //authenticate();
+    authenticate();
 }
 else {
     window.location.href = '../index.html';

@@ -129,6 +129,18 @@ i.bx.bxs-exit{
   color: #FFF;
 }
 
+p.carrinho-vazio-texto {
+  height: 320px;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+
 .card-carrinho {
   background-color: #fff;
   border-radius: 8px;

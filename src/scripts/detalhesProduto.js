@@ -1,14 +1,14 @@
 const urlParams = new URLSearchParams(window.location.search);
-const idProduto = urlParams.get("id");
+const idCarrinho = urlParams.get("id");
 
-async function carregarDetalhesProduto() {
-    if (!idProduto) {
+async function carregarDetalhesPedido() {
+    if (!idCarrinho) {
         document.getElementById("detalhesProduto").innerHTML = "<p>Produto não encontrado!</p>";
         return;
     }
 
     try {
-        const response = await fetch(`https://api-buy-tech.onrender.com/produtos/${idProduto}`, {
+        const response = await fetch(`https://api-buy-tech.onrender.com/produtos/${idCarrinho}`, {
             method: "GET",
             headers: { "Content-Type": "application/json" }
         });
@@ -28,7 +28,7 @@ async function carregarDetalhesProduto() {
                     <p><strong>Descrição:</strong> ${produto.descricao}</p>
                     <p><strong>Preço:</strong> R$ ${produto.preco}</p>
                     <label for="quantidade">Quantidade:</label>
-                    <input type="number" id="quantidade" min="1" value="1">
+                    <input type="number" id="quantidade" min="0" value="1">
                     <button class="btn" onclick="adicionarAoCarrinho(${produto.id})">Adicionar ao Carrinho</button>
                 </div>
             </div>
@@ -40,16 +40,16 @@ async function carregarDetalhesProduto() {
 }
 
 async function adicionarAoCarrinho(produtoId) {
-    const token = getCookie("authTokenCliente"); // Obtendo o token do cookie
+    const token = getCookie("authTokenCliente"); 
     const quantidade = document.getElementById("quantidade").value;
 
     if (!token) {
-        window.location.href = 'login.html';
+        window.location.href = 'logar.html';
     }
 
     const data = {
         produto_codigo: produtoId,
-        cliente_id: 1, // Substituir pelo ID real do cliente autenticado
+        cliente_id: 1, 
         quantidade: parseInt(quantidade)
     };
 
@@ -71,6 +71,9 @@ async function adicionarAoCarrinho(produtoId) {
                 movimentoSaida: "esvair",
                 posicao: "bottom-right"
             });
+            setTimeout(() => {
+                location.reload();
+            }, 5000);
         } else {
             const errorData = await response.json();
             mostrarNotificacao(errorData.detail, {
@@ -88,4 +91,4 @@ async function adicionarAoCarrinho(produtoId) {
 }
 
 // Chamar a função ao carregar a página
-carregarDetalhesProduto();
+carregarDetalhesPedido();
