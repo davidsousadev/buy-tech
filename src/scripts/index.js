@@ -27,7 +27,7 @@ function listarProdutos() {
                                     <h3 class="card-title">${produto.nome}</h3>
                                     <p class="card-brand">Marca: ${produto.marca}</p>
                                     <p class="card-price">R$ ${produto.preco}</p>
-                                    <button class="btn" onclick="verDetalhes(${produto.id})">Ver Detalhes</button>
+                                    <button class="btnDetalhes" onclick="verDetalhes(${produto.id})">Ver Detalhes</button>
                                 </div>
                             </div>
                         `;

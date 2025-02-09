@@ -11,105 +11,35 @@
   padding: 0;
 }
 
-body {
+/* Tema claro */
+body.light-mode {
   background-color: #004AAD;
   color: #FFF;
+  overflow-y: hidden;
+}
+
+/* Tema escuro */
+body.dark-mode {
+  background-color: #FFF;
+  color: #004AAD;
 }
 
 a {
   text-decoration: none;
-  color: #FFF;
+  color: inherit;
 }
 
-/* Header */
-header {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+a:visited {
+  color: inherit;
 }
 
-.logo-search {
 
-  display: flex;
-  width: 50%;
+body::-webkit-scrollbar {
+  display: none;
 }
 
-h1 {
-  width: 200px;
-  white-space: nowrap;
-}
 
-/* Campo de busca */
-div#search {
-  display: flex;
-  align-items: center;
-  background-color: #FFF;
-  border-radius: 50px;
-  width: 50%;
-  height: 35px;
-  padding: 0 10px;
-}
 
-div#search input {
-  flex: 1;
-  border: none;
-  border-radius: 50px;
-  padding: 8px 12px;
-  font-size: 14px;
-  outline: none;
-}
-
-div#search input::placeholder {
-  color: #999;
-}
-
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  h2 {
-    display: block;
-    width: 100%;
-    margin-top: 10px;
-    font-size: 50pt;
-    color: #fff;
-    position: absolute;
-    z-index: -3;
-  }
-}
-
-header div#search i.bx-search-alt-2 {
-  color: #006dfa;
-  margin-left: 10px;
-  font-size: 20px;
-}
-
-.icones {
-  width: 50%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-left: -80px;
-}
-
-.icones i {
-  padding-right: 20px;
-  margin: 15px;
-  scale: 3;
-}
-
-header i.bx.bx-user,
-i.bx.bxs-user-circle,
-i.bx.bxs-exit,
-#exit {
-  border-radius: 100px;
-  border: 1px #FFF solid;
-  padding: 1px;
-}
 
 /* Main e Footer */
 main {
@@ -272,10 +202,9 @@ button:hover {
   color: #d9534f;
 }
 
-/* Espaço fixo para mensagens de erro */
 .error-message-container {
   min-height: 30px;
-  /* Define a altura mínima para o espaço das mensagens */
+ 
   margin-top: 5px;
 }
 
@@ -332,14 +261,14 @@ input[disabled] {
 
 #btnCep:hover {
   background-color: #0056b3;
-  /* Cor do botão ao passar o mouse */
+ 
 }
 
 #btnCep:focus {
   outline: none;
-  /* Remove o contorno padrão */
+  
   border-color: #0066cc;
-  /* Cor da borda ao focar */
+ 
 }
 
 .container-confirmacao {
@@ -373,13 +302,6 @@ input[disabled] {
     width: 100px;
   }
 
-}
-
-
-
-#exit {
-  font-size: 25pt;
-  margin-left: -50px;
 }
 
 #cards {
@@ -423,29 +345,3 @@ select {
   width: 100%;
 }
 
-.produto-detalhes {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.produto-imagem {
-  width: 300px;
-  height: auto;
-  border-radius: 10px;
-}
-
-.produto-info {
-  max-width: 500px;
-}
-
-.produto-info h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.produto-info p {
-  font-size: 18px;
-  margin-bottom: 5px;
-}

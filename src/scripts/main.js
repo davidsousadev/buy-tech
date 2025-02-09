@@ -1,11 +1,11 @@
-import { nomeValido } from './nome.js';
-import { validateEmail } from './email.js';
-import { configurarEventosCPF } from './cpf.js';
-import { validateAge } from './idade.js';
-import { handleCepValidation } from './cep.js';
-import { validatePasswordsMatch } from './senha.js';
-import { configurarEventosTelefone } from './telefone.js';
-import { validateComplement } from './complemento.js';
+import { nomeValido } from './cadastro_cliente/nome.js';
+import { validateEmail } from './cadastro_cliente/email.js';
+import { configurarEventosCPF } from './cadastro_cliente/cpf.js';
+import { validateAge } from './cadastro_cliente/idade.js';
+import { handleCepValidation } from './cadastro_cliente/cep.js';
+import { validatePasswordsMatch } from './cadastro_cliente/senha.js';
+import { configurarEventosTelefone } from './cadastro_cliente/telefone.js';
+import { validateComplement } from './cadastro_cliente/complemento.js';
 import { handleFormSubmission } from './form.js';
 document.addEventListener('DOMContentLoaded', () => {
 

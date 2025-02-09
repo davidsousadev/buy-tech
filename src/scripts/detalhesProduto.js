@@ -64,14 +64,26 @@ async function adicionarAoCarrinho(produtoId) {
         });
 
         if (response.ok) {
-            alert("Produto adicionado ao carrinho!");
+            mostrarNotificacao("Produto adicionado ao carrinho!", {
+                cor: "#F44336",
+                duracao: 4000,
+                movimentoEntrada: "deslizar",
+                movimentoSaida: "esvair",
+                posicao: "bottom-right"
+            });
         } else {
             const errorData = await response.json();
-            alert(`Erro ao adicionar: ${errorData.detail}`);
+            mostrarNotificacao(errorData.detail, {
+                cor: "#F44336",
+                duracao: 4000,
+                movimentoEntrada: "deslizar",
+                movimentoSaida: "esvair",
+                posicao: "bottom-right"
+            });
         }
     } catch (error) {
         console.error("Erro na requisição:", error);
-        alert("Erro ao adicionar ao carrinho.");
+        
     }
 }
 

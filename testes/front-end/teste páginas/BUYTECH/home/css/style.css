@@ -40,26 +40,6 @@ body {
   -webkit-text-stroke-color: aqua;
 }
 
-.search-bar {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex: 1;
-}
-
-.search-bar input {
-  padding: 5px 10px;
-  border: none;
-  border-radius: 20px;
-  outline: none;
-  width: 200px;
-}
-
-.search-bar button {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
 
 .icon {
   width: 20px;
