@@ -1,11 +1,12 @@
-const formCadastroCliente = document.getElementById('formCadastroCliente');
-
 const getCookie = (name) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
 };
 
+const formCadastroCliente = document.getElementById('formCadastroCliente');
+const tokenAdmin = getCookie('authTokenAdmin');
+const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
 async function listarPerfis(tipo, elementoId, editar = false) {
     const urls = {
         admins: 'https://api-buy-tech.onrender.com/admins',
@@ -13,15 +14,14 @@ async function listarPerfis(tipo, elementoId, editar = false) {
         revendedores: 'https://api-buy-tech.onrender.com/revendedores'
     };
 
-    var token = getCookie('authTokenAdmin');
-    const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
-    if (token || tokenAdminRefresh) {
+
+    if (tokenAdmin || tokenAdminRefresh) {
         try {
             const response = await fetch(urls[tipo], {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokenAdminRefresh}`
+                    'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`
                 },
             });
             const result = await response.json();
@@ -33,7 +33,7 @@ async function listarPerfis(tipo, elementoId, editar = false) {
                 result.forEach((usuario) => {
                     const li = document.createElement("li");
                     li.classList.add("usuario-item");
-                
+
                     // Inicializa a string para os dados do usuário
                     let usuarioHTML = `
                         <div class="usuario-info">
@@ -43,7 +43,7 @@ async function listarPerfis(tipo, elementoId, editar = false) {
                         </div>
                         <div class="usuario-status">
                     `;
-                
+
                     // Adiciona o botão de editar somente se 'editar' for true
                     if (editar === true) {
                         usuarioHTML += `
@@ -52,17 +52,17 @@ async function listarPerfis(tipo, elementoId, editar = false) {
                             </button>
                         `;
                     }
-                
+
                     // Finaliza a string com a div de status
                     usuarioHTML += `</div>`;
-                
+
                     // Define o conteúdo HTML do <li>
                     li.innerHTML = usuarioHTML;
-                
+
                     // Adiciona o item à lista na página
                     listarElemento.appendChild(li);
                 });
-                
+
             } else {
                 console.log(`Nenhum usuário encontrado para ${tipo}`);
             }
@@ -86,30 +86,39 @@ function listarPerfisAdmin() {
 
 
 async function atualizarStatusUsuario(id, tipo) {
-    const token = getCookie('authTokenAdmin');
-    const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
-    if (!token || !tokenAdminRefresh) return;
+    
+    if (!tokenAdmin && !tokenAdminRefresh) return;
+    
     const tiposValidos = ['admins', 'clientes', 'revendedores'];
     if (!tiposValidos.includes(tipo)) {
         console.error("Tipo inválido");
         return;
     }
     try {
-        
-        const url = tipo === 'clientes' 
-            ? `https://api-buy-tech.onrender.com/${tipo}/admin/atualizar_status/${id}` 
+
+        const url = tipo === 'clientes'
+            ? `https://api-buy-tech.onrender.com/${tipo}/admin/atualizar_status/${id}`
             : `https://api-buy-tech.onrender.com/${tipo}/atualizar_status/${id}`;
 
         const response = await fetch(url, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenAdminRefresh}`
+                'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`
             },
         });
 
         if (response.ok) {
-            listarEEditarPerfisAdmin();
+            mostrarNotificacao("Status do usuário atualizado com sucesso!", {
+                cor: "#4CAF50",
+                duracao: 2000,
+                movimentoEntrada: "deslizar",
+                movimentoSaida: "esvair",
+                posicao: "bottom-right"
+            });
+            setTimeout(() => {
+                listarEEditarPerfisAdmin();
+            }, 3000);
         } else {
             console.error("Erro ao atualizar status do usuário");
         }

@@ -9,10 +9,11 @@ const getCookie = (name) => {
     if (parts.length === 2) return parts.pop().split(';').shift();
 };
 
-function listarCategorias(editar) {
-    var token = getCookie('authTokenAdmin');
+const tokenAdmin = getCookie('authTokenAdmin');
 const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
-    if (token || tokenRefresh) {
+
+function listarCategorias(editar) {
+    if (tokenAdmin || tokenAdminRefresh) {
         async function authenticate() {
             try {
                 const response = await fetch('https://api-buy-tech.onrender.com/categorias', {
@@ -30,7 +31,7 @@ const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
                     result.forEach((categoria) => {
                         const li = document.createElement("li");
                         li.classList.add("categoria-item");
-                    
+
                         li.innerHTML = `
                             <div class="categoria-card">
                                 <div class="categoria-info">
@@ -62,30 +63,6 @@ function editarCategoria(id) {
     window.location.href = `cadastrar_categorias.html?id=${id}`;
 }
 
-async function atualizarCategoria(id, novoNome) {
-    const token = getCookie('authTokenAdmin');
-const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
-    if (!token || !tokenAdminRefresh) return;
-
-    try {
-        const response = await fetch(`https://api-buy-tech.onrender.com/categorias/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenAdminRefresh}`
-            },
-            body: JSON.stringify({ nome: novoNome })
-        });
-        if (response.ok) {
-            listarCategorias();
-        } else {
-            console.error("Erro ao atualizar categoria");
-        }
-    } catch (error) {
-        console.error("Erro ao atualizar categoria:", error);
-    }
-}
-
 // Função para exibir/esconder o loader
 const displayLoader = (isLoading) => {
     const loader = document.getElementById('loader');
@@ -103,17 +80,14 @@ const disableSubmitButton = (isDisabled) => {
 };
 
 if (formCadastroCategoria) {
-    const token = getCookie('authTokenAdmin');
-    const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
-
     // Se ID existir, preenche o formulário
-    if (idCliente) {
+    if (idCategoria) {
         async function carregarCategoria() {
             try {
-                const response = await fetch(`https://api-buy-tech.onrender.com/categorias/${idCliente}`, {
+                const response = await fetch(`https://api-buy-tech.onrender.com/categorias/${idCategoria}`, {
                     method: 'GET',
                     headers: {
-                        'Authorization': `Bearer ${tokenAdminRefresh}`
+                        'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`
                     }
                 });
 
@@ -148,7 +122,7 @@ if (formCadastroCategoria) {
                     body: JSON.stringify(formData),
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${tokenAdminRefresh}`
+                        'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`
                     }
                 });
 
@@ -161,7 +135,10 @@ if (formCadastroCategoria) {
                         duracao: 4000,
                         posicao: "bottom-right"
                     });
-                    window.location.href = './index.html';
+                    setTimeout(() => {
+                        window.location.href = './index.html';
+                    }, 5000);
+
                 } else {
                     mostrarNotificacao("Erro ao atualizar o categoria.", {
                         cor: "#F44336",
@@ -186,7 +163,7 @@ if (formCadastroCategoria) {
 
             let formData = {
                 nome: document.getElementById('nome').value,
-                
+
             };
 
             if (!formData.nome) {
@@ -204,7 +181,7 @@ if (formCadastroCategoria) {
                     body: JSON.stringify(formData),
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${tokenAdminRefresh}`
+                        'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`
                     }
                 });
 
@@ -217,7 +194,9 @@ if (formCadastroCategoria) {
                         duracao: 4000,
                         posicao: "bottom-right"
                     });
-                    window.location.href = './index.html';
+                    setTimeout(() => {
+                        window.location.href = './index.html';
+                    }, 5000);
                 } else {
                     mostrarNotificacao('Erro ao realizar o cadastro.', {
                         cor: "#F44336",

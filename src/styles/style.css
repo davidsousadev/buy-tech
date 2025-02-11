@@ -203,7 +203,7 @@ button:hover {
 
 .error-message-container {
   min-height: 30px;
- 
+
   margin-top: 5px;
 }
 
@@ -260,14 +260,14 @@ input[disabled] {
 
 #btnCep:hover {
   background-color: #0056b3;
- 
+
 }
 
 #btnCep:focus {
   outline: none;
-  
+
   border-color: #0066cc;
- 
+
 }
 
 .container-confirmacao {
@@ -285,19 +285,23 @@ input[disabled] {
   width: 50%;
   margin-left: 25%;
 }
-a.cadastrar-pessoa{
+
+a.cadastrar-pessoa {
   color: white;
   border: 1px #004AAD solid;
   border-radius: 50px;
   padding: 7px;
 }
+
 a.cadastrar-pessoa:hover {
   color: white;
   background-color: #004AAD;
 }
+
 a.cadastrar-pessoa:visited {
   color: white;
 }
+
 .loader {
   display: none;
   z-index: 2;
@@ -320,7 +324,7 @@ a.cadastrar-pessoa:visited {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  
+
 
   i {
     position: absolute;
@@ -330,8 +334,10 @@ a.cadastrar-pessoa:visited {
 
   ul {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
 
   }
 
@@ -356,4 +362,3 @@ select {
   display: block;
   width: 100%;
 }
-

@@ -87,6 +87,32 @@ i.bx.bxs-exit{
   font-size: 15pt;
 }
 
+nav {
+  background-color: #333;
+  padding: 10px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 20px; /* Espaçamento entre os links */
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+nav ul li a:hover {
+  color: #FFD700; /* Cor ao passar o mouse */
+}
+
 .opcoes,
 .destaques {
   
@@ -95,7 +121,18 @@ i.bx.bxs-exit{
   overflow-x: scroll;
   scrollbar-width: none;
 }
-
+.destaques{
+  margin-top: 50px;
+}
+.banner{
+  height: 50px;
+  border: 1px #999 solid;
+  width: 75%;
+  position: absolute;
+  display: block;
+  margin-left: 0;
+  left: 0;
+}
 #opcoes_perfil, #itens_carrinho {
   border: 1px #999 solid;
   background-color: #002752;

@@ -52,14 +52,17 @@
 
     <!-- Scripts -->
     <script type="module" src="../../../src/scripts/logadoAdmin.js"></script>
-<!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
 </head>
 
 <body onload="listarProdutos(true)">
     <header>
-        <h1>BUY - TECH</h1><div class="icones">
-            <a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a><a href="#"><i class='bx ' id="exit" onclick="logoutAdmin()"></i></a></div>
+        <h1>BUY - TECH</h1>
+        <div class="icones">
+            <a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a><a href="#"><i class='bx ' id="exit"
+                    onclick="logoutAdmin()"></i></a>
+        </div>
     </header>
 
     <main>
@@ -67,7 +70,7 @@
             <select style="display: none;" id="categoria" name="categoria" required>
                 <option value="">...</option>
             </select>
-            <ol id="lista_de_produtos"></ol>
+            <ol id="lista_de_produtos_admin"></ol>
             <div id="cards">
                 <ul>
                     <a href="../gerenciar_produtos.html"><i class='bx bx-arrow-back'></i>

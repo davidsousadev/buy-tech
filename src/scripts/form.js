@@ -205,9 +205,9 @@ export const handleFormSubmission = async () => {
         });
     }
     if (formAtualizacaoCliente) {
-        var token = getCookie('authTokenCliente');
-        const tokenRefresh = getCookie('authTokenClienteRefresh');
-        if (token || tokenRefresh) {
+        const tokenCliente = getCookie('authTokenCliente');
+        const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
+        if (tokenCliente || tokenClienteRefresh) {
             formAtualizacaoCliente.addEventListener('submit', async (event) => {
                 event.preventDefault();
 
@@ -244,7 +244,7 @@ export const handleFormSubmission = async () => {
                         method: 'PATCH',
                         body: JSON.stringify(formData),
                         headers: { 'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${tokenRefresh}`
+                            'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`
                          },
                     });
 

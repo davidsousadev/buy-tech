@@ -7,8 +7,8 @@ const getCookie = (name) => {
 var descontoAplicado = false;
 var freteCalculado = false;
 var precoFrete = 0;
-const token = getCookie('authTokenCliente');
-const tokenRefresh = getCookie('authTokenClienteRefresh');
+const tokenCliente = getCookie('authTokenCliente');
+const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
 const opcoes_perfil = document.getElementById('opcoes_perfil');
 const itens_carrinho = document.getElementById('itens_carrinho');
 const verifica_cupom_de_desconto = document.getElementById('verifica_cupom_de_desconto');
@@ -25,7 +25,7 @@ async function authenticate() {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenRefresh}`,
+                'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
             },
         });
 
@@ -48,9 +48,9 @@ async function authenticate() {
 }
 
 function toggleDrawer() {
-    var token = getCookie('authTokenCliente');
-    const tokenRefresh = getCookie('authTokenClienteRefresh');
-    if (token || tokenRefresh) {
+    const tokenCliente = getCookie('authTokenCliente');
+    const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
+    if (tokenCliente || tokenClienteRefresh) {
         if (opcoes_perfil.style.display === 'block') {
             opcoes_perfil.style.display = 'none';
         } else {
@@ -76,8 +76,8 @@ function logout(qtd) {
 };
 
 function opcoes(qtd) {
-    var token = getCookie('authTokenCliente');
-    const tokenRefresh = getCookie('authTokenClienteRefresh');
+    const tokenCliente = getCookie('authTokenCliente');
+    const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
     if (!token || !tokenRefresh) {
         if (qtd === 0) {
             var voltar = '.';
@@ -150,7 +150,7 @@ document.getElementById('formCadastroPedido').addEventListener('submit', async (
             body: JSON.stringify(formData),
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenRefresh}`
+                'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`
             }
         });
 
@@ -184,14 +184,14 @@ document.getElementById('formCadastroPedido').addEventListener('submit', async (
 
 verifica_cupom_de_desconto.addEventListener('click', async () => {
     if (descontoAplicado) return;
-    if (token || tokenRefresh) {
+    if (tokenCliente || tokenClienteRefresh) {
         var cupom_de_desconto = document.getElementById('cupom_de_desconto').value;
 
         try {
             const response = await fetch(`https://api-buy-tech.onrender.com/cupons/verificar-cupom?cupom_nome=${cupom_de_desconto}`, {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${tokenRefresh}`,
+                    'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
                     'Content-Type': 'application/json'
                 },
             });
@@ -321,16 +321,16 @@ verifica_frete.addEventListener('click', async () => {
 });
 
 async function listaItensCarrinho() {
-    var token = getCookie('authTokenCliente');
-    const tokenRefresh = getCookie('authTokenClienteRefresh');
+    const tokenCliente = getCookie('authTokenCliente');
+    const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
 
-    if (token || tokenRefresh) {
+    if (tokenCliente || tokenClienteRefresh) {
         try {
             const response = await fetch('https://api-buy-tech.onrender.com/carrinhos', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokenRefresh}`,
+                    'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
                 },
             });
 
@@ -407,8 +407,8 @@ async function listaItensCarrinho() {
 }
 
 async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
-    var token = getCookie('authTokenCliente');
-    const tokenRefresh = getCookie('authTokenClienteRefresh');
+    const tokenCliente = getCookie('authTokenCliente');
+    const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
     const novaQuantidade = document.getElementById(`quantidade_${produtoCodigo}`).value;
 
     if (token && novaQuantidade) {
@@ -417,7 +417,7 @@ async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokenRefresh}`,
+                    'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
                 },
                 body: JSON.stringify({
                     id: codigoCarrinho,

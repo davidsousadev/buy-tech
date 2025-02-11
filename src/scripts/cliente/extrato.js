@@ -1,5 +1,5 @@
-const token = getCookie('authTokenCliente');
-const tokenRefresh = getCookie('authTokenClienteRefresh');
+const tokenCliente = getCookie('authTokenCliente');
+const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
 const extratoCliente = document.getElementById("extratoCliente");
 
 async function extrato() {

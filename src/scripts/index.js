@@ -51,8 +51,9 @@ function verDetalhes(id) {
 
 // Função de logoutAdmin 
 function logoutAdmin(qtd) {
-    // Remove o cookie "authTokenAdmin"
+    // Remove o cookie "authTokenAdmin e authTokenAdminRefresh"
     document.cookie = 'authTokenAdmin=; Max-Age=0; path=/;';
+    document.cookie = 'authTokenAdminRefresh=; Max-Age=0; path=/;';
     if (qtd === 0) {
         var voltar = '.';
         window.location.href = `${voltar}/index.html`; // Redireciona para a página de login

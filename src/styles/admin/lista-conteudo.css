@@ -39,7 +39,7 @@
     color: #777;
 }
 
-#lista-produtos {
+#lista-produtos, #lista_de_produtos_admin {
     list-style-type: none;
     padding: 0;
     display: flex;
@@ -137,3 +137,14 @@
 .usuario-status button:hover {
     background-color: #0056b3;
 }
+
+.cupom-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+}
+.cupom-item strong {
+    font-size: 1.1em;
+}
+

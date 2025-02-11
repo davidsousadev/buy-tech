@@ -40,8 +40,8 @@ async function carregarDetalhesPedido() {
 }
 
 async function adicionarAoCarrinho(produtoId) {
-    const token = getCookie('authTokenCliente'); 
-    const tokenRefresh = getCookie('authTokenClienteRefresh');
+    const tokenCliente = getCookie('authTokenCliente'); 
+    const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
     const quantidade = document.getElementById("quantidade").value;
 
     if (!token || !tokenRefresh) {
@@ -59,7 +59,7 @@ async function adicionarAoCarrinho(produtoId) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${tokenRefresh}`
+                "Authorization": `Bearer ${tokenCliente || tokenClienteRefresh}`
             },
             body: JSON.stringify(data)
         });

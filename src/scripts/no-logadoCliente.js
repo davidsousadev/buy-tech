@@ -5,9 +5,9 @@ const getCookie = (name) => {
     if (parts.length === 2) return parts.pop().split(';').shift();
 };
 
-const token = getCookie('authTokenCliente');
-const tokenRefresh = getCookie('authTokenClienteRefresh');
-if (token || tokenRefresh) {
+const tokenCliente = getCookie('authTokenCliente');
+const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
+if (tokenCliente || tokenClienteRefresh) {
     window.location.href = './index.html';
 }
 

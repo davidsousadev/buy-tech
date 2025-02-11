@@ -8,15 +8,15 @@ function getCookie(name) {
 };
 
 async function listaItensCarrinho() {
-    var token = getCookie('authTokenCliente');
-    const tokenRefresh = getCookie('authTokenClienteRefresh');
-    if (token || tokenRefresh) {
+    const tokenCliente = getCookie('authTokenCliente');
+    const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
+    if (tokenCliente || tokenClienteRefresh) {
         try {
             const response = await fetch('https://api-buy-tech.onrender.com/carrinhos', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokenRefresh}`,
+                    'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
                 },
             });
 
@@ -99,8 +99,8 @@ async function listaItensCarrinho() {
 }
 
 async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
-    var token = getCookie('authTokenCliente');
-    const tokenRefresh = getCookie('authTokenClienteRefresh');
+    const tokenCliente = getCookie('authTokenCliente');
+    const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
     const novaQuantidade = document.getElementById(`quantidade_${produtoCodigo}`).value;
     if (token && novaQuantidade) {
         try {
@@ -108,7 +108,7 @@ async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokenRefresh}`,
+                    'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
                 },
                 body: JSON.stringify({
                     id: codigoCarrinho,
@@ -121,7 +121,16 @@ async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
             const resultado = await response.json();
             console.log(resultado)
             if (resultado.detail === "Token expirado!") {
-                //window.location.href = './logar.html';
+                mostrarNotificacao(`Token expirado!`, {
+                    cor: "#F44336",
+                    duracao: 4000,
+                    movimentoEntrada: "deslizar",
+                    movimentoSaida: "esvair",
+                    posicao: "bottom-right"
+                });
+                setTimeout(() => {
+                    window.location.href = './logar.html';
+                }, 5000);
             }
             if (resultado.detail === "Pedido maior que estoque!") {
                 mostrarNotificacao(`Pedido maior que estoque!`, {
@@ -142,9 +151,9 @@ async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
 }
 
 function buyCart() {
-    var token = getCookie('authTokenCliente');
-    const tokenRefresh = getCookie('authTokenClienteRefresh');
-    if (token || tokenRefresh) {
+    const tokenCliente = getCookie('authTokenCliente');
+    const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
+    if (tokenCliente || tokenClienteRefresh) {
         opcoes_perfil.style.display = 'none';
         if (itens_carrinho.style.display === 'block') {
             itens_carrinho.style.display = 'none';
@@ -155,9 +164,9 @@ function buyCart() {
 }
 
 function toggleDrawer() {
-    var token = getCookie('authTokenCliente');
-    const tokenRefresh = getCookie('authTokenClienteRefresh');
-    if (token || tokenRefresh) {
+    const tokenCliente = getCookie('authTokenCliente');
+    const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
+    if (tokenCliente || tokenClienteRefresh) {
         itens_carrinho.style.display = 'none';
         if (opcoes_perfil.style.display === 'block') {
             opcoes_perfil.style.display = 'none';
@@ -169,8 +178,9 @@ function toggleDrawer() {
 
 // Função de logout
 function logout(qtd) {
-    // Remove o cookie "authToken"
+    // Remove o cookie "authTokenCliente e authTokenClienteRefresh"
     document.cookie = 'authTokenCliente=; Max-Age=0; path=/;';
+    document.cookie = 'authTokenClienteRefresh=; Max-Age=0; path=/;';
     if (qtd === 0) {
         var voltar = '.';
         window.location.href = `${voltar}/logar.html`; // Redireciona para a página de login
@@ -185,8 +195,8 @@ function logout(qtd) {
 };
 
 function opcoes(qtd) {
-    var token = getCookie('authTokenCliente');
-    const tokenRefresh = getCookie('authTokenClienteRefresh');
+    const tokenCliente = getCookie('authTokenCliente');
+    const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
     if (!token || !tokenRefresh) {
         if (qtd === 0) {
             var voltar = '.';
@@ -206,8 +216,8 @@ function opcoes(qtd) {
 }
 
 function pedido(qtd) {
-    var token = getCookie('authTokenCliente');
-    const tokenRefresh = getCookie('authTokenClienteRefresh');
+    const tokenCliente = getCookie('authTokenCliente');
+    const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
     if (!token || !tokenRefresh) {
         window.location.href = 'logar.html';
     }
@@ -218,7 +228,7 @@ function pedido(qtd) {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${tokenRefresh}`,
+                        'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
                     },
                 });
 

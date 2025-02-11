@@ -10,9 +10,9 @@ const getCookie = (name) => {
 
 
 function listarProdutos(editar) {
-    var token = getCookie('authTokenAdmin');
-const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
-    if (token || tokenRefresh) {
+    const tokenAdmin = getCookie('authTokenAdmin');
+    const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
+    if (tokenAdmin || tokenAdminRefresh) {
         async function authenticate() {
             try {
                 const response = await fetch('https://api-buy-tech.onrender.com/produtos', {
@@ -24,13 +24,13 @@ const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
                 const result = await response.json();
 
                 if (result && result.length > 0) {
-                    const lista_de_produtos = document.getElementById("lista_de_produtos");
-                    lista_de_produtos.innerHTML = "";
-
+                    const lista_de_produtos_admin = document.getElementById("lista_de_produtos_admin");
+                    lista_de_produtos_admin.innerHTML = "";
+ 
                     result.forEach((produto) => {
                         const li = document.createElement("li");
                         li.classList.add("produto-item");
-                    
+
                         li.innerHTML = `
                             <div class="produto-card">
                                 <div class="produto-imagem">
@@ -44,10 +44,10 @@ const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
                             </div>
                         `;
                         if (editar) {
-                            li.innerHTML += ` <button onclick="editarProduto(${produto.id}, '${produto.nome}')">Editar</button>`;
+                            li.innerHTML += ` <button onclick="editarProduto(${produto.id})">Editar</button>`;
                         }
 
-                        lista_de_produtos.appendChild(li);
+                        lista_de_produtos_admin.appendChild(li);
                     });
                 } else {
                     console.log("Nenhuma produto encontrada");
@@ -62,30 +62,6 @@ const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
 
 function editarProduto(id) {
     window.location.href = `cadastrar_produtos.html?id=${id}`;
-}
-
-async function atualizarProduto(idProduto) {
-    const token = getCookie('authTokenAdmin');
-    const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
-    if (!token || !tokenAdminRefresh) return;
-
-    try {
-        const response = await fetch(`https://api-buy-tech.onrender.com/produtos/${idProduto}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenAdminRefresh}`
-            },
-            body: JSON.stringify({ nome: novoNome })
-        });
-        if (response.ok) {
-            listarProdutos();
-        } else {
-            console.error("Erro ao atualizar Produto");
-        }
-    } catch (error) {
-        console.error("Erro ao atualizar Produto:", error);
-    }
 }
 
 // Função para exibir/esconder o loader
@@ -105,158 +81,164 @@ const disableSubmitButton = (isDisabled) => {
 };
 
 if (formCadastroProdutoAdmin) {
-    const token = getCookie('authTokenAdmin');
+    const tokenAdmin = getCookie('authTokenAdmin');
     const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
+    if (tokenAdmin || tokenAdminRefresh) {// Se ID existir, preenche o formulário
+        if (idProduto) {
+            async function carregarProduto() {
+                try {
+                    const response = await fetch(`https://api-buy-tech.onrender.com/produtos/${idProduto}`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`
+                        }
+                    });
 
-    // Se ID existir, preenche o formulário
-    if (idProduto) {
-        async function carregarProduto() {
-            try {
-                const response = await fetch(`https://api-buy-tech.onrender.com/produtos/${idProduto}`, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${tokenAdminRefresh}`
-                    }
-                });
+                    if (!response.ok) throw new Error("Erro ao carregar produto.");
 
-                if (!response.ok) throw new Error("Erro ao carregar produto.");
+                    const produto = await response.json();
 
-                const produto = await response.json();
+                    // Preenche os campos do formulário
+                    document.getElementById('nome').value = produto.nome;
+                    document.getElementById('preco').value = produto.preco;
+                    document.getElementById('foto').value = produto.foto;
+                    document.getElementById('marca').value = produto.marca;
+                    document.getElementById('categoria').value = produto.categoria;
+                    document.getElementById('descricao').value = produto.descricao;
+                    document.getElementById('quantidade_estoque').value = produto.quantidade_estoque;
+                    document.getElementById('personalizado').checked = produto.personalizado;
 
-                // Preenche os campos do formulário
-                document.getElementById('nome').value = produto.nome;
-                document.getElementById('preco').value = produto.preco;
-                document.getElementById('foto').value = produto.foto;
-                document.getElementById('marca').value = produto.marca;
-                document.getElementById('categoria').value = produto.categoria;
-                document.getElementById('descricao').value = produto.descricao;
-                document.getElementById('quantidade_estoque').value = produto.quantidade_estoque;
-                document.getElementById('personalizado').checked = produto.personalizado;
-
-            } catch (error) {
-                console.error("Erro ao carregar produto:", error);
-                mostrarNotificacao("Erro ao carregar os dados do produto.", {
-                    cor: "#F44336",
-                    duracao: 4000,
-                    posicao: "bottom-right"
-                });
+                } catch (error) {
+                    console.error("Erro ao carregar produto:", error);
+                    mostrarNotificacao("Erro ao carregar os dados do produto.", {
+                        cor: "#F44336",
+                        duracao: 4000,
+                        posicao: "bottom-right"
+                    });
+                }
             }
+            carregarProduto();
+
+            // Evento para atualizar produto
+            formCadastroProdutoAdmin.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                let formData = {
+                    nome: document.getElementById('nome').value,
+                    preco: document.getElementById('preco').value,
+                    foto: document.getElementById('foto').value,
+                    marca: document.getElementById('marca').value,
+                    categoria: document.getElementById('categoria').value,
+                    descricao: document.getElementById('descricao').value,
+                    quantidade_estoque: document.getElementById('quantidade_estoque').value,
+                    personalizado: document.getElementById('personalizado').checked,
+                };
+
+                try {
+                    const response = await fetch(`https://api-buy-tech.onrender.com/produtos/${idProduto}`, {
+                        method: 'PATCH',
+                        body: JSON.stringify(formData),
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`
+                        }
+                    });
+
+                    const result = await response.json();
+                    console.log('Resposta da API:', result);
+
+                    if (response.ok) {
+                        mostrarNotificacao("Produto atualizado com sucesso!", {
+                            cor: "#4CAF50",
+                            duracao: 4000,
+                            posicao: "bottom-right"
+                        });
+                        setTimeout(() => {
+                            window.location.href = './atualizar_produtos.html';
+                        }, 3000);
+                    } else {
+                        mostrarNotificacao("Erro ao atualizar o produto.", {
+                            cor: "#F44336",
+                            duracao: 4000,
+                            posicao: "bottom-right"
+                        });
+                    }
+                } catch (error) {
+                    console.error('Erro ao atualizar o produto:', error);
+                    mostrarNotificacao("Erro ao atualizar os dados. Tente novamente.", {
+                        cor: "#F44336",
+                        duracao: 4000,
+                        posicao: "bottom-right"
+                    });
+                }
+            });
         }
-        carregarProduto();
+        else {
+            // Cadastro de novo produto
+            formCadastroProdutoAdmin.addEventListener('submit', async (event) => {
+                event.preventDefault();
 
-        // Evento para atualizar produto
-        formCadastroProdutoAdmin.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            let formData = {
-                nome: document.getElementById('nome').value,
-                preco: document.getElementById('preco').value,
-                foto: document.getElementById('foto').value,
-                marca: document.getElementById('marca').value,
-                categoria: document.getElementById('categoria').value,
-                descricao: document.getElementById('descricao').value,
-                quantidade_estoque: document.getElementById('quantidade_estoque').value,
-                personalizado: document.getElementById('personalizado').checked,
-            };
+                let formData = {
+                    nome: document.getElementById('nome').value,
+                    preco: document.getElementById('preco').value,
+                    foto: document.getElementById('foto').value,
+                    marca: document.getElementById('marca').value,
+                    categoria: document.getElementById('categoria').value,
+                    descricao: document.getElementById('descricao').value,
+                    quantidade_estoque: document.getElementById('quantidade_estoque').value,
+                    personalizado: document.getElementById('personalizado').checked,
+                };
 
-            try {
-                const response = await fetch(`https://api-buy-tech.onrender.com/produtos/${idCategoria}`, {
-                    method: 'PATCH',
-                    body: JSON.stringify(formData),
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${tokenAdminRefresh}`
-                    }
-                });
-
-                const result = await response.json();
-                console.log('Resposta da API:', result);
-
-                if (response.ok) {
-                    mostrarNotificacao("Produto atualizado com sucesso!", {
-                        cor: "#4CAF50",
+                if (!formData.nome || !formData.preco || !formData.foto || !formData.marca || !formData.categoria || !formData.descricao || !formData.quantidade_estoque) {
+                    mostrarNotificacao("Todos os campos devem ser preenchidos.", {
+                        cor: "#F44336",
                         duracao: 4000,
                         posicao: "bottom-right"
                     });
-                    window.location.href = './index.html';
-                } else {
-                    mostrarNotificacao("Erro ao atualizar o produto.", {
+                    return;
+                }
+
+                try {
+                    const response = await fetch('https://api-buy-tech.onrender.com/produtos', {
+                        method: 'POST',
+                        body: JSON.stringify(formData),
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`
+                        }
+                    });
+
+                    const result = await response.json();
+                    console.log('Resposta da API:', result);
+
+                    if (response.ok) {
+                        mostrarNotificacao("Produto cadastrado com sucesso!", {
+                            cor: "#4CAF50",
+                            duracao: 4000,
+                            posicao: "bottom-right"
+                        });
+                        setTimeout(() => {
+                            window.location.href = './index.html';
+                        }, 3000);
+                        
+                    } else {
+                        mostrarNotificacao('Erro ao realizar o cadastro.', {
+                            cor: "#F44336",
+                            duracao: 4000,
+                            posicao: "bottom-right"
+                        });
+                    }
+                } catch (error) {
+                    console.error('Erro ao enviar os dados:', error);
+                    mostrarNotificacao("Erro ao enviar os dados. Tente novamente.", {
                         cor: "#F44336",
                         duracao: 4000,
                         posicao: "bottom-right"
                     });
                 }
-            } catch (error) {
-                console.error('Erro ao atualizar o produto:', error);
-                mostrarNotificacao("Erro ao atualizar os dados. Tente novamente.", {
-                    cor: "#F44336",
-                    duracao: 4000,
-                    posicao: "bottom-right"
-                });
-            }
-        });
+            });
+        }
     }
-    else {
-        // Cadastro de novo produto
-        formCadastroProdutoAdmin.addEventListener('submit', async (event) => {
-            event.preventDefault();
 
-            let formData = {
-                nome: document.getElementById('nome').value,
-                preco: document.getElementById('preco').value,
-                foto: document.getElementById('foto').value,
-                marca: document.getElementById('marca').value,
-                categoria: document.getElementById('categoria').value,
-                descricao: document.getElementById('descricao').value,
-                quantidade_estoque: document.getElementById('quantidade_estoque').value,
-                personalizado: document.getElementById('personalizado').checked,
-            };
-
-            if (!formData.nome || !formData.preco || !formData.foto || !formData.marca || !formData.categoria || !formData.descricao || !formData.quantidade_estoque) {
-                mostrarNotificacao("Todos os campos devem ser preenchidos.", {
-                    cor: "#F44336",
-                    duracao: 4000,
-                    posicao: "bottom-right"
-                });
-                return;
-            }
-
-            try {
-                const response = await fetch('https://api-buy-tech.onrender.com/produtos', {
-                    method: 'POST',
-                    body: JSON.stringify(formData),
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${tokenAdminRefresh}`
-                    }
-                });
-
-                const result = await response.json();
-                console.log('Resposta da API:', result);
-
-                if (response.ok) {
-                    mostrarNotificacao("Cadastro realizado com sucesso!", {
-                        cor: "#4CAF50",
-                        duracao: 4000,
-                        posicao: "bottom-right"
-                    });
-                    window.location.href = './index.html';
-                } else {
-                    mostrarNotificacao('Erro ao realizar o cadastro.', {
-                        cor: "#F44336",
-                        duracao: 4000,
-                        posicao: "bottom-right"
-                    });
-                }
-            } catch (error) {
-                console.error('Erro ao enviar os dados:', error);
-                mostrarNotificacao("Erro ao enviar os dados. Tente novamente.", {
-                    cor: "#F44336",
-                    duracao: 4000,
-                    posicao: "bottom-right"
-                });
-            }
-        });
-    }
 }
 
 // Lista categorias e manda para o select

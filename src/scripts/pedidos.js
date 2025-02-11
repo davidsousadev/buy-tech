@@ -1,5 +1,5 @@
-const token = getCookie('authTokenCliente');
-const tokenRefresh = getCookie('authTokenClienteRefresh');
+const tokenCliente = getCookie('authTokenCliente');
+const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
 const listaDePedidos = document.getElementById("listaDePedidos");
 
 async function cancelarPedido(id) {
@@ -8,7 +8,7 @@ async function cancelarPedido(id) {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenRefresh}`
+                'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`
             },
             body: JSON.stringify({ status: "Cancelado" })
         });
@@ -32,13 +32,13 @@ async function cancelarPedido(id) {
 
 
 async function extrato() {
-    if (token || tokenRefresh) {
+    if (tokenCliente || tokenClienteRefresh) {
         try {
             const response = await fetch(`https://api-buy-tech.onrender.com/pedidos`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokenRefresh}`
+                    'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`
                 },
             });
 
@@ -99,13 +99,13 @@ async function extrato() {
 
 
 async function pagarPedido(tokenDePagamento) {
-    if (token || tokenRefresh) {
+    if (tokenCliente || tokenClienteRefresh) {
         try {
             const response = await fetch(`https://api-buy-tech.onrender.com/operacoes/pagamentos/${tokenDePagamento}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokenRefresh}`
+                    'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`
                 },
             });
 

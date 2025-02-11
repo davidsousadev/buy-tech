@@ -5,10 +5,10 @@ const getCookie = (name) => {
     if (parts.length === 2) return parts.pop().split(';').shift();
 };
 
-const token = getCookie('authTokenAdmin');
+const tokenAdmin = getCookie('authTokenAdmin');
 const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
 
-if (token || tokenAdminRefresh) {
+if (tokenAdmin || tokenAdminRefresh) {
     window.location.href = 'admin/index.html';
 }
 else{

@@ -15,10 +15,10 @@ const decodeToken = (token) => {
     }
 };
 
-const token = getCookie('authTokenAdmin');
+const tokenAdmin = getCookie('authTokenAdmin');
 const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
 
-if (token || tokenRefresh) {
+if (tokenAdmin || tokenAdminRefresh) {
     const exit = document.getElementById('exit');
     exit.classList.add('bx-exit');
     // Função assíncrona para fazer a requisição à API
@@ -28,7 +28,7 @@ if (token || tokenRefresh) {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokenAdminRefresh}`,
+                    'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`,
                 },
             });
 
