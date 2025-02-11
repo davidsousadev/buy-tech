@@ -9,21 +9,22 @@ function getCookie(name) {
 
 async function listaItensCarrinho() {
     var token = getCookie('authTokenCliente');
-    if (token) {
+    const tokenRefresh = getCookie('authTokenClienteRefresh');
+    if (token || tokenRefresh) {
         try {
             const response = await fetch('https://api-buy-tech.onrender.com/carrinhos', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
+                    'Authorization': `Bearer ${tokenRefresh}`,
                 },
             });
 
             const resultadoItensCarrinho = await response.json();
             if (resultadoItensCarrinho.detail) {
                 if (resultadoItensCarrinho.detail === "Token expirado!") {
-                    document.cookie = 'authTokenCliente=; Max-Age=0; path=/;';
-                    window.location.href = './logar.html';
+                    //document.cookie = 'authTokenCliente=; Max-Age=0; path=/;';
+                    //window.location.href = './logar.html';
                 }
                 if (resultadoItensCarrinho.detail === "Carrinho vazio!") {
                     finalizar_pedido.style.display = "none";
@@ -34,22 +35,24 @@ async function listaItensCarrinho() {
 
             lista_itens.innerHTML = "";
             var valorTotalItens = 0;
+            var quantidadeDeProdutos = 0;
             for (const produto of resultadoItensCarrinho) {
-                try {
-                    const produtoResponse = await fetch(`https://api-buy-tech.onrender.com/produtos/${produto.produto_codigo}`, {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                    });
+                if (produto.codigo.length != 6) {
+                    try {
+                        const produtoResponse = await fetch(`https://api-buy-tech.onrender.com/produtos/${produto.produto_codigo}`, {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                        });
 
-                    const produtoDetalhes = await produtoResponse.json();
+                        const produtoDetalhes = await produtoResponse.json();
 
-                    const li = document.createElement("li");
-                    var total_item = (produto.quantidade * produtoDetalhes.preco).toFixed(2);
-                    valorTotalItens += parseFloat(total_item);
+                        const li = document.createElement("li");
+                        var total_item = (produto.quantidade * produtoDetalhes.preco).toFixed(2);
+                        valorTotalItens += parseFloat(total_item);
 
-                    li.innerHTML = `
+                        li.innerHTML = `
                         <div class="card-carrinho">
                             <img src="${produtoDetalhes.foto}" alt="${produtoDetalhes.nome}" class="card-carrinho-img">
                             <div class="card-body">
@@ -64,22 +67,30 @@ async function listaItensCarrinho() {
                                     <div id="btn-cart">
                                         
                                         <button class="btn-cart" onclick="verDetalhes(${produtoDetalhes.id})">Ver Detalhes</button>
-                                        <button class="btn-cart" onclick="atualizarQuantidade(${produto.produto_codigo})">Atualizar</button>
+                                        <button class="btn-cart" onclick="atualizarQuantidade(${produto.produto_codigo}, ${produto.id}, ${produto.cliente_id})">Atualizar</button>
                                     </div>
                             </div>
                         </div>
                     `;
-
-                    lista_itens.appendChild(li);
-                } catch (error) {
-                    console.error("Erro ao buscar detalhes do produto:", error);
+                        quantidadeDeProdutos += 1;
+                        lista_itens.appendChild(li);
+                    } catch (error) {
+                        console.error("Erro ao buscar detalhes do produto:", error);
+                    }
                 }
             }
 
             const total = document.createElement("li");
             total.innerHTML = `Total itens: R$: ${valorTotalItens.toFixed(2)}`;
             lista_itens.appendChild(total);
-            finalizar_pedido.style.display = "block";
+            if (quantidadeDeProdutos != 0) {
+                finalizar_pedido.style.display = "block";
+            }
+            else {
+                finalizar_pedido.style.display = "none";
+                lista_itens.innerHTML = `<p class="carrinho-vazio-texto">Seu carrinho está vazio.</p>`;
+            }
+
 
         } catch (error) {
             console.error("Erro ao carregar o carrinho:", error);
@@ -87,27 +98,30 @@ async function listaItensCarrinho() {
     }
 }
 
-async function atualizarQuantidade(produtoCodigo) {
+async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
     var token = getCookie('authTokenCliente');
+    const tokenRefresh = getCookie('authTokenClienteRefresh');
     const novaQuantidade = document.getElementById(`quantidade_${produtoCodigo}`).value;
-
     if (token && novaQuantidade) {
         try {
-            const response = await fetch(`https://api-buy-tech.onrender.com/carrinhos/${produtoCodigo}`, {
+            const response = await fetch(`https://api-buy-tech.onrender.com/carrinhos/${codigoCarrinho}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
+                    'Authorization': `Bearer ${tokenRefresh}`,
                 },
                 body: JSON.stringify({
+                    id: codigoCarrinho,
+                    produto_codigo: produtoCodigo,
+                    cliente_id: idCliente,
                     quantidade: novaQuantidade,
                 }),
             });
 
             const resultado = await response.json();
+            console.log(resultado)
             if (resultado.detail === "Token expirado!") {
-                document.cookie = 'authTokenCliente=; Max-Age=0; path=/;';
-                window.location.href = './logar.html';
+                //window.location.href = './logar.html';
             }
             if (resultado.detail === "Pedido maior que estoque!") {
                 mostrarNotificacao(`Pedido maior que estoque!`, {
@@ -126,12 +140,11 @@ async function atualizarQuantidade(produtoCodigo) {
         }
     }
 }
-listaItensCarrinho();
-
 
 function buyCart() {
     var token = getCookie('authTokenCliente');
-    if (token) {
+    const tokenRefresh = getCookie('authTokenClienteRefresh');
+    if (token || tokenRefresh) {
         opcoes_perfil.style.display = 'none';
         if (itens_carrinho.style.display === 'block') {
             itens_carrinho.style.display = 'none';
@@ -143,7 +156,8 @@ function buyCart() {
 
 function toggleDrawer() {
     var token = getCookie('authTokenCliente');
-    if (token) {
+    const tokenRefresh = getCookie('authTokenClienteRefresh');
+    if (token || tokenRefresh) {
         itens_carrinho.style.display = 'none';
         if (opcoes_perfil.style.display === 'block') {
             opcoes_perfil.style.display = 'none';
@@ -172,7 +186,8 @@ function logout(qtd) {
 
 function opcoes(qtd) {
     var token = getCookie('authTokenCliente');
-    if (!token) {
+    const tokenRefresh = getCookie('authTokenClienteRefresh');
+    if (!token || !tokenRefresh) {
         if (qtd === 0) {
             var voltar = '.';
             window.location.href = `${voltar}/logar.html`; // Redireciona para a página de login
@@ -190,9 +205,10 @@ function opcoes(qtd) {
     }
 }
 
-function pedido() {
+function pedido(qtd) {
     var token = getCookie('authTokenCliente');
-    if (!token) {
+    const tokenRefresh = getCookie('authTokenClienteRefresh');
+    if (!token || !tokenRefresh) {
         window.location.href = 'logar.html';
     }
     else {
@@ -202,26 +218,37 @@ function pedido() {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`,
+                        'Authorization': `Bearer ${tokenRefresh}`,
                     },
                 });
-    
+
                 if (response.ok) {
                     const result = await response.json();
                     const saldo = document.getElementById('saldo');
-                    window.location.href = `cliente/pedido.html?id=${result.id}`;
+                    if (qtd === 0) {
+                        var voltar = '.';
+                        window.location.href = `cliente/pedido.html?id=${result.id}`;
+                    }
+                    else {
+                        var voltar = '';
+                        for (var i = 0; i < qtd; i++) {
+                            voltar += '../';
+                        }
+                        console.log(`${voltar}cliente/pedido.html?id=${result.id}`)
+                        window.location.href = `${voltar}cliente/pedido.html?id=${result.id}`;
+                    }
                 }
-    
-                
-                
+
+
+
             } catch (error) {
                 console.error('Erro ao enviar os dados:', error);
             }
         }
-    
+
         // Chama a função de autenticação
         authenticate();
-        
+
     }
 }
 
@@ -251,3 +278,4 @@ document.querySelector("#barSearch").addEventListener("keypress", function (even
 // Evento de clique no botão de busca
 document.querySelector("#searchBtn").addEventListener("click", buscar);
 
+listaItensCarrinho();

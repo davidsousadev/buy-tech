@@ -11,7 +11,8 @@ const getCookie = (name) => {
 
 function listarProdutos(editar) {
     var token = getCookie('authTokenAdmin');
-    if (token) {
+const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
+    if (token || tokenRefresh) {
         async function authenticate() {
             try {
                 const response = await fetch('https://api-buy-tech.onrender.com/produtos', {
@@ -65,14 +66,15 @@ function editarProduto(id) {
 
 async function atualizarProduto(idProduto) {
     const token = getCookie('authTokenAdmin');
-    if (!token) return;
+    const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
+    if (!token || !tokenAdminRefresh) return;
 
     try {
         const response = await fetch(`https://api-buy-tech.onrender.com/produtos/${idProduto}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${tokenAdminRefresh}`
             },
             body: JSON.stringify({ nome: novoNome })
         });
@@ -104,15 +106,16 @@ const disableSubmitButton = (isDisabled) => {
 
 if (formCadastroProdutoAdmin) {
     const token = getCookie('authTokenAdmin');
+    const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
 
     // Se ID existir, preenche o formulário
     if (idProduto) {
-        async function carregarCategoria() {
+        async function carregarProduto() {
             try {
                 const response = await fetch(`https://api-buy-tech.onrender.com/produtos/${idProduto}`, {
                     method: 'GET',
                     headers: {
-                        'Authorization': `Bearer ${token}`
+                        'Authorization': `Bearer ${tokenAdminRefresh}`
                     }
                 });
 
@@ -139,7 +142,7 @@ if (formCadastroProdutoAdmin) {
                 });
             }
         }
-        carregarCategoria();
+        carregarProduto();
 
         // Evento para atualizar produto
         formCadastroProdutoAdmin.addEventListener('submit', async (event) => {
@@ -161,7 +164,7 @@ if (formCadastroProdutoAdmin) {
                     body: JSON.stringify(formData),
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
+                        'Authorization': `Bearer ${tokenAdminRefresh}`
                     }
                 });
 
@@ -223,7 +226,7 @@ if (formCadastroProdutoAdmin) {
                     body: JSON.stringify(formData),
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
+                        'Authorization': `Bearer ${tokenAdminRefresh}`
                     }
                 });
 

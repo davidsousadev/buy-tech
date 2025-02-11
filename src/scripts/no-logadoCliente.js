@@ -6,8 +6,8 @@ const getCookie = (name) => {
 };
 
 const token = getCookie('authTokenCliente');
-
-if (token) {
+const tokenRefresh = getCookie('authTokenClienteRefresh');
+if (token || tokenRefresh) {
     window.location.href = './index.html';
 }
 

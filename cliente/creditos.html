@@ -47,19 +47,18 @@
   <!-- Styles -->
   <link rel="stylesheet" href="../src/styles/style.css">
   <link rel="stylesheet" href="../src/styles/menu.css">
-  <link rel="stylesheet" href="../src/styles/pedidos.css">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
   <!-- Scripts -->
   <script type="module" src="../src/scripts/logadoCliente.js"></script>
-<!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
 </head>
 
 <body>
   <header>
     <div class="logo-search">
-      <a href="index.html">
+      <a href="../index.html">
         <h1>BUY TECH</h1>
       </a>
       <div id="search">
@@ -77,13 +76,31 @@
   <main>
     <div class="destaques"></div>
     <div class="container">
-      <ul id="listaDePedidos"></ul>
+      <div id="cards">
+        <ul>
+          <a href="extrato.html"><i class="bx bxs-user" id="avatar"></i>
+            <li>Extrato</li>
+          </a>
+          <a href="creditos.html"><i class="bx bx-list-ul"></i>
+            <li>Creditos</li>
+          </a>
+          <a href="debitos.html"><i class="bx bxs-shopping-bag"></i>
+            <li>Debitos</li>
+          </a>
+          <a href="pendencias.html"><i class="bx bxs-cart-alt"></i>
+            <li>Pendências</li>
+          </a>
+          <a href="index.html"><i class='bx bx-arrow-back'></i>
+            <li>Voltar</li>
+        </a>
+    </ul>
+      </div>
     </div>
     <div class="opcoes">
       <div class="itens_carrinho" id="itens_carrinho">
         <ul>
           <p id="lista_itens"></p>
-          <li><button onclick="pedido(1)" id="finalizar_pedido">Finalizar Pedido</button></li>
+          <li><button onclick="pedido()" id="finalizar_pedido">Finalizar Pedido</button></li>
         </ul>
       </div>
       <div class="opcoes_perfil" id="opcoes_perfil">
@@ -102,8 +119,7 @@
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
   <script src="../src/scripts/index.js" defer></script>
   <script src="../src/scripts/menu.js" defer></script>
-  <script src="../src/scripts/pedidos.js" defer></script>
-  <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
+  <script src="../src/scripts/cliente/creditos.js" defer></script>
 </body>
 
 </html>

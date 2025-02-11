@@ -16,10 +16,8 @@ const decodeToken = (token) => {
 };
 
 const token = getCookie('authTokenCliente');
-
-if (token) {
-    const tokenData = decodeToken(token);
-    //console.table(tokenData); 
+const tokenRefresh = getCookie('authTokenClienteRefresh')
+if (token || tokenRefresh) { 
     const avatar = document.getElementById('avatar');
     avatar.classList.remove('bx-user');
     avatar.classList.add('bxs-user-circle');
@@ -30,17 +28,16 @@ if (token) {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
+                    'Authorization': `Bearer ${tokenRefresh}`,
                 },
             });
 
             if (response.ok) {
                 const result = await response.json();
+                console.table(result)
                 const saldo = document.getElementById('saldo');
                 saldo.innerHTML = result.pontos_fidelidade.toFixed(2);
             }
-
-            
             
         } catch (error) {
             console.error('Erro ao enviar os dados:', error);

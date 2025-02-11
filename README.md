@@ -90,7 +90,7 @@ buy-tech/
 ├── cliente/                                  # Diretório para páginas do cliente
 |   |                                         
 │   ├── atualizar-perfil.html                 # Página para atualizar o perfil do cliente
-│   ├── gerenciar-conta.html                  # Página para gerenciar conta do cliente
+│   ├── index.html                  # Página para gerenciar conta do cliente
 │   ├── index.html                            # Página inicial do cliente
 │   ├── notificacoes.html                     # Página de notificações
 │   ├── pedido.html                           # Página de um pedido específico

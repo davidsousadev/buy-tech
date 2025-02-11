@@ -11,7 +11,8 @@ const getCookie = (name) => {
 
 function listarCategorias(editar) {
     var token = getCookie('authTokenAdmin');
-    if (token) {
+const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
+    if (token || tokenRefresh) {
         async function authenticate() {
             try {
                 const response = await fetch('https://api-buy-tech.onrender.com/categorias', {
@@ -63,14 +64,15 @@ function editarCategoria(id) {
 
 async function atualizarCategoria(id, novoNome) {
     const token = getCookie('authTokenAdmin');
-    if (!token) return;
+const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
+    if (!token || !tokenAdminRefresh) return;
 
     try {
         const response = await fetch(`https://api-buy-tech.onrender.com/categorias/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${tokenAdminRefresh}`
             },
             body: JSON.stringify({ nome: novoNome })
         });
@@ -102,6 +104,7 @@ const disableSubmitButton = (isDisabled) => {
 
 if (formCadastroCategoria) {
     const token = getCookie('authTokenAdmin');
+    const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
 
     // Se ID existir, preenche o formulário
     if (idCliente) {
@@ -110,7 +113,7 @@ if (formCadastroCategoria) {
                 const response = await fetch(`https://api-buy-tech.onrender.com/categorias/${idCliente}`, {
                     method: 'GET',
                     headers: {
-                        'Authorization': `Bearer ${token}`
+                        'Authorization': `Bearer ${tokenAdminRefresh}`
                     }
                 });
 
@@ -145,7 +148,7 @@ if (formCadastroCategoria) {
                     body: JSON.stringify(formData),
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
+                        'Authorization': `Bearer ${tokenAdminRefresh}`
                     }
                 });
 
@@ -201,7 +204,7 @@ if (formCadastroCategoria) {
                     body: JSON.stringify(formData),
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
+                        'Authorization': `Bearer ${tokenAdminRefresh}`
                     }
                 });
 

@@ -7,7 +7,8 @@ const getCookie = (name) => {
 
 function listarCategorias(editar) {
     var token = getCookie('authTokenAdmin');
-    if (token) {
+const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
+    if (token || tokenRefresh) {
         async function authenticate() {
             try {
                 const response = await fetch('https://api-buy-tech.onrender.com/categorias', {
@@ -52,14 +53,15 @@ function editarCategoria(id, nomeAtual) {
 
 async function atualizarCategoria(id, novoNome) {
     const token = getCookie('authTokenAdmin');
-    if (!token) return;
+    const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
+    if (!token || !tokenAdminRefresh) return;
 
     try {
         const response = await fetch(`https://api-buy-tech.onrender.com/categorias/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${ttokenAdminRefreshoken}`
             },
             body: JSON.stringify({ nome: novoNome })
         });

@@ -30,8 +30,8 @@ export const login = async () => {
 
                 if (response.ok) {
                     // Armazena o token no cookie com tempo de expiração
-                    document.cookie = `authTokenCliente=${result.access_token}; path=/; max-age=${60}`;
-                    //document.cookie = `authTokenClienteRefresh=${result.refresh_token}; path=/; max-age=${7 * 24 * 60 * 60}`;
+                    document.cookie = `authTokenCliente=${result.access_token}; path=/; max-age=${6000}`;
+                    document.cookie = `authTokenClienteRefresh=${result.refresh_token}; path=/; max-age=${7 * 24 * 60 * 60}`;
                     window.location.href = './index.html';
                 } else {
                     mostrarNotificacao(`${result.detail}`, {

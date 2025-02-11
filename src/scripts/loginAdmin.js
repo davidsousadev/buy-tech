@@ -31,6 +31,7 @@ export const login = async () => {
                 if (response.ok) {
                     // Armazena o token no cookie com tempo de expiração
                     document.cookie = `authTokenAdmin=${result.access_token}; path=/; max-age=${7 * 24 * 60 * 60}`;
+                    document.cookie = `authTokenAdminRefresh=${result.refresh_token}; path=/; max-age=${7 * 24 * 60 * 60}`;
                     window.location.href = '/admin';
                 } else {
                     mostrarNotificacao(`${result.detail}`, {

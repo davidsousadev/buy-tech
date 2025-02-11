@@ -6,8 +6,9 @@ const getCookie = (name) => {
 };
 
 const token = getCookie('authTokenAdmin');
+const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
 
-if (token) {
+if (token || tokenAdminRefresh) {
     window.location.href = 'admin/index.html';
 }
 else{

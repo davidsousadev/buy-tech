@@ -14,13 +14,14 @@ async function listarPerfis(tipo, elementoId, editar = false) {
     };
 
     var token = getCookie('authTokenAdmin');
-    if (token) {
+    const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
+    if (token || tokenAdminRefresh) {
         try {
             const response = await fetch(urls[tipo], {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${tokenAdminRefresh}`
                 },
             });
             const result = await response.json();
@@ -86,7 +87,8 @@ function listarPerfisAdmin() {
 
 async function atualizarStatusUsuario(id, tipo) {
     const token = getCookie('authTokenAdmin');
-    if (!token) return;
+    const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
+    if (!token || !tokenAdminRefresh) return;
     const tiposValidos = ['admins', 'clientes', 'revendedores'];
     if (!tiposValidos.includes(tipo)) {
         console.error("Tipo inválido");
@@ -102,7 +104,7 @@ async function atualizarStatusUsuario(id, tipo) {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${tokenAdminRefresh}`
             },
         });
 
