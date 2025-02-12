@@ -7,7 +7,7 @@ const getCookie = (name) => {
 
 function listarCategorias(editar) {
     const tokenAdmin = getCookie('authTokenAdmin');
-const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
+    const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
     if (tokenAdmin || tokenAdminRefresh) {
         async function authenticate() {
             try {

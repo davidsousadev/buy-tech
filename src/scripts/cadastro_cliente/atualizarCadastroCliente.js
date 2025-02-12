@@ -1,5 +1,3 @@
-const tokenCliente = getCookie('authTokenCliente');
-const tokenRefresh = getCookie('authTokenClienteRefresh')
 if (tokenCliente || tokenClienteRefresh) {
     const avatar = document.getElementById('avatar');
     avatar.classList.remove('bx-user');

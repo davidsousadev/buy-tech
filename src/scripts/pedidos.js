@@ -1,9 +1,5 @@
 const listaDePedidos = document.getElementById("listaDePedidos");
-function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-};
+
 async function cancelarPedido(id) {
     try {
         const response = await fetch(`https://api-buy-tech.onrender.com/pedidos/${id}`, {
@@ -45,7 +41,6 @@ async function extrato() {
             });
 
             const result = await response.json();
-            console.log(result);
             listaDePedidos.innerHTML = "";
 
             if (result && result.length > 0) {

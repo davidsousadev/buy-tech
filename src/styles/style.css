@@ -1,14 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+
+
 @font-face {
   font-family: 'boxicons';
   src: url('https://unpkg.com/boxicons@2.1.4/fonts/boxicons.woff2') format('woff2');
   font-display: swap;
 }
 
-
 /* Geral */
 * {
   margin: 0;
   padding: 0;
+  font-family: "Bungee", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* Tema claro */
@@ -92,7 +97,8 @@ form {
 
 /*Login formLogin formLoginAdmin*/
 #formLogin,
-#formLoginAdmin {
+#formLoginAdmin, 
+#formLoginRevendedor {
   label {
     display: block;
     width: 100%;

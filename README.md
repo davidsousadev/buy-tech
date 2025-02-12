@@ -136,7 +136,7 @@ buy-tech/
 │   │   ├── logadoAdmin.js                    # Script para autenticação do admin
 │   │   ├── logadoCliente.js                  # Script para autenticação do cliente
 │   │   ├── loginAdmin.js                     # Script de login do admin
-│   │   ├── loginCliente.js                   # Script de login do cliente
+│   │   ├── login.js                   # Script de login do cliente
 │   │   ├── main.js                           # Script principal da aplicação
 │   │   ├── menu.js                           # Script do menu da aplicação
 │   │   ├── no-logadoAdmin.js                 # Script para usuários não autenticados (admin)

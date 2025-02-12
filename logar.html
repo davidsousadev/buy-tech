@@ -52,7 +52,7 @@
   <!-- Scripts -->
   <script type="module" src="src/scripts/logadoCliente.js"></script>
 
-<!-- Favicon -->
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
@@ -81,20 +81,26 @@
       <h2>Bem-vindo(a) de volta</h2>
       <form id="formLogin">
         <label for="email">Email</label>
-        <input type="text" id="email" name="email" placeholder="Digite seu email" v>
+        <input type="text" id="email" name="email" placeholder="Digite seu email">
         <label for="password">Senha</label>
         <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+        <select id="tipoUsuario">
+          <option value="cliente" selected>Cliente</option>
+          <option value="admin">Admin</option>
+          <option value="revendedor">Revendedor</option>
+          
+        </select>
+
         <input type="submit" id="submitButton" name="entrar" value="Login">
       </form>
       <button id="recuperar">Esqueceu a senha?</button>
       <a href="cadastrar.html" class="btn_logar">Crie sua conta</a>
-      <div id="messageBox"></div>
     </div>
   </main>
 
   <footer>Contato: <a href="mailto:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-  <script type="module" src="src/scripts/loginCliente.js"></script>
+  <script type="module" src="src/scripts/login.js"></script>
   <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
 
 </body>

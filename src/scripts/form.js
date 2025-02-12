@@ -7,8 +7,8 @@ const getCookie = (name) => {
 export const handleFormSubmission = async () => {
     const formCadastroCliente = document.getElementById('formCadastroCliente');
     const formAtualizacaoCliente = document.getElementById('formAtualizacaoCliente');
-    const formCadastroPessoaJuridica = document.getElementById('formCadastroPessoaJuridica');
 
+    const formCadastroAdmin = document.getElementById('formCadastroAdmin');
 
     if (formCadastroCliente) {
         formCadastroCliente.addEventListener('submit', async (event) => {
@@ -107,10 +107,9 @@ export const handleFormSubmission = async () => {
             }
         });
     }
-    if (formCadastroPessoaJuridica) {
-        formCadastroPessoaJuridica.addEventListener('submit', async (event) => {
+    if (formCadastroAdmin) {
+        formCadastroAdmin.addEventListener('submit', async (event) => {
             event.preventDefault();
-
             // Criação do objeto com os dados aceitos pela API
             let formData = {
                 nome: document.getElementById('nome').value,
@@ -155,7 +154,7 @@ export const handleFormSubmission = async () => {
             disableSubmitButton(true);
             try {
                 console.log(formData)
-                const response = await fetch('https://api-buy-tech.onrender.com/clientes/cadastrar', {
+                const response = await fetch('https://api-buy-tech.onrender.com/admins/cadastrar', {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     headers: { 'Content-Type': 'application/json' },
@@ -178,7 +177,7 @@ export const handleFormSubmission = async () => {
                         movimentoSaida: "esvair",
                         posicao: "bottom-right"
                     });
-                    window.location.href = './confirmacao.html';
+                    window.location.href = '../confirmacao.html';
                 } else {
                     // Exibe mensagens de erro específicas com base na resposta da API
                     mostrarNotificacao(result.detail || 'Erro ao realizar o cadastro.', {
@@ -243,9 +242,10 @@ export const handleFormSubmission = async () => {
                     const response = await fetch('https://api-buy-tech.onrender.com/clientes', {
                         method: 'PATCH',
                         body: JSON.stringify(formData),
-                        headers: { 'Content-Type': 'application/json',
+                        headers: {
+                            'Content-Type': 'application/json',
                             'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`
-                         },
+                        },
                     });
 
                     const result = await response.json();

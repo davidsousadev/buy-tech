@@ -1,8 +1,42 @@
-function validarCNPJ(cnpj) {
-    cnpj = cnpj.replace(/[^\d]+/g, '');
+// cnpj.js
+// Formatar CNPJ no formato 00.000.000/0000-00
+export function formatarCNPJ(cnpjInput) {
+    let cnpj = cnpjInput.value.replace(/\D/g, '');
 
-    if (cnpj.length !== 14) return false;
-    if (/^(\d)\1{13}$/.test(cnpj)) return false;
+    if (cnpj.length <= 2) {
+        cnpj = cnpj;
+    } else if (cnpj.length <= 5) {
+        cnpj = cnpj.replace(/(\d{2})(\d{1,3})/, '$1.$2');
+    } else if (cnpj.length <= 8) {
+        cnpj = cnpj.replace(/(\d{2})(\d{3})(\d{1,3})/, '$1.$2.$3');
+    } else if (cnpj.length <= 12) {
+        cnpj = cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{1,4})/, '$1.$2.$3/$4');
+    } else {
+        cnpj = cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{1,2})/, '$1.$2.$3/$4-$5');
+    }
+
+    cnpjInput.value = cnpj;
+}
+
+// Permitir apenas números no campo de CNPJ sem modificar diretamente o valor do campo
+export function somenteNumerosCNPJ(cnpjInput) {
+    return cnpjInput.value.replace(/\D/g, '');
+}
+
+// Validar CNPJ
+export function validarCNPJ(cnpj) {
+    //console.log("CNPJ recebido:", cnpj); // Verifica o valor recebido
+    if (!cnpj) {
+        console.error("Erro: CNPJ está undefined ou vazio.");
+        return false;
+    }
+    
+    cnpj = cnpj.replace(/[^\d]+/g, ''); // Erro ocorre aqui
+    
+    if (cnpj.length !== 14) {
+        console.error("Erro: CNPJ inválido.");
+        return false;
+    }
 
     let tamanho = 12;
     let numeros = cnpj.substring(0, tamanho);
@@ -29,21 +63,69 @@ function validarCNPJ(cnpj) {
     }
 
     resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
-    if (resultado != digitos.charAt(1)) {
-        mostrarNotificacao("CNPJ inválido!", {
-            cor: "#F44336",
-            duracao: 4000,
-            movimentoEntrada: "deslizar",
-            movimentoSaida: "esvair",
-            posicao: "bottom-right"
-        });
-    }
-
-    return true;
+    return resultado == digitos.charAt(1);
 }
 
-// 🛠️ **Exemplo de uso**
-console.log(validarCNPJ("11.222.333/0001-81")); // ✅ true
-console.log(validarCNPJ("00.000.000/0000-00")); // ❌ false
-console.log(validarCNPJ("12345678000195"));     // ✅ true
-console.log(validarCNPJ("12345678000100"));     // ❌ false
+// Adicionar eventos de input e blur ao CNPJ
+export function configurarEventosCNPJ() {
+    const cnpjInput = document.getElementById('cnpj');
+
+    // Evento de entrada (teclado)
+    cnpjInput.addEventListener('input', () => {
+        let valorFormatado = somenteNumerosCNPJ(cnpjInput);
+        cnpjInput.value = valorFormatado; // Mantém apenas os números
+        formatarCNPJ(cnpjInput); // Aplica a formatação
+    });
+
+    // Evento de perda de foco
+    cnpjInput.addEventListener('blur', async () => {
+        formatarCNPJ(cnpjInput); // Aplica a formatação final
+
+        // Validação do CNPJ
+        if (!validarCNPJ(cnpjInput.value) && cnpjInput.value !== '') {
+            cnpjInput.style.borderColor = 'red';
+            mostrarNotificacao("CNPJ inválido.", {
+                cor: "#F44336",
+                duracao: 4000,
+                movimentoEntrada: "deslizar",
+                movimentoSaida: "esvair",
+                posicao: "bottom-right"
+            });
+            return;
+        }
+
+        cnpjInput.style.borderColor = 'green';
+
+        if (validarCNPJ(cnpjInput.value) && cnpjInput.value !== '') {
+            // Verificação de duplicidade na API
+            try {
+                const response = await fetch(`https://api-buy-tech.onrender.com/revendedores/verificar-cnpj?cnpj=${somenteNumerosCNPJ(cnpjInput)}`);
+                if (response.ok) {
+                    const result = await response.json();
+
+                    if (result.cnpj === true) {
+                        cnpjInput.style.borderColor = 'green';
+                    } else {
+                        cnpjInput.style.borderColor = 'red';
+                        mostrarNotificacao("CNPJ já em uso.", {
+                            cor: "#F44336",
+                            duracao: 4000,
+                            movimentoEntrada: "deslizar",
+                            movimentoSaida: "esvair",
+                            posicao: "bottom-right"
+                        });
+                    }
+                }
+            } catch (error) {
+                cnpjInput.style.borderColor = 'red';
+                mostrarNotificacao('Erro na validação. Tente novamente.', {
+                    cor: "#F44336",
+                    duracao: 4000,
+                    movimentoEntrada: "deslizar",
+                    movimentoSaida: "esvair",
+                    posicao: "bottom-right"
+                });
+            }
+        }
+    });
+}

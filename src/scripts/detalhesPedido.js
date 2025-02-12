@@ -58,7 +58,7 @@ function toggleDrawer() {
     }
 }
 
-function logout(qtd) {
+function logoutCliente(qtd) {
     // Remove o cookie "authToken"
 
     if (qtd === 0) {

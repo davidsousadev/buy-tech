@@ -209,23 +209,7 @@ function toggleDrawer() {
     }
 }
 
-// Função de logout
-function logout(qtd) {
-    // Remove o cookie "authTokenCliente e authTokenClienteRefresh"
-    document.cookie = 'authTokenCliente=; Max-Age=0; path=/;';
-    document.cookie = 'authTokenClienteRefresh=; Max-Age=0; path=/;';
-    if (qtd === 0) {
-        var voltar = '.';
-        window.location.href = `${voltar}/logar.html`; // Redireciona para a página de login
-    }
-    else {
-        var voltar = '';
-        for (var i = 0; i < qtd; i++) {
-            voltar += '../';
-        }
-        window.location.href = `${voltar}logar.html`; // Redireciona para a página de login       
-    }
-};
+
 
 function opcoes(qtd) {
     if (!tokenCliente || !tokenClienteRefresh) {

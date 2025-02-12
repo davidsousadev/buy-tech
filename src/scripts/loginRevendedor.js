@@ -1,5 +1,5 @@
 export const login = async () => {
-    const form = document.getElementById('formLogin');
+    const form = document.getElementById('formLoginRevendedor');
     if (form) {
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
@@ -18,7 +18,7 @@ export const login = async () => {
             disableSubmitButton(true);
 
             try {
-                const response = await fetch('https://api-buy-tech.onrender.com/clientes/logar', {
+                const response = await fetch('https://api-buy-tech.onrender.com/revendedores/logar', {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     headers: { 'Content-Type': 'application/json' },
@@ -30,9 +30,9 @@ export const login = async () => {
 
                 if (response.ok) {
                     // Armazena o token no cookie com tempo de expiração
-                    document.cookie = `authTokenCliente=${result.access_token}; path=/; max-age=${6000}`;
-                    document.cookie = `authTokenClienteRefresh=${result.refresh_token}; path=/; max-age=${7 * 24 * 60 * 60}`;
-                    window.location.href = './index.html';
+                    document.cookie = `authTokenRevendedor=${result.access_token}; path=/; max-age=${7 * 24 * 60 * 60}`;
+                    document.cookie = `authTokenRevendedorRefresh=${result.refresh_token}; path=/; max-age=${7 * 24 * 60 * 60}`;
+                    window.location.href = '/revendedor';
                 } else {
                     mostrarNotificacao(`${result.detail}`, {
                         cor: "#F44336",

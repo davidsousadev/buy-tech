@@ -78,6 +78,13 @@
     <div class="destaques"></div>
     <div class="container">
       <ul id="listaDePedidos"></ul>
+      <div id="cards">
+        <ul>
+          <a href="index.html"><i class='bx bx-arrow-back'></i>
+            <li>Voltar</li>
+          </a>
+        </ul>
+      </div>
     </div>
     <div class="opcoes">
       <div class="itens_carrinho" id="itens_carrinho">
@@ -86,6 +93,7 @@
           <li><button onclick="pedido(1)" id="finalizar_pedido">Finalizar Pedido</button></li>
         </ul>
       </div>
+
       <div class="opcoes_perfil" id="opcoes_perfil">
         <ul>
           <li>Saldo: R$ <span id="saldo"></span></li>
@@ -93,7 +101,7 @@
           <li><a href="atualizar-perfil.html">Atualizar Perfil</a></li>
           <!-- <li><a href="notificacoes.html">Notificações</a></li> -->
           <li><a href="pedidos.html">Pedidos</a></li>
-          <li><button onclick="logout(1)">Sair</button></li>
+          <li><button onclick="logoutCliente(1)">Sair</button></li>
         </ul>
       </div>
     </div>

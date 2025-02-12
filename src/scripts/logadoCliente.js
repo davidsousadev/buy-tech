@@ -34,7 +34,7 @@ if (tokenCliente || tokenClienteRefresh) {
 
             if (response.ok) {
                 const result = await response.json();
-                console.table(result)
+                // console.table(result)
                 const saldo = document.getElementById('saldo');
                 saldo.innerHTML = result.pontos_fidelidade.toFixed(2);
             }
