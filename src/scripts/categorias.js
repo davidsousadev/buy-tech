@@ -33,7 +33,7 @@ function listarProdutos() {
                         lista_categorias_cliente.appendChild(li);
                 });
             } else {
-                lista_categorias_cliente.innerHTML = '<p>Nenhum produto encontrado!</p>';
+                lista_categorias_cliente.innerHTML = '<p>Nenhuma categoria encontrada!</p>';
             }
         } catch (error) {
             console.error(error);

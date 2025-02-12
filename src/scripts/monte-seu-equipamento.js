@@ -24,7 +24,14 @@ if (formPC) {
         }
 
         if (!tokenAdmin && !tokenAdminRefresh) {
-            window.location.href = 'logar.html';
+            mostrarNotificacao("Apenas Clientes cadastrados podem fazer pedido!", {
+                cor: "#F44336",
+                duracao: 2000,
+                posicao: "bottom-right"
+            });
+            setTimeout(() => {
+                window.location.href = 'logar.html';
+            }, 3000);
             return;
         }
 
