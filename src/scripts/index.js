@@ -20,23 +20,54 @@ function listarProdutos() {
             if (result && result.length > 0) {
                 result.forEach((produto) => {
                     const li = document.createElement("li");
+                    const promoClass = produto.status ? "promo" : ""; // Adiciona a classe se for promoção 
                     li.innerHTML = `
-                            <div class="card">
-                                <img src="${produto.foto}" alt="${produto.nome}" class="card-img">
-                                <div class="card-body">
-                                    <h3 class="card-title">${produto.nome}</h3>
-                                    <p class="card-brand">Marca: ${produto.marca}</p>
-                                    <p class="card-price">R$ ${produto.preco}</p>
-                                    <button class="btnDetalhes" onclick="verDetalhes(${produto.id})">Ver Detalhes</button>
+                                <div class="card ${promoClass}">
+                                    <img src="${produto.foto}" alt="${produto.nome}" class="card-img">
+                                    <div class="card-body">
+                                        <h3 class="card-title">${produto.nome}</h3>
+                                        <p class="card-brand">Marca: ${produto.marca}</p>
+                                        <p class="card-price">R$ ${produto.preco}</p>
+                                        <button class="btnDetalhes" onclick="verDetalhes(${produto.id})">Ver Detalhes</button>
+                                    </div>
+                                    ${produto.status ? `
+                                        <div class="flames">
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                            <div class="flame"></div>
+                                        </div>
+                                    ` : ''}
                                 </div>
-                            </div>
-                        `;
+                            `;
 
                     lista_produtos.appendChild(li);
                 });
             } else {
                 lista_produtos.innerHTML = '<p>Nenhum produto encontrado!</p>';
             }
+
+
         } catch (error) {
             console.error(error);
         }

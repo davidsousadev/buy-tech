@@ -44,7 +44,7 @@ async function adicionarAoCarrinho(produtoId) {
     const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
     const quantidade = document.getElementById("quantidade").value;
 
-    if (!token || !tokenRefresh) {
+    if (!tokenCliente || !tokenClienteRefresh) {
         window.location.href = 'logar.html';
     }
 
@@ -66,7 +66,7 @@ async function adicionarAoCarrinho(produtoId) {
 
         if (response.ok) {
             mostrarNotificacao("Produto adicionado ao carrinho!", {
-                cor: "#F44336",
+                cor: "#4CAF50",
                 duracao: 4000,
                 movimentoEntrada: "deslizar",
                 movimentoSaida: "esvair",
@@ -74,7 +74,7 @@ async function adicionarAoCarrinho(produtoId) {
             });
             setTimeout(() => {
                 location.reload();
-            }, 5000);
+            }, 3000);
         } else {
             const errorData = await response.json();
             mostrarNotificacao(errorData.detail, {

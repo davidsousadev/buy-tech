@@ -4,11 +4,10 @@
 
 - > Criar logins individuais (falta revendedor)
 - > Criar cadastro de admin (implementar autenticação de admin master)
-- > Criar painéis de controle de cliente e revendedor
-- > Gerenciar pedidos
-- > Gerenciar promoções
+- > Criar painéis de controle de revendedor
 - > Gerenciar cards
 - > Gerenciar finanças
+- > ...
 
 ## O que foi implementado [!WARNING] (O que fiz, listei apenas para minha organização, não copie e cole na documentação!)
 
@@ -32,6 +31,10 @@
 - > Gerenciamento de perfis - Listagem e atualização de status
 - > Gerenciamento de categorias - Criação, listagem e atualização
 - > Gerenciamento de produtos - Criação, listagem e atualização
+- > Gerenciar pedidos
+- > Gerenciar promoções
+- > Criar painéis de controle de cliente
+- > ...
 
 ## Estrutura inicial sujeita a alterações [!WARNING] (Não copie e cole na documentação!)
 
@@ -72,11 +75,11 @@ buy-tech/
 │   │   ├── gerenciar_pedidos.html            # Página para gerenciar pedidos
 │   │   ├── gerenciar_perfis.html             # Página para gerenciar perfis
 │   │   ├── gerenciar_produtos.html           # Página para gerenciar produtos
-│   │   ├── gerenciar_promocoes.html          # Página para gerenciar promoções
+│   │   ├── gerenciar_cupons.html          # Página para gerenciar promoções
 │   │   ├── index.html                        # Página inicial do painel administrativo
 │   │   |                                     
 │   │   ├── pedidos/                          # Páginas para gerenciar pedidos
-│   │   |   ├── atualizar_pedidos.html        # Página para atualizar pedidos
+│   │   |   ├── lista_pedidos_cancelados.html        # Página para atualizar pedidos
 │   │   |   ├── cadastrar_pedidos.html        # Página para cadastrar novos pedidos
 │   │   |   └── index.html                    # Página inicial da seção de pedidos
 │   │   |                                     
@@ -115,7 +118,7 @@ buy-tech/
 │   │   |   ├── adminPedidos.js               # Script para gerenciamento de pedidos
 │   │   |   ├── adminPerfis.js                # Script para gerenciamento de perfis
 │   │   |   ├── adminProdutos.js              # Script para gerenciamento de produtos
-│   │   |   └── adminPromocoes.js             # Script para gerenciamento de promoções
+│   │   |   └── adminCupons.js             # Script para gerenciamento de promoções
 |   |   |                                      
 │   │   ├── cadastro_cliente/                 # Scripts para validação de cadastro do cliente
 │   │   |   ├── cep.js                        # Validação de CEP

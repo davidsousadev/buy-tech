@@ -45,27 +45,37 @@
     <meta name="keywords" content="projeto, IFPI, software">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="../../../src/styles/style.css">
-    <link rel="stylesheet" href="../../../src/styles/menu.css">
+    <link rel="stylesheet" href="../../src/styles/style.css">
+    <link rel="stylesheet" href="../../src/styles/menu.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
     <!-- Scripts -->
-    <script type="module" src="../../../src/scripts/logadoAdmin.js"></script>
+    <script type="module" src="../../src/scripts/logadoAdmin.js"></script>
 <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
 </head>
 
-<body onload="listarPedidos(false)">
+<body>
     <header>
-        <h1>BUY - TECH</h1><div class="icones"><a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a><a href="#"><i class='bx ' id="exit" onclick="logoutAdmin(2)"></i></a></div>
+        <h1>BUY - TECH</h1><div class="icones"><a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a><a href="#"><i class='bx ' id="exit" onclick="logoutAdmin()"></i></a></div>
+        <h5>Gerenciar Cupons</h5>
+
     </header>
 
     <main>
         <div class="container">
-            <ol id="listar_de_pedidos"></ol>
             <div id="cards">
                 <ul>
-                    <a href="../gerenciar_pedidos.html"><i class='bx bx-arrow-back'></i>
+                    <a href="cupons/index.html"><i class='bx bx-list-ol'></i></i>
+                        <li>Listar Promoções</li>
+                    </a>
+                    <a href="cupons/cadastrar_cupons.html"><i class='bx bx-list-plus'></i>
+                        <li>Cadastrar Promoções</li>
+                    </a>
+                    <a href="cupons/atualizar_cupons.html"><i class='bx bx-list-check'></i>
+                        <li>Atualizar Promoções</li>
+                    </a>
+                    <a href="../index.html"><i class='bx bx-arrow-back'></i>
                         <li>Voltar</li>
                     </a>
                 </ul>
@@ -75,9 +85,9 @@
 
     <footer>Contato: <a href="mailto:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <script src="../../../src/scripts/index.js" defer></script>
-    <script src="../../../src/scripts/admin/adminPedidos.js" defer></script>
+    <script src="../../src/scripts/index.js" defer></script>
     <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
 </body>
 
 </html>
+

@@ -86,9 +86,15 @@ i.bx.bxs-exit{
   color: #006dfa;
   font-size: 15pt;
 }
-
+.banner{
+  height: 50px;
+  width: 75%;
+  position: absolute;
+  display: block;
+  margin-left: 0;
+  left: 0;
+}
 nav {
-  background-color: #333;
   padding: 10px;
 }
 
@@ -97,20 +103,22 @@ nav ul {
   margin: 0;
   padding: 0;
   display: flex;
+  justify-content: space-between;
 }
 
 nav ul li {
-  margin-right: 20px; /* Espaçamento entre os links */
+  margin-right: 20px; 
 }
 
 nav ul li a {
-  color: white;
   text-decoration: none;
   font-size: 16px;
+  color: inherit;
 }
 
 nav ul li a:hover {
-  color: #FFD700; /* Cor ao passar o mouse */
+  color: inherit;
+  background-color: inherit;
 }
 
 .opcoes,
@@ -124,15 +132,7 @@ nav ul li a:hover {
 .destaques{
   margin-top: 50px;
 }
-.banner{
-  height: 50px;
-  border: 1px #999 solid;
-  width: 75%;
-  position: absolute;
-  display: block;
-  margin-left: 0;
-  left: 0;
-}
+
 #opcoes_perfil, #itens_carrinho {
   border: 1px #999 solid;
   background-color: #002752;

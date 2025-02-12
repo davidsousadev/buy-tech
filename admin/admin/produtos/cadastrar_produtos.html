@@ -46,14 +46,19 @@
 
     <!-- Scripts -->
     <script type="module" src="../../../src/scripts/logadoAdmin.js"></script>
-<!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
 </head>
 
 <body>
     <header>
-        <h1>BUY - TECH</h1><div class="icones">
-            <a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a><a href="#"><i class='bx ' id="exit" onclick="logoutAdmin()"></i></a></div>
+        <h1>BUY - TECH</h1>
+        <div class="icones">
+            <a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a><a href="#"><i class='bx ' id="exit"
+                    onclick="logoutAdmin()"></i></a>
+        </div>
+        <h5>Gerenciar Perfis</h5>
+
     </header>
 
     <main>
@@ -68,7 +73,8 @@
                             <input type="text" id="nome" name="nome" placeholder="Ex. PC Gamer" required>
 
                             <label for="preco">Preço:</label>
-                            <input type="number" id="preco" name="preco" placeholder="1500" min="0" step="0.01" required>
+                            <input type="number" id="preco" name="preco" placeholder="1500" min="0" step="0.01"
+                                required>
 
                             <label for="foto">Link da foto do produto:</label>
                             <input type="text" id="foto" name="foto" placeholder="Ex. https://imagem.com/pc-gamer.png"
@@ -90,8 +96,20 @@
                             <label for="quantidade_estoque">Quantidade:</label>
                             <input type="number" id="quantidade_estoque" name="quantidade_estoque" required>
 
-                            <label for="personalizado">Personalizado:</label>
-                            <input type="checkbox" id="personalizado" name="personalizado">
+                            <div class="input-group">
+                                <label for="opcao_de_personalizado">Personalizado:</label>
+                                <select id="opcao_de_personalizado" name="opcao_de_personalizado">
+                                    <option value="false" selected>Não</option>
+                                    <option value="true">Sim</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="opcao_de_status">Produto com promoção:</label>
+                                <select id="opcao_de_status" name="opcao_de_status">
+                                    <option value="false" selected>Não</option>
+                                    <option value="true">Sim</option>
+                                </select>
+                            </div>
 
                             <button type="submit" id="submitButton">Cadastrar</button>
                         </td>

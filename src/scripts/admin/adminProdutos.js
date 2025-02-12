@@ -106,7 +106,8 @@ if (formCadastroProdutoAdmin) {
                     document.getElementById('categoria').value = produto.categoria;
                     document.getElementById('descricao').value = produto.descricao;
                     document.getElementById('quantidade_estoque').value = produto.quantidade_estoque;
-                    document.getElementById('personalizado').checked = produto.personalizado;
+                    document.getElementById('opcao_de_personalizado').value = produto.personalizado;
+                    document.getElementById('opcao_de_status').value = produto.status;
 
                 } catch (error) {
                     console.error("Erro ao carregar produto:", error);
@@ -130,7 +131,8 @@ if (formCadastroProdutoAdmin) {
                     categoria: document.getElementById('categoria').value,
                     descricao: document.getElementById('descricao').value,
                     quantidade_estoque: document.getElementById('quantidade_estoque').value,
-                    personalizado: document.getElementById('personalizado').checked,
+                    personalizado: document.getElementById('opcao_de_personalizado').value,
+                    status: document.getElementById('opcao_de_status').value,
                 };
 
                 try {
@@ -185,7 +187,8 @@ if (formCadastroProdutoAdmin) {
                     categoria: document.getElementById('categoria').value,
                     descricao: document.getElementById('descricao').value,
                     quantidade_estoque: document.getElementById('quantidade_estoque').value,
-                    personalizado: document.getElementById('personalizado').checked,
+                    personalizado: document.getElementById('opcao_de_personalizado').value,
+                    status: document.getElementById('opcao_de_status').value,
                 };
 
                 if (!formData.nome || !formData.preco || !formData.foto || !formData.marca || !formData.categoria || !formData.descricao || !formData.quantidade_estoque) {

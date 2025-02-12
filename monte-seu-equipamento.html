@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+
+    <!-- Meta tag's-->
+    <meta name="author" content="David Sousa da Silva / Pedro Igor Vieira da Silva / Symon Mendes Silva">
+    <meta name="designer" content="David Sousa da Silva / Pedro Igor Vieira da Silva / Symon Mendes Silva">
+    <meta name="developer" ccontent="David Sousa da Silva / Pedro Igor Vieira da Silva / Symon Mendes Silva">
+    <meta name="editor" content="VS Code">
+    <meta name="distribution" content="global">
+    <meta name="contact" content="davidk1k3k@gmail.com">
+    <meta name="reply-to" content="contato.buytech@gmail.com">
+
+    <title>Buy Tech</title>
+
+    <!-- Meta tags Google -->
+    <meta name="robots" content="index, follow">
+    <meta name="google" content="nositelinkssearchbox">
+    <meta name="google" content="notranslate">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script>
+
+    <!-- Meta tags do Meta (Facebook) -->
+    <meta property="og:title" content="Buy Tech">
+    <meta property="og:description" content="Projeto integrador - Desenvolvimento de Sistamas - IFPI">
+    <meta property="og:type" content="website">
+    <!-- <meta property="og:url" content="https://">
+     <meta property="og:image" content="https://"> -->
+
+    <meta property="og:locale" content="pt_BR">
+    <!-- <script type="text/javascript" async src="https://connect.facebook.net/pt_BR/fbevents.js"></script> -->
+
+    <!-- Meta tags do Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@davidsousadev">
+    <meta name="twitter:title" content="Buy Tech">
+    <meta name="twitter:description" content="Projeto integrador - Desenvolvimento de Sistamas - IFPI">
+    <!-- <meta name="twitter:image" content="https://"> -->
+
+    <!-- Meta tags gerais para SEO -->
+    <meta name="description" content="Projeto integrador - Desenvolvimento de Sistamas - IFPI">
+    <meta name="keywords" content="projeto, IFPI, software">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="src/styles/style.css">
+    <link rel="stylesheet" href="src/styles/index.css">
+    <link rel="stylesheet" href="src/styles/menu.css">
+    <link rel="stylesheet" href="src/styles/monte-seu-pc.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script type="module" src="src/scripts/logadoCliente.js"></script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+    <header>
+        <div class="logo-search">
+            <a href="index.html">
+                <h1>BUY TECH</h1>
+            </a>
+            <div id="search">
+                <input type="text" placeholder="Buscar produto..." id="barSearch">
+                <a class="search" id="searchBtn"><i class='bx bx-search-alt-2'></i></a>
+            </div>
+        </div>
+        <div class="icones">
+            <a href="#" onclick="buyCart()" id="btnCart"><i class='bx bx-cart'></i></a>
+            <a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a>
+            <a href="#" onclick="opcoes()" id="btnLogin"><i class='bx bx-user' id="avatar"></i>
+        </div>
+        </a>
+    </header>
+    <main>
+        <div class="banner">
+            <nav>
+                <ul>
+                    <li><a href="categorias.html">Categorias</a></li>
+                    <li><a href="monte-seu-equipamento.html">Monte seu Equipamento</a></li>
+                    <li><a href="index.html?status=True">Promoções</a></li>
+                    <li><a href="suporte.html">Suporte</a></li>
+
+                </ul>
+            </nav>
+        </div>
+        <div class="destaques"></div>
+        <div id="loader" class="loader"><img src="../../../src/imagens/loading.gif" alt="Carregando"></div>
+        <div class="container">
+
+            <ul id="lista_produtos"></ul>
+            <h6>Monte Seu Equipamento</h6>
+            <form id="formPC">
+                <table>
+                    <tr>
+                        <td rowspan="7">
+                            <img src="src/imagens/gabinete.webp" alt="Gabinete" width="300">
+                        </td>
+                    <tr>
+                        <td><label for="gabinete">Gabinete:</label></td>
+                        <td>
+                            <select id="gabinete" name="gabinete">
+                                <option value="">Opções...</option>
+                                <option value="gamer_rgb">Gamer RGB</option>
+                                <option value="simples">Simples</option>
+                                <option value="mid_tower">Mid Tower</option>
+                                <option value="full_tower">Full Tower</option>
+                                <option value="mini_itx">Mini ITX</option>
+                                <option value="vidro_temperado">Vidro Temperado</option>
+                                <option value="compacto">Compacto</option>
+                                <option value="preto">Preto Clássico</option>
+                                <option value="branco">Branco Minimalista</option>
+                                <option value="custom">Customizado</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="placaMae">Placa-mãe:</label></td>
+                        <td>
+                            <select id="placaMae" name="placaMae">
+                                <option value="">Opções...</option>
+                                <option value="asus">ASUS</option>
+                                <option value="gigabyte">Gigabyte</option>
+                                <option value="msi">MSI</option>
+
+                                <option value="asrock">ASRock</option>
+                                <option value="biostar">Biostar</option>
+                                <option value="evga">EVGA</option>
+                                <option value="supermicro">Supermicro</option>
+                                <option value="foxconn">Foxconn</option>
+                                <option value="ecs">ECS</option>
+                                <option value="nzxt">NZXT</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="processador">Processador:</label></td>
+                        <td>
+                            <select id="processador" name="processador">
+                                <option value="">Opções...</option>
+                                <option value="intel_i3">Intel i3</option>
+                                <option value="intel_i5">Intel i5</option>
+                                <option value="intel_i7">Intel i7</option>
+                                <option value="intel_i9">Intel i9</option>
+                                <option value="ryzen_3">Ryzen 3</option>
+                                <option value="ryzen_5">Ryzen 5</option>
+                                <option value="ryzen_7">Ryzen 7</option>
+                                <option value="ryzen_9">Ryzen 9</option>
+                                <option value="threadripper">Ryzen Threadripper</option>
+                                <option value="xeon">Intel Xeon</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="ram">Memória RAM:</label></td>
+                        <td>
+                            <select id="ram" name="ram">
+                                <option value="">Opções...</option>
+                                <option value="4gb">4GB</option>
+                                <option value="8gb">8GB</option>
+                                <option value="16gb">16GB</option>
+                                <option value="32gb">32GB</option>
+                                <option value="64gb">64GB</option>
+                                <option value="128gb">128GB</option>
+                                <option value="256gb">256GB</option>
+                                <option value="ddr3">DDR3</option>
+                                <option value="ddr4">DDR4</option>
+                                <option value="ddr5">DDR5</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="ssd">SSD:</label></td>
+                        <td>
+                            <select id="ssd" name="ssd">
+                                <option value="">Opções...</option>
+                                <option value="128gb">128GB</option>
+                                <option value="256gb">256GB</option>
+                                <option value="512gb">512GB</option>
+                                <option value="1tb">1TB</option>
+                                <option value="2tb">2TB</option>
+                                <option value="4tb">4TB</option>
+                                <option value="nvme">NVMe</option>
+                                <option value="sata">SATA</option>
+                                <option value="m2">M.2</option>
+                                <option value="externo">Externo</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="fonte">Fonte:</label></td>
+                        <td>
+                            <select id="fonte" name="fonte">
+                                <option value="">Opções...</option>
+                                <option value="400w">400W</option>
+                                <option value="500w">500W</option>
+                                <option value="600w">600W</option>
+                                <option value="750w">750W</option>
+                                <option value="850w">850W</option>
+                                <option value="1000w">1000W</option>
+                                <option value="1200w">1200W</option>
+                                <option value="modular">Modular</option>
+                                <option value="semi_modular">Semi-Modular</option>
+                                <option value="80plus">80 Plus Gold</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="1"><label for="observacoes">Observações:</label></td>
+                        <td colspan="2"><textarea id="observacoes" name="observacoes" rows="1"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="center">
+                            <button type="submit">CONFIRMAR</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="opcoes">
+            <div class="itens_carrinho" id="itens_carrinho">
+                <ul>
+                    <p id="lista_itens"></p>
+                    <li><button onclick="pedido()" id="finalizar_pedido">Finalizar Pedido</button></li>
+                </ul>
+            </div>
+            <div class="opcoes_perfil" id="opcoes_perfil">
+                <ul>
+                    <li>Saldo: R$ <span id="saldo"></span></li>
+                    <li><a href="cliente/index.html">Gerenciar Conta</a></li>
+                    <li><a href="cliente/atualizar-perfil.html">Atualizar Perfil</a></li>
+                    <!-- <li><a href="cliente/notificacoes.html">Notificações</a></li> -->
+                    <li><a href="cliente/pedidos.html">Pedidos</a></li>
+                    <li><button onclick="logout(0)">Sair</button></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <footer>Contato: <a href="email:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="src/scripts/index.js" defer></script>
+    <script src="src/scripts/menu.js" defer></script>
+    <script src="src/scripts/monte-seu-equipamento.js" defer></script>
+    <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
+</body>
+
+</html>

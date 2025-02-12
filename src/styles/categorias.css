@@ -1,0 +1,43 @@
+#lista-categorias {
+    list-style-type: none;
+    padding: 0;
+}
+
+.categoria-item {
+    margin: 15px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    
+}
+
+.categoria-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.categoria-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: #f9f9f9;
+    margin: 5px;
+    padding: 20px;
+}
+
+.categoria-id, .categoria-nome, .categoria-criacao {
+    font-size: 14px;
+    color: #555;
+}
+
+.categoria-id {
+    font-weight: bold;
+}
+
+.categoria-nome {
+    font-style: italic;
+}
+
+.categoria-criacao {
+    color: #777;
+}

@@ -1,0 +1,54 @@
+form#formPC {
+    background: #003580;
+    padding: 20px;
+    border-radius: 10px;
+    width: 95%;
+    display: block;
+    justify-content: center;
+
+    color: white;
+    label{
+        color: inherit;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    td {
+        padding: 10px;
+    }
+    
+    select,
+    textarea {
+        width: 100%;
+        padding: 5px;
+        border-radius: 5px;
+        border: none;
+    }
+    textarea{
+        width: 98%;
+        height: 50px;
+    }
+    #observacoes{
+        border: 1px red solid;
+    }
+    button {
+        background: white;
+        color: blue;
+        border: none;
+        padding: 10px;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    button:hover {
+        background: #ccc;
+    }
+
+    .center {
+        text-align: center;
+    }
+}

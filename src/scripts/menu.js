@@ -7,9 +7,11 @@ function getCookie(name) {
     if (parts.length === 2) return parts.pop().split(';').shift();
 };
 
+const tokenCliente = getCookie('authTokenCliente');
+const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
+
 async function listaItensCarrinho() {
-    const tokenCliente = getCookie('authTokenCliente');
-    const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
+
     if (tokenCliente || tokenClienteRefresh) {
         try {
             const response = await fetch('https://api-buy-tech.onrender.com/carrinhos', {
@@ -23,8 +25,18 @@ async function listaItensCarrinho() {
             const resultadoItensCarrinho = await response.json();
             if (resultadoItensCarrinho.detail) {
                 if (resultadoItensCarrinho.detail === "Token expirado!") {
-                    //document.cookie = 'authTokenCliente=; Max-Age=0; path=/;';
-                    //window.location.href = './logar.html';
+                    document.cookie = 'authTokenCliente=; Max-Age=0; path=/;';
+                    document.cookie = 'authTokenClienteRefresh=; Max-Age=0; path=/;';
+                    mostrarNotificacao(`Token expirado!`, {
+                        cor: "#F44336",
+                        duracao: 4000,
+                        movimentoEntrada: "deslizar",
+                        movimentoSaida: "esvair",
+                        posicao: "bottom-right"
+                    });
+                    setTimeout(() => {
+                        window.location.href = './logar.html';
+                    }, 5000);
                 }
                 if (resultadoItensCarrinho.detail === "Carrinho vazio!") {
                     finalizar_pedido.style.display = "none";
@@ -99,10 +111,9 @@ async function listaItensCarrinho() {
 }
 
 async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
-    const tokenCliente = getCookie('authTokenCliente');
-    const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
+
     const novaQuantidade = document.getElementById(`quantidade_${produtoCodigo}`).value;
-    if (token && novaQuantidade) {
+    if ((tokenCliente || tokenClienteRefresh) && novaQuantidade) {
         try {
             const response = await fetch(`https://api-buy-tech.onrender.com/carrinhos/${codigoCarrinho}`, {
                 method: 'PATCH',
@@ -119,28 +130,54 @@ async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
             });
 
             const resultado = await response.json();
-            console.log(resultado)
-            if (resultado.detail === "Token expirado!") {
-                mostrarNotificacao(`Token expirado!`, {
-                    cor: "#F44336",
-                    duracao: 4000,
-                    movimentoEntrada: "deslizar",
-                    movimentoSaida: "esvair",
-                    posicao: "bottom-right"
-                });
-                setTimeout(() => {
-                    window.location.href = './logar.html';
-                }, 5000);
-            }
-            if (resultado.detail === "Pedido maior que estoque!") {
-                mostrarNotificacao(`Pedido maior que estoque!`, {
-                    cor: "#F44336",
-                    duracao: 4000,
-                    movimentoEntrada: "deslizar",
-                    movimentoSaida: "esvair",
-                    posicao: "bottom-right"
-                });
-            }
+            if (resultado) {
+                if (resultado.message) {
+                    mostrarNotificacao("Produto Atualizado com sucesso!", {
+                        cor: "#4CAF50",
+                        duracao: 4000,
+                        movimentoEntrada: "deslizar",
+                        movimentoSaida: "esvair",
+                        posicao: "bottom-right"
+                    });
+                    setTimeout(() => {
+                        location.reload();
+                    }, 3000);
+                }
+                if (resultado.detail === "Item removido do carrinho!") {
+                    mostrarNotificacao(`${resultado.detail}`, {
+                        cor: "#F44336",
+                        duracao: 4000,
+                        movimentoEntrada: "deslizar",
+                        movimentoSaida: "esvair",
+                        posicao: "bottom-right"
+                    });
+                    setTimeout(() => {
+                        location.reload();
+                    }, 5000);
+                }
+                if (resultado.detail === "Token expirado!") {
+                    mostrarNotificacao(`Token expirado!`, {
+                        cor: "#F44336",
+                        duracao: 4000,
+                        movimentoEntrada: "deslizar",
+                        movimentoSaida: "esvair",
+                        posicao: "bottom-right"
+                    });
+                    setTimeout(() => {
+                        window.location.href = './logar.html';
+                    }, 5000);
+                }
+                if (resultado.detail === "Pedido maior que estoque!") {
+                    mostrarNotificacao(`Pedido maior que estoque!`, {
+                        cor: "#F44336",
+                        duracao: 4000,
+                        movimentoEntrada: "deslizar",
+                        movimentoSaida: "esvair",
+                        posicao: "bottom-right"
+                    });
+                }
+            }//
+
             // Atualizar a lista de itens após a alteração da quantidade
             listaItensCarrinho();
 
@@ -151,8 +188,6 @@ async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
 }
 
 function buyCart() {
-    const tokenCliente = getCookie('authTokenCliente');
-    const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
     if (tokenCliente || tokenClienteRefresh) {
         opcoes_perfil.style.display = 'none';
         if (itens_carrinho.style.display === 'block') {
@@ -164,8 +199,6 @@ function buyCart() {
 }
 
 function toggleDrawer() {
-    const tokenCliente = getCookie('authTokenCliente');
-    const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
     if (tokenCliente || tokenClienteRefresh) {
         itens_carrinho.style.display = 'none';
         if (opcoes_perfil.style.display === 'block') {
@@ -195,9 +228,7 @@ function logout(qtd) {
 };
 
 function opcoes(qtd) {
-    const tokenCliente = getCookie('authTokenCliente');
-    const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
-    if (!token || !tokenRefresh) {
+    if (!tokenCliente || !tokenClienteRefresh) {
         if (qtd === 0) {
             var voltar = '.';
             window.location.href = `${voltar}/logar.html`; // Redireciona para a página de login
@@ -216,9 +247,7 @@ function opcoes(qtd) {
 }
 
 function pedido(qtd) {
-    const tokenCliente = getCookie('authTokenCliente');
-    const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
-    if (!token || !tokenRefresh) {
+    if (!tokenCliente || !tokenClienteRefresh) {
         window.location.href = 'logar.html';
     }
     else {
@@ -289,3 +318,4 @@ document.querySelector("#barSearch").addEventListener("keypress", function (even
 document.querySelector("#searchBtn").addEventListener("click", buscar);
 
 listaItensCarrinho();
+

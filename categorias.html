@@ -45,20 +45,22 @@
   <meta name="keywords" content="projeto, IFPI, software">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="../src/styles/style.css">
-  <link rel="stylesheet" href="../src/styles/menu.css">
+  <link rel="stylesheet" href="src/styles/style.css">
+  <link rel="stylesheet" href="src/styles/index.css">
+  <link rel="stylesheet" href="src/styles/menu.css">
+  <link rel="stylesheet" href="src/styles/categorias.css">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
   <!-- Scripts -->
-  <script type="module" src="../src/scripts/logadoCliente.js"></script>
+  <script type="module" src="src/scripts/logadoCliente.js"></script>
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
-<body>
+<body onload="listarProdutos()">
   <header>
     <div class="logo-search">
-      <a href="../index.html">
+      <a href="index.html">
         <h1>BUY TECH</h1>
       </a>
       <div id="search">
@@ -74,28 +76,20 @@
     </a>
   </header>
   <main>
+    <div class="banner">
+      <nav>
+        <ul>
+          <li><a href="categorias.html">Categorias</a></li>
+          <li><a href="#monte-seu-equipamento">Monte seu Equipamento</a></li>
+          <li><a href="index.html?status=True">Promoções</a></li>
+          <li><a href="#suporte">Suporte</a></li>
+
+        </ul>
+      </nav>      
+    </div>
     <div class="destaques"></div>
     <div class="container">
-      <div id="cards">
-        <ul>
-          <a href="extrato.html"><i class="bx bxs-user" id="avatar"></i>
-            <li>Extrato</li>
-          </a>
-          <a href="creditos.html"><i class="bx bx-list-ul"></i>
-            <li>Creditos</li>
-          </a>
-          <a href="debitos.html"><i class="bx bxs-shopping-bag"></i>
-            <li>Debitos</li>
-          </a>
-          <a href="pendencias.html"><i class="bx bxs-cart-alt"></i>
-            <li>Pendências</li>
-          </a>
-          <a href="../index.html"><i class='bx bx-arrow-back'></i>
-            <li>Voltar</li>
-          </a>
-          </a>
-        </ul>
-      </div>
+      <ul id="lista_categorias_cliente"></ul>
     </div>
     <div class="opcoes">
       <div class="itens_carrinho" id="itens_carrinho">
@@ -107,19 +101,20 @@
       <div class="opcoes_perfil" id="opcoes_perfil">
         <ul>
           <li>Saldo: R$ <span id="saldo"></span></li>
-          <li><a href="index.html">Gerenciar Conta</a></li>
-          <li><a href="atualizar-perfil.html">Atualizar Perfil</a></li>
-          <!-- <li><a href="notificacoes.html">Notificações</a></li> -->
-          <li><a href="pedidos.html">Pedidos</a></li>
-          <li><button onclick="logout(1)">Sair</button></li>
+          <li><a href="cliente/index.html">Gerenciar Conta</a></li>
+          <li><a href="cliente/atualizar-perfil.html">Atualizar Perfil</a></li>
+          <!-- <li><a href="cliente/notificacoes.html">Notificações</a></li> -->
+          <li><a href="cliente/pedidos.html">Pedidos</a></li>
+          <li><button onclick="logout(0)">Sair</button></li>
         </ul>
       </div>
     </div>
   </main>
   <footer>Contato: <a href="email:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-  <script src="../src/scripts/index.js" defer></script>
-  <script src="../src/scripts/menu.js" defer></script>
+  <script src="src/scripts/categorias.js" defer></script>
+  <script src="src/scripts/menu.js" defer></script>
+  <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
 </body>
 
 </html>

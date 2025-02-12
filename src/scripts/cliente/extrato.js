@@ -1,15 +1,13 @@
-const tokenCliente = getCookie('authTokenCliente');
-const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
 const extratoCliente = document.getElementById("extratoCliente");
 
 async function extrato() {
-    if (token && tokenRefresh) {
+    if (tokenCliente || tokenClienteRefresh) {
     try {
         const response = await fetch(`https://api-buy-tech.onrender.com/operacoes/extrato`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token || tokenRefresh}`
+                'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`
             },
         });
 

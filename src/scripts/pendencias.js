@@ -36,7 +36,7 @@ async function cancelarPedido(id) {
 async function extrato() {
     if (tokenCliente || tokenClienteRefresh) {
         try {
-            const response = await fetch(`https://api-buy-tech.onrender.com/pedidos`, {
+            const response = await fetch(`https://api-buy-tech.onrender.com/operacoes/pendencias`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -53,12 +53,7 @@ async function extrato() {
                     let statusPedido = "";
                     let botoes = ""; // Variável para os botões
                     let codigoPedido = "";
-                    if (pedido.codigo.length === 6 && pedido.status) {
-                        statusPedido = "Pedido Pago";
-                        codigoPedido = pedido.codigo;
-                    } else if (pedido.codigo === "" && !pedido.status) {
-                        statusPedido = "Pedido Cancelado";
-                    } else if (pedido.codigo.length > 6 && pedido.status) {
+                    if (pedido.codigo.length > 6 && pedido.status) {
                         codigoPedido = "Pedido está esperando pagamento";
                         statusPedido = "Pedido está esperando pagamento";
                         // Só exibir os botões se o pedido estiver esperando pagamento
@@ -68,7 +63,7 @@ async function extrato() {
                                 <button class="pay-btn" onclick="pagarPedido('${pedido.token_pagamento}')">Pagar Pedido</button>
                             </div>
                         `;
-                    }
+                    
 
                     const li = document.createElement("li");
                     li.classList.add("card");
@@ -89,9 +84,11 @@ async function extrato() {
                         </div>
                     `;
                     listaDePedidos.appendChild(li);
+
+                }
                 });
             } else {
-                listaDePedidos.innerHTML = "<p>Nenhum pedido encontrado.</p>";
+                listaDePedidos.innerHTML = "<p>Nenhuma pendência encontrada.</p>";
             }
         } catch (error) {
             console.error(error);
@@ -112,28 +109,29 @@ async function pagarPedido(tokenDePagamento) {
             });
 
             const result = await response.json();
-
-            if (result.detail) {
-                mostrarNotificacao(`${result.detail}`, {
+            console.log(result)
+            if (result.detail === 'Pagamento não realizado, pontos fidelidade insuficientes!') {
+                mostrarNotificacao("Pagamento não realizado, pontos fidelidade insuficientes!", {
                     cor: "#F44336",
                     duracao: 4000,
                     movimentoEntrada: "deslizar",
                     movimentoSaida: "esvair",
                     posicao: "bottom-right"
                 });
-            } else if (result.mensage === "Pagamento realizado com sucesso!") {
-                mostrarNotificacao("Pagamento realizado com sucesso!", {
-                    cor: "#4CAF50",
-                    duracao: 4000,
-                    movimentoEntrada: "deslizar",
-                    movimentoSaida: "esvair",
-                    posicao: "bottom-right"
-                });
-                setTimeout(() => {
-                    location.reload();
-                }, 5000);
-            } 
-
+            } else {
+                if (result.mensage === "Pagamento realizado com sucesso!") {
+                    mostrarNotificacao("Pagamento realizado com sucesso!", {
+                        cor: "#4CAF50",
+                        duracao: 4000,
+                        movimentoEntrada: "deslizar",
+                        movimentoSaida: "esvair",
+                        posicao: "bottom-right"
+                    });
+                    setTimeout(() => {
+                        location.reload();
+                    }, 5000);
+                }
+            }
 
         } catch (error) {
             console.error(error);
