@@ -46,36 +46,41 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="../../src/styles/style.css">
+    <link rel="stylesheet" href="../../src/styles/admin/lista-conteudo.css">
     <link rel="stylesheet" href="../../src/styles/menu.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
     <!-- Scripts -->
-    <script type="module" src="../../src/scripts/logadoAdmin.js"></script>
+    <script type="module" src="../../../src/scripts/logadoRevendedor.js"></script>
 <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+  <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
 </head>
 
 <body>
     <header>
-        <h1>BUY - TECH</h1><div class="icones"><a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a><a href="#"><i class='bx ' id="exit" onclick="logoutAdmin()"></i></a></div>
-        <h5>Gerenciar Cards</h5>
-
+        <h1>BUY - TECH</h1>
+        <div class="icones">
+            <a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a>
+            <a href="#"><i class='bx ' id="exit" onclick="logoutAdmin(2)"></i></a>
+        </div>
+        <h5>Lista de Produtos</h5>
     </header>
 
     <main>
         <div class="container">
+            <select style="display: none;" id="categoria" name="categoria" required>
+                <option value="">...</option>
+            </select>
+
+            <!-- Lista onde os produtos serão exibidos -->
+            <ul id="lista_de_produtos_admin"></ul>
+
             <div id="cards">
                 <ul>
-                    <a href="cards/index.html"><i class='bx bx-list-ol'></i></i>
-                        <li>Listar cards</li>
+                    <a href="pedidosRevendedor.html"><i class="bx bxs-cart-alt"></i>
+                        <li>Listar Pedidos</li>
                     </a>
-                    <a href="cards/cadastrar_cards.html"><i class='bx bx-list-plus'></i>
-                        <li>Cadastrar Cards</li>
-                    </a>
-                    <a href="cards/atualizar_cards.html"><i class='bx bx-list-check'></i>
-                        <li>Atualizar Cards</li>
-                    </a>
-                    <a href="../index.html"><i class='bx bx-arrow-back'></i>
+                    <a href="index.html"><i class='bx bx-arrow-back'></i>
                         <li>Voltar</li>
                     </a>
                 </ul>
@@ -83,9 +88,16 @@
         </div>
     </main>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            listarProdutos(true);
+        });
+    </script>
+
     <footer>Contato: <a href="mailto:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script src="../../src/scripts/index.js" defer></script>
+    <script src="../../src/scripts/revendedor/revendedorProdutos.js" defer></script>
     <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
 </body>
 

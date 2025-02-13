@@ -4,8 +4,10 @@ const getCookie = (name) => {
     if (parts.length === 2) return parts.pop().split(';').shift();
 };
 
-const tokenCliente = getCookie('authTokenCliente');
-const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
+const tokenRevendedor= getCookie('authTokenRevendedor');
+const tokenRevendedorRefresh = getCookie('authTokenRevendedorRefresh');
+
+
 var descontoAplicado = false;
 var freteCalculado = false;
 var precoFrete = 0;
@@ -13,8 +15,7 @@ var precoFrete = 0;
 const opcoes_perfil = document.getElementById('opcoes_perfil');
 const itens_carrinho = document.getElementById('itens_carrinho');
 const verifica_cupom_de_desconto = document.getElementById('verifica_cupom_de_desconto');
-const urlParams = new URLSearchParams(window.location.search);
-const idCliente = urlParams.get("id");
+
 const formCadastroPedido = document.getElementById('formCadastroPedido');
 const totalPedido = document.getElementById('totalPedido');
 const valor_cupom_desconto = document.getElementById('valor_cupom_desconto');
@@ -22,41 +23,24 @@ const campoCEP = document.getElementById('campoCEP');
 
 async function authenticate() {
     try {
-        const response = await fetch('https://api-buy-tech.onrender.com/clientes/autenticar', {
+        const response = await fetch('https://api-buy-tech.onrender.com/revendedores/autenticar', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
+                'Authorization': `Bearer ${tokenRevendedor || tokenRevendedorRefresh}`,
             },
         });
 
         const result = await response.json();
 
-        if (response.ok && result && result.cep) {
-            const cepFormatado = typeof result.cep === 'string'
-                ? result.cep.replace(/^(\d{5})(\d{3})$/, "$1-$2")
-                : String(result.cep).replace(/^(\d{5})(\d{3})$/, "$1-$2");
+        if (response.ok && result) {
 
-            campoCEP.innerHTML = cepFormatado;
             return result;
-        } else {
-            console.warn("Resposta da API não contém um CEP válido:", result);
-        }
+        } 
     } catch (error) {
         console.error('Erro ao enviar os dados:', error);
     }
     return null;
-}
-
-function toggleDrawer() {
-
-    if (tokenCliente || tokenClienteRefresh) {
-        if (opcoes_perfil.style.display === 'block') {
-            opcoes_perfil.style.display = 'none';
-        } else {
-            opcoes_perfil.style.display = 'block';
-        }
-    }
 }
 
 function logoutCliente(qtd) {
@@ -75,63 +59,22 @@ function logoutCliente(qtd) {
     }
 };
 
-function opcoes(qtd) {
-
-    if (!tokenCliente || !tokenClienteRefresh) {
-        if (qtd === 0) {
-            var voltar = '.';
-            window.location.href = `${voltar}/index.html`; // Redireciona para a página de login
-        }
-        else {
-            var voltar = '';
-            for (var i = 0; i < qtd; i++) {
-                voltar += '../';
-            }
-            window.location.href = `${voltar}index.html`; // Redireciona para a página de login       
-        }
-    }
-    else {
-        toggleDrawer();
-    }
-}
 
 document.getElementById('formCadastroPedido').addEventListener('submit', async (event) => {
     event.preventDefault(); // Evita o envio padrão do formulário
 
     const idAutenticado = await authenticate(); // Aguarda a autenticação
-    const idClienteNumero = Number(idCliente);
 
-    // Verifica se o usuário está autenticado corretamente
-    if (idAutenticado.id !== idClienteNumero) {
-        mostrarNotificacao("Erro de autenticação.", {
-            cor: "#F44336",
-            duracao: 4000,
-            posicao: "bottom-right"
-        });
-        return;
-    }
-    if (precoFrete === 0) {
-        mostrarNotificacao("Calcule o frete.", {
-            cor: "#F44336",
-            duracao: 4000,
-            movimentoEntrada: "deslizar",
-            movimentoSaida: "esvair",
-            posicao: "bottom-right"
-        });
-        return;
-    }
     // Criação do objeto formData após a autenticação
     let formData = {
-        cliente: idAutenticado.id, // Tipo inteiro
-        frete: precoFrete,
-        cupom_de_desconto: document.getElementById('cupom_de_desconto').value, // String
+        revendedor_id: idAutenticado.id, // Tipo inteiro
         opcao_de_pagamento: document.getElementById('opcao_de_pagamento').value // Boolean 
     };
 
     console.table(formData); // Verifica os valores
 
     // Validação de campos obrigatórios
-    if (!formData.cliente || formData.opcao_de_pagamento === "") {
+    if (!formData.revendedor_id || formData.opcao_de_pagamento === "") {
         mostrarNotificacao("Todos os campos devem ser preenchidos.", {
             cor: "#F44336",
             duracao: 4000,
@@ -143,13 +86,13 @@ document.getElementById('formCadastroPedido').addEventListener('submit', async (
     displayLoader(true);
     disableSubmitButton(true);
     // Envio do pedido para a API
-    try {
-        const response = await fetch('https://api-buy-tech.onrender.com/pedidos', {
+    try {                             
+        const response = await fetch('https://api-buy-tech.onrender.com/pedidos_revendedor', {
             method: 'POST',
             body: JSON.stringify(formData),
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`
+                'Authorization': `Bearer ${tokenRevendedor || tokenRevendedorRefresh}`
             }
         });
 
@@ -163,7 +106,7 @@ document.getElementById('formCadastroPedido').addEventListener('submit', async (
                 duracao: 4000,
                 posicao: "bottom-right"
             });
-            window.location.href = './pedidos.html';
+            window.location.href = './pedidosRevendedor.html';
         } else {
             mostrarNotificacao(`${result.detail}`, {
                 cor: "#F44336",
@@ -172,6 +115,8 @@ document.getElementById('formCadastroPedido').addEventListener('submit', async (
             });
         }
     } catch (error) {
+        displayLoader(false);
+        disableSubmitButton(false);
         console.error('Erro ao enviar os dados:', error);
         mostrarNotificacao("Erro ao enviar os dados. Tente novamente.", {
             cor: "#F44336",
@@ -181,188 +126,25 @@ document.getElementById('formCadastroPedido').addEventListener('submit', async (
     }
 });
 
-verifica_cupom_de_desconto.addEventListener('click', async () => {
-    if (descontoAplicado) return;
-    if (tokenCliente || tokenClienteRefresh) {
-        var cupom_de_desconto = document.getElementById('cupom_de_desconto').value;
-
-        try {
-            const response = await fetch(`https://api-buy-tech.onrender.com/cupons/verificar-cupom?cupom_nome=${cupom_de_desconto}`, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
-                    'Content-Type': 'application/json'
-                },
-            });
-
-            if (!response.ok) {
-                mostrarNotificacao("Erro ao buscar Cupom", {
-                    cor: "#F44336",
-                    duracao: 4000,
-                    movimentoEntrada: "deslizar",
-                    movimentoSaida: "esvair",
-                    posicao: "bottom-right"
-                });
-                return;
-            }
-
-            const resultado = await response.json();
-
-            if (resultado.cupom) {
-                let desconto = resultado.cupom["valor"];
-                let tipoCupom = resultado.cupom["tipo"];
-
-                if (valor_cupom_desconto) {
-                    valor_cupom_desconto.innerHTML = `R$ ${desconto.toFixed(2)}`;
-
-
-
-                    if (tipoCupom) {
-                        // Valor fixo
-                        totalCarrinho -= desconto;
-                        valor_cupom_desconto.innerHTML = `R$ ${desconto.toFixed(2)}`;
-                    } else {
-                        // Porcentagem
-                        totalCarrinho -= totalCarrinho * (desconto / 100);
-                        valor_cupom_desconto.innerHTML = `${desconto.toFixed(2)} %`;
-                    }
-                }
-                // Evita valores negativos
-                totalCarrinho = Math.max(totalCarrinho, 0);
-
-                descontoAplicado = true;
-                atualizaTotalPedido();
-
-                mostrarNotificacao("O cupom é válido!", {
-                    cor: "#4CAF50",
-                    duracao: 4000,
-                    movimentoEntrada: "deslizar",
-                    movimentoSaida: "esvair",
-                    posicao: "bottom-right"
-                });
-            }
-            else {
-                valor_cupom_desconto.innerHTML = `R$ 00.00`;
-                mostrarNotificacao("O cupom não é válido!", {
-                    cor: "#F44336",
-                    duracao: 4000,
-                    movimentoEntrada: "deslizar",
-                    movimentoSaida: "esvair",
-                    posicao: "bottom-right"
-                });
-            }
-        } catch (error) {
-            console.error('Erro:', error);
-        }
-    }
-});
-
-verifica_frete.addEventListener('click', async () => {
-    if (freteCalculado) return;
-    const cliente = await authenticate();
-    var cep = cliente.cep;
-    var clubeFidelidade = cliente.clube_fidelidade;
-    if (clubeFidelidade === false) {
-        // Consulta de CEP com fallback dinâmico
-        const fetchCepData = async (cep) => {
-            try {
-                // Primeira tentativa: ViaCEP
-                let response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-                if (response.ok) {
-                    const data = await response.json();
-                    if (!data.erro) return data;
-                }
-
-                // Segunda tentativa: BrasilAPI
-                response = await fetch(`https://brasilapi.com.br/api/cep/v2/${cep}`);
-                if (response.ok) {
-                    return await response.json();
-                }
-
-                throw new Error('CEP não encontrado em nenhum serviço.');
-            } catch (error) {
-                throw new Error('Erro ao buscar o CEP.');
-            }
-        };
-
-        try {
-            const data = await fetchCepData(cep);
-            const estado_para_calculo = data.uf || data.state || '';
-
-            function calcularFrete(estado_para_calculo) {
-                const estadosLimite = ["MA", "PI", "PA", "TO", "CE", "BA"];
-                frete = 29; // Frete inicial
-
-                if (!estadosLimite.includes(estado_para_calculo)) {
-                    frete += 10 * (Math.abs("MA".charCodeAt(0) - estado_para_calculo.charCodeAt(0)));
-                }
-
-                totalCarrinho += frete;
-                precoFrete = frete;
-                freteCalculado = true;
-                atualizaTotalPedido();
-                mostrarNotificacao("Frete calculado com sucesso!", {
-                    cor: "#4CAF50",
-                    duracao: 4000,
-                    movimentoEntrada: "deslizar",
-                    movimentoSaida: "esvair",
-                    posicao: "bottom-right"
-                });
-                return frete.toFixed(2);
-            }
-
-            // Atualiza o valor do frete
-            document.getElementById('valorFrete').innerText = calcularFrete(estado_para_calculo);
-        } catch (error) {
-            mostrarNotificacao("Frete padrão calculado CEP invalido", {
-                cor: "#4CAF50",
-                duracao: 4000,
-                movimentoEntrada: "deslizar",
-                movimentoSaida: "esvair",
-                posicao: "bottom-right"
-            });
-            freteCalculado = true;
-            totalCarrinho += frete;
-            precoFrete = frete;
-            document.getElementById('valorFrete').innerText = 39.00;
-        }
-    }
-    else {
-        freteCalculado = true;
-        document.getElementById('valorFrete').innerText = 0.00;
-        precoFrete = 0;
-        atualizaTotalPedido();
-        mostrarNotificacao("Cliente clube fidelidade paga zero de frete!", {
-            cor: "#4CAF50",
-            duracao: 4000,
-            movimentoEntrada: "deslizar",
-            movimentoSaida: "esvair",
-            posicao: "bottom-right"
-        });
-        return frete.toFixed(2);
-
-    }
-});
-
 async function listaItensCarrinho() {
 
-    if (tokenCliente || tokenClienteRefresh) {
+    if (tokenRevendedor || tokenRevendedorRefresh) {
         try {
-            const response = await fetch('https://api-buy-tech.onrender.com/carrinhos', {
+            const response = await fetch('https://api-buy-tech.onrender.com/carrinhos_revendedor', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
+                    'Authorization': `Bearer ${tokenRevendedor || tokenRevendedorRefresh}`,
                 },
             });
 
             const resultadoItensCarrinho = await response.json();
             if (resultadoItensCarrinho.detail) {
                 if (resultadoItensCarrinho.detail === "Token expirado!") {
-                    window.location.href = './logar.html';
+                    //window.location.href = './logar.html';
                 }
                 if (resultadoItensCarrinho.detail === "Carrinho vazio!") {
-                    finalizar_pedido.style.display = "none";
+                    //finalizar_pedido.style.display = "none";
                     lista_itens.innerHTML = `<p class="carrinho-vazio-texto">Seu carrinho está vazio.</p>`;
                 }
                 return;
@@ -431,13 +213,13 @@ async function listaItensCarrinho() {
 async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
 
     const novaQuantidade = document.getElementById(`quantidade_${produtoCodigo}`).value;
-    if ((tokenCliente || tokenClienteRefresh) && novaQuantidade) {
+    if ((tokenRevendedor || tokenRevendedorRefresh) && novaQuantidade) {
         try {
-            const response = await fetch(`https://api-buy-tech.onrender.com/carrinhos/${codigoCarrinho}`, {
+            const response = await fetch(`https://api-buy-tech.onrender.com/carrinhos_revendedor/${codigoCarrinho}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
+                    'Authorization': `Bearer ${tokenRevendedor || tokenRevendedorRefresh}`,
                 },
                 body: JSON.stringify({
                     id: codigoCarrinho,
@@ -482,7 +264,7 @@ async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
                         posicao: "bottom-right"
                     });
                     setTimeout(() => {
-                        window.location.href = './logar.html';
+                        window.location.href = 'index.html';
                     }, 5000);
                 }
                 if (resultado.detail === "Pedido maior que estoque!") {

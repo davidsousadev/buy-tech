@@ -1,7 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const idCarrinho = urlParams.get("id");
 
-async function carregarDetalhesPedido() {
+async function carregarDetalhesProduto() {
     if (!idCarrinho) {
         document.getElementById("detalhesProduto").innerHTML = "<p>Produto não encontrado!</p>";
         return;
@@ -18,14 +18,15 @@ async function carregarDetalhesPedido() {
         }
 
         const produto = await response.json();
-
+        const promoClass = produto.status ? "promo" : "";
         document.getElementById("detalhesProduto").innerHTML = `
-            <div class="produto-detalhes">
+            <div class="produto-detalhes ${promoClass}">
                 <img src="${produto.foto}" alt="${produto.nome}" class="produto-imagem">
                 <div class="produto-info">
                     <h2>${produto.nome}</h2>
                     <p><strong>Marca:</strong> ${produto.marca}</p>
                     <p><strong>Descrição:</strong> ${produto.descricao}</p>
+                    <p class="descontoDe"><strong>De:</strong> R$ ${parseFloat((produto.preco + produto.preco / 20).toFixed(2))}</p>
                     <p><strong>Preço:</strong> R$ ${produto.preco}</p>
                     <label for="quantidade">Quantidade:</label>
                     <input type="number" id="quantidade" min="0" value="1">
@@ -92,4 +93,4 @@ async function adicionarAoCarrinho(produtoId) {
 }
 
 // Chamar a função ao carregar a página
-carregarDetalhesPedido();
+carregarDetalhesProduto();

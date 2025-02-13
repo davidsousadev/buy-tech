@@ -80,6 +80,12 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+    p{
+        color: #0056b3;
+    }
+    input{
+        width: 90%;
+    }
 }
 
 .produto-nome {
@@ -146,5 +152,11 @@
 }
 .cupom-item strong {
     font-size: 1.1em;
+}
+
+.produto-imagem-revendedor {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover; /* Ajusta a imagem ao tamanho do contêiner sem distorção */
 }
 

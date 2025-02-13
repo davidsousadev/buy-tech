@@ -28,7 +28,7 @@
     <meta property="og:description" content="Projeto integrador - Desenvolvimento de Sistamas - IFPI">
     <meta property="og:type" content="website">
     <!-- <meta property="og:url" content="https://">
-     <meta property="og:image" content="https://"> -->
+         <meta property="og:image" content="https://"> -->
 
     <meta property="og:locale" content="pt_BR">
     <!-- <script type="text/javascript" async src="https://connect.facebook.net/pt_BR/fbevents.js"></script> -->
@@ -45,21 +45,23 @@
     <meta name="keywords" content="projeto, IFPI, software">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="src/styles/style.css">
-    <link rel="stylesheet" href="src/styles/index.css">
-    <link rel="stylesheet" href="src/styles/menu.css">
+    <link rel="stylesheet" href="../src/styles/style.css">
+    <link rel="stylesheet" href="../src/styles/menu.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
     <!-- Scripts -->
-    <script type="module" src="src/scripts/logadoCliente.js"></script>
+    <script type="module" src="../src/scripts/logadoCliente.js"></script>
+    <script type="module" src="../src/scripts/no-logadoCliente.js"></script>
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
 </head>
+
+
 
 <body>
     <header>
         <div class="logo-search">
-            <a href="index.html">
+            <a href="../index.html">
                 <h1>BUY TECH</h1>
             </a>
             <div id="search">
@@ -74,65 +76,61 @@
         </div>
         </a>
     </header>
+
     <main>
-        <div class="banner">
-            <nav>
-                <ul>
-                    <li><a href="#" class="menu-sun"><i class='bx bx-menu'></i></a></li>
-                    <li><a href="categorias.html">Categorias</a></li>
-                    <li><a href="monte-seu-equipamento.html">Monte seu Equipamento</a></li>
-                    <li><a href="index.html?status=True">Promoções</a></li>
-                    <li><a href="suporte.html">Suporte</a></li>
-
-                </ul>
-            </nav>
-        </div>
-        <div class="destaques"></div>
-        <div id="loader" class="loader"><img src="../../../src/imagens/loading.gif" alt="Carregando"></div>
+        <div id="loader" class="loader"><img src="../src/imagens/loading.gif" alt="Carregando"></div>
         <div class="container">
-
-            <ul id="lista_produtos"></ul>
-            <h6>Suporte</h6>
-            <form id="formSuporte">
+            <h2>Crie sua conta - Revendedor</h2>
+            <form id="formCadastroPessoaJuridica">
                 <table>
                     <tr>
+                        <!-- Primeira coluna -->
                         <td>
-                            <label class="texto_envio_email">Deixe sua duvida que responderemos assim que
-                                possível.</label>
-                            <textarea name="enviar_email" id="enviar_email" cols="30"
-                                placeholder="Dúvida..."></textarea>
+                            <label for="razaoSocial">Razão Social:</label>
+                            <input type="text" id="razaoSocial" name="razaoSocial" placeholder="Digite a razão social"
+                                required>
 
-                            <button type="submit" id="submitButton">Enviar</button>
+                            <label for="email">E-mail:</label>
+                            <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
 
+                            <label for="password">Senha:</label>
+                            <input type="password" id="password" name="password" placeholder="Digite sua senha"
+                                required>
+
+                            <label for="confirmPassword">Confirmar Senha:</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword"
+                                placeholder="Confirme sua senha" required>
+                            <h3>Pessoa Física ? <a href="../cadastrar.html" class="cadastrar-pessoa">Clique aqui</a>
+                            </h3>
+                            <a class="btn_logar" href="index.html">Logar</a>
+                        </td>
+
+                        <!-- Segunda coluna -->
+                        <td>
+                            <label for="cnpj">CNPJ:</label>
+                            <input type="text" id="cnpj" name="cnpj" maxlength="18" placeholder="00.000.000/0000-00" required>
+
+                            <label for="inscricao_estadual">Inscrição Estadual:</label>
+                            <input type="text" id="inscricao_estadual" name="inscricao_estadual" maxlength="9"
+                                placeholder="Digite a inscrição estadual" required>
+
+                            <label for="telefone">Telefone:</label>
+                            <input type="text" id="telefone" name="telefone"  maxlength="15" pattern="\(\d{2}\) \d\.\d{4}-\d{4}" placeholder="(99) 99999-9999" required>
+
+                            <button type="submit" id="submitButton">Cadastrar</button>
                         </td>
                     </tr>
                 </table>
             </form>
-        </div>
-        <div class="opcoes">
-            <div class="itens_carrinho" id="itens_carrinho">
-                <ul>
-                    <p id="lista_itens"></p>
-                    <li><button onclick="pedido()" id="finalizar_pedido">Finalizar Pedido</button></li>
-                </ul>
-            </div>
-            <div class="opcoes_perfil" id="opcoes_perfil">
-                <ul>
-                    <li>Saldo: R$ <span id="saldo"></span></li>
-                    <li><a href="cliente/index.html">Gerenciar Conta</a></li>
-                    <li><a href="cliente/atualizar-perfil.html">Atualizar Perfil</a></li>
-                    <li><a href="cliente/indicacoes.html">Indicações</a></li> 
-                    <li><a href="cliente/pedidos.html">Pedidos</a></li>
-                    <li><button onclick="logoutCliente(0)">Sair</button></li>
-                </ul>
-            </div>
+
+
         </div>
     </main>
-    <footer>Contato: <a href="email:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
+
+    <footer>Contato: <a href="mailto:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <script src="src/scripts/index.js" defer></script>
-    <script src="src/scripts/menu.js" defer></script>
-    <script src="src/scripts/suporte.js" defer></script>
+    <script type="module" src="../src/scripts/revendedor/pessoa-juridica.js"></script>
+
     <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
 </body>
 

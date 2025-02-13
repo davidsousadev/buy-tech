@@ -1,13 +1,13 @@
 const extratoCliente = document.getElementById("extratoCliente");
 
 async function extrato() {
-    if (tokenCliente || tokenClienteRefresh) {
+    if (tokenRevendedor || tokenRevendedorRefresh) {
     try {
-        const response = await fetch(`https://api-buy-tech.onrender.com/operacoes/creditos`, {
+        const response = await fetch(`https://api-buy-tech.onrender.com/operacoes_revendedor/debitos`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`
+                'Authorization': `Bearer ${tokenRevendedor || tokenRevendedorRefresh}`
             },
         });
 
@@ -16,7 +16,7 @@ async function extrato() {
         }
 
         const result = await response.json();
-        //console.log(result);
+        console.log(result);
 
         extratoCliente.innerHTML = ""; // Limpa antes de exibir
 

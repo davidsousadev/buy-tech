@@ -15,10 +15,10 @@ const decodeToken = (token) => {
     }
 };
 
-const tokenCliente = getCookie('authTokenCliente');
-const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
+const tokenRevendedor = getCookie('authTokenRevendedor');
+const tokenRevendedorRefresh = getCookie('authTokenRevendedorRefresh');
 
-if (tokenCliente || tokenClienteRefresh) { 
+if (tokenRevendedor || tokenRevendedorRefresh) { 
     const avatar = document.getElementById('avatar');
     avatar.classList.remove('bx-user');
     avatar.classList.add('bxs-user-circle');
@@ -29,7 +29,7 @@ if (tokenCliente || tokenClienteRefresh) {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
+                    'Authorization': `Bearer ${tokenRevendedor || tokenRevendedorRefresh}`,
                 },
             });
 

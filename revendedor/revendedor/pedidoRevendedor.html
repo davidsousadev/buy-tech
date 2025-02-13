@@ -45,77 +45,93 @@
   <meta name="keywords" content="projeto, IFPI, software">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="src/styles/style.css">
-  <link rel="stylesheet" href="src/styles/index.css">
-  <link rel="stylesheet" href="src/styles/menu.css">
-  <link rel="stylesheet" href="src/styles/categorias.css">
+  <link rel="stylesheet" href="../../src/styles/style.css">
+  <link rel="stylesheet" href="../../src/styles/menu.css">
+
+  <link rel="stylesheet" href="../../src/styles/pedido.css">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
   <!-- Scripts -->
-  <script type="module" src="src/scripts/logadoCliente.js"></script>
+  <script type="module" src="../../src/scripts/logadoRevendedor.js"></script>
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
 </head>
 
-<body onload="listarProdutos()">
+<body>
   <header>
     <div class="logo-search">
       <a href="index.html">
         <h1>BUY TECH</h1>
       </a>
-      <div id="search">
-        <input type="text" placeholder="Buscar produto..." id="barSearch">
-        <a class="search" id="searchBtn"><i class='bx bx-search-alt-2'></i></a>
-      </div>
     </div>
     <div class="icones">
-      <a href="#" onclick="buyCart()" id="btnCart"><i class='bx bx-cart'></i></a>
-      <a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a>
-      <a href="#" onclick="opcoes()" id="btnLogin"><i class='bx bx-user' id="avatar"></i>
+      <a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a><a href="#"><i class='bx ' id="exit"
+          onclick="logoutAdmin(0)"></i></a>
     </div>
     </a>
+    <h5>Pedido</h5>
   </header>
-  <main>
-    <div class="banner">
-      <nav>
-        <ul>
-          <li><a href="#" class="menu-sun"><i class='bx bx-menu'></i></a></li>
-          <li><a href="categorias.html">Categorias</a></li>
-          <li><a href="monte-seu-equipamento.html">Monte seu Equipamento</a></li>
-          <li><a href="index.html?status=True">Promoções</a></li>
-          <li><a href="#suporte">Suporte</a></li>
 
-        </ul>
-      </nav>
-    </div>
+  <main>
+    <div id="loader" class="loader"><img src="../../src/imagens/loading.gif" alt="Carregando"></div>
     <div class="destaques"></div>
+
     <div class="container">
-      <h2>Categorias</h2>
-      <ul id="lista_categorias_cliente"></ul>
-    </div>
-    <div class="opcoes">
-      <div class="itens_carrinho" id="itens_carrinho">
+
+      <div class="lista-container">
         <ul>
           <p id="lista_itens"></p>
-          <li><button onclick="pedido()" id="finalizar_pedido">Finalizar Pedido</button></li>
         </ul>
       </div>
+
+      <div class="form-container">
+        <h2>Cadastro de Pedido</h2>
+        <form id="formCadastroPedido">
+
+          <div class="input-group">
+            <label for="opcao_de_pagamento">Opção de pagamento:</label>
+            <select id="opcao_de_pagamento" name="opcao_de_pagamento">
+              <option value="false" selected>À vista</option>
+              <option value="true">Boleto</option>
+            </select>
+          </div>
+
+          <div class="info-group">
+            <h4>Total Pedido: R$ <span id="totalPedido">00.00</span></h4>
+          </div>
+
+          <button id="confirmar_pedido" type="submit">Confirmar Pedido</button>
+        </form>
+      </div>
+      <div id="cards">
+        <ul>
+          <a href="produtos.html"><i class='bx bx-list-ol'></i></i>
+            <li>Listar Produtos</li>
+          </a>
+          <a href="index.html"><i class='bx bx-arrow-back'></i>
+            <li>Voltar</li>
+          </a>
+        </ul>
+      </div>
+    </div>
+
+    <div class="opcoes">
+
       <div class="opcoes_perfil" id="opcoes_perfil">
         <ul>
           <li>Saldo: R$ <span id="saldo"></span></li>
-          <li><a href="cliente/index.html">Gerenciar Conta</a></li>
-          <li><a href="cliente/atualizar-perfil.html">Atualizar Perfil</a></li>
-          <li><a href="cliente/indicacoes.html">Indicações</a></li> 
-          <li><a href="cliente/pedidos.html">Pedidos</a></li>
-          <li><button onclick="logoutCliente(0)">Sair</button></li>
+          <li><a href="index.html">Gerenciar Conta</a></li>
+          <li><a href="atualizar-perfil.html">Atualizar Perfil</a></li>
+          <li><a href="indicacoes.html">Indicações</a></li>
+          <li><a href="pedidos.html">Pedidos</a></li>
+          <li><button onclick="logoutCliente(1)">Sair</button></li>
         </ul>
       </div>
     </div>
   </main>
   <footer>Contato: <a href="email:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-  <script src="src/scripts/categorias.js" defer></script>
-  <script src="src/scripts/menu.js" defer></script>
+  <script src="../../src/scripts/revendedor/detalhesPedido.js" defer></script>
   <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
 </body>
 

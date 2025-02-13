@@ -33,6 +33,7 @@ if (tokenRevendedor || tokenRevendedorRefresh) {
 
       if (response.ok) {
         const result = await response.json();
+        console.table(result);
       }
 
     } catch (error) {

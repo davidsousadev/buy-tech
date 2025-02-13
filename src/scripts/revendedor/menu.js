@@ -284,22 +284,5 @@ window.addEventListener('load', function () {
     }
 });
 
-function buscar() {
-    const termoBusca = document.querySelector("#barSearch").value.trim();
-    if (termoBusca) {
-        window.location.href = `index.html?nome=${encodeURIComponent(termoBusca)}`;
-    }
-}
-
-// Evento de pressionar "Enter"
-document.querySelector("#barSearch").addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
-        buscar(); // Chama a função de busca ao pressionar Enter
-    }
-});
-
-// Evento de clique no botão de busca
-document.querySelector("#searchBtn").addEventListener("click", buscar);
-
 listaItensCarrinho();
 

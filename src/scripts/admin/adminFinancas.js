@@ -1,79 +1,184 @@
+const extratoCliente = document.getElementById("lista_debitos");
+
 const getCookie = (name) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
 };
-
-
-function listarCategorias(editar) {
-    const tokenAdmin = getCookie('authTokenAdmin');
+const tokenAdmin = getCookie('authTokenAdmin');
 const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
-    if (tokenAdmin || tokenAdminRefresh) {
-        async function authenticate() {
+async function grafico() {
+if (tokenAdmin || tokenAdminRefresh) {
+        let dadosGrafico = [];
+
+        async function buscarDados() {
             try {
-                const response = await fetch('https://api-buy-tech.onrender.com/categorias', {
+                const resposta = await fetch("https://api-buy-tech.onrender.com/operacoes/vendas/cashback/admin", {
                     method: 'GET',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`
                     },
                 });
-                const result = await response.json();
 
-                if (result && result.length > 0) {
-                    const lista_de_categorias = document.getElementById("lista_de_categorias");
-                    lista_de_categorias.innerHTML = "";
+                displayLoader(true);
+                const dados = await resposta.json();
+                setTimeout(() => {
+                    displayLoader(false);
+                }, 1000);
+                // Criar os dados do gráfico
+                dadosGrafico = [
+                    { label: "Créditos", valor: dados.total_creditos, cor: "#004aad" },
+                    { label: "Débitos", valor: dados.total_debitos, cor: "#ff6384" }
+                ];
 
-                    result.forEach((categoria) => {
-                        const li = document.createElement("li");
-                        li.innerHTML = `<span id="categoria-nome-${categoria.id}">${categoria.nome}</span>`;
-
-                        if (editar) {
-                            li.innerHTML += ` <button onclick="editarCategoria(${categoria.id}, '${categoria.nome}')">Editar</button>`;
-                        }
-
-                        lista_de_categorias.appendChild(li);
-                    });
-                } else {
-                    console.log("Nenhuma categoria encontrada");
-                }
+                desenharGraficoPizza(dadosGrafico);
+                gerarLegenda(dadosGrafico);
             } catch (error) {
-                console.error(error);
+                console.error("Erro ao buscar os dados:", error);
             }
         }
-        authenticate();
-    }
-}
 
-function editarCategoria(id, nomeAtual) {
-    const novoNome = prompt("Editar categoria:", nomeAtual);
-    if (novoNome && novoNome !== nomeAtual) {
-        atualizarCategoria(id, novoNome);
-    }
-}
+        function desenharGraficoPizza(dados) {
+            const canvas = document.getElementById("grafico");
+            const ctx = canvas.getContext("2d");
+            const centroX = canvas.width / 2;
+            const centroY = canvas.height / 2;
+            const raio = Math.min(centroX, centroY);
+            const total = dados.reduce((acc, item) => acc + item.valor, 0);
 
-async function atualizarCategoria(id, novoNome) {
-    const tokenAdmin = getCookie('authTokenAdmin');
-    const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
-    if (!tokenAdmin && !tokenAdminRefresh) return;
+            if (total === 0) {
+                ctx.fillStyle = "#ccc";
+                ctx.font = "16px Arial";
+                ctx.fillText("Nenhum dado disponível", centroX - 70, centroY);
+                return;
+            }
 
-    try {
-        const response = await fetch(`https://api-buy-tech.onrender.com/categorias/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`
-            },
-            body: JSON.stringify({ nome: novoNome })
-        });
-        if (response.ok) {
-            listarCategorias();
-        } else {
-            console.error("Erro ao atualizar categoria");
+            let anguloInicio = 0;
+            const fatias = [];
+
+            dados.forEach(item => {
+                if (item.valor > 0) {
+                    const anguloFim = anguloInicio + (item.valor / total) * (2 * Math.PI);
+
+                    // Salvar os dados da fatia para clique
+                    fatias.push({ inicio: anguloInicio, fim: anguloFim, dado: item });
+
+                    // Desenhar fatia
+                    ctx.beginPath();
+                    ctx.moveTo(centroX, centroY);
+                    ctx.arc(centroX, centroY, raio, anguloInicio, anguloFim);
+                    ctx.closePath();
+                    ctx.fillStyle = item.cor;
+                    ctx.fill();
+
+                    // Adicionar rótulo com valor formatado
+                    const meioAngulo = (anguloInicio + anguloFim) / 2;
+                    const labelX = centroX + Math.cos(meioAngulo) * (raio * 0.6);
+                    const labelY = centroY + Math.sin(meioAngulo) * (raio * 0.6);
+                    ctx.fillStyle = "#000";
+                    ctx.font = "bold 14px Arial";
+                    ctx.fillText(`R$ ${item.valor.toFixed(2)}`, labelX, labelY);
+
+                    anguloInicio = anguloFim;
+                }
+            });
+
+            canvas.addEventListener("click", function (event) {
+                const rect = canvas.getBoundingClientRect();
+                const x = event.clientX - rect.left - centroX;
+                const y = event.clientY - rect.top - centroY;
+                const anguloClicado = Math.atan2(y, x);
+                const anguloNormalizado = anguloClicado < 0 ? anguloClicado + 2 * Math.PI : anguloClicado;
+            
+                const fatiaClicada = fatias.find(fatia => 
+                    anguloNormalizado >= fatia.inicio && anguloNormalizado <= fatia.fim
+                );
+            
+                if (fatiaClicada) {
+                    if (fatiaClicada.dado.label === "Créditos") {
+                        window.location.href = "../pedidos/index.html";
+                    } else if (fatiaClicada.dado.label === "Débitos") {
+                        window.location.href = "./debitos_financas.html";
+                    }
+                }
+            });
+            
         }
-    } catch (error) {
-        console.error("Erro ao atualizar categoria:", error);
+
+        function gerarLegenda(dados) {
+            const legenda = document.getElementById("legenda");
+            legenda.innerHTML = ""; // Limpa a legenda antes de adicionar os itens
+
+            dados.forEach(item => {
+                if (item.valor > 0) {
+                    const div = document.createElement("div");
+                    div.classList.add("legenda-item");
+
+                    const cor = document.createElement("div");
+                    cor.classList.add("cor");
+                    cor.style.backgroundColor = item.cor;
+
+                    const texto = document.createElement("span");
+                    texto.textContent = item.label; // Apenas o nome na legenda
+
+                    div.appendChild(cor);
+                    div.appendChild(texto);
+                    legenda.appendChild(div);
+                }
+            });
+        }
+
+        buscarDados();
     }
 }
+
+async function listarDebitos() {
+    if (tokenAdmin || tokenAdminRefresh) {
+        try {
+            const resposta = await fetch("https://api-buy-tech.onrender.com/operacoes/cashback/admin", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`
+                },
+            });// motivoTexto
+            const result = await resposta.json();
+            extratoCliente.innerHTML = ""; // Limpa antes de exibir
+            if (result && result.length > 0) {
+                result.forEach((operacao) => {
+                    const li = document.createElement("li");
+                    li.classList.add("operacao-card");
+                    li.innerHTML = `
+                        <div class="operacao-body">
+                            <span class="operacao-title">Operação #${operacao.id}</span>
+                            <p><strong>Valor:</strong> R$ ${operacao.valor.toFixed(2)}</p>
+                            <p><strong>Motivo:</strong> ${motivoTexto(operacao.motivo)}</p>
+                            <p><strong class="${operacao.tipo === 0 ? "credito" : "debito"}">Tipo:</strong> ${operacao.tipo === 1 ? "Crédito" : "Débito"}</p>
+                            <p><strong>Data:</strong> ${operacao.criacao_da_operacao}</p>
+                        </div>
+                    `;
+                    extratoCliente.appendChild(li);
+                });
+            } else {
+                extratoCliente.innerHTML = "<p>Nenhuma operação encontrada.</p>";
+            }
+        }catch (error) {
+            console.error("Erro ao buscar os dados:", error);
+        }
+}
+}
+
+// Função para traduzir os motivos
+function motivoTexto(motivo) {
+    switch (motivo) {
+        case 1: return "Referência";
+        case 2: return "Cashback";
+        case 3: return "Pagamento";
+        default: return "Desconhecido";
+    }
+}
+
 
 // Função para exibir/esconder o loader
 const displayLoader = (isLoading) => {

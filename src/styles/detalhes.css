@@ -1,46 +1,82 @@
 .produto-detalhes {
     display: flex;
-    gap: 30px; /* Aumenta o espaço entre a imagem e as informações */
-    align-items: flex-start; /* Alinha ao topo para manter a consistência */
-    margin: 20px auto; /* Centraliza horizontalmente */
+    gap: 30px;
+    align-items: flex-start;
+    margin: 20px auto;
     padding: 20px;
-    background-color: #fff; /* Fundo branco para destacar */
-    border-radius: 10px; /* Arredondamento dos cantos */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adiciona um efeito de sombra */
-    max-width: 900px; /* Define uma largura máxima */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+}
+.produto-detalhes-revendedor{
+    width: 100px;
+    display: block;
+}
+.descontoDe {
+    display: none;
+}
+
+.promo {
+    position: relative;
+    border: 2px solid red;
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.8);
+    overflow: hidden;
+
+    .descontoDe {
+        display: block;
+
+        top: 0;
+        left: 0;
+        text-decoration: line-through;
+        color: red;
+        padding: 5px;
+        font-size: 16px;
+        transform-origin: 0 0;
+    }
 }
 
 .produto-imagem {
-    width: 300px; /* Tamanho fixo para a imagem */
+    width: 300px;
     height: auto;
     border-radius: 10px;
-    object-fit: cover; /* Ajusta a imagem sem deformar */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
+    object-fit: cover;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
 }
 
+
 .produto-info {
-    max-width: 550px; /* Ajusta a largura para evitar textos muito longos */
+    max-width: 550px;
+
     display: flex;
-    flex-direction: column; /* Alinha as informações verticalmente */
-    gap: 10px; /* Espaçamento entre os elementos */
+    flex-direction: column;
+
+    gap: 10px;
+
 }
 
 .produto-info h2 {
-    font-size: 26px; /* Destaque para o título */
+    font-size: 26px;
+
     font-weight: bold;
-    color: #333; /* Cor escura para contraste */
+    color: #333;
     margin-bottom: 15px;
-    text-align: left; /* Alinha o título à esquerda */
+    text-align: left;
+
 }
 
 .produto-info p {
-    font-size: 16px; /* Fonte menor para descrições */
-    color: #555; /* Tom mais claro para informações complementares */
+    font-size: 16px;
+
+    color: #555;
+
     margin-bottom: 10px;
 }
 
 .produto-info p strong {
-    color: #007bff; /* Destaque para informações importantes */
+    color: #007bff;
+
 }
 
 .produto-info label {
@@ -51,7 +87,7 @@
 }
 
 .produto-info input[type="number"] {
-    width: 60px; /* Largura compacta para o campo */
+    width: 60px;
     padding: 5px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -73,4 +109,9 @@
 
 .produto-info button:hover {
     background-color: #0056b3;
+}
+
+.produto-imagem-revendedor{
+    width: 10px;
+    height: 10px;
 }

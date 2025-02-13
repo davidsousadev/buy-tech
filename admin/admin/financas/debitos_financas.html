@@ -47,6 +47,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="../../../src/styles/style.css">
     <link rel="stylesheet" href="../../../src/styles/menu.css">
+    <link rel="stylesheet" href="../../../src/styles/cliente/extrato.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
     <!-- Scripts -->
@@ -55,7 +56,7 @@
     <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
 </head>
 
-<body onload="listarCategorias(false)">
+<body onload="listarDebitos()">
     <header>
         <h1>BUY - TECH</h1>
         <div class="icones">
@@ -66,15 +67,15 @@
                 <i class='bx ' id="exit" onclick="logoutAdmin(2)"></i>
             </a>
         </div>
-        <h5>Atualizar Cards</h5>
+        <h5>Lista Debitos</h5>
     </header>
 
     <main>
         <div class="container">
-            <ol id="listar_de_cards"></ol>
+            <ol id="lista_debitos"></ol>
             <div id="cards">
                 <ul>
-                    <a href="../gerenciar_cards.html"><i class='bx bx-arrow-back'></i>
+                    <a href="../gerenciar_financas.html"><i class='bx bx-arrow-back'></i>
                         <li>Voltar</li>
                     </a>
                 </ul>
@@ -85,7 +86,7 @@
     <footer>Contato: <a href="mailto:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script src="../../../src/scripts/index.js" defer></script>
-    <script src="../../../src/scripts/admin/adminCards.js" defer></script>
+    <script src="../../../src/scripts/admin/adminFinancas.js" defer></script>
     <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
 </body>
 
