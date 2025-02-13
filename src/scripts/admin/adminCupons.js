@@ -71,7 +71,7 @@ async function listarCupons(editar = false) {
 }
 
 function editarCupom(id) {
-    window.location.href = `cadastrar_promocoes.html?id=${id}`;
+    window.location.href = `cadastrar_cupons.html?id=${id}`;
 }
 
 // Função para exibir/esconder o loader
@@ -102,12 +102,6 @@ if (formCadastroCupons) {
             const valorValido = parseFloat(valorInput.value) > 0;
             const tipoValido = tipoInput.value !== "";
             const quantidadeValida = parseInt(quantidadeInput.value) >= 1 && parseInt(quantidadeInput.value) <= 1000;
-            console.log({
-                "nome": nomeInput.value,
-                "valor": valorInput.value,
-                "tipo": tipoInput.value,
-                "quantidade": quantidadeInput.value
-            })
             return nomeValido && valorValido && tipoValido && quantidadeValida;
         }
 
@@ -179,18 +173,19 @@ if (formCadastroCupons) {
                 });
 
                 if (response.ok) {
-                    console.log(response)
                     mostrarNotificacao(
                         idCupom ? "Cupom atualizado com sucesso!" : "Cadastro realizado com sucesso!",
                         { cor: "#4CAF50", duracao: 4000, posicao: "bottom-right" }
                     );
-                    setTimeout(() => (window.location.href = "./index.html"), 5000);
+                    setTimeout(() => (window.location.href = "./atualizar_cupons.html"), 5000);
                 } else {
-                    mostrarNotificacao(idCupom ? "Erro ao atualizar o cupom." : "Erro ao cadastrar o cupom!", {
-                        cor: "#F44336",
-                        duracao: 4000,
-                        posicao: "bottom-right"
-                    });
+                    if(result.detail) {
+                        mostrarNotificacao(`${result.detail}`, {
+                            cor: "#F44336",
+                            duracao: 4000,
+                            posicao: "bottom-right"
+                        });
+                    }
                 }
             } catch (error) {
                 console.error("Erro ao conectar ao servidor:", error);

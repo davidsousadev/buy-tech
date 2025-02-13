@@ -16,8 +16,7 @@ async function extrato() {
         }
 
         const result = await response.json();
-        console.log(result);
-
+        
         extratoCliente.innerHTML = ""; // Limpa antes de exibir
 
         if (result && result.length > 0) {

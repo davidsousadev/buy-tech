@@ -7,11 +7,11 @@ const getCookie = (name) => {
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
 };
-
+const tokenAdmin = getCookie('authTokenAdmin');
+const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
 
 function listarProdutos(editar) {
-    const tokenAdmin = getCookie('authTokenAdmin');
-    const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
+
     if (tokenAdmin || tokenAdminRefresh) {
         async function authenticate() {
             try {
@@ -26,7 +26,7 @@ function listarProdutos(editar) {
                 if (result && result.length > 0) {
                     const lista_de_produtos_admin = document.getElementById("lista_de_produtos_admin");
                     lista_de_produtos_admin.innerHTML = "";
- 
+
                     result.forEach((produto) => {
                         const li = document.createElement("li");
                         li.classList.add("produto-item");
@@ -39,7 +39,7 @@ function listarProdutos(editar) {
                                 <div class="produto-info">
                                     <span class="produto-nome">${produto.nome}</span>
                                     <span class="produto-preco">Preço: R$ ${produto.preco.toFixed(2)}</span>
-                                    <span class="produto-descricao">${produto.descricao}</span>
+                                    <span class="produto-descricao">Estoque: ${produto.quantidade_estoque} unidades</span>
                                 </div>
                             </div>
                         `;
@@ -146,8 +146,6 @@ if (formCadastroProdutoAdmin) {
                     });
 
                     const result = await response.json();
-                    console.log('Resposta da API:', result);
-
                     if (response.ok) {
                         mostrarNotificacao("Produto atualizado com sucesso!", {
                             cor: "#4CAF50",
@@ -158,11 +156,13 @@ if (formCadastroProdutoAdmin) {
                             window.location.href = './atualizar_produtos.html';
                         }, 3000);
                     } else {
-                        mostrarNotificacao("Erro ao atualizar o produto.", {
+                        if(result.detail) {
+                        mostrarNotificacao(`${result.detail}`, {
                             cor: "#F44336",
                             duracao: 4000,
                             posicao: "bottom-right"
                         });
+                    }
                     }
                 } catch (error) {
                     console.error('Erro ao atualizar o produto:', error);
@@ -222,13 +222,15 @@ if (formCadastroProdutoAdmin) {
                         setTimeout(() => {
                             window.location.href = './index.html';
                         }, 3000);
-                        
+
                     } else {
-                        mostrarNotificacao('Erro ao realizar o cadastro.', {
-                            cor: "#F44336",
-                            duracao: 4000,
-                            posicao: "bottom-right"
-                        });
+                        if(result.detail) {
+                            mostrarNotificacao(`${result.detail}`, {
+                                cor: "#F44336",
+                                duracao: 4000,
+                                posicao: "bottom-right"
+                            });
+                        }
                     }
                 } catch (error) {
                     console.error('Erro ao enviar os dados:', error);

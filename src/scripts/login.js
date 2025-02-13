@@ -103,6 +103,7 @@ export const login = async () => {
             }
         });
     }
+    
 };
 
 // Função para exibir/esconder o loader

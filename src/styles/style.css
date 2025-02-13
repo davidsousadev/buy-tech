@@ -120,15 +120,17 @@ button[type="submit"]:hover {
 button:hover {
   background-color: #0056b3;
 }
-button.recuperar{
-  display: none;
-  align-items: center;
-  width: 25%;
+#recuperarSenha {
+  display: block;
+  width: 60%;
+  margin: 0 auto; /* Centraliza o botão */
+  text-align: center;
 }
+
 /*Login formLogin formLoginAdmin*/
 #formLogin,
 #formLoginAdmin,
-#formLoginRevendedor {
+#formLoginRevendedor, #formRecuperarEmail, #formRecuperarSenha {
   display: flex;
   align-items: center;
   width: 100%;
@@ -345,7 +347,7 @@ a.cadastrar-pessoa:visited {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-
+  margin-top: 10px;
 
   i {
     position: absolute;
@@ -374,8 +376,9 @@ a.cadastrar-pessoa:visited {
 
   li {
     margin-top: 215px;
-
+    margin-bottom: 10px;
     text-align: center;
+    word-wrap: break-word;
   }
 }
 
@@ -417,3 +420,4 @@ textarea#enviar_email {
   height: 150px;
   width: 100%;
 }
+

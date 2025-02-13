@@ -9,6 +9,7 @@ export const handleFormSubmission = async () => {
     const formAtualizacaoCliente = document.getElementById('formAtualizacaoCliente');
 
     const formCadastroAdmin = document.getElementById('formCadastroAdmin');
+    const formCadastroAdminAtualizar = document.getElementById('formCadastroAdminAtualizar');
 
     if (formCadastroCliente) {
         formCadastroCliente.addEventListener('submit', async (event) => {
@@ -106,6 +107,98 @@ export const handleFormSubmission = async () => {
                 });
             }
         });
+    }
+    if (formCadastroAdminAtualizar) {
+        const tokenAdmin = getCookie('authTokenAdmin');
+        const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
+        if (tokenAdmin || tokenAdminRefresh) {
+            formCadastroAdminAtualizar.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                // Criação do objeto com os dados aceitos pela API
+                let formData = {
+                    nome: document.getElementById('nome').value,
+                    email: document.getElementById('email').value,
+                    cpf: document.getElementById('cpf').value.replace(/\D/g, ''),  // Remove tudo que não for número
+                    data_nascimento: document.getElementById('dataNascimento').value,
+                    telefone: document.getElementById('telefone').value,
+                    cep: document.getElementById('cep').value.replace(/\D/g, ''),  // Remove tudo que não for número
+                    complemento: document.getElementById('complemento').value,
+                    password: document.getElementById('password').value,
+                    confirm_password: document.getElementById('confirmPassword').value
+                };
+
+                // Verifica se as senhas são iguais
+                if (formData.password !== formData.confirm_password) {
+                    mostrarNotificacao("As senhas não coincidem.", {
+                        cor: "#F44336",
+                        duracao: 4000,
+                        movimentoEntrada: "deslizar",
+                        movimentoSaida: "esvair",
+                        posicao: "bottom-right"
+                    });
+
+                    return;
+                }
+
+                // Exibe o loader e desabilita o botão
+                displayLoader(true);
+                disableSubmitButton(true);
+                try {
+                    console.table(formData)
+                    const response = await fetch('https://api-buy-tech.onrender.com/admins/atualizar', {
+                        method: 'PATCH',
+                        body: JSON.stringify(formData),
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`
+                        },
+                    });
+
+                    const result = await response.json();
+
+
+                    // Esconde o loader e habilita o botão novamente
+                    displayLoader(false);
+                    disableSubmitButton(false);
+
+                    if (response.ok) {
+                        mostrarNotificacao("Cadastro Atualizado com sucesso!", {
+                            cor: "#4CAF50",
+                            duracao: 4000,
+                            movimentoEntrada: "deslizar",
+                            movimentoSaida: "esvair",
+                            posicao: "bottom-right"
+                        });
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 5000);
+
+                    } else {
+                        // Exibe mensagens de erro específicas com base na resposta da API
+                        mostrarNotificacao(result.detail || 'Erro ao realizar o cadastro.', {
+                            cor: "#F44336",
+                            duracao: 4000,
+                            movimentoEntrada: "deslizar",
+                            movimentoSaida: "esvair",
+                            posicao: "bottom-right"
+                        });
+                    }
+                } catch (error) {
+                    console.error('Erro ao enviar os dados:', error);
+                    // Esconde o loader e habilita o botão novamente
+                    displayLoader(false);
+                    disableSubmitButton(false);
+                    mostrarNotificacao("Erro ao enviar os dados. Tente novamente.", {
+                        cor: "#F44336",
+                        duracao: 4000,
+                        movimentoEntrada: "deslizar",
+                        movimentoSaida: "esvair",
+                        posicao: "bottom-right"
+                    });
+                }
+            });
+        }
     }
     if (formCadastroAdmin) {
         formCadastroAdmin.addEventListener('submit', async (event) => {
@@ -295,7 +388,6 @@ export const handleFormSubmission = async () => {
             });
         }
     }
-
 };
 
 // Função para exibir/esconder o loader

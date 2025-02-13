@@ -65,6 +65,8 @@ if (formSuporte) {
             }, 5000);
 
         } catch (error) {
+            displayLoader(false);
+        disableSubmitButton(false);
             console.error('Erro:', error);
             mostrarNotificacao("Erro ao enviar os dados. Tente novamente.", {
                 cor: "#F44336",

@@ -3,17 +3,16 @@ const getCookie = (name) => {
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
 };
-
-const formCadastroCliente = document.getElementById('formCadastroCliente');
 const tokenAdmin = getCookie('authTokenAdmin');
 const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
+const formCadastroCliente = document.getElementById('formCadastroCliente');
+
 async function listarPerfis(tipo, elementoId, editar = false) {
     const urls = {
         admins: 'https://api-buy-tech.onrender.com/admins',
         clientes: 'https://api-buy-tech.onrender.com/clientes/admin',
         revendedores: 'https://api-buy-tech.onrender.com/revendedores'
     };
-
 
     if (tokenAdmin || tokenAdminRefresh) {
         try {
@@ -33,33 +32,28 @@ async function listarPerfis(tipo, elementoId, editar = false) {
                 result.forEach((usuario) => {
                     const li = document.createElement("li");
                     li.classList.add("usuario-item");
+                    // Verifica se deve usar 'nome' ou 'razao_social'
+                    const nomeOuRazao = (tipo === "revendedores" || tipo === "cliente") ? usuario.razao_social : usuario.nome;
 
-                    // Inicializa a string para os dados do usuário
                     let usuarioHTML = `
                         <div class="usuario-info">
                             <span class="usuario-id">ID: ${usuario.id}</span>
-                            <span class="usuario-nome">Nome: ${usuario.nome}</span>
+                            <span class="usuario-nome">Nome: ${nomeOuRazao}</span>
                             <span class="usuario-email">Email: ${usuario.email}</span>
                         </div>
                         <div class="usuario-status">
                     `;
 
-                    // Adiciona o botão de editar somente se 'editar' for true
                     if (editar === true) {
                         usuarioHTML += `
-                            <button onclick="atualizarStatusUsuario(${usuario.id}, '${tipo}')">
+                            <button class="botaoAtivarDesativar" onclick="atualizarStatusUsuario(${usuario.id}, '${tipo}')">
                                 ${usuario.status ? 'Desativar' : 'Ativar'}
                             </button>
                         `;
                     }
 
-                    // Finaliza a string com a div de status
                     usuarioHTML += `</div>`;
-
-                    // Define o conteúdo HTML do <li>
                     li.innerHTML = usuarioHTML;
-
-                    // Adiciona o item à lista na página
                     listarElemento.appendChild(li);
                 });
 
@@ -71,6 +65,7 @@ async function listarPerfis(tipo, elementoId, editar = false) {
         }
     }
 }
+
 
 async function listarEEditarPerfisAdmin() {
     listarPerfis('admins', 'listar_de_perfis_admins', true);
@@ -86,19 +81,22 @@ function listarPerfisAdmin() {
 
 
 async function atualizarStatusUsuario(id, tipo) {
-    
     if (!tokenAdmin && !tokenAdminRefresh) return;
-    
+
     const tiposValidos = ['admins', 'clientes', 'revendedores'];
     if (!tiposValidos.includes(tipo)) {
         console.error("Tipo inválido");
         return;
     }
+    displayLoader(true);
+    disableButton(true);
     try {
-
+        // Define a URL corretamente para cada tipo
         const url = tipo === 'clientes'
-            ? `https://api-buy-tech.onrender.com/${tipo}/admin/atualizar_status/${id}`
-            : `https://api-buy-tech.onrender.com/${tipo}/atualizar_status/${id}`;
+            ? `https://api-buy-tech.onrender.com/clientes/admin/atualizar_status/${id}`
+            : tipo === 'revendedores'
+                ? `https://api-buy-tech.onrender.com/revendedores/admin/atualizar_status/${id}`
+                : `https://api-buy-tech.onrender.com/${tipo}/atualizar_status/${id}`;
 
         const response = await fetch(url, {
             method: 'PATCH',
@@ -116,17 +114,31 @@ async function atualizarStatusUsuario(id, tipo) {
                 movimentoSaida: "esvair",
                 posicao: "bottom-right"
             });
+            displayLoader(false);
+            disableButton(false);
             setTimeout(() => {
                 listarEEditarPerfisAdmin();
             }, 3000);
         } else {
-            console.error("Erro ao atualizar status do usuário");
+            if(response.status === 403) {
+                mostrarNotificacao("Você não tem permissão para realizar essa ação!", {
+                    cor: "#F44336",
+                    duracao: 4000,
+                    movimentoEntrada: "deslizar",
+                    movimentoSaida: "esvair",
+                    posicao: "bottom-right"
+                });
+                displayLoader(false);
+            disableButton(false);
+            setTimeout(() => {
+                listarEEditarPerfisAdmin();
+            }, 3000);
+            }
         }
     } catch (error) {
         console.error("Erro ao atualizar status do usuário:", error);
     }
 }
-
 
 // Função para exibir/esconder o loader
 const displayLoader = (isLoading) => {
@@ -137,11 +149,14 @@ const displayLoader = (isLoading) => {
 };
 
 // Função para habilitar/desabilitar o botão de submit
-const disableSubmitButton = (isDisabled) => {
-    const submitButton = document.getElementById('submitButton');
+const disableButton = (isDisabled) => {
+    // Seleciona o botão pela classe "botaoAtivarDesativar"
+    const submitButton = document.querySelector('.botaoAtivarDesativar');
+
     if (submitButton) {
         submitButton.disabled = isDisabled;
     }
 };
+
 
 

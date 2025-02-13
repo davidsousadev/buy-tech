@@ -172,6 +172,8 @@ document.getElementById('formCadastroPedido').addEventListener('submit', async (
             });
         }
     } catch (error) {
+        displayLoader(false);
+        disableSubmitButton(false);
         console.error('Erro ao enviar os dados:', error);
         mostrarNotificacao("Erro ao enviar os dados. Tente novamente.", {
             cor: "#F44336",

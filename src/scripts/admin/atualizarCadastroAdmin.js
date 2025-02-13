@@ -1,15 +1,20 @@
-if (tokenCliente || tokenClienteRefresh) {
-    const avatar = document.getElementById('avatar');
-    avatar.classList.remove('bx-user');
-    avatar.classList.add('bxs-user-circle');
+const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+};
+const tokenAdmin = getCookie('authTokenAdmin');
+const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
+
+if (tokenAdmin || tokenAdminRefresh) {
     // Função assíncrona para fazer a requisição à API
     async function authenticate() {
         try {
-            const response = await fetch('https://api-buy-tech.onrender.com/clientes/autenticar', {
+            const response = await fetch('https://api-buy-tech.onrender.com/admins/autenticar', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
+                    'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`,
                 },
             });
 
@@ -26,9 +31,6 @@ if (tokenCliente || tokenClienteRefresh) {
                 document.getElementById('cpf').value = result.cpf;
                 document.getElementById('telefone').value = result.telefone;
                 document.getElementById('complemento').value = result.complemento;
-
-                const saldo = document.getElementById('saldo');
-                saldo.innerHTML = result.pontos_fidelidade.toFixed(2);
             }
 
         } catch (error) {
