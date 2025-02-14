@@ -36,7 +36,7 @@ if (formPC) {
         }
 
         try {
-            const authResponse = await fetch('https://api-buy-tech.onrender.com/clientes/autenticar', {
+            const authResponse = await fetch(' https://api-buy-tech.onrender.com/clientes/autenticar', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ if (formPC) {
             displayLoader(true);
             disableSubmitButton(true);
 
-            const response = await fetch(`https://api-buy-tech.onrender.com/emails/monteSeuEquipamento/${userId}`, {
+            const response = await fetch(` https://api-buy-tech.onrender.com/emails/monteSeuEquipamento/${userId}`, {
                 method: 'POST',
                 body: JSON.stringify({
                     gabinete: gabinete,
@@ -89,12 +89,9 @@ if (formPC) {
         } catch (error) {
             displayLoader(false);
         disableSubmitButton(false);
-            console.error('Erro:', error);
-            mostrarNotificacao("Erro ao enviar os dados. Tente novamente.", {
-                cor: "#F44336",
-                duracao: 4000,
-                posicao: "bottom-right"
-            });
+        setTimeout(() => {
+            location.reload();
+        }, 100);
         }
     });
 }

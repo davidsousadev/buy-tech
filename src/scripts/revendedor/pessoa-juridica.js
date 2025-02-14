@@ -90,7 +90,7 @@ function validarCNPJ(cnpj) {
 // Verificar CNPJ na API
 async function verificarCNPJNaAPI(cnpjInput) {
     try {
-        const response = await fetch(`https://api-buy-tech.onrender.com/revendedores/verificar-cnpj?cnpj=${somenteNumerosCNPJ(cnpjInput)}`);
+        const response = await fetch(` https://api-buy-tech.onrender.com/revendedores/verificar-cnpj?cnpj=${somenteNumerosCNPJ(cnpjInput)}`);
         if (response.ok) {
             const result = await response.json();
             cnpjInput.style.borderColor = result.cnpj ? 'green' : 'red';

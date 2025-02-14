@@ -14,7 +14,7 @@ async function listarProdutos(editar) {
     if (!tokenRevendedor && !tokenRevendedorRefresh) return;
 
     try {
-        const response = await fetch('https://api-buy-tech.onrender.com/produtos', {
+        const response = await fetch(' https://api-buy-tech.onrender.com/produtos', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -95,7 +95,7 @@ async function adicionarAoCarrinho(produtoId) {
     }
     async function authenticate() {
         try {
-            const response = await fetch('https://api-buy-tech.onrender.com/revendedores/autenticar', {
+            const response = await fetch(' https://api-buy-tech.onrender.com/revendedores/autenticar', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -122,7 +122,7 @@ async function adicionarAoCarrinho(produtoId) {
     };
 
     try {
-        const response = await fetch("https://api-buy-tech.onrender.com/carrinhos_revendedor", {
+        const response = await fetch(" https://api-buy-tech.onrender.com/carrinhos_revendedor", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -15,7 +15,7 @@ function listarProdutos(editar) {
     if (tokenAdmin || tokenAdminRefresh) {
         async function authenticate() {
             try {
-                const response = await fetch('https://api-buy-tech.onrender.com/produtos', {
+                const response = await fetch(' https://api-buy-tech.onrender.com/produtos', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -53,7 +53,9 @@ function listarProdutos(editar) {
                     console.log("Nenhuma produto encontrada");
                 }
             } catch (error) {
-                console.error(error);
+                setTimeout(() => {
+                    authenticate();
+                }, 100);
             }
         }
         authenticate();
@@ -87,7 +89,7 @@ if (formCadastroProdutoAdmin) {
         if (idProduto) {
             async function carregarProduto() {
                 try {
-                    const response = await fetch(`https://api-buy-tech.onrender.com/produtos/${idProduto}`, {
+                    const response = await fetch(` https://api-buy-tech.onrender.com/produtos/${idProduto}`, {
                         method: 'GET',
                         headers: {
                             'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`
@@ -136,7 +138,7 @@ if (formCadastroProdutoAdmin) {
                 };
 
                 try {
-                    const response = await fetch(`https://api-buy-tech.onrender.com/produtos/${idProduto}`, {
+                    const response = await fetch(` https://api-buy-tech.onrender.com/produtos/${idProduto}`, {
                         method: 'PATCH',
                         body: JSON.stringify(formData),
                         headers: {
@@ -201,7 +203,7 @@ if (formCadastroProdutoAdmin) {
                 }
 
                 try {
-                    const response = await fetch('https://api-buy-tech.onrender.com/produtos', {
+                    const response = await fetch(' https://api-buy-tech.onrender.com/produtos', {
                         method: 'POST',
                         body: JSON.stringify(formData),
                         headers: {
@@ -251,7 +253,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const categoriaSelect = document.getElementById("categoria");
 
     try {
-        const response = await fetch("https://api-buy-tech.onrender.com/categorias");
+        const response = await fetch(" https://api-buy-tech.onrender.com/categorias");
         const categorias = await response.json();
 
         // Limpa opções antigas

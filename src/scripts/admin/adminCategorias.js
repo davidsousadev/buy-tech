@@ -16,16 +16,16 @@ function listarCategorias(editar) {
     if (tokenAdmin || tokenAdminRefresh) {
         async function authenticate() {
             try {
-                const response = await fetch('https://api-buy-tech.onrender.com/categorias', {
+                const response = await fetch(' https://api-buy-tech.onrender.com/categorias', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                 });
                 const result = await response.json();
-
+                const lista_de_categorias = document.getElementById("lista_de_categorias");
                 if (result && result.length > 0) {
-                    const lista_de_categorias = document.getElementById("lista_de_categorias");
+
                     lista_de_categorias.innerHTML = "";
 
                     result.forEach((categoria) => {
@@ -49,10 +49,12 @@ function listarCategorias(editar) {
                         lista_de_categorias.appendChild(li);
                     });
                 } else {
-                    console.log("Nenhuma categoria encontrada");
+                    lista_de_categorias.innerHTML = "<li>Nenhuma categoria encontrada.</li>";
                 }
             } catch (error) {
-                console.error(error);
+                setTimeout(() => {
+                    listarCategorias(editar);
+                }, 100);
             }
         }
         authenticate();
@@ -84,7 +86,7 @@ if (formCadastroCategoria) {
     if (idCategoria) {
         async function carregarCategoria() {
             try {
-                const response = await fetch(`https://api-buy-tech.onrender.com/categorias/${idCategoria}`, {
+                const response = await fetch(` https://api-buy-tech.onrender.com/categorias/${idCategoria}`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`
@@ -99,12 +101,9 @@ if (formCadastroCategoria) {
                 document.getElementById('nome').value = produto.nome;
 
             } catch (error) {
-                console.error("Erro ao carregar categoria:", error);
-                mostrarNotificacao("Erro ao carregar os dados do categoria.", {
-                    cor: "#F44336",
-                    duracao: 4000,
-                    posicao: "bottom-right"
-                });
+                setTimeout(() => {
+                    carregarCategoria();
+                }, 100);
             }
         }
         carregarCategoria();
@@ -117,7 +116,7 @@ if (formCadastroCategoria) {
             };
 
             try {
-                const response = await fetch(`https://api-buy-tech.onrender.com/categorias/${idCategoria}`, {
+                const response = await fetch(` https://api-buy-tech.onrender.com/categorias/${idCategoria}`, {
                     method: 'PATCH',
                     body: JSON.stringify(formData),
                     headers: {
@@ -127,7 +126,7 @@ if (formCadastroCategoria) {
                 });
 
                 const result = await response.json();
-                
+
                 if (response.ok) {
                     mostrarNotificacao("Categoria atualizado com sucesso!", {
                         cor: "#4CAF50",
@@ -140,20 +139,17 @@ if (formCadastroCategoria) {
 
                 } else {
                     if (result.detail) {
-                    mostrarNotificacao(`${result.detail}`, {
-                        cor: "#F44336",
-                        duracao: 4000,
-                        posicao: "bottom-right"
-                    });
-                }
+                        mostrarNotificacao(`${result.detail}`, {
+                            cor: "#F44336",
+                            duracao: 4000,
+                            posicao: "bottom-right"
+                        });
+                    }
                 }
             } catch (error) {
-                console.error('Erro ao atualizar o categoria:', error);
-                mostrarNotificacao("Erro ao atualizar os dados. Tente novamente.", {
-                    cor: "#F44336",
-                    duracao: 4000,
-                    posicao: "bottom-right"
-                });
+                setTimeout(() => {
+                    location.reload();
+                }, 100);
             }
         });
     }
@@ -177,7 +173,7 @@ if (formCadastroCategoria) {
             }
 
             try {
-                const response = await fetch('https://api-buy-tech.onrender.com/categorias', {
+                const response = await fetch(' https://api-buy-tech.onrender.com/categorias', {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     headers: {
@@ -206,12 +202,9 @@ if (formCadastroCategoria) {
                     });
                 }
             } catch (error) {
-                console.error('Erro ao enviar os dados:', error);
-                mostrarNotificacao("Erro ao enviar os dados. Tente novamente.", {
-                    cor: "#F44336",
-                    duracao: 4000,
-                    posicao: "bottom-right"
-                });
+                setTimeout(() => {
+                    location.reload();
+                }, 100);
             }
         });
     }

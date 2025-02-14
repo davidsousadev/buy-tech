@@ -6,7 +6,7 @@ function getCookie(name) {
 };
 async function cancelarPedido(id) {
     try {
-        const response = await fetch(`https://api-buy-tech.onrender.com/pedidos/${id}`, {
+        const response = await fetch(` https://api-buy-tech.onrender.com/pedidos/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ async function cancelarPedido(id) {
 async function pagarPedido(tokenDePagamento) {
     if (tokenCliente || tokenClienteRefresh) {
         try {
-            const response = await fetch(`https://api-buy-tech.onrender.com/operacoes/pagamentos/${tokenDePagamento}`, {
+            const response = await fetch(` https://api-buy-tech.onrender.com/operacoes/pagamentos/${tokenDePagamento}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ async function pagarPedido(tokenDePagamento) {
 async function extrato() {
     if (tokenCliente || tokenClienteRefresh) {
         try {
-            const response = await fetch(`https://api-buy-tech.onrender.com/operacoes/pendencias`, {
+            const response = await fetch(` https://api-buy-tech.onrender.com/operacoes/pendencias`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

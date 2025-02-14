@@ -18,7 +18,7 @@ async function listarCupons(editar = false) {
     displayLoader(true); // Exibir loader enquanto carrega
 
     try {
-        const response = await fetch('https://api-buy-tech.onrender.com/cupons/admin', {
+        const response = await fetch(' https://api-buy-tech.onrender.com/cupons/admin', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -64,7 +64,9 @@ async function listarCupons(editar = false) {
             lista_de_cupons.innerHTML = "<p>Nenhum cupom encontrado.</p>";
         }
     } catch (error) {
-        console.error("Erro ao carregar cupons:", error);
+        setTimeout(() => {
+            listarCupons(editar);
+        }, 100);
     } finally {
         displayLoader(false); // Esconder loader após carregar
     }
@@ -108,7 +110,7 @@ if (formCadastroCupons) {
         if (idCupom) {
             async function carregarCupom() {
                 try {
-                    const response = await fetch(`https://api-buy-tech.onrender.com/cupons/admin/${idCupom}`, {
+                    const response = await fetch(` https://api-buy-tech.onrender.com/cupons/admin/${idCupom}`, {
                         method: "GET",
                         headers: {
                             "Authorization": `Bearer ${tokenAdmin || tokenAdminRefresh}`
@@ -124,12 +126,9 @@ if (formCadastroCupons) {
                     tipoInput.value = cupom.tipo.toString();
                     quantidadeInput.value = cupom.quantidade_de_ultilizacao;
                 } catch (error) {
-                    console.error("Erro ao carregar cupom:", error);
-                    mostrarNotificacao("Erro ao carregar os dados do cupom.", {
-                        cor: "#F44336",
-                        duracao: 4000,
-                        posicao: "bottom-right"
-                    });
+                    setTimeout(() => {
+                        carregarCupom();
+                    }, 100);
                 }
             }
             await carregarCupom();
@@ -158,8 +157,8 @@ if (formCadastroCupons) {
 
             try {
                 const url = idCupom
-                    ? `https://api-buy-tech.onrender.com/cupons/${idCupom}`
-                    : "https://api-buy-tech.onrender.com/cupons";
+                    ? ` https://api-buy-tech.onrender.com/cupons/${idCupom}`
+                    : " https://api-buy-tech.onrender.com/cupons";
 
                 const method = idCupom ? "PATCH" : "POST";
 
@@ -188,12 +187,9 @@ if (formCadastroCupons) {
                     }
                 }
             } catch (error) {
-                console.error("Erro ao conectar ao servidor:", error);
-                mostrarNotificacao("Erro ao conectar ao servidor.", {
-                    cor: "#F44336",
-                    duracao: 4000,
-                    posicao: "bottom-right"
-                });
+                setTimeout(() => {
+                    location.reload();
+                }, 100);
             } finally {
                 displayLoader(false);
                 disableSubmitButton(false);

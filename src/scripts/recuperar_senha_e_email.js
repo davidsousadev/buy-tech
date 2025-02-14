@@ -1,7 +1,7 @@
 // Formulário para Recuperar Senha
 const formRecuperarSenha = document.getElementById('formRecuperarSenha');
 if (formRecuperarSenha) {
-    console.log("Recuperar senha");
+   
     formRecuperarSenha.addEventListener('submit', async (e) => {
         e.preventDefault();  // Impede o envio tradicional do formulário
 
@@ -40,7 +40,7 @@ if (formRecuperarSenha) {
             displayLoader(true);
             disableSubmitButton('submitButtonSenha', true);
             try {
-                const response = await fetch(`https://api-buy-tech.onrender.com/emails/recuperar_senha?${tipo}=${parametro}`, {
+                const response = await fetch(` https://api-buy-tech.onrender.com/emails/recuperar_senha?${tipo}=${parametro}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -80,8 +80,9 @@ if (formRecuperarSenha) {
             } catch (error) {
                 displayLoader(false);
                 disableSubmitButton('submitButtonSenha', false);
-                console.error("Erro ao recuperar e-mail:", error);
-                alert("Erro ao conectar com o servidor.");
+                setTimeout(() => {
+                location.reload();
+                }, 1000);
             }
         }
     });
@@ -90,7 +91,6 @@ if (formRecuperarSenha) {
 // Formulário para recuperar e-mail
 const formRecuperarEmail = document.getElementById('formRecuperarEmail');
 if (formRecuperarEmail) {
-    console.log("Recuperar e-mail");
     formRecuperarEmail.addEventListener('submit', async (e) => {
         e.preventDefault();  // Impede o envio tradicional do formulário
 
@@ -100,7 +100,7 @@ if (formRecuperarEmail) {
             displayLoader(true);
             disableSubmitButton('submitButtonEmail', true);
             try {
-                const response = await fetch(`https://api-buy-tech.onrender.com/emails/recuperar_email?email=${email}`, {
+                const response = await fetch(` https://api-buy-tech.onrender.com/emails/recuperar_email?email=${email}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -140,8 +140,9 @@ if (formRecuperarEmail) {
             } catch (error) {
                 displayLoader(false);
                 disableSubmitButton('submitButtonEmail', false);
-                console.error("Erro ao recuperar e-mail:", error);
-                alert("Erro ao conectar com o servidor.");
+                setTimeout(() => {
+                    location.reload();
+                }, 100);
             }
         }
     });

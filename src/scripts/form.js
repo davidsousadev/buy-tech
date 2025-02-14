@@ -58,8 +58,8 @@ export const handleFormSubmission = async () => {
             displayLoader(true);
             disableSubmitButton(true);
             try {
-                console.log(formData)
-                const response = await fetch('https://api-buy-tech.onrender.com/clientes/cadastrar', {
+                
+                const response = await fetch(' https://api-buy-tech.onrender.com/clientes/cadastrar', {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     headers: { 'Content-Type': 'application/json' },
@@ -67,8 +67,7 @@ export const handleFormSubmission = async () => {
 
                 const result = await response.json();
 
-                // Exibe a resposta da API no console para depuração
-                console.log('Resposta da API:', result);
+                
 
                 // Esconde o loader e habilita o botão novamente
                 displayLoader(false);
@@ -94,17 +93,13 @@ export const handleFormSubmission = async () => {
                     });
                 }
             } catch (error) {
-                console.error('Erro ao enviar os dados:', error);
+
                 // Esconde o loader e habilita o botão novamente
                 displayLoader(false);
                 disableSubmitButton(false);
-                mostrarNotificacao("Erro ao enviar os dados. Tente novamente.", {
-                    cor: "#F44336",
-                    duracao: 4000,
-                    movimentoEntrada: "deslizar",
-                    movimentoSaida: "esvair",
-                    posicao: "bottom-right"
-                });
+                setTimeout(() => {
+                    location.reload();
+                }, 100);
             }
         });
     }
@@ -146,7 +141,7 @@ export const handleFormSubmission = async () => {
                 disableSubmitButton(true);
                 try {
                     console.table(formData)
-                    const response = await fetch('https://api-buy-tech.onrender.com/admins/atualizar', {
+                    const response = await fetch(' https://api-buy-tech.onrender.com/admins/atualizar', {
                         method: 'PATCH',
                         body: JSON.stringify(formData),
                         headers: {
@@ -185,17 +180,12 @@ export const handleFormSubmission = async () => {
                         });
                     }
                 } catch (error) {
-                    console.error('Erro ao enviar os dados:', error);
                     // Esconde o loader e habilita o botão novamente
                     displayLoader(false);
                     disableSubmitButton(false);
-                    mostrarNotificacao("Erro ao enviar os dados. Tente novamente.", {
-                        cor: "#F44336",
-                        duracao: 4000,
-                        movimentoEntrada: "deslizar",
-                        movimentoSaida: "esvair",
-                        posicao: "bottom-right"
-                    });
+                    setTimeout(() => {
+                        location.reload();
+                    }, 100);
                 }
             });
         }
@@ -246,8 +236,8 @@ export const handleFormSubmission = async () => {
             displayLoader(true);
             disableSubmitButton(true);
             try {
-                console.log(formData)
-                const response = await fetch('https://api-buy-tech.onrender.com/admins/cadastrar', {
+               
+                const response = await fetch(' https://api-buy-tech.onrender.com/admins/cadastrar', {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     headers: { 'Content-Type': 'application/json' },
@@ -255,8 +245,7 @@ export const handleFormSubmission = async () => {
 
                 const result = await response.json();
 
-                // Exibe a resposta da API no console para depuração
-                console.log('Resposta da API:', result);
+                
 
                 // Esconde o loader e habilita o botão novamente
                 displayLoader(false);
@@ -282,17 +271,12 @@ export const handleFormSubmission = async () => {
                     });
                 }
             } catch (error) {
-                console.error('Erro ao enviar os dados:', error);
                 // Esconde o loader e habilita o botão novamente
                 displayLoader(false);
                 disableSubmitButton(false);
-                mostrarNotificacao("Erro ao enviar os dados. Tente novamente.", {
-                    cor: "#F44336",
-                    duracao: 4000,
-                    movimentoEntrada: "deslizar",
-                    movimentoSaida: "esvair",
-                    posicao: "bottom-right"
-                });
+                setTimeout(() => {
+                    location.reload();
+                }, 100);
             }
         });
     }
@@ -331,8 +315,8 @@ export const handleFormSubmission = async () => {
                 displayLoader(true);
                 disableSubmitButton(true);
                 try {
-                    console.log(formData)
-                    const response = await fetch('https://api-buy-tech.onrender.com/clientes', {
+                    
+                    const response = await fetch(' https://api-buy-tech.onrender.com/clientes', {
                         method: 'PATCH',
                         body: JSON.stringify(formData),
                         headers: {
@@ -343,8 +327,7 @@ export const handleFormSubmission = async () => {
 
                     const result = await response.json();
 
-                    // Exibe a resposta da API no console para depuração
-                    console.log('Resposta da API:', result);
+                
 
                     // Esconde o loader e habilita o botão novamente
                     displayLoader(false);
@@ -373,17 +356,13 @@ export const handleFormSubmission = async () => {
                         });
                     }
                 } catch (error) {
-                    console.error('Erro ao enviar os dados:', error);
+                   
                     // Esconde o loader e habilita o botão novamente
                     displayLoader(false);
                     disableSubmitButton(false);
-                    mostrarNotificacao("Erro ao enviar os dados. Tente novamente.", {
-                        cor: "#F44336",
-                        duracao: 4000,
-                        movimentoEntrada: "deslizar",
-                        movimentoSaida: "esvair",
-                        posicao: "bottom-right"
-                    });
+                    setTimeout(() => {
+                        location.reload();
+                    }, 100);
                 }
             });
         }

@@ -33,13 +33,13 @@ export const login = async () => {
             let authTokenName = '';
 
             if (tipoUsuario === 'admin') {
-                url = 'https://api-buy-tech.onrender.com/admins/logar';
+                url = ' https://api-buy-tech.onrender.com/admins/logar';
                 authTokenName = 'authTokenAdmin';
             } else if (tipoUsuario === 'revendedor') {
-                url = 'https://api-buy-tech.onrender.com/revendedores/logar';
+                url = ' https://api-buy-tech.onrender.com/revendedores/logar';
                 authTokenName = 'authTokenRevendedor';
             } else if (tipoUsuario === 'cliente') {
-                url = 'https://api-buy-tech.onrender.com/clientes/logar';
+                url = ' https://api-buy-tech.onrender.com/clientes/logar';
                 authTokenName = 'authTokenCliente';
             } else {
                 mostrarNotificacao('Tipo de usuário inválido.!', {

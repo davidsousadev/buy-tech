@@ -8,7 +8,7 @@ async function carregarDetalhesProduto() {
     }
 
     try {
-        const response = await fetch(`https://api-buy-tech.onrender.com/produtos/${idCarrinho}`, {
+        const response = await fetch(` https://api-buy-tech.onrender.com/produtos/${idCarrinho}`, {
             method: "GET",
             headers: { "Content-Type": "application/json" }
         });
@@ -35,8 +35,9 @@ async function carregarDetalhesProduto() {
             </div>
         `;
     } catch (error) {
-        console.error("Erro ao carregar os detalhes do produto:", error);
-        document.getElementById("detalhesProduto").innerHTML = "<p>Erro ao carregar o produto.</p>";
+        setTimeout(() => {
+            carregarDetalhesProduto();
+        }, 1000);
     }
 }
 
@@ -56,7 +57,7 @@ async function adicionarAoCarrinho(produtoId) {
     };
 
     try {
-        const response = await fetch("https://api-buy-tech.onrender.com/carrinhos", {
+        const response = await fetch(" https://api-buy-tech.onrender.com/carrinhos", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -87,8 +88,9 @@ async function adicionarAoCarrinho(produtoId) {
             });
         }
     } catch (error) {
-        console.error("Erro na requisição:", error);
-        
+        setTimeout(() => {
+            adicionarAoCarrinho(produtoId)
+        }, 1000);
     }
 }
 

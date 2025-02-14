@@ -9,9 +9,9 @@ const formCadastroCliente = document.getElementById('formCadastroCliente');
 
 async function listarPerfis(tipo, elementoId, editar = false) {
     const urls = {
-        admins: 'https://api-buy-tech.onrender.com/admins',
-        clientes: 'https://api-buy-tech.onrender.com/clientes/admin',
-        revendedores: 'https://api-buy-tech.onrender.com/revendedores'
+        admins: ' https://api-buy-tech.onrender.com/admins',
+        clientes: ' https://api-buy-tech.onrender.com/clientes/admin',
+        revendedores: ' https://api-buy-tech.onrender.com/revendedores'
     };
 
     if (tokenAdmin || tokenAdminRefresh) {
@@ -61,7 +61,9 @@ async function listarPerfis(tipo, elementoId, editar = false) {
                 console.log(`Nenhum usuário encontrado para ${tipo}`);
             }
         } catch (error) {
-            console.error(`Erro ao listar ${tipo}:`, error);
+            setTimeout(() => {
+                listarPerfis(tipo, elementoId, editar);
+            }, 100);
         }
     }
 }
@@ -85,7 +87,6 @@ async function atualizarStatusUsuario(id, tipo) {
 
     const tiposValidos = ['admins', 'clientes', 'revendedores'];
     if (!tiposValidos.includes(tipo)) {
-        console.error("Tipo inválido");
         return;
     }
     displayLoader(true);
@@ -93,10 +94,10 @@ async function atualizarStatusUsuario(id, tipo) {
     try {
         // Define a URL corretamente para cada tipo
         const url = tipo === 'clientes'
-            ? `https://api-buy-tech.onrender.com/clientes/admin/atualizar_status/${id}`
+            ? ` https://api-buy-tech.onrender.com/clientes/admin/atualizar_status/${id}`
             : tipo === 'revendedores'
-                ? `https://api-buy-tech.onrender.com/revendedores/admin/atualizar_status/${id}`
-                : `https://api-buy-tech.onrender.com/${tipo}/atualizar_status/${id}`;
+                ? ` https://api-buy-tech.onrender.com/revendedores/admin/atualizar_status/${id}`
+                : ` https://api-buy-tech.onrender.com/${tipo}/atualizar_status/${id}`;
 
         const response = await fetch(url, {
             method: 'PATCH',
@@ -136,7 +137,9 @@ async function atualizarStatusUsuario(id, tipo) {
             }
         }
     } catch (error) {
-        console.error("Erro ao atualizar status do usuário:", error);
+        setTimeout(() => {
+            atualizarStatusUsuario(id, tipo);
+        }, 100);
     }
 }
 

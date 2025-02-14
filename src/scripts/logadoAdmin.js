@@ -1,55 +1,49 @@
 const getCookie = (name) => {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
 };
 
-const decodeToken = (token) => {
-    try {
-        const payloadBase64 = token.split('.')[1];
-        const payloadDecoded = atob(payloadBase64);
-        return JSON.parse(payloadDecoded);
-    } catch (error) {
-        console.error("Erro ao decodificar o token:", error);
-        return null;
-    }
-};
+
 
 const tokenAdmin = getCookie('authTokenAdmin');
 const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
 
-if (tokenRevendedor || tokenRevendedorRefresh) {
-    const exit = document.getElementById('exit');
-    exit.classList.add('bx-exit');
-    // Função assíncrona para fazer a requisição à API
-    async function authenticate() {
-        try {
-            const response = await fetch('https://api-buy-tech.onrender.com/admins/autenticar', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokenRevendedor || tokenRevendedorRefresh}`,
-                },
-            });
+if (tokenAdmin || tokenAdminRefresh) {
+  const exit = document.getElementById('exit');
+  exit.classList.add('bx-exit');
+  // Função assíncrona para fazer a requisição à API
+  async function authenticate() {
+    try {
+      const response = await fetch(' https://api-buy-tech.onrender.com/admins/autenticar', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`,
+        },
+      });
 
-            if (!response.ok) {
-                //document.cookie = 'authTokenAdmin=; Max-Age=0; path=/;';
-                throw new Error(`Erro ao autenticar: ${response.statusText}`);
-            }
+      if (!response.ok) {
+        //document.cookie = 'authTokenAdmin=; Max-Age=0; path=/;';
+        throw new Error(`Erro ao autenticar: ${response.statusText}`);
+      }
 
-            const result = await response.json();
-            //console.log(result.id);
+      const result = await response.json();
+      
 
-        } catch (error) {
-            console.error('Erro ao enviar os dados:', error);
-        }
+    } catch (error) {
+      setTimeout(() => {
+        authenticate();
+      }, 100);
+
     }
+  }
 
-    // Chama a função de autenticação
-    authenticate();
+  // Chama a função de autenticação
+  authenticate();
 }
 else {
-    window.location.href = '../index.html';
+  window.location.href = '../index.html';
 }
 
 const themeToggleButton = document.getElementById('theme-toggle');

@@ -1,42 +1,40 @@
-# Buy Tech - [!WARNING] (Arquivo para minha organização, não copie e cole na documentação!)
+# Buy Tech - Seu Comercio de eletronicos
 
-## O que falta implementar [!WARNING] (Ainda vou fazer, não copie e cole na documentação!)
+## O que foi implementado no Sistema
 
-- > Criar logins individuais (falta revendedor)
-- > Criar cadastro de admin (implementar autenticação de admin master)
-- > Criar painéis de controle de revendedor
-- > Gerenciar cards
-- > Gerenciar finanças
-- > ...
-
-## O que foi implementado [!WARNING] (O que fiz, listei apenas para minha organização, não copie e cole na documentação!)
-
-- > Listagem de produtos
-- > Busca por termo de produto
-- > Página de detalhes de produto
+- > Página inicial com a Listagem de produtos
+- > Campo de busca Busca por termo de produto
+- > Função Dark Mode e Light Mode via Local Storage
+- > Menu de navegação para usuários não logados
+- > Página de cadastro de Cliente, Revendedor e Administrador
+- > Página de login de Cliente, Revendedor e Administrador
+- > Página de recuperação de e-mail e senha
+- > Página de detalhes do produto
+- > Carrinho de cliente autenticado
 - > Funcionalidade de adicionar itens ao carrinho
 - > Funcionalidade de atualizar itens no carrinho
+- > Autenticação via Cookies
 - > Menu de opções para cliente autenticado
-- > Carrinho de cliente autenticado
-- > Implementação de atualização de itens no carrinho
-- > Página de cadastro de cliente com diversas validações
-- > Página de login de clientes
+- > Página de lista de categorias
+- > Página de "Monte seu equipamento" para clientes logados
+- > Página de Promoções
+- > Página de Suporte
 - > Página de aviso para confirmação de e-mail
-- > Página de login do admin
-- > Função Dark and Light Mode
-- > Painel administrativo
-- > Roteamento de painel administrativo
-- > Autenticação de rotas
-- > Implementação de funcionalidades:
-- > Gerenciamento de perfis - Listagem e atualização de status
-- > Gerenciamento de categorias - Criação, listagem e atualização
-- > Gerenciamento de produtos - Criação, listagem e atualização
-- > Gerenciar pedidos
-- > Gerenciar promoções
-- > Criar painéis de controle de cliente
-- > ...
+- > Página de e-mail confirmado
+- > Painel Administrativo de Cliente:
+- > - > Funcionalidades: Extrato, Créditos, Débitos, Pendências, Criar Pedido, Listar Pedidos, Link de Indicação, Atualizar Perfil
+- > Painel Administrativo de Revendedor:
+- > - > Funcionalidades: Extrato, Créditos, Débitos, Pendências, Listar Pedidos, Lista de Produtos, Criar Pedido, Atualizar Perfil
+- > Painel Administrativo de Administrador: 
+- > - > Funcionalidade: Gerenciar Perfis: Listar Perfis e Atualizar Status dos Perfis 
+- > - > Funcionalidade: Gerenciar Categorias: Listar Categorias, Cadastrar Categorias e Atualizar Categorias
+- > - > Funcionalidade: Gerenciar Produtos: Listar Produtos, Cadastrar Produtos e Atualizar Produtos
+- > - > Funcionalidade: Gerenciar Pedidos: Listar Pedidos Pagos, Pedidos Cancelados e Cancelar Pedidos
+- > - > Funcionalidade: Gerenciar Cupons: Listar Cupons, Cadastrar Cupons e Atualizar Cupons
+- > - > Funcionalidade: Gerenciar Finanças: Gráfico das Finanças (Pizza) e Listar Créditos, Listar Débitos
+- > - > Funcionalidade: Atualizar Perfil
 
-## Estrutura inicial sujeita a alterações [!WARNING] (Não copie e cole na documentação!)
+## Estrutura inicial sujeita a alterações (Ajustar)
 
 ```plaintext
 buy-tech/
@@ -118,7 +116,7 @@ buy-tech/
 │   │   |   ├── adminPedidos.js               # Script para gerenciamento de pedidos
 │   │   |   ├── adminPerfis.js                # Script para gerenciamento de perfis
 │   │   |   ├── adminProdutos.js              # Script para gerenciamento de produtos
-│   │   |   └── adminCupons.js             # Script para gerenciamento de promoções
+│   │   |   └── adminCupons.js                # Script para gerenciamento de Cupons
 |   |   |                                      
 │   │   ├── cadastro_cliente/                 # Scripts para validação de cadastro do cliente
 │   │   |   ├── cep.js                        # Validação de CEP

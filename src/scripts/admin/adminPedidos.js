@@ -10,7 +10,7 @@ const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
 
 async function cancelarPedido(id) {
     try {
-        const response = await fetch(`https://api-buy-tech.onrender.com/pedidos/admin/${id}`, {
+        const response = await fetch(` https://api-buy-tech.onrender.com/pedidos/admin/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -31,7 +31,9 @@ async function cancelarPedido(id) {
             alert(`Erro ao cancelar o pedido #${id}`);
         }
     } catch (error) {
-        console.error("Erro ao cancelar pedido:", error);
+        setTimeout(() => {
+            cancelarPedido(id);
+        }, 100);
     }
 }
 
@@ -40,7 +42,7 @@ async function extrato(editar) {
 
     if (tokenAdmin || tokenAdminRefresh) {
         try {
-            const response = await fetch(`https://api-buy-tech.onrender.com/pedidos/admin`, {
+            const response = await fetch(` https://api-buy-tech.onrender.com/pedidos/admin`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -130,7 +132,9 @@ async function extrato(editar) {
                 listaDePedidos.innerHTML = "<p>Nenhum pedido encontrado.</p>";
             }
         } catch (error) {
-            console.error(error);
+            setTimeout(() => {
+                extrato(editar);
+            }, 100);
         }
     }
 }

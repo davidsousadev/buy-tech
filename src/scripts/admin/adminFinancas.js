@@ -13,7 +13,7 @@ if (tokenAdmin || tokenAdminRefresh) {
 
         async function buscarDados() {
             try {
-                const resposta = await fetch("https://api-buy-tech.onrender.com/operacoes/vendas/cashback/admin", {
+                const resposta = await fetch(" https://api-buy-tech.onrender.com/operacoes/vendas/cashback/admin", {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -35,7 +35,9 @@ if (tokenAdmin || tokenAdminRefresh) {
                 desenharGraficoPizza(dadosGrafico);
                 gerarLegenda(dadosGrafico);
             } catch (error) {
-                console.error("Erro ao buscar os dados:", error);
+                setTimeout(() => {
+                    buscarDados();
+                }, 100);
             }
         }
 
@@ -136,7 +138,7 @@ if (tokenAdmin || tokenAdminRefresh) {
 async function listarDebitos() {
     if (tokenAdmin || tokenAdminRefresh) {
         try {
-            const resposta = await fetch("https://api-buy-tech.onrender.com/operacoes/cashback/admin", {
+            const resposta = await fetch(" https://api-buy-tech.onrender.com/operacoes/cashback/admin", {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -164,7 +166,9 @@ async function listarDebitos() {
                 extratoCliente.innerHTML = "<p>Nenhuma operação encontrada.</p>";
             }
         }catch (error) {
-            console.error("Erro ao buscar os dados:", error);
+            setTimeout(() => {
+                listarDebitos();
+            }, 100);
         }
 }
 }

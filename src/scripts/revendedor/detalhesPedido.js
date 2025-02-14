@@ -23,7 +23,7 @@ const campoCEP = document.getElementById('campoCEP');
 
 async function authenticate() {
     try {
-        const response = await fetch('https://api-buy-tech.onrender.com/revendedores/autenticar', {
+        const response = await fetch(' https://api-buy-tech.onrender.com/revendedores/autenticar', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ document.getElementById('formCadastroPedido').addEventListener('submit', async (
     disableSubmitButton(true);
     // Envio do pedido para a API
     try {                             
-        const response = await fetch('https://api-buy-tech.onrender.com/pedidos_revendedor', {
+        const response = await fetch(' https://api-buy-tech.onrender.com/pedidos_revendedor', {
             method: 'POST',
             body: JSON.stringify(formData),
             headers: {
@@ -130,7 +130,7 @@ async function listaItensCarrinho() {
 
     if (tokenRevendedor || tokenRevendedorRefresh) {
         try {
-            const response = await fetch('https://api-buy-tech.onrender.com/carrinhos_revendedor', {
+            const response = await fetch(' https://api-buy-tech.onrender.com/carrinhos_revendedor', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -156,7 +156,7 @@ async function listaItensCarrinho() {
             for (const produto of resultadoItensCarrinho) {
                 if (produto.codigo.length != 6) {
                     try {
-                        const produtoResponse = await fetch(`https://api-buy-tech.onrender.com/produtos/${produto.produto_codigo}`, {
+                        const produtoResponse = await fetch(` https://api-buy-tech.onrender.com/produtos/${produto.produto_codigo}`, {
                             method: 'GET',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -215,7 +215,7 @@ async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
     const novaQuantidade = document.getElementById(`quantidade_${produtoCodigo}`).value;
     if ((tokenRevendedor || tokenRevendedorRefresh) && novaQuantidade) {
         try {
-            const response = await fetch(`https://api-buy-tech.onrender.com/carrinhos_revendedor/${codigoCarrinho}`, {
+            const response = await fetch(` https://api-buy-tech.onrender.com/carrinhos_revendedor/${codigoCarrinho}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

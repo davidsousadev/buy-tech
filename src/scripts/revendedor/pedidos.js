@@ -2,7 +2,7 @@ const listaDePedidos = document.getElementById("listaDePedidos");
 
 async function cancelarPedido(id) {
     try {
-        const response = await fetch(`https://api-buy-tech.onrender.com/pedidos_revendedor/${id}`, {
+        const response = await fetch(` https://api-buy-tech.onrender.com/pedidos_revendedor/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ async function cancelarPedido(id) {
 async function extrato() {
     if (tokenRevendedor || tokenRevendedorRefresh) {
         try {
-            const response = await fetch(`https://api-buy-tech.onrender.com/pedidos_revendedor`, {
+            const response = await fetch(` https://api-buy-tech.onrender.com/pedidos_revendedor`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ async function pagarPedido(tokenDePagamento) {
     console.log(tokenDePagamento);
     if (tokenRevendedor || tokenRevendedorRefresh) {
         try {
-            const response = await fetch(`https://api-buy-tech.onrender.com/operacoes_revendedor/pagamentos/${tokenDePagamento}`, {
+            const response = await fetch(` https://api-buy-tech.onrender.com/operacoes_revendedor/pagamentos/${tokenDePagamento}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

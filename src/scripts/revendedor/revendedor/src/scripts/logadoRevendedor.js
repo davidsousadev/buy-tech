@@ -4,16 +4,16 @@ const getCookie = (name) => {
     if (parts.length === 2) return parts.pop().split(';').shift();
 };
 
-const decodeToken = (token) => {
-    try {
-        const payloadBase64 = token.split('.')[1];
-        const payloadDecoded = atob(payloadBase64);
-        return JSON.parse(payloadDecoded);
-    } catch (error) {
-        console.error("Erro ao decodificar o token:", error);
-        return null;
-    }
-};
+// const decodeToken = (token) => {
+//     try {
+//         const payloadBase64 = token.split('.')[1];
+//         const payloadDecoded = atob(payloadBase64);
+//         return JSON.parse(payloadDecoded);
+//     } catch (error) {
+//         console.error("Erro ao decodificar o token:", error);
+//         return null;
+//     }
+// };
 
 const tokenRevendedor = getCookie('authTokenRevendedor');
 const tokenRevendedorRefresh = getCookie('authTokenRevendedorRefresh');
@@ -25,7 +25,7 @@ if (tokenRevendedor || tokenRevendedorRefresh) {
     // Função assíncrona para fazer a requisição à API
     async function authenticate() {
         try {
-            const response = await fetch('https://api-buy-tech.onrender.com/clientes/autenticar', {
+            const response = await fetch(' https://api-buy-tech.onrender.com/clientes/autenticar', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

@@ -99,7 +99,7 @@ export function configurarEventosCNPJ() {
         if (validarCNPJ(cnpjInput.value) && cnpjInput.value !== '') {
             // Verificação de duplicidade na API
             try {
-                const response = await fetch(`https://api-buy-tech.onrender.com/revendedores/verificar-cnpj?cnpj=${somenteNumerosCNPJ(cnpjInput)}`);
+                const response = await fetch(` https://api-buy-tech.onrender.com/revendedores/verificar-cnpj?cnpj=${somenteNumerosCNPJ(cnpjInput)}`);
                 if (response.ok) {
                     const result = await response.json();
 

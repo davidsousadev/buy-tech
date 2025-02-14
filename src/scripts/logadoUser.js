@@ -4,16 +4,6 @@ const getCookie = (name) => {
     if (parts.length === 2) return parts.pop().split(';').shift();
 };
 
-const decodeToken = (token) => {
-    try {
-        const payloadBase64 = token.split('.')[1];
-        const payloadDecoded = atob(payloadBase64);
-        return JSON.parse(payloadDecoded);
-    } catch (error) {
-        console.error("Erro ao decodificar o token:", error);
-        return null;
-    }
-};
 
 const applyTheme = (theme) => {
     if (theme === 'dark') {

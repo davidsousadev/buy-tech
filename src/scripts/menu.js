@@ -15,7 +15,7 @@ async function listaItensCarrinho() {
 
     if (tokenCliente || tokenClienteRefresh) {
         try {
-            const response = await fetch('https://api-buy-tech.onrender.com/carrinhos', {
+            const response = await fetch(' https://api-buy-tech.onrender.com/carrinhos', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ async function listaItensCarrinho() {
             for (const produto of resultadoItensCarrinho) {
                 if (produto.codigo.length != 6) {
                     try {
-                        const produtoResponse = await fetch(`https://api-buy-tech.onrender.com/produtos/${produto.produto_codigo}`, {
+                        const produtoResponse = await fetch(` https://api-buy-tech.onrender.com/produtos/${produto.produto_codigo}`, {
                             method: 'GET',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -88,7 +88,9 @@ async function listaItensCarrinho() {
                         quantidadeDeProdutos += 1;
                         lista_itens.appendChild(li);
                     } catch (error) {
-                        console.error("Erro ao buscar detalhes do produto:", error);
+                        setTimeout(() => {
+                            listaItensCarrinho();
+                        }, 1000);
                     }
                 }
             }
@@ -106,7 +108,9 @@ async function listaItensCarrinho() {
 
 
         } catch (error) {
-            console.error("Erro ao carregar o carrinho:", error);
+            setTimeout(() => {
+                listaItensCarrinho();
+            }, 1000);
         }
     }
 
@@ -117,7 +121,7 @@ async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
     const novaQuantidade = document.getElementById(`quantidade_${produtoCodigo}`).value;
     if ((tokenCliente || tokenClienteRefresh) && novaQuantidade) {
         try {
-            const response = await fetch(`https://api-buy-tech.onrender.com/carrinhos/${codigoCarrinho}`, {
+            const response = await fetch(` https://api-buy-tech.onrender.com/carrinhos/${codigoCarrinho}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -184,7 +188,9 @@ async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
             listaItensCarrinho();
 
         } catch (error) {
-            //console.error("Erro ao atualizar a quantidade:", error);
+            setTimeout(() => {
+                atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente);
+            }, 1000);
         }
     }
 }
@@ -237,7 +243,7 @@ function pedido(qtd) {
     else {
         async function authenticate() {
             try {
-                const response = await fetch('https://api-buy-tech.onrender.com/clientes/autenticar', {
+                const response = await fetch(' https://api-buy-tech.onrender.com/clientes/autenticar', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -257,7 +263,7 @@ function pedido(qtd) {
                         for (var i = 0; i < qtd; i++) {
                             voltar += '../';
                         }
-                        console.log(`${voltar}cliente/pedido.html?id=${result.id}`)
+                        
                         window.location.href = `${voltar}cliente/pedido.html?id=${result.id}`;
                     }
                 }
@@ -265,7 +271,9 @@ function pedido(qtd) {
 
 
             } catch (error) {
-                console.error('Erro ao enviar os dados:', error);
+                setTimeout(() => {
+                    authenticate();
+                }, 100);
             }
         }
 
