@@ -78,7 +78,7 @@ export const login = async () => {
                         posicao: "bottom-right"
                     });
                     setTimeout(() => {
-                        window.location.href = `${tipoUsuario}`;
+                        window.location.href = `${tipoUsuario}/index.html`;
                     }, 3000);
 
                 } else {
