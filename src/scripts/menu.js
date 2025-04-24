@@ -15,14 +15,14 @@ async function listaItensCarrinho() {
 
     if (tokenCliente || tokenClienteRefresh) {
         try {
-            const response = await fetch(' https://api-buy-tech.onrender.com/carrinhos', {
+            const response = await fetch('https://api-buy-tech.onrender.com/carrinhos', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
                 },
             });
-
+            
             const resultadoItensCarrinho = await response.json();
             if (resultadoItensCarrinho.detail) {
                 if (resultadoItensCarrinho.detail === "Token expirado!") {
@@ -89,7 +89,7 @@ async function listaItensCarrinho() {
                         lista_itens.appendChild(li);
                     } catch (error) {
                         setTimeout(() => {
-                            listaItensCarrinho();
+                            //listaItensCarrinho();
                         }, 1000);
                     }
                 }
@@ -109,7 +109,7 @@ async function listaItensCarrinho() {
 
         } catch (error) {
             setTimeout(() => {
-                listaItensCarrinho();
+                //listaItensCarrinho();
             }, 1000);
         }
     }
