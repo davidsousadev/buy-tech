@@ -59,7 +59,7 @@ export const handleFormSubmission = async () => {
             disableSubmitButton(true);
             try {
                 
-                const response = await fetch(' https://api-buy-tech.onrender.com/clientes/cadastrar', {
+                const response = await fetch('https://api-buy-tech.onrender.com/clientes/cadastrar', {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     headers: { 'Content-Type': 'application/json' },
@@ -141,7 +141,7 @@ export const handleFormSubmission = async () => {
                 disableSubmitButton(true);
                 try {
                     console.table(formData)
-                    const response = await fetch(' https://api-buy-tech.onrender.com/admins/atualizar', {
+                    const response = await fetch('https://api-buy-tech.onrender.com/admins/atualizar', {
                         method: 'PATCH',
                         body: JSON.stringify(formData),
                         headers: {
@@ -237,7 +237,7 @@ export const handleFormSubmission = async () => {
             disableSubmitButton(true);
             try {
                
-                const response = await fetch(' https://api-buy-tech.onrender.com/admins/cadastrar', {
+                const response = await fetch('https://api-buy-tech.onrender.com/admins/cadastrar', {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     headers: { 'Content-Type': 'application/json' },
@@ -316,7 +316,7 @@ export const handleFormSubmission = async () => {
                 disableSubmitButton(true);
                 try {
                     
-                    const response = await fetch(' https://api-buy-tech.onrender.com/clientes', {
+                    const response = await fetch('https://api-buy-tech.onrender.com/clientes', {
                         method: 'PATCH',
                         body: JSON.stringify(formData),
                         headers: {

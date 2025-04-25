@@ -25,7 +25,7 @@ if (tokenRevendedor || tokenRevendedorRefresh) {
     // Função assíncrona para fazer a requisição à API
     async function authenticate() {
         try {
-            const response = await fetch(' https://api-buy-tech.onrender.com/clientes/autenticar', {
+            const response = await fetch('https://api-buy-tech.onrender.com/clientes/autenticar', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

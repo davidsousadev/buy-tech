@@ -21,7 +21,7 @@ if (formSuporte) {
         }
 
         try {
-            const authResponse = await fetch(' https://api-buy-tech.onrender.com/clientes/autenticar', {
+            const authResponse = await fetch('https://api-buy-tech.onrender.com/clientes/autenticar', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ if (formSuporte) {
             // Exibe o loader e desabilita o botão
             displayLoader(true);
             disableSubmitButton(true);
-            const response = await fetch(` https://api-buy-tech.onrender.com/emails/suporte/${userId}`, {
+            const response = await fetch(`https://api-buy-tech.onrender.com/emails/suporte/${userId}`, {
                 method: 'POST',
                 body: JSON.stringify({ enviar_email: mensagem }),
                 headers: {

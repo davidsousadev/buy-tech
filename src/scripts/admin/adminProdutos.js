@@ -15,7 +15,7 @@ function listarProdutos(editar) {
     if (tokenAdmin || tokenAdminRefresh) {
         async function authenticate() {
             try {
-                const response = await fetch(' https://api-buy-tech.onrender.com/produtos', {
+                const response = await fetch('https://api-buy-tech.onrender.com/produtos', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -89,7 +89,7 @@ if (formCadastroProdutoAdmin) {
         if (idProduto) {
             async function carregarProduto() {
                 try {
-                    const response = await fetch(` https://api-buy-tech.onrender.com/produtos/${idProduto}`, {
+                    const response = await fetch(`https://api-buy-tech.onrender.com/produtos/${idProduto}`, {
                         method: 'GET',
                         headers: {
                             'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`
@@ -138,7 +138,7 @@ if (formCadastroProdutoAdmin) {
                 };
 
                 try {
-                    const response = await fetch(` https://api-buy-tech.onrender.com/produtos/${idProduto}`, {
+                    const response = await fetch(`https://api-buy-tech.onrender.com/produtos/${idProduto}`, {
                         method: 'PATCH',
                         body: JSON.stringify(formData),
                         headers: {
@@ -203,7 +203,7 @@ if (formCadastroProdutoAdmin) {
                 }
 
                 try {
-                    const response = await fetch(' https://api-buy-tech.onrender.com/produtos', {
+                    const response = await fetch('https://api-buy-tech.onrender.com/produtos', {
                         method: 'POST',
                         body: JSON.stringify(formData),
                         headers: {

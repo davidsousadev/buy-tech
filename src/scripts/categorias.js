@@ -6,7 +6,7 @@ function listarProdutos() {
             const urlParams = new URLSearchParams(window.location.search);
             let queryString = urlParams.toString(); // Obtém os parâmetros da URL
 
-            const response = await fetch(` https://api-buy-tech.onrender.com/categorias?${queryString}`, {
+            const response = await fetch(`https://api-buy-tech.onrender.com/categorias?${queryString}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'

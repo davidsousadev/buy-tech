@@ -8,7 +8,7 @@ async function carregarDetalhesProduto() {
     }
 
     try {
-        const response = await fetch(` https://api-buy-tech.onrender.com/produtos/${idCarrinho}`, {
+        const response = await fetch(`https://api-buy-tech.onrender.com/produtos/${idCarrinho}`, {
             method: "GET",
             headers: { "Content-Type": "application/json" }
         });

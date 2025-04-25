@@ -40,7 +40,7 @@ if (formRecuperarSenha) {
             displayLoader(true);
             disableSubmitButton('submitButtonSenha', true);
             try {
-                const response = await fetch(` https://api-buy-tech.onrender.com/emails/recuperar_senha?${tipo}=${parametro}`, {
+                const response = await fetch(`https://api-buy-tech.onrender.com/emails/recuperar_senha?${tipo}=${parametro}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ if (formRecuperarEmail) {
             displayLoader(true);
             disableSubmitButton('submitButtonEmail', true);
             try {
-                const response = await fetch(` https://api-buy-tech.onrender.com/emails/recuperar_email?email=${email}`, {
+                const response = await fetch(`https://api-buy-tech.onrender.com/emails/recuperar_email?email=${email}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

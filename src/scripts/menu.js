@@ -52,7 +52,7 @@ async function listaItensCarrinho() {
             for (const produto of resultadoItensCarrinho) {
                 if (produto.codigo.length != 6) {
                     try {
-                        const produtoResponse = await fetch(` https://api-buy-tech.onrender.com/produtos/${produto.produto_codigo}`, {
+                        const produtoResponse = await fetch(`https://api-buy-tech.onrender.com/produtos/${produto.produto_codigo}`, {
                             method: 'GET',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
     const novaQuantidade = document.getElementById(`quantidade_${produtoCodigo}`).value;
     if ((tokenCliente || tokenClienteRefresh) && novaQuantidade) {
         try {
-            const response = await fetch(` https://api-buy-tech.onrender.com/carrinhos/${codigoCarrinho}`, {
+            const response = await fetch(`https://api-buy-tech.onrender.com/carrinhos/${codigoCarrinho}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -243,7 +243,7 @@ function pedido(qtd) {
     else {
         async function authenticate() {
             try {
-                const response = await fetch(' https://api-buy-tech.onrender.com/clientes/autenticar', {
+                const response = await fetch('https://api-buy-tech.onrender.com/clientes/autenticar', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

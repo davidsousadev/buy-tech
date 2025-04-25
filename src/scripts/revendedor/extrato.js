@@ -3,7 +3,7 @@ const extratoCliente = document.getElementById("extratoCliente");
 async function extrato() {
     if (tokenRevendedor || tokenRevendedorRefresh) {
     try {
-        const response = await fetch(` https://api-buy-tech.onrender.com/operacoes_revendedor/extrato`, {
+        const response = await fetch(`https://api-buy-tech.onrender.com/operacoes_revendedor/extrato`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

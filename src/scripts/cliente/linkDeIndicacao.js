@@ -21,7 +21,7 @@ if (tokenCliente || tokenClienteRefresh) {
     async function authenticate() {
         try {
             // Fazendo a requisição para autenticar o cliente
-            const response = await fetch(' https://api-buy-tech.onrender.com/clientes/autenticar', {
+            const response = await fetch('https://api-buy-tech.onrender.com/clientes/autenticar', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
