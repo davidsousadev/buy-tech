@@ -1,5 +1,5 @@
-# Buy Tech - Seu Comercio de eletronicos
-
+# Buy Tech - Seu Comércio de Eletrônicos
+![Banner](/src/imagens/banner.png)
 ## O que foi implementado no Sistema
 
 - > Página inicial com a Listagem de produtos
