@@ -1,5 +1,5 @@
 # Buy Tech - Seu Comércio de Eletrônicos
-![Banner](/src/imagens/banner.png)
+![Banner]([/src/imagens/banner.png](https://raw.githubusercontent.com/davidsousadev/buy-tech/refs/heads/main/src/imagens/banner.png))
 ## O que foi implementado no Sistema
 
 - > Página inicial com a Listagem de produtos
