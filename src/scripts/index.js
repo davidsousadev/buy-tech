@@ -1,4 +1,8 @@
-function listarProdutos() {
+//index.js
+
+import * as config from './consts.js';
+
+export function listarProdutos() {
     const lista_produtos = document.getElementById("lista_produtos");
 
     async function listagem() {
@@ -6,7 +10,7 @@ function listarProdutos() {
             const urlParams = new URLSearchParams(window.location.search);
             let queryString = urlParams.toString(); // Obtém os parâmetros da URL
 
-            const response = await fetch(`https://api-buy-tech.onrender.com/produtos?${queryString}`, {
+            const response = await fetch(`${config.API_URL}/produtos?${queryString}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -135,3 +139,5 @@ function logoutCliente(qtd) {
         window.location.href = `${voltar}logar.html`; // Redireciona para a página de login       
     }
 };
+
+window.listarProdutos = listarProdutos; 
