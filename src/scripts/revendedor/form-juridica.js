@@ -1,3 +1,7 @@
+// form-juridica.js
+
+import * as config from '../consts.js';
+
 const getCookie = (name) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
@@ -53,7 +57,7 @@ export const handleFormSubmission = async () => {
             disableSubmitButton(true);
             try {
                 console.log(formData)
-                const response = await fetch('https://api-buy-tech.onrender.com/revendedores/cadastrar', {
+                const response = await fetch(`${config.API_URL}/revendedores/cadastrar`, {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     headers: { 'Content-Type': 'application/json' },
@@ -145,7 +149,7 @@ export const handleFormSubmission = async () => {
             disableSubmitButton(true);
             try {
                 console.table(formData)
-                const response = await fetch('https://api-buy-tech.onrender.com/revendedores/atualizar', {
+                const response = await fetch(`${config.API_URL}/revendedores/atualizar`, {
                     method: 'PATCH',
                     body: JSON.stringify(formData),
                     headers: { 

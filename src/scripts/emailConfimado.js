@@ -1,3 +1,7 @@
+//emailConfirmado.js
+
+import * as config from './consts.js';
+
 const urlParams = new URLSearchParams(window.location.search);
 const codigo = urlParams.get("codigo");
 const confirmado = document.getElementById('confirmado');
@@ -5,7 +9,7 @@ const confirmado = document.getElementById('confirmado');
 if (codigo) {
     
         try {
-            const response = await fetch(`https://api-buy-tech.onrender.com/emails/confirmado/?codigo=${codigo}`, {
+            const response = await fetch(`${config.API_URL}/emails/confirmado/?codigo=${codigo}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'

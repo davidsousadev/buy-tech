@@ -1,10 +1,12 @@
+//logadoCliente.js
+
+import * as config from './consts.js';
+
 const getCookie = (name) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
 };
-
-
 
 const tokenCliente = getCookie('authTokenCliente');
 const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
@@ -16,7 +18,7 @@ if (tokenCliente || tokenClienteRefresh) {
     // Função assíncrona para fazer a requisição à API
     async function authenticate() {
         try {
-            const response = await fetch('https://api-buy-tech.onrender.com/clientes/autenticar', {
+            const response = await fetch(`${config.API_URL}/clientes/autenticar`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

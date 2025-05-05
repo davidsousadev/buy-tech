@@ -1,3 +1,7 @@
+// adminCupons.js
+
+import * as config from '../consts.js';
+
 const urlParams = new URLSearchParams(window.location.search);
 const idCupom = urlParams.get("id");
 const formCadastroCupons = document.getElementById('formCadastroCupons');
@@ -18,7 +22,7 @@ async function listarCupons(editar = false) {
     displayLoader(true); // Exibir loader enquanto carrega
 
     try {
-        const response = await fetch('https://api-buy-tech.onrender.com/cupons/admin', {
+        const response = await fetch(`${config.API_URL}/cupons/admin`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -110,7 +114,7 @@ if (formCadastroCupons) {
         if (idCupom) {
             async function carregarCupom() {
                 try {
-                    const response = await fetch(`https://api-buy-tech.onrender.com/cupons/admin/${idCupom}`, {
+                    const response = await fetch(`${config.API_URL}/cupons/admin/${idCupom}`, {
                         method: "GET",
                         headers: {
                             "Authorization": `Bearer ${tokenAdmin || tokenAdminRefresh}`
@@ -157,8 +161,8 @@ if (formCadastroCupons) {
 
             try {
                 const url = idCupom
-                    ? `https://api-buy-tech.onrender.com/cupons/${idCupom}`
-                    : " https://api-buy-tech.onrender.com/cupons";
+                    ? `${config.API_URL}/cupons/${idCupom}`
+                    : `${config.API_URL}/cupons`;
 
                 const method = idCupom ? "PATCH" : "POST";
 

@@ -1,3 +1,7 @@
+//detalhesProduto.js
+
+import * as config from './consts.js';
+
 const urlParams = new URLSearchParams(window.location.search);
 const idCarrinho = urlParams.get("id");
 
@@ -8,7 +12,7 @@ async function carregarDetalhesProduto() {
     }
 
     try {
-        const response = await fetch(`https://api-buy-tech.onrender.com/produtos/${idCarrinho}`, {
+        const response = await fetch(`${config.API_URL}/produtos/${idCarrinho}`, {
             method: "GET",
             headers: { "Content-Type": "application/json" }
         });
@@ -41,7 +45,7 @@ async function carregarDetalhesProduto() {
     }
 }
 
-async function adicionarAoCarrinho(produtoId) {
+export async function adicionarAoCarrinho(produtoId) {
     const tokenCliente = getCookie('authTokenCliente'); 
     const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
     const quantidade = document.getElementById("quantidade").value;
@@ -57,7 +61,7 @@ async function adicionarAoCarrinho(produtoId) {
     };
 
     try {
-        const response = await fetch(" https://api-buy-tech.onrender.com/carrinhos", {
+        const response = await fetch(`${config.API_URL}/carrinhos`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

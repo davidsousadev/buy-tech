@@ -1,3 +1,7 @@
+//loginAdmin.js
+
+import * as config from './consts.js';
+
 export const login = async () => {
     const form = document.getElementById('formLoginAdmin');
     if (form) {
@@ -18,7 +22,7 @@ export const login = async () => {
             disableSubmitButton(true);
 
             try {
-                const response = await fetch('https://api-buy-tech.onrender.com/admins/logar', {
+                const response = await fetch(`${config.API_URL}/admins/logar`, {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     headers: { 'Content-Type': 'application/json' },

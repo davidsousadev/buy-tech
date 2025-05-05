@@ -1,3 +1,7 @@
+// pessoa-juridica.js
+
+import * as config from '../consts.js';
+
 import { razaoValida } from './razaoSocial.js';
 import { validateEmail } from '../cadastro_cliente/email.js';
 import { validatePasswordsMatch } from '../cadastro_cliente/senha.js';
@@ -90,7 +94,7 @@ function validarCNPJ(cnpj) {
 // Verificar CNPJ na API
 async function verificarCNPJNaAPI(cnpjInput) {
     try {
-        const response = await fetch(`https://api-buy-tech.onrender.com/revendedores/verificar-cnpj?cnpj=${somenteNumerosCNPJ(cnpjInput)}`);
+        const response = await fetch(`${config.API_URL}/revendedores/verificar-cnpj?cnpj=${somenteNumerosCNPJ(cnpjInput)}`);
         if (response.ok) {
             const result = await response.json();
             cnpjInput.style.borderColor = result.cnpj ? 'green' : 'red';

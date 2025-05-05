@@ -1,3 +1,7 @@
+//login.js
+
+import * as config from './consts.js';
+
 export const login = async () => {
     const form = document.getElementById('formLogin');
     if (form) {
@@ -33,13 +37,13 @@ export const login = async () => {
             let authTokenName = '';
 
             if (tipoUsuario === 'admin') {
-                url = 'https://api-buy-tech.onrender.com/admins/logar';
+                url = `${config.API_URL}/admins/logar`;
                 authTokenName = 'authTokenAdmin';
             } else if (tipoUsuario === 'revendedor') {
-                url = 'https://api-buy-tech.onrender.com/revendedores/logar';
+                url = `${config.API_URL}/revendedores/logar`;
                 authTokenName = 'authTokenRevendedor';
             } else if (tipoUsuario === 'cliente') {
-                url = 'https://api-buy-tech.onrender.com/clientes/logar';
+                url = `${config.API_URL}/clientes/logar`;
                 authTokenName = 'authTokenCliente';
             } else {
                 mostrarNotificacao('Tipo de usuário inválido.!', {
@@ -121,6 +125,5 @@ const disableSubmitButton = (isDisabled) => {
         submitButton.disabled = isDisabled;
     }
 };
-
 
 login();

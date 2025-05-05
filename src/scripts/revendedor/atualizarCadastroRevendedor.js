@@ -1,8 +1,12 @@
+// atualizarCadastroRevendedor.js
+
+import * as config from '../consts.js';
+
 if (tokenRevendedor || tokenRevendedorRefresh) {
     // Função assíncrona para fazer a requisição à API
     async function authenticate() {
         try {
-            const response = await fetch('https://api-buy-tech.onrender.com/revendedores/autenticar', {
+            const response = await fetch(`${config.API_URL}/revendedores/autenticar`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

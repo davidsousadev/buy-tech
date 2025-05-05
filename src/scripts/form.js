@@ -1,3 +1,7 @@
+//form.js
+
+import * as config from './consts.js';
+
 const getCookie = (name) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
@@ -59,7 +63,7 @@ export const handleFormSubmission = async () => {
             disableSubmitButton(true);
             try {
                 
-                const response = await fetch('https://api-buy-tech.onrender.com/clientes/cadastrar', {
+                const response = await fetch(`${config.API_URL}/clientes/cadastrar`, {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     headers: { 'Content-Type': 'application/json' },
@@ -141,7 +145,7 @@ export const handleFormSubmission = async () => {
                 disableSubmitButton(true);
                 try {
                     console.table(formData)
-                    const response = await fetch('https://api-buy-tech.onrender.com/admins/atualizar', {
+                    const response = await fetch(`${config.API_URL}/admins/atualizar`, {
                         method: 'PATCH',
                         body: JSON.stringify(formData),
                         headers: {
@@ -237,7 +241,7 @@ export const handleFormSubmission = async () => {
             disableSubmitButton(true);
             try {
                
-                const response = await fetch('https://api-buy-tech.onrender.com/admins/cadastrar', {
+                const response = await fetch(`${config.API_URL}/admins/cadastrar`, {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     headers: { 'Content-Type': 'application/json' },
@@ -316,7 +320,7 @@ export const handleFormSubmission = async () => {
                 disableSubmitButton(true);
                 try {
                     
-                    const response = await fetch('https://api-buy-tech.onrender.com/clientes', {
+                    const response = await fetch(`${config.API_URL}/clientes`, {
                         method: 'PATCH',
                         body: JSON.stringify(formData),
                         headers: {

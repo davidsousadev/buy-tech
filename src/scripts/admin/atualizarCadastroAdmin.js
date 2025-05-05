@@ -1,3 +1,7 @@
+// atualizarCadostroAdmin.js
+
+import * as config from '../consts.js';
+
 const getCookie = (name) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
@@ -10,7 +14,7 @@ if (tokenAdmin || tokenAdminRefresh) {
     // Função assíncrona para fazer a requisição à API
     async function authenticate() {
         try {
-            const response = await fetch('https://api-buy-tech.onrender.com/admins/autenticar', {
+            const response = await fetch(`${config.API_URL}/admins/autenticar`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,3 +1,7 @@
+// linkDeIndicacao.js
+
+import * as config from '../consts.js';
+
 const linkDeIndicacaoTexto = document.getElementById('link_de_indicacao_texto');
 const copiarLinkBtn = document.getElementById('copiar_link');
 const notificacao = document.getElementById('notificacao');
@@ -21,7 +25,7 @@ if (tokenCliente || tokenClienteRefresh) {
     async function authenticate() {
         try {
             // Fazendo a requisição para autenticar o cliente
-            const response = await fetch('https://api-buy-tech.onrender.com/clientes/autenticar', {
+            const response = await fetch(`${config.API_URL}/clientes/autenticar`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -34,7 +38,7 @@ if (tokenCliente || tokenClienteRefresh) {
                 const clienteId = result.id;
 
                 // Atualizando o texto do link de indicação
-                const link = `https://buy-tech.vercel.app/cadastrar.html?ref=${clienteId}`;
+                const link = `${config.FRONT_URL}/cadastrar.html?ref=${clienteId}`;
                 linkDeIndicacaoTexto.textContent = link;
             } else {
                 console.error('Erro na autenticação');

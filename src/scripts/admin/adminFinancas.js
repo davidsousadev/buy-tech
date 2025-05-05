@@ -1,3 +1,7 @@
+// adminFinancas.js
+
+import * as config from '../consts.js';
+
 const extratoCliente = document.getElementById("lista_debitos");
 
 const getCookie = (name) => {
@@ -13,7 +17,7 @@ if (tokenAdmin || tokenAdminRefresh) {
 
         async function buscarDados() {
             try {
-                const resposta = await fetch(" https://api-buy-tech.onrender.com/operacoes/vendas/cashback/admin", {
+                const resposta = await fetch(`${config.API_URL}/operacoes/vendas/cashback/admin`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -138,7 +142,7 @@ if (tokenAdmin || tokenAdminRefresh) {
 async function listarDebitos() {
     if (tokenAdmin || tokenAdminRefresh) {
         try {
-            const resposta = await fetch(" https://api-buy-tech.onrender.com/operacoes/cashback/admin", {
+            const resposta = await fetch(`${config.API_URL}/operacoes/cashback/admin`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

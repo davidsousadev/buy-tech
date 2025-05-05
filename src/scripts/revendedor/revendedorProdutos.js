@@ -1,3 +1,7 @@
+// revendedorProdutos.js
+
+import * as config from '../consts.js';
+
 // Função para obter um cookie pelo nome
 const getCookie = (name) => {
     const value = `; ${document.cookie}`;
@@ -14,7 +18,7 @@ async function listarProdutos(editar) {
     if (!tokenRevendedor && !tokenRevendedorRefresh) return;
 
     try {
-        const response = await fetch('https://api-buy-tech.onrender.com/produtos', {
+        const response = await fetch(`${config.API_URL}/produtos`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -95,7 +99,7 @@ async function adicionarAoCarrinho(produtoId) {
     }
     async function authenticate() {
         try {
-            const response = await fetch('https://api-buy-tech.onrender.com/revendedores/autenticar', {
+            const response = await fetch(`${config.API_URL}/revendedores/autenticar`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -122,7 +126,7 @@ async function adicionarAoCarrinho(produtoId) {
     };
 
     try {
-        const response = await fetch(" https://api-buy-tech.onrender.com/carrinhos_revendedor", {
+        const response = await fetch(`${config.API_URL}/carrinhos_revendedor`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

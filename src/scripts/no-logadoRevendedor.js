@@ -1,3 +1,5 @@
+// no-logadoRevendedor.js
+
 // Função para obter o valor do cookie "authToken"
 const getCookie = (name) => {
   const value = `; ${document.cookie}`;

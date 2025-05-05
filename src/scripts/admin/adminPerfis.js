@@ -1,3 +1,7 @@
+// adminPerfis.js
+
+import * as config from '../consts.js';
+
 const getCookie = (name) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
@@ -9,9 +13,9 @@ const formCadastroCliente = document.getElementById('formCadastroCliente');
 
 async function listarPerfis(tipo, elementoId, editar = false) {
     const urls = {
-        admins: 'https://api-buy-tech.onrender.com/admins',
-        clientes: 'https://api-buy-tech.onrender.com/clientes/admin',
-        revendedores: 'https://api-buy-tech.onrender.com/revendedores'
+        admins: `${config.API_URL}/admins`,
+        clientes: `${config.API_URL}/clientes/admin`,
+        revendedores: `${config.API_URL}/revendedores`
     };
 
     if (tokenAdmin || tokenAdminRefresh) {
@@ -94,10 +98,10 @@ async function atualizarStatusUsuario(id, tipo) {
     try {
         // Define a URL corretamente para cada tipo
         const url = tipo === 'clientes'
-            ? `https://api-buy-tech.onrender.com/clientes/admin/atualizar_status/${id}`
+            ? `${config.API_URL}/clientes/admin/atualizar_status/${id}`
             : tipo === 'revendedores'
-                ? `https://api-buy-tech.onrender.com/revendedores/admin/atualizar_status/${id}`
-                : `https://api-buy-tech.onrender.com/${tipo}/atualizar_status/${id}`;
+                ? `${config.API_URL}/revendedores/admin/atualizar_status/${id}`
+                : `${config.API_URL}/${tipo}/atualizar_status/${id}`;
 
         const response = await fetch(url, {
             method: 'PATCH',

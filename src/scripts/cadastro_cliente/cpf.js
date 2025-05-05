@@ -1,3 +1,7 @@
+// cpf.js
+
+import * as config from '../consts.js';
+
 // Formatar CPF no formato 000.000.000-00
 export function formatarCPF(cpfInput) {
     let cpf = cpfInput.value.replace(/\D/g, '');
@@ -83,7 +87,7 @@ export function configurarEventosCPF() {
             // Verificação de duplicidade na API
             try {
 
-                const response = await fetch(`https://api-buy-tech.onrender.com/clientes/verificar-cpf?cpf=${somenteNumerosCPF(cpfInput)}`);
+                const response = await fetch(`${config.API_URL}/clientes/verificar-cpf?cpf=${somenteNumerosCPF(cpfInput)}`);
                 if (response.ok) {
                     const result = await response.json();
 

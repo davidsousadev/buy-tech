@@ -1,3 +1,7 @@
+// menu.js
+
+import * as config from '../consts.js';
+
 const opcoes_perfil = document.getElementById('opcoes_perfil');
 const itens_carrinho = document.getElementById('itens_carrinho');
 
@@ -15,7 +19,7 @@ async function listaItensCarrinho() {
 
     if (tokenCliente || tokenClienteRefresh) {
         try {
-            const response = await fetch('https://api-buy-tech.onrender.com/carrinhos', {
+            const response = await fetch(`${config.API_URL}/carrinhos`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -52,7 +56,7 @@ async function listaItensCarrinho() {
             for (const produto of resultadoItensCarrinho) {
                 if (produto.codigo.length != 6) {
                     try {
-                        const produtoResponse = await fetch(`https://api-buy-tech.onrender.com/produtos/${produto.produto_codigo}`, {
+                        const produtoResponse = await fetch(`${config.API_URL}/produtos/${produto.produto_codigo}`, {
                             method: 'GET',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -117,7 +121,7 @@ async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
     const novaQuantidade = document.getElementById(`quantidade_${produtoCodigo}`).value;
     if ((tokenCliente || tokenClienteRefresh) && novaQuantidade) {
         try {
-            const response = await fetch(`https://api-buy-tech.onrender.com/carrinhos/${codigoCarrinho}`, {
+            const response = await fetch(`${config.API_URL}/carrinhos/${codigoCarrinho}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -237,7 +241,7 @@ function pedido(qtd) {
     else {
         async function authenticate() {
             try {
-                const response = await fetch('https://api-buy-tech.onrender.com/clientes/autenticar', {
+                const response = await fetch(`${config.API_URL}/clientes/autenticar`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

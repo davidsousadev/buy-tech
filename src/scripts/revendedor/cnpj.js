@@ -1,4 +1,7 @@
 // cnpj.js
+
+import * as config from '../consts.js';
+
 // Formatar CNPJ no formato 00.000.000/0000-00
 export function formatarCNPJ(cnpjInput) {
     let cnpj = cnpjInput.value.replace(/\D/g, '');
@@ -99,7 +102,7 @@ export function configurarEventosCNPJ() {
         if (validarCNPJ(cnpjInput.value) && cnpjInput.value !== '') {
             // Verificação de duplicidade na API
             try {
-                const response = await fetch(`https://api-buy-tech.onrender.com/revendedores/verificar-cnpj?cnpj=${somenteNumerosCNPJ(cnpjInput)}`);
+                const response = await fetch(`${config.API_URL}/revendedores/verificar-cnpj?cnpj=${somenteNumerosCNPJ(cnpjInput)}`);
                 if (response.ok) {
                     const result = await response.json();
 

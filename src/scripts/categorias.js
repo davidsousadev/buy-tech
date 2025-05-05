@@ -1,4 +1,8 @@
-function listarProdutos() {
+//categorias.js
+
+import * as config from './consts.js';
+
+export function listarProdutos() {
     const lista_categorias_cliente = document.getElementById("lista_categorias_cliente");
 
     async function listagem() {
@@ -6,7 +10,7 @@ function listarProdutos() {
             const urlParams = new URLSearchParams(window.location.search);
             let queryString = urlParams.toString(); // Obtém os parâmetros da URL
 
-            const response = await fetch(`https://api-buy-tech.onrender.com/categorias?${queryString}`, {
+            const response = await fetch(`${config.API_URL}/categorias?${queryString}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -45,12 +49,12 @@ function listarProdutos() {
     listagem();
 }
 
-function verDetalhes(id) {
+export function verDetalhes(id) {
     window.location.href = `produto.html?id=${id}`;
 }
 
 // Função de logoutAdmin 
-function logoutAdmin(qtd) {
+export function logoutAdmin(qtd) {
     // Remove o cookie "authTokenAdmin e authTokenAdminRefresh"
     document.cookie = 'authTokenAdmin=; Max-Age=0; path=/;';
     document.cookie = 'authTokenAdminRefresh=; Max-Age=0; path=/;';

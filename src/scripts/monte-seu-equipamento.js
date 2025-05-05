@@ -1,3 +1,7 @@
+//monte-seu-equipamento.js
+
+import * as config from './consts.js';
+
 const formPC = document.getElementById('formPC');
 const tokenAdmin = getCookie('authTokenAdmin');
 const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
@@ -36,7 +40,7 @@ if (formPC) {
         }
 
         try {
-            const authResponse = await fetch('https://api-buy-tech.onrender.com/clientes/autenticar', {
+            const authResponse = await fetch(`${config.API_URL}/clientes/autenticar`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -54,7 +58,7 @@ if (formPC) {
             displayLoader(true);
             disableSubmitButton(true);
 
-            const response = await fetch(`https://api-buy-tech.onrender.com/emails/monteSeuEquipamento/${userId}`, {
+            const response = await fetch(`${config.API_URL}/emails/monteSeuEquipamento/${userId}`, {
                 method: 'POST',
                 body: JSON.stringify({
                     gabinete: gabinete,

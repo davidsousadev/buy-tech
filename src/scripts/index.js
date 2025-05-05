@@ -9,7 +9,7 @@ export function listarProdutos() {
         try {
             const urlParams = new URLSearchParams(window.location.search);
             let queryString = urlParams.toString(); // Obtém os parâmetros da URL
-
+            displayLoader(true);
             const response = await fetch(`${config.API_URL}/produtos?${queryString}`, {
                 method: 'GET',
                 headers: {
@@ -70,7 +70,7 @@ export function listarProdutos() {
             } else {
                 lista_produtos.innerHTML = '<p>Nenhum produto encontrado!</p>';
             }
-
+            displayLoader(false);
 
         } catch (error) {
             setTimeout(() => {
@@ -82,12 +82,12 @@ export function listarProdutos() {
     listagem();
 }
 
-function verDetalhes(id) {
+export function verDetalhes(id) {
     window.location.href = `produto.html?id=${id}`;
 }
 
 // Função de logoutAdmin 
-function logoutAdmin(qtd) {
+export function logoutAdmin(qtd) {
     // Remove o cookie "authTokenAdmin e authTokenAdminRefresh"
     document.cookie = 'authTokenAdmin=; Max-Age=0; path=/;';
     document.cookie = 'authTokenAdminRefresh=; Max-Age=0; path=/;';
@@ -105,7 +105,7 @@ function logoutAdmin(qtd) {
 };
 
 // Função de logoutRevendedor
-function logoutRevendedor(qtd) {
+export function logoutRevendedor(qtd) {
     // Remove o cookie "authTokenRevendedor e authTokenAdminRevendedor"
     document.cookie = 'authTokenRevendedor=; Max-Age=0; path=/;';
     document.cookie = 'authTokenRevendedorRefresh=; Max-Age=0; path=/;';
@@ -123,7 +123,7 @@ function logoutRevendedor(qtd) {
 };
 
 // Função de logout
-function logoutCliente(qtd) {
+export function logoutCliente(qtd) {
     // Remove o cookie "authTokenCliente e authTokenClienteRefresh"
     document.cookie = 'authTokenCliente=; Max-Age=0; path=/;';
     document.cookie = 'authTokenClienteRefresh=; Max-Age=0; path=/;';
@@ -139,5 +139,11 @@ function logoutCliente(qtd) {
         window.location.href = `${voltar}logar.html`; // Redireciona para a página de login       
     }
 };
-
+// Função para exibir/esconder o loader
+export const displayLoader = (isLoading) => {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.style.display = isLoading ? 'flex' : 'none';
+    }
+};
 window.listarProdutos = listarProdutos; 

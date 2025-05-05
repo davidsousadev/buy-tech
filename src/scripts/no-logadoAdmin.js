@@ -1,3 +1,5 @@
+//no-logadoAdmin.js
+
 // Função para obter o valor do cookie "authTokenAdmin"
 const getCookie = (name) => {
     const value = `; ${document.cookie}`;

@@ -1,3 +1,7 @@
+// email.js
+
+import * as config from '../consts.js';
+
 // Função de validação assíncrona para campos de formulário
 export const validateEmail = async () => {
     const emailInput = document.getElementById('email');
@@ -24,7 +28,7 @@ export const validateEmail = async () => {
         }
 
         try {
-            const response = await fetch(`https://api-buy-tech.onrender.com/clientes/verificar-email?${emailInput.name}=${value}`);
+            const response = await fetch(`${config.API_URL}/clientes/verificar-email?${emailInput.name}=${value}`);
             if (response.ok) {
                 emailInput.style.borderColor = 'green';
             } else {

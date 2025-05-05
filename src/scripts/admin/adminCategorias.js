@@ -1,3 +1,7 @@
+//adminCategorias.js
+
+import * as config from '../consts.js';
+
 const urlParams = new URLSearchParams(window.location.search);
 const idCategoria = urlParams.get("id");
 const formCadastroCategoria = document.getElementById('formCadastroCategoria');
@@ -16,7 +20,7 @@ function listarCategorias(editar) {
     if (tokenAdmin || tokenAdminRefresh) {
         async function authenticate() {
             try {
-                const response = await fetch('https://api-buy-tech.onrender.com/categorias', {
+                const response = await fetch('`${config.API_URL}/categorias', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -86,7 +90,7 @@ if (formCadastroCategoria) {
     if (idCategoria) {
         async function carregarCategoria() {
             try {
-                const response = await fetch(`https://api-buy-tech.onrender.com/categorias/${idCategoria}`, {
+                const response = await fetch(`${config.API_URL}/categorias/${idCategoria}`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`
@@ -116,7 +120,7 @@ if (formCadastroCategoria) {
             };
 
             try {
-                const response = await fetch(`https://api-buy-tech.onrender.com/categorias/${idCategoria}`, {
+                const response = await fetch(`${config.API_URL}/categorias/${idCategoria}`, {
                     method: 'PATCH',
                     body: JSON.stringify(formData),
                     headers: {
@@ -173,7 +177,7 @@ if (formCadastroCategoria) {
             }
 
             try {
-                const response = await fetch('https://api-buy-tech.onrender.com/categorias', {
+                const response = await fetch(`${config.API_URL}/categorias`, {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     headers: {

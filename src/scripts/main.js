@@ -1,4 +1,5 @@
-import * as consts from './consts.js';
+//main.js
+
 import { nomeValido } from './cadastro_cliente/nome.js';
 import { validateEmail } from './cadastro_cliente/email.js';
 import { configurarEventosCPF } from './cadastro_cliente/cpf.js';
