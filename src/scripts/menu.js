@@ -2,6 +2,8 @@
 
 import * as config from './consts.js';
 
+
+
 const opcoes_perfil = document.getElementById('opcoes_perfil');
 const itens_carrinho = document.getElementById('itens_carrinho');
 
@@ -14,7 +16,7 @@ function getCookie(name) {
 const tokenCliente = getCookie('authTokenCliente');
 const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
 
-async function listaItensCarrinho() {
+export async function listaItensCarrinho() {
 
     if (tokenCliente || tokenClienteRefresh) {
         try {
@@ -25,7 +27,7 @@ async function listaItensCarrinho() {
                     'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
                 },
             });
-            
+
             const resultadoItensCarrinho = await response.json();
             if (resultadoItensCarrinho.detail) {
                 if (resultadoItensCarrinho.detail === "Token expirado!") {
@@ -61,7 +63,7 @@ async function listaItensCarrinho() {
                                 'Content-Type': 'application/json',
                             },
                         });
-
+                        
                         const produtoDetalhes = await produtoResponse.json();
 
                         const li = document.createElement("li");
@@ -119,7 +121,7 @@ async function listaItensCarrinho() {
 
 }
 
-async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
+export async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
 
     const novaQuantidade = document.getElementById(`quantidade_${produtoCodigo}`).value;
     if ((tokenCliente || tokenClienteRefresh) && novaQuantidade) {
@@ -198,7 +200,7 @@ async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
     }
 }
 
-function buyCart() {
+export function buyCart() {
     if (tokenCliente || tokenClienteRefresh) {
         opcoes_perfil.style.display = 'none';
         if (itens_carrinho.style.display === 'block') {
@@ -220,7 +222,7 @@ function toggleDrawer() {
     }
 }
 
-function opcoes(qtd) {
+export function opcoes(qtd) {
     if (!tokenCliente || !tokenClienteRefresh) {
         if (qtd === 0) {
             var voltar = '.';
@@ -239,7 +241,7 @@ function opcoes(qtd) {
     }
 }
 
-function pedido(qtd) {
+export function pedido(qtd) {
     if (!tokenCliente || !tokenClienteRefresh) {
         window.location.href = 'logar.html';
     }
@@ -266,7 +268,7 @@ function pedido(qtd) {
                         for (var i = 0; i < qtd; i++) {
                             voltar += '../';
                         }
-                        
+
                         window.location.href = `${voltar}cliente/pedido.html?id=${result.id}`;
                     }
                 }

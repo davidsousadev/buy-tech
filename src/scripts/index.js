@@ -8,7 +8,7 @@ export function listarProdutos() {
     async function listagem() {
         try {
             const urlParams = new URLSearchParams(window.location.search);
-            let queryString = urlParams.toString(); // Obtém os parâmetros da URL
+            let queryString = urlParams.toString();
             displayLoader(true);
             const response = await fetch(`${config.API_URL}/produtos?${queryString}`, {
                 method: 'GET',
@@ -16,7 +16,7 @@ export function listarProdutos() {
                     'Content-Type': 'application/json'
                 },
             });
-
+            console.log(`${config.API_URL}/produtos?${queryString}`);
             const result = await response.json();
 
             lista_produtos.innerHTML = "";
