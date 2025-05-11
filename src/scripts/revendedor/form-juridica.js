@@ -56,7 +56,6 @@ export const handleFormSubmission = async () => {
             displayLoader(true);
             disableSubmitButton(true);
             try {
-                console.log(formData)
                 const response = await fetch(`${config.API_URL}/revendedores/cadastrar`, {
                     method: 'POST',
                     body: JSON.stringify(formData),
@@ -148,7 +147,7 @@ export const handleFormSubmission = async () => {
             displayLoader(true);
             disableSubmitButton(true);
             try {
-                console.table(formData)
+                
                 const response = await fetch(`${config.API_URL}/revendedores/atualizar`, {
                     method: 'PATCH',
                     body: JSON.stringify(formData),

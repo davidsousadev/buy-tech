@@ -3,7 +3,7 @@ const URL = "https://davidsousaplay.pythonanywhere.com/items";
 async function listar(){
     request = await fetch(URL);
     dados = await request.json();
-    console.table(dados);
+    
     
     for (x=0; x<dados.length; x++)
     lista.innerHTML += `

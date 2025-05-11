@@ -67,9 +67,9 @@
       </div>
     </div>
     <div class="icones">
-      <a href="#" onclick="buyCart()" id="btnCart"><i class='bx bx-cart'></i></a>
+      <a href="#" id="btnCart"><i class='bx bx-cart'></i></a>
       <a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a>
-      <a href="#" onclick="opcoes()" id="btnLogin"><i class='bx bx-user' id="avatar"></i>
+      <a href="#" id="btnLogin"><i class='bx bx-user' id="avatar"></i>
     </div>
     </a>
     <h5>Indicações</h5>
@@ -77,16 +77,16 @@
   <main>
     <div class="destaques"></div>
     <div class="container">
-        <h3>Copie seu link de indicação</h3>
-         <!-- Exibição do link de indicação -->
-    <div>
+      <h3>Copie seu link de indicação</h3>
+      <!-- Exibição do link de indicação -->
+      <div>
         <p>Link de Indicação: <span id="link_de_indicacao_texto">Carregando link...</span></p>
-    </div>
+      </div>
 
-    <!-- Botão para copiar o link -->
-    <div>
-        <button id="copiar_link" onclick="copiarCodigo()">Copiar Link</button>
-    </div>
+      <!-- Botão para copiar o link -->
+      <div>
+        <button id="copiar_link">Copiar Link</button>
+      </div>
       <div id="cards">
         <ul>
           <a href="index.html"><i class='bx bx-arrow-back'></i>
@@ -108,7 +108,7 @@
           <li>Saldo: R$ <span id="saldo"></span></li>
           <li><a href="index.html">Gerenciar Conta</a></li>
           <li><a href="atualizar-perfil.html">Atualizar Perfil</a></li>
-          <li><a href="indicacoes.html">Indicações</a></li> 
+          <li><a href="indicacoes.html">Indicações</a></li>
           <li><a href="pedidos.html">Pedidos</a></li>
           <li><button onclick="logoutCliente(1)">Sair</button></li>
         </ul>
@@ -117,9 +117,9 @@
   </main>
   <footer>Contato: <a href="email:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-  <script src="../src/scripts/index.js" defer></script>
-  <script src="../src/scripts/menu.js" defer></script>
-  <script src="../src/scripts/cliente/linkDeIndicacao.js" defer></script>
+  <script type="module" src="../src/scripts/index.js" defer></script>
+  <script type="module" src="../src/scripts/menu.js" defer></script>
+  <script type="module" src="../src/scripts/cliente/linkDeIndicacao.js" defer></script>
   <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
 </body>
 

@@ -48,7 +48,7 @@
   <link rel="stylesheet" href="../../src/styles/style.css">
   <link rel="stylesheet" href="../../src/styles/menu.css">
 
-  
+
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
   <!-- Scripts -->
@@ -70,8 +70,8 @@
     </div>
     <div class="icones">
       <a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a><a href="#"><i class='bx ' id="exit"
-              onclick="logoutRevendedor(0)"></i></a>
-  </div>
+          onclick="logoutRevendedor(0)"></i></a>
+    </div>
     </div>
     </a>
   </header>
@@ -85,56 +85,55 @@
       <h2>Atualize sua conta - Revendedor</h2>
       <form id="formCadastroPessoaJuridicaAtualizado">
         <table>
-            <tr>
-                <!-- Primeira coluna -->
-                <td>
-                    <label for="razaoSocial">Razão Social:</label>
-                    <input type="text" id="razaoSocial" name="razaoSocial" placeholder="Digite a razão social"
-                        required>
+          <tr>
+            <!-- Primeira coluna -->
+            <td>
+              <label for="razaoSocial">Razão Social:</label>
+              <input type="text" id="razaoSocial" name="razaoSocial" placeholder="Digite a razão social" required>
 
-                    <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+              <label for="email">E-mail:</label>
+              <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
 
-                    <label for="password">Senha:</label>
-                    <input type="password" id="password" name="password" placeholder="Digite sua senha"
-                        required>
+              <label for="password">Senha:</label>
+              <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
 
-                    <label for="confirmPassword">Confirmar Senha:</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword"
-                        placeholder="Confirme sua senha" required>
-                    
-                </td>
+              <label for="confirmPassword">Confirmar Senha:</label>
+              <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirme sua senha"
+                required>
 
-                <!-- Segunda coluna -->
-                <td>
-                    <label for="cnpj">CNPJ:</label>
-                    <input type="text" id="cnpj" name="cnpj" maxlength="18" placeholder="00.000.000/0000-00" required>
+            </td>
 
-                    <label for="inscricao_estadual">Inscrição Estadual:</label>
-                    <input type="text" id="inscricao_estadual" name="inscricao_estadual" maxlength="9"
-                        placeholder="Digite a inscrição estadual" required>
+            <!-- Segunda coluna -->
+            <td>
+              <label for="cnpj">CNPJ:</label>
+              <input type="text" id="cnpj" name="cnpj" maxlength="18" placeholder="00.000.000/0000-00" required>
 
-                    <label for="telefone">Telefone:</label>
-                    <input type="text" id="telefone" name="telefone"  maxlength="15" pattern="\(\d{2}\) \d\.\d{4}-\d{4}" placeholder="(99) 99999-9999" required>
+              <label for="inscricao_estadual">Inscrição Estadual:</label>
+              <input type="text" id="inscricao_estadual" name="inscricao_estadual" maxlength="9"
+                placeholder="Digite a inscrição estadual" required>
 
-                    <button type="submit" id="submitButton">Atualizar</button>
-                </td>
-            </tr>
+              <label for="telefone">Telefone:</label>
+              <input type="text" id="telefone" name="telefone" maxlength="15" pattern="\(\d{2}\) \d\.\d{4}-\d{4}"
+                placeholder="(99) 99999-9999" required>
+
+              <button type="submit" id="submitButton">Atualizar</button>
+            </td>
+          </tr>
         </table>
-    </form>
-    <div id="cards">
-      <ul>
-        <a href="index.html"><i class='bx bx-arrow-back'></i>
-          <li>Voltar</li>
-        </a>
-      </ul>
-    </div>
+      </form>
+      <div id="cards">
+        <ul>
+          <a href="index.html"><i class='bx bx-arrow-back'></i>
+            <li>Voltar</li>
+          </a>
+        </ul>
+      </div>
     </div>
     <div class="opcoes">
       <div class="itens_carrinho" id="itens_carrinho">
         <ul>
           <p id="lista_itens"></p>
-          <li><button onclick="pedido()" id="finalizar_pedido">Finalizar Pedido</button></li>
+          <li><button id="finalizar_pedido">Finalizar Pedido</button></li>
         </ul>
       </div>
       <div class="opcoes_perfil" id="opcoes_perfil">
@@ -151,9 +150,9 @@
   </main>
   <footer>Contato: <a href="email:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-  <script src="../../src/scripts/index.js" defer></script>
-  <script src="../../src/scripts/menu.js" defer></script>
-  <script src="../../src/scripts/revendedor/atualizarCadastroRevendedor.js" defer></script>
+  <script type="module" src="../../src/scripts/index.js" defer></script>
+  <script type="module" src="../../src/scripts/menu.js" defer></script>
+  <script type="module" src="../../src/scripts/revendedor/atualizarCadastroRevendedor.js" defer></script>
   <script type="module" src="../../src/scripts/revendedor/pessoa-juridica.js"></script>
   <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
 </body>

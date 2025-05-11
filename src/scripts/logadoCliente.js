@@ -28,7 +28,6 @@ if (tokenCliente || tokenClienteRefresh) {
 
             if (response.ok) {
                 const result = await response.json();
-                // console.table(result)
                 const saldo = document.getElementById('saldo');
                 saldo.innerHTML = result.pontos_fidelidade.toFixed(2);
             }
@@ -44,7 +43,23 @@ if (tokenCliente || tokenClienteRefresh) {
     authenticate();
 }
 
-
+// Função de logout
+export function logoutCliente(qtd) {
+  // Remove os cookies "authTokenCliente e authTokenClienteRefresh"
+  document.cookie = 'authTokenCliente=; Max-Age=0; path=/;';
+  document.cookie = 'authTokenClienteRefresh=; Max-Age=0; path=/;';
+  if (qtd === 0) {
+    var voltar = '.';
+    window.location.href = `${voltar}/logar.html`; // Redireciona para a página de login
+  }
+  else {
+    var voltar = '';
+    for (var i = 0; i < qtd; i++) {
+      voltar += '../';
+    }
+    window.location.href = `${voltar}logar.html`; // Redireciona para a página de login       
+  }
+};
 
 const themeToggleButton = document.getElementById('theme-toggle');
 

@@ -261,7 +261,7 @@ function pedido(qtd) {
                         for (var i = 0; i < qtd; i++) {
                             voltar += '../';
                         }
-                        console.log(`${voltar}cliente/pedido.html?id=${result.id}`)
+                        
                         window.location.href = `${voltar}cliente/pedido.html?id=${result.id}`;
                     }
                 }

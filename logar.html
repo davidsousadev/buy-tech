@@ -62,12 +62,12 @@
       <a href="index.html">
         <h1>BUY TECH</h1>
       </a>
-      
+
     </div>
     <div class="icones">
-      <a href="#" onclick="buyCart()" id="btnCart"><i class='bx bx-cart'></i></a>
+      <a href="#" id="btnCart"><i class='bx bx-cart'></i></a>
       <a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a>
-      <a href="#" onclick="opcoes()" id="btnLogin"><i class='bx bx-user' id="avatar"></i>
+      <a href="#" id="btnLogin"><i class='bx bx-user' id="avatar"></i>
     </div>
     </a>
   </header>
@@ -85,22 +85,23 @@
           <option value="cliente" selected>Cliente</option>
           <option value="admin">Admin</option>
           <option value="revendedor">Revendedor</option>
-          
+
         </select>
 
         <input type="submit" id="submitButton" name="entrar" value="Login">
       </form>
       <div id="recuperarSenha">
-        <a href="recuperar_senha_e_email.html" class="recuperarSenha"><button id="recuperar" >Esqueceu a senha ou e-mail?</button></a>
+        <a href="recuperar_senha_e_email.html" class="recuperarSenha"><button id="recuperar">Esqueceu a senha ou
+            e-mail?</button></a>
       </div>
-      
+
       <a href="cadastrar.html" class="btn_logar">Crie sua conta</a>
     </div>
   </main>
 
   <footer>Contato: <a href="mailto:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></footer>
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-  <script type="module" src="src/scripts/login.js"></script>
+  <script defer type="module" src="src/scripts/login.js"></script>
   <script defer src="https://libsme.vercel.app/src/notify/v3/index.js" type="module"></script>
 
 </body>

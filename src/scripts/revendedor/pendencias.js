@@ -49,7 +49,7 @@ async function extrato() {
             });
 
             const result = await response.json();
-            console.log(result);
+            
             listaDePedidos.innerHTML = "";
 
             if (result && result.length > 0) {
@@ -113,7 +113,7 @@ async function pagarPedido(tokenDePagamento) {
             });
 
             const result = await response.json();
-            console.log(result)
+            
             if (result.detail === 'Pagamento não realizado, pontos fidelidade insuficientes!') {
                 mostrarNotificacao("Pagamento não realizado, pontos fidelidade insuficientes!", {
                     cor: "#F44336",

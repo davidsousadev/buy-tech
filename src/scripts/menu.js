@@ -2,10 +2,13 @@
 
 import * as config from './consts.js';
 
-
-
 const opcoes_perfil = document.getElementById('opcoes_perfil');
 const itens_carrinho = document.getElementById('itens_carrinho');
+
+document.getElementById('btnCart').addEventListener('click', buyCart);
+document.getElementById('btnLogin').addEventListener('click', opcoes);
+document.getElementById('finalizar_pedido').addEventListener('click', pedido);
+
 
 function getCookie(name) {
     const value = `; ${document.cookie}`;

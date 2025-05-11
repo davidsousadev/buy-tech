@@ -33,7 +33,6 @@ async function listarProdutos(editar) {
         lista_de_produtos_admin.innerHTML = "";
 
         if (result.length === 0) {
-            console.log("Nenhum produto encontrado.");
             return;
         }
 

@@ -42,7 +42,7 @@ export function listarProdutos() {
         } catch (error) {
             setTimeout(() => {
                 listarProdutos();
-            }, 100);
+            }, 10000);
         }
     }
 
@@ -55,7 +55,7 @@ export function verDetalhes(id) {
 
 // Função de logoutAdmin 
 export function logoutAdmin(qtd) {
-    // Remove o cookie "authTokenAdmin e authTokenAdminRefresh"
+    // Remove os cookies "authTokenAdmin e authTokenAdminRefresh"
     document.cookie = 'authTokenAdmin=; Max-Age=0; path=/;';
     document.cookie = 'authTokenAdminRefresh=; Max-Age=0; path=/;';
     if (qtd === 0) {

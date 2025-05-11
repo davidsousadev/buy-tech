@@ -33,7 +33,7 @@ if (tokenRevendedor || tokenRevendedorRefresh) {
     } catch (error) {
       setTimeout(() => {
         authenticate();
-    }, 100);
+    }, 10000);
     }
   }
 

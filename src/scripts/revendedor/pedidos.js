@@ -100,7 +100,7 @@ async function extrato() {
 
 
 async function pagarPedido(tokenDePagamento) {
-    console.log(tokenDePagamento);
+    
     if (tokenRevendedor || tokenRevendedorRefresh) {
         try {
             const response = await fetch(`${config.API_URL}/operacoes_revendedor/pagamentos/${tokenDePagamento}`, {

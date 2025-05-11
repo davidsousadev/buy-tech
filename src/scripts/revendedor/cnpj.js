@@ -28,7 +28,7 @@ export function somenteNumerosCNPJ(cnpjInput) {
 
 // Validar CNPJ
 export function validarCNPJ(cnpj) {
-    //console.log("CNPJ recebido:", cnpj); // Verifica o valor recebido
+
     if (!cnpj) {
         console.error("Erro: CNPJ está undefined ou vazio.");
         return false;

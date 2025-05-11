@@ -144,7 +144,7 @@ export const handleFormSubmission = async () => {
                 displayLoader(true);
                 disableSubmitButton(true);
                 try {
-                    console.table(formData)
+
                     const response = await fetch(`${config.API_URL}/admins/atualizar`, {
                         method: 'PATCH',
                         body: JSON.stringify(formData),

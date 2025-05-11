@@ -1,3 +1,5 @@
+<!-- index.html -->
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -68,15 +70,15 @@
       </div>
     </div>
     <div class="icones">
-      <a href="#" onclick="buyCart()" id="btnCart"><i class='bx bx-cart'></i></a>
+      <a href="#" id="btnCart"><i class='bx bx-cart'></i></a>
       <a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a>
-      <a href="#" onclick="opcoes()" id="btnLogin"><i class='bx bx-user' id="avatar"></i>
+      <a href="#" id="btnLogin"><i class='bx bx-user' id="avatar"></i>
     </div>
     </a>
   </header>
   <div id="loader" class="loader"><img src="src/imagens/loading.gif" alt="Carregando"></div>
   <main>
-    
+
     <div class="banner">
       <nav>
         <ul>
@@ -96,7 +98,7 @@
           <span>Monte seu PC Gamer</span>
         </div>
       </a>
-      
+
     </div>
     <div class="container">
       <ul id="lista_produtos"></ul>
@@ -105,7 +107,7 @@
       <div class="itens_carrinho" id="itens_carrinho">
         <ul>
           <p id="lista_itens"></p>
-          <li><button onclick="pedido()" id="finalizar_pedido">Finalizar Pedido</button></li>
+          <li><button id="finalizar_pedido">Finalizar Pedido</button></li>
         </ul>
       </div>
       <div class="opcoes_perfil" id="opcoes_perfil">
@@ -113,7 +115,7 @@
           <li>Saldo: R$ <span id="saldo"></span></li>
           <li><a href="cliente/index.html">Gerenciar Conta</a></li>
           <li><a href="cliente/atualizar-perfil.html">Atualizar Perfil</a></li>
-          <li><a href="cliente/indicacoes.html">Indicações</a></li> 
+          <li><a href="cliente/indicacoes.html">Indicações</a></li>
           <li><a href="cliente/pedidos.html">Pedidos</a></li>
           <li><button onclick="logoutCliente(0)">Sair</button></li>
         </ul>

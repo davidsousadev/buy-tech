@@ -1,13 +1,21 @@
-//detalhesProduto.js
-
+// detalhesProduto.js
 import * as config from './consts.js';
+
+function getCookie(nome) {
+    const valor = `; ${document.cookie}`;
+    const partes = valor.split(`; ${nome}=`);
+    if (partes.length === 2) return partes.pop().split(';').shift();
+    return null;
+}
 
 const urlParams = new URLSearchParams(window.location.search);
 const idCarrinho = urlParams.get("id");
 
 async function carregarDetalhesProduto() {
+    const container = document.getElementById("detalhesProduto");
+
     if (!idCarrinho) {
-        document.getElementById("detalhesProduto").innerHTML = "<p>Produto não encontrado!</p>";
+        container.innerHTML = "<p>Produto não encontrado!</p>";
         return;
     }
 
@@ -23,67 +31,142 @@ async function carregarDetalhesProduto() {
 
         const produto = await response.json();
         const promoClass = produto.status ? "promo" : "";
-        document.getElementById("detalhesProduto").innerHTML = `
+        const precoOriginal = (produto.preco + produto.preco / 20).toFixed(2);
+        const precoFormatado = produto.preco.toFixed(2);
+
+        container.innerHTML = `
             <div class="produto-detalhes ${promoClass}">
                 <img src="${produto.foto}" alt="${produto.nome}" class="produto-imagem">
                 <div class="produto-info">
                     <h2>${produto.nome}</h2>
                     <p><strong>Marca:</strong> ${produto.marca}</p>
                     <p><strong>Descrição:</strong> ${produto.descricao}</p>
-                    <p class="descontoDe"><strong>De:</strong> R$ ${parseFloat((produto.preco + produto.preco / 20).toFixed(2))}</p>
-                    <p><strong>Preço:</strong> R$ ${produto.preco}</p>
+                    <p class="descontoDe"><strong>De:</strong> R$ ${precoOriginal}</p>
+                    <p><strong>Preço:</strong> R$ ${precoFormatado}</p>
                     <label for="quantidade">Quantidade:</label>
-                    <input type="number" id="quantidade" min="0" value="1">
-                    <button class="btn" onclick="adicionarAoCarrinho(${produto.id})">Adicionar ao Carrinho</button>
+                    <input type="number" id="quantidade" min="1" value="1">
+                    <button class="btn" id="btnAdicionarCarrinho">Adicionar ao Carrinho</button>
                 </div>
             </div>
         `;
+
+        document.getElementById("btnAdicionarCarrinho").addEventListener("click", () => {
+            adicionarAoCarrinho(produto.id);
+        });
+
     } catch (error) {
-        setTimeout(() => {
-            carregarDetalhesProduto();
-        }, 1000);
+        mostrarNotificacao("Erro ao carregar item!", {
+            cor: "#F44336",
+            duracao: 4000,
+            movimentoEntrada: "deslizar",
+            movimentoSaida: "esvair",
+            posicao: "bottom-right"
+        });
+        setTimeout(carregarDetalhesProduto, 10000);
     }
 }
 
 export async function adicionarAoCarrinho(produtoId) {
-    const tokenCliente = getCookie('authTokenCliente'); 
+    const tokenCliente = getCookie('authTokenCliente');
     const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
-    const quantidade = document.getElementById("quantidade").value;
+    const quantidadeInput = document.getElementById("quantidade");
+    const quantidade = quantidadeInput ? parseInt(quantidadeInput.value) : 0;
 
-    if (!tokenCliente || !tokenClienteRefresh) {
+    if (!tokenCliente && !tokenClienteRefresh) {
         window.location.href = 'logar.html';
+        return;
     }
 
-    const data = {
-        produto_codigo: produtoId,
-        cliente_id: 1, 
-        quantidade: parseInt(quantidade)
-    };
+    async function clienteData() {
+        const avatar = document.getElementById('avatar');
+        if (avatar) {
+            avatar.classList.remove('bx-user');
+            avatar.classList.add('bxs-user-circle');
+        }
 
-    try {
-        const response = await fetch(`${config.API_URL}/carrinhos`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${tokenCliente || tokenClienteRefresh}`
-            },
-            body: JSON.stringify(data)
-        });
+        async function authenticate() {
+            try {
+                const response = await fetch(`${config.API_URL}/clientes/autenticar`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
+                    },
+                });
 
-        if (response.ok) {
-            mostrarNotificacao("Produto adicionado ao carrinho!", {
-                cor: "#4CAF50",
+                if (response.ok) {
+                    const result = await response.json();
+                    return result.id;
+                } else {
+                    return null;
+                }
+
+            } catch {
+                return null;
+            }
+        }
+
+        return await authenticate();
+    }
+
+    const clienteId = await clienteData();
+
+    if (clienteId !== null) {
+        if (!produtoId || quantidade < 1) {
+            mostrarNotificacao("Dados inválidos para adicionar ao carrinho", {
+                cor: "#F44336",
                 duracao: 4000,
                 movimentoEntrada: "deslizar",
                 movimentoSaida: "esvair",
                 posicao: "bottom-right"
             });
-            setTimeout(() => {
-                location.reload();
-            }, 3000);
-        } else {
-            const errorData = await response.json();
-            mostrarNotificacao(errorData.detail, {
+            return;
+        }
+
+        const data = {
+            produto_codigo: produtoId,
+            cliente_id: clienteId,
+            quantidade: quantidade
+        };
+
+        try {
+            const response = await fetch(`${config.API_URL}/carrinhos`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${tokenCliente || tokenClienteRefresh}`
+                },
+                body: JSON.stringify(data)
+            });
+
+            let result = {};
+            try {
+                result = await response.json();
+            } catch {
+                result = {};
+            }
+
+            if (response.ok) {
+                mostrarNotificacao("Produto adicionado ao carrinho!", {
+                    cor: "#4CAF50",
+                    duracao: 4000,
+                    movimentoEntrada: "deslizar",
+                    movimentoSaida: "esvair",
+                    posicao: "bottom-right"
+                });
+                setTimeout(() => { location.reload(); }, 3000);
+            } else {
+                mostrarNotificacao(result.detail || "Erro ao adicionar ao carrinho", {
+                    cor: "#F44336",
+                    duracao: 4000,
+                    movimentoEntrada: "deslizar",
+                    movimentoSaida: "esvair",
+                    posicao: "bottom-right"
+                });
+            }
+
+        } catch {
+            mostrarNotificacao("Erro ao adicionar ao carrinho", {
                 cor: "#F44336",
                 duracao: 4000,
                 movimentoEntrada: "deslizar",
@@ -91,12 +174,7 @@ export async function adicionarAoCarrinho(produtoId) {
                 posicao: "bottom-right"
             });
         }
-    } catch (error) {
-        setTimeout(() => {
-            adicionarAoCarrinho(produtoId)
-        }, 1000);
     }
 }
 
-// Chamar a função ao carregar a página
 carregarDetalhesProduto();

@@ -1,10 +1,19 @@
 // pedidos.js
 
-import * as config from './consts.js';
+import * as config from '../consts.js';
+
+const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+};
+
+const tokenCliente = getCookie('authTokenCliente');
+const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
 
 const listaDePedidos = document.getElementById("listaDePedidos");
 
-async function cancelarPedido(id) {
+export async function cancelarPedido(id) {
     try {
         const response = await fetch(`${config.API_URL}/pedidos/${id}`, {
             method: 'PATCH',
@@ -35,7 +44,7 @@ async function cancelarPedido(id) {
 }
 
 
-async function extrato() {
+export async function extrato() {
     if (tokenCliente || tokenClienteRefresh) {
         try {
             const response = await fetch(`${config.API_URL}/pedidos`, {
@@ -103,7 +112,7 @@ async function extrato() {
 }
 
 
-async function pagarPedido(tokenDePagamento) {
+export async function pagarPedido(tokenDePagamento) {
     if (tokenCliente || tokenClienteRefresh) {
         try {
             const response = await fetch(`${config.API_URL}/operacoes/pagamentos/${tokenDePagamento}`, {

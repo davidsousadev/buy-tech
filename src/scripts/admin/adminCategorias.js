@@ -187,7 +187,7 @@ if (formCadastroCategoria) {
                 });
 
                 const result = await response.json();
-                console.log('Resposta da API:', result);
+                
 
                 if (response.ok) {
                     mostrarNotificacao("Cadastro realizado com sucesso!", {

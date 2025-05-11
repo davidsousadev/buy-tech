@@ -47,23 +47,6 @@ async function authenticate() {
     return null;
 }
 
-function logoutCliente(qtd) {
-    // Remove o cookie "authToken"
-
-    if (qtd === 0) {
-        var voltar = '.';
-        window.location.href = `${voltar}/logar.html`; // Redireciona para a página de login
-    }
-    else {
-        var voltar = '';
-        for (var i = 0; i < qtd; i++) {
-            voltar += '../';
-        }
-        window.location.href = `${voltar}logar.html`; // Redireciona para a página de login       
-    }
-};
-
-
 document.getElementById('formCadastroPedido').addEventListener('submit', async (event) => {
     event.preventDefault(); // Evita o envio padrão do formulário
 
@@ -75,7 +58,7 @@ document.getElementById('formCadastroPedido').addEventListener('submit', async (
         opcao_de_pagamento: document.getElementById('opcao_de_pagamento').value // Boolean 
     };
 
-    console.table(formData); // Verifica os valores
+    
 
     // Validação de campos obrigatórios
     if (!formData.revendedor_id || formData.opcao_de_pagamento === "") {
@@ -313,3 +296,5 @@ const disableSubmitButton = (isDisabled) => {
 
 // Chama a funções ao iniciar
 listaItensCarrinho();
+
+window.logoutCliente = logoutCliente;

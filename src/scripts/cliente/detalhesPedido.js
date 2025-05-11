@@ -1,6 +1,6 @@
 //detalhesPedido.js
 
-import * as config from './consts.js';
+import * as config from '../consts.js';
 
 const getCookie = (name) => {
     const value = `; ${document.cookie}`;
@@ -13,9 +13,10 @@ const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
 var descontoAplicado = false;
 var freteCalculado = false;
 var precoFrete = 0;
+var totalCarrinho = 0;
 
 const opcoes_perfil = document.getElementById('opcoes_perfil');
-const itens_carrinho = document.getElementById('itens_carrinho');
+const lista_itens = document.getElementById('lista_itens');
 const verifica_cupom_de_desconto = document.getElementById('verifica_cupom_de_desconto');
 
 const formCadastroPedido = document.getElementById('formCadastroPedido');
@@ -23,7 +24,7 @@ const totalPedido = document.getElementById('totalPedido');
 const valor_cupom_desconto = document.getElementById('valor_cupom_desconto');
 const campoCEP = document.getElementById('campoCEP');
 
-async function authenticate() {
+export async function authenticate() {
     try {
         const response = await fetch(`${config.API_URL}/clientes/autenticar`, {
             method: 'GET',
@@ -34,6 +35,7 @@ async function authenticate() {
         });
 
         const result = await response.json();
+
 
         if (response.ok && result && result.cep) {
             const cepFormatado = typeof result.cep === 'string'
@@ -54,8 +56,26 @@ async function authenticate() {
     }
     return null;
 }
-
-function toggleDrawer() {
+document.getElementById('btnLogin').addEventListener('click', opcoes);
+export function opcoes(qtd) {
+    if (!tokenCliente || !tokenClienteRefresh) {
+        if (qtd === 0) {
+            var voltar = '.';
+            window.location.href = `${voltar}/logar.html`; // Redireciona para a página de login
+        }
+        else {
+            var voltar = '';
+            for (var i = 0; i < qtd; i++) {
+                voltar += '../';
+            }
+            window.location.href = `${voltar}logar.html`; // Redireciona para a página de login       
+        }
+    }
+    else {
+        toggleDrawer();
+    }
+}
+export function toggleDrawer() {
 
     if (tokenCliente || tokenClienteRefresh) {
         if (opcoes_perfil.style.display === 'block') {
@@ -66,46 +86,10 @@ function toggleDrawer() {
     }
 }
 
-function logoutCliente(qtd) {
-    // Remove o cookie "authToken"
-
-    if (qtd === 0) {
-        var voltar = '.';
-        window.location.href = `${voltar}/logar.html`; // Redireciona para a página de login
-    }
-    else {
-        var voltar = '';
-        for (var i = 0; i < qtd; i++) {
-            voltar += '../';
-        }
-        window.location.href = `${voltar}logar.html`; // Redireciona para a página de login       
-    }
-};
-
-export function opcoes(qtd) {
-
-    if (!tokenCliente || !tokenClienteRefresh) {
-        if (qtd === 0) {
-            var voltar = '.';
-            window.location.href = `${voltar}/index.html`; // Redireciona para a página de login
-        }
-        else {
-            var voltar = '';
-            for (var i = 0; i < qtd; i++) {
-                voltar += '../';
-            }
-            window.location.href = `${voltar}index.html`; // Redireciona para a página de login       
-        }
-    }
-    else {
-        toggleDrawer();
-    }
-}
-
-document.getElementById('formCadastroPedido').addEventListener('submit', async (event) => {
+formCadastroPedido.addEventListener('submit', async (event) => {
     event.preventDefault(); // Evita o envio padrão do formulário
     const idAutenticado = await authenticate(); // Aguarda a autenticação
-    
+
     if (precoFrete === 0) {
         mostrarNotificacao("Calcule o frete.", {
             cor: "#F44336",
@@ -124,7 +108,7 @@ document.getElementById('formCadastroPedido').addEventListener('submit', async (
         opcao_de_pagamento: document.getElementById('opcao_de_pagamento').value // Boolean 
     };
 
-    //console.table(formData); // Verifica os valores
+
 
     // Validação de campos obrigatórios
     if (!formData.cliente || formData.opcao_de_pagamento === "") {
@@ -341,7 +325,7 @@ verifica_frete.addEventListener('click', async () => {
     }
 });
 
-async function listaItensCarrinho() {
+export async function listaItensCarrinho() {
 
     if (tokenCliente || tokenClienteRefresh) {
         try {
@@ -354,6 +338,7 @@ async function listaItensCarrinho() {
             });
 
             const resultadoItensCarrinho = await response.json();
+
             if (resultadoItensCarrinho.detail) {
                 if (resultadoItensCarrinho.detail === "Token expirado!") {
                     window.location.href = './logar.html';
@@ -366,7 +351,7 @@ async function listaItensCarrinho() {
             }
 
             lista_itens.innerHTML = "";
-            totalCarrinho = 0; // Reinicia o total do carrinho
+
             var quantidadeDeProdutos = 0;
             for (const produto of resultadoItensCarrinho) {
                 if (produto.codigo.length != 6) {
@@ -429,7 +414,7 @@ async function listaItensCarrinho() {
     }
 }
 
-async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
+export async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
 
     const novaQuantidade = document.getElementById(`quantidade_${produtoCodigo}`).value;
     if ((tokenCliente || tokenClienteRefresh) && novaQuantidade) {
@@ -503,12 +488,12 @@ async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
         } catch (error) {
             setTimeout(() => {
                 atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente);
-                }, 1000);
+            }, 1000);
         }
     }
 }
 
-function atualizaTotalPedido() {
+export function atualizaTotalPedido() {
     totalPedido.innerHTML = `${totalCarrinho.toFixed(2)}`;
 }
 
@@ -530,3 +515,5 @@ const disableSubmitButton = (isDisabled) => {
 
 // Chama a funções ao iniciar
 listaItensCarrinho();
+
+window.listaItensCarrinho = listaItensCarrinho;

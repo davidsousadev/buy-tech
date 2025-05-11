@@ -53,8 +53,6 @@ function listarProdutos(editar) {
 
                         lista_de_produtos_admin.appendChild(li);
                     });
-                } else {
-                    console.log("Nenhuma produto encontrada");
                 }
             } catch (error) {
                 setTimeout(() => {
@@ -217,7 +215,6 @@ if (formCadastroProdutoAdmin) {
                     });
 
                     const result = await response.json();
-                    console.log('Resposta da API:', result);
 
                     if (response.ok) {
                         mostrarNotificacao("Produto cadastrado com sucesso!", {

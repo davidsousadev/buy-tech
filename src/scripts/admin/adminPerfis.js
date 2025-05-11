@@ -61,8 +61,6 @@ async function listarPerfis(tipo, elementoId, editar = false) {
                     listarElemento.appendChild(li);
                 });
 
-            } else {
-                console.log(`Nenhum usuário encontrado para ${tipo}`);
             }
         } catch (error) {
             setTimeout(() => {

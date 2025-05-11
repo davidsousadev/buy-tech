@@ -50,6 +50,4 @@ if (tokenCliente || tokenClienteRefresh) {
 
     // Chama a função de autenticação
     authenticate();
-} else {
-    console.log('Token não encontrado');
-}
+} 

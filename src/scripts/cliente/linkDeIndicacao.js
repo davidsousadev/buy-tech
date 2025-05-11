@@ -6,8 +6,18 @@ const linkDeIndicacaoTexto = document.getElementById('link_de_indicacao_texto');
 const copiarLinkBtn = document.getElementById('copiar_link');
 const notificacao = document.getElementById('notificacao');
 
+const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+};
+
+const tokenCliente = getCookie('authTokenCliente');
+const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
+document.getElementById('copiar_link').addEventListener('click', copiarCodigo);
+
 // Função para copiar o código do link
-function copiarCodigo() {
+export function copiarCodigo() {
     const codigo = linkDeIndicacaoTexto.innerText;
     navigator.clipboard.writeText(codigo).then(() => {
         mostrarNotificacao("Link copiado com sucesso!", {
@@ -50,6 +60,4 @@ if (tokenCliente || tokenClienteRefresh) {
 
     // Chama a função de autenticação
     authenticate();
-} else {
-    console.log('Token não encontrado');
-}
+} 
