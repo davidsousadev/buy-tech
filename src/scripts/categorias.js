@@ -2,7 +2,7 @@
 
 import * as config from './consts.js';
 
-export function listarProdutos() {
+export function listarCategorias() {
     const lista_categorias_cliente = document.getElementById("lista_categorias_cliente");
 
     async function listagem() {
@@ -70,3 +70,6 @@ export function logoutAdmin(qtd) {
         window.location.href = `${voltar}index.html`; // Redireciona para a página de login       
     }
 };
+
+listarCategorias();
+window.listarCategorias = listarCategorias; 

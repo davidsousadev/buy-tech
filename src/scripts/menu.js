@@ -20,7 +20,6 @@ const tokenCliente = getCookie('authTokenCliente');
 const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
 
 export async function listaItensCarrinho() {
-
     if (tokenCliente || tokenClienteRefresh) {
         try {
             const response = await fetch(`${config.API_URL}/carrinhos`, {
@@ -31,7 +30,17 @@ export async function listaItensCarrinho() {
                 },
             });
 
+            // Se o status for 204 No Content → Carrinho vazio
+            if (response.status === 204) {
+                finalizar_pedido.style.display = "none";
+                lista_itens.innerHTML = `<p class="carrinho-vazio-texto">Seu carrinho está vazio.</p>`;
+                return;
+            }
+
+            // Se não for 204 → tenta ler o JSON normalmente
             const resultadoItensCarrinho = await response.json();
+
+            // Aqui continua o seu código normal:
             if (resultadoItensCarrinho.detail) {
                 if (resultadoItensCarrinho.detail === "Token expirado!") {
                     document.cookie = 'authTokenCliente=; Max-Age=0; path=/;';
@@ -47,13 +56,10 @@ export async function listaItensCarrinho() {
                         window.location.href = './logar.html';
                     }, 5000);
                 }
-                if (resultadoItensCarrinho.detail === "Carrinho vazio!") {
-                    finalizar_pedido.style.display = "none";
-                    lista_itens.innerHTML = `<p class="carrinho-vazio-texto">Seu carrinho está vazio.</p>`;
-                }
                 return;
             }
 
+            // Continua normalmente o processamento dos itens
             lista_itens.innerHTML = "";
             var valorTotalItens = 0;
             var quantidadeDeProdutos = 0;
@@ -66,7 +72,6 @@ export async function listaItensCarrinho() {
                                 'Content-Type': 'application/json',
                             },
                         });
-                        
                         const produtoDetalhes = await produtoResponse.json();
 
                         const li = document.createElement("li");
@@ -82,23 +87,21 @@ export async function listaItensCarrinho() {
                                 <p class="card-carrinho-price">R$ ${produtoDetalhes.preco.toFixed(2)}</p>
                                 <div class="card-carrinho-quantity">
                                     <strong>Quantidade: <input type="number" id="quantidade_${produto.produto_codigo}" value="${produto.quantidade}" min="0"></strong>
-                                    
                                     <span>Total: R$ ${total_item}</span>
                                 </div>
-                                    <div id="btn-cart">
-                                        
-                                        <button class="btn-cart" onclick="verDetalhes(${produtoDetalhes.id})">Ver Detalhes</button>
-                                        <button class="btn-cart" onclick="atualizarQuantidade(${produto.produto_codigo}, ${produto.id}, ${produto.cliente_id})">Atualizar</button>
-                                    </div>
+                                <div id="btn-cart">
+                                    <button class="btn-cart" onclick="verDetalhes(${produtoDetalhes.id})">Ver Detalhes</button>
+                                    <button class="btn-cart" onclick="atualizarQuantidade(${produto.produto_codigo}, ${produto.id}, ${produto.cliente_id})">Atualizar</button>
+                                </div>
                             </div>
                         </div>
-                    `;
+                        `;
                         quantidadeDeProdutos += 1;
                         lista_itens.appendChild(li);
                     } catch (error) {
                         setTimeout(() => {
-                            //listaItensCarrinho();
-                        }, 1000);
+                            listaItensCarrinho();
+                        }, 10000);
                     }
                 }
             }
@@ -108,24 +111,26 @@ export async function listaItensCarrinho() {
             lista_itens.appendChild(total);
             if (quantidadeDeProdutos != 0) {
                 finalizar_pedido.style.display = "block";
-            }
-            else {
+            } else {
                 finalizar_pedido.style.display = "none";
                 lista_itens.innerHTML = `<p class="carrinho-vazio-texto">Seu carrinho está vazio.</p>`;
             }
 
-
         } catch (error) {
             setTimeout(() => {
-                //listaItensCarrinho();
-            }, 1000);
+                console.log("Erro ao buscar detalhes do produto:", error);
+                listaItensCarrinho();
+            }, 10000);
         }
     }
+}
 
+export function verDetalhes(id) {
+    window.location.href = `produto.html?id=${id}`;
 }
 
 export async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
-
+    displayLoader(true);
     const novaQuantidade = document.getElementById(`quantidade_${produtoCodigo}`).value;
     if ((tokenCliente || tokenClienteRefresh) && novaQuantidade) {
         try {
@@ -146,6 +151,7 @@ export async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idClien
             const resultado = await response.json();
             if (resultado) {
                 if (resultado.message) {
+                    displayLoader(false);
                     mostrarNotificacao("Produto Atualizado com sucesso!", {
                         cor: "#4CAF50",
                         duracao: 4000,
@@ -158,6 +164,7 @@ export async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idClien
                     }, 3000);
                 }
                 if (resultado.detail === "Item removido do carrinho!") {
+                    displayLoader(false);
                     mostrarNotificacao(`${resultado.detail}`, {
                         cor: "#F44336",
                         duracao: 4000,
@@ -170,6 +177,7 @@ export async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idClien
                     }, 5000);
                 }
                 if (resultado.detail === "Token expirado!") {
+                    displayLoader(false);
                     mostrarNotificacao(`Token expirado!`, {
                         cor: "#F44336",
                         duracao: 4000,
@@ -182,6 +190,7 @@ export async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idClien
                     }, 5000);
                 }
                 if (resultado.detail === "Pedido maior que estoque!") {
+                    displayLoader(false);
                     mostrarNotificacao(`Pedido maior que estoque!`, {
                         cor: "#F44336",
                         duracao: 4000,
@@ -317,5 +326,73 @@ document.querySelector("#barSearch").addEventListener("keypress", function (even
 // Evento de clique no botão de busca
 document.querySelector("#searchBtn").addEventListener("click", buscar);
 
+// Função de logoutAdmin 
+export function logoutAdmin(qtd) {
+    // Remove os cookies "authTokenAdmin e authTokenAdminRefresh"
+    document.cookie = 'authTokenAdmin=; Max-Age=0; path=/;';
+    document.cookie = 'authTokenAdminRefresh=; Max-Age=0; path=/;';
+    if (qtd === 0) {
+        var voltar = '.';
+        window.location.href = `${voltar}/index.html`; // Redireciona para a página de login
+    }
+    else {
+        var voltar = '';
+        for (var i = 0; i < qtd; i++) {
+            voltar += '../';
+        }
+        window.location.href = `${voltar}index.html`; // Redireciona para a página de login       
+    }
+};
+
+// Função de logoutRevendedor
+export function logoutRevendedor(qtd) {
+    // Remove os cookies "authTokenRevendedor e authTokenAdminRevendedor"
+    document.cookie = 'authTokenRevendedor=; Max-Age=0; path=/;';
+    document.cookie = 'authTokenRevendedorRefresh=; Max-Age=0; path=/;';
+    if (qtd === 0) {
+        var voltar = '.';
+        window.location.href = `${voltar}/index.html`; // Redireciona para a página de login
+    }
+    else {
+        var voltar = '';
+        for (var i = 0; i < qtd; i++) {
+            voltar += '../';
+        }
+        window.location.href = `${voltar}index.html`; // Redireciona para a página de login       
+    }
+};
+
+// Função de logout
+export function logoutCliente(qtd) {
+    // Remove os cookies "authTokenCliente e authTokenClienteRefresh"
+    document.cookie = 'authTokenCliente=; Max-Age=0; path=/;';
+    document.cookie = 'authTokenClienteRefresh=; Max-Age=0; path=/;';
+    if (qtd === 0) {
+        var voltar = '.';
+        window.location.href = `${voltar}/logar.html`; // Redireciona para a página de login
+    }
+    else {
+        var voltar = '';
+        for (var i = 0; i < qtd; i++) {
+            voltar += '../';
+        }
+        window.location.href = `${voltar}logar.html`; // Redireciona para a página de login       
+    }
+};
+
+// Função para exibir/esconder o loader
+export const displayLoader = (isLoading) => {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.style.display = isLoading ? 'flex' : 'none';
+    }
+};
+
 listaItensCarrinho();
 
+window.logoutAdmin = logoutAdmin;
+window.logoutRevendedor = logoutRevendedor;
+window.logoutCliente = logoutCliente; 
+
+window.atualizarQuantidade = atualizarQuantidade; 
+window.verDetalhes = verDetalhes;

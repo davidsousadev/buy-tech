@@ -3,44 +3,44 @@
 import * as config from './consts.js';
 
 const getCookie = (name) => {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
 };
 
 const tokenCliente = getCookie('authTokenCliente');
 const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
 
-if (tokenCliente || tokenClienteRefresh) { 
-    const avatar = document.getElementById('avatar');
-    avatar.classList.remove('bx-user');
-    avatar.classList.add('bxs-user-circle');
-    // Função assíncrona para fazer a requisição à API
-    async function authenticate() {
-        try {
-            const response = await fetch(`${config.API_URL}/clientes/autenticar`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
-                },
-            });
+if (tokenCliente || tokenClienteRefresh) {
+  const avatar = document.getElementById('avatar');
+  avatar.classList.remove('bx-user');
+  avatar.classList.add('bxs-user-circle');
+  // Função assíncrona para fazer a requisição à API
+  async function authenticate() {
+    try {
+      const response = await fetch(`${config.API_URL}/clientes/autenticar`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
+        },
+      });
 
-            if (response.ok) {
-                const result = await response.json();
-                const saldo = document.getElementById('saldo');
-                saldo.innerHTML = result.pontos_fidelidade.toFixed(2);
-            }
-            
-        } catch (error) {
-          setTimeout(() => {
-            authenticate();
-        }, 100);
-        }
+      if (response.ok) {
+        const result = await response.json();
+        const saldo = document.getElementById('saldo');
+        saldo.innerHTML = result.pontos_fidelidade.toFixed(2);
+      }
+
+    } catch (error) {
+      setTimeout(() => {
+        authenticate();
+      }, 100);
     }
+  }
 
-    // Chama a função de autenticação
-    authenticate();
+  // Chama a função de autenticação
+  authenticate();
 }
 
 // Função de logout

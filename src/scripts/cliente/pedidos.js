@@ -157,3 +157,7 @@ export async function pagarPedido(tokenDePagamento) {
 }
 // Chamar a listagem ao carregar a página
 extrato();
+
+window.extrato = extrato;
+window.pagarPedido = pagarPedido;
+window.cancelarPedido = cancelarPedido;

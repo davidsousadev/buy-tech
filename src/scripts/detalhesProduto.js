@@ -18,7 +18,7 @@ async function carregarDetalhesProduto() {
         container.innerHTML = "<p>Produto não encontrado!</p>";
         return;
     }
-
+    displayLoader(true);
     try {
         const response = await fetch(`${config.API_URL}/produtos/${idCarrinho}`, {
             method: "GET",
@@ -53,8 +53,9 @@ async function carregarDetalhesProduto() {
         document.getElementById("btnAdicionarCarrinho").addEventListener("click", () => {
             adicionarAoCarrinho(produto.id);
         });
-
+        displayLoader(false);
     } catch (error) {
+        displayLoader(false);
         mostrarNotificacao("Erro ao carregar item!", {
             cor: "#F44336",
             duracao: 4000,
@@ -83,7 +84,7 @@ export async function adicionarAoCarrinho(produtoId) {
             avatar.classList.remove('bx-user');
             avatar.classList.add('bxs-user-circle');
         }
-
+        displayLoader(true);
         async function authenticate() {
             try {
                 const response = await fetch(`${config.API_URL}/clientes/autenticar`, {
@@ -113,6 +114,7 @@ export async function adicionarAoCarrinho(produtoId) {
 
     if (clienteId !== null) {
         if (!produtoId || quantidade < 1) {
+            displayLoader(false);
             mostrarNotificacao("Dados inválidos para adicionar ao carrinho", {
                 cor: "#F44336",
                 duracao: 4000,
@@ -128,7 +130,7 @@ export async function adicionarAoCarrinho(produtoId) {
             cliente_id: clienteId,
             quantidade: quantidade
         };
-
+        
         try {
             const response = await fetch(`${config.API_URL}/carrinhos`, {
                 method: "POST",
@@ -138,15 +140,9 @@ export async function adicionarAoCarrinho(produtoId) {
                 },
                 body: JSON.stringify(data)
             });
-
-            let result = {};
-            try {
-                result = await response.json();
-            } catch {
-                result = {};
-            }
-
-            if (response.ok) {
+            const result = await response.json();
+            
+            if (response.ok && response.status === 201) {
                 mostrarNotificacao("Produto adicionado ao carrinho!", {
                     cor: "#4CAF50",
                     duracao: 4000,
@@ -154,8 +150,10 @@ export async function adicionarAoCarrinho(produtoId) {
                     movimentoSaida: "esvair",
                     posicao: "bottom-right"
                 });
+                displayLoader(false);
                 setTimeout(() => { location.reload(); }, 3000);
             } else {
+                displayLoader(false);
                 mostrarNotificacao(result.detail || "Erro ao adicionar ao carrinho", {
                     cor: "#F44336",
                     duracao: 4000,
@@ -166,6 +164,7 @@ export async function adicionarAoCarrinho(produtoId) {
             }
 
         } catch {
+            displayLoader(false);   
             mostrarNotificacao("Erro ao adicionar ao carrinho", {
                 cor: "#F44336",
                 duracao: 4000,
@@ -176,5 +175,13 @@ export async function adicionarAoCarrinho(produtoId) {
         }
     }
 }
+
+// Função para exibir/esconder o loader
+export const displayLoader = (isLoading) => {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.style.display = isLoading ? 'flex' : 'none';
+    }
+};
 
 carregarDetalhesProduto();

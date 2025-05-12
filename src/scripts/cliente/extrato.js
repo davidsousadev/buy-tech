@@ -2,6 +2,15 @@
 
 import * as config from '../consts.js';
 
+const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+};
+
+const tokenCliente = getCookie('authTokenCliente');
+const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
+
 const extratoCliente = document.getElementById("extratoCliente");
 
 async function extrato() {

@@ -24,6 +24,8 @@ const totalPedido = document.getElementById('totalPedido');
 const valor_cupom_desconto = document.getElementById('valor_cupom_desconto');
 const campoCEP = document.getElementById('campoCEP');
 
+document.getElementById('btnLogin').addEventListener('click', opcoes);
+
 export async function authenticate() {
     try {
         const response = await fetch(`${config.API_URL}/clientes/autenticar`, {
@@ -56,7 +58,7 @@ export async function authenticate() {
     }
     return null;
 }
-document.getElementById('btnLogin').addEventListener('click', opcoes);
+
 export function opcoes(qtd) {
     if (!tokenCliente || !tokenClienteRefresh) {
         if (qtd === 0) {
@@ -302,9 +304,10 @@ verifica_frete.addEventListener('click', async () => {
                 movimentoSaida: "esvair",
                 posicao: "bottom-right"
             });
+            
             freteCalculado = true;
-            totalCarrinho += frete;
-            precoFrete = frete;
+            totalCarrinho += 39.00;
+            precoFrete = 39.00;
             document.getElementById('valorFrete').innerText = 39.00;
         }
     }

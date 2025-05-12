@@ -30,15 +30,16 @@ export async function listarProdutos() {
                 lista_produtos.appendChild(li);
             });
         } else {
+            
             lista_produtos.innerHTML = '<p>Nenhum produto encontrado!</p>';
         }
-
+        displayLoader(false);
     } catch (error) {
         console.error('Erro ao listar produtos:', error);
         lista_produtos.innerHTML = '<p>Erro ao carregar produtos. Tentando novamente...</p>';
-        setTimeout(listarProdutos, 100);
+        setTimeout(listarProdutos, 10000);
     } finally {
-        displayLoader(false);
+       
     }
 }
 
@@ -79,59 +80,6 @@ export function verDetalhes(id) {
     window.location.href = `produto.html?id=${id}`;
 }
 
-// Função de logoutAdmin 
-export function logoutAdmin(qtd) {
-    // Remove os cookies "authTokenAdmin e authTokenAdminRefresh"
-    document.cookie = 'authTokenAdmin=; Max-Age=0; path=/;';
-    document.cookie = 'authTokenAdminRefresh=; Max-Age=0; path=/;';
-    if (qtd === 0) {
-        var voltar = '.';
-        window.location.href = `${voltar}/index.html`; // Redireciona para a página de login
-    }
-    else {
-        var voltar = '';
-        for (var i = 0; i < qtd; i++) {
-            voltar += '../';
-        }
-        window.location.href = `${voltar}index.html`; // Redireciona para a página de login       
-    }
-};
-
-// Função de logoutRevendedor
-export function logoutRevendedor(qtd) {
-    // Remove os cookies "authTokenRevendedor e authTokenAdminRevendedor"
-    document.cookie = 'authTokenRevendedor=; Max-Age=0; path=/;';
-    document.cookie = 'authTokenRevendedorRefresh=; Max-Age=0; path=/;';
-    if (qtd === 0) {
-        var voltar = '.';
-        window.location.href = `${voltar}/index.html`; // Redireciona para a página de login
-    }
-    else {
-        var voltar = '';
-        for (var i = 0; i < qtd; i++) {
-            voltar += '../';
-        }
-        window.location.href = `${voltar}index.html`; // Redireciona para a página de login       
-    }
-};
-
-// Função de logout
-export function logoutCliente(qtd) {
-    // Remove os cookies "authTokenCliente e authTokenClienteRefresh"
-    document.cookie = 'authTokenCliente=; Max-Age=0; path=/;';
-    document.cookie = 'authTokenClienteRefresh=; Max-Age=0; path=/;';
-    if (qtd === 0) {
-        var voltar = '.';
-        window.location.href = `${voltar}/logar.html`; // Redireciona para a página de login
-    }
-    else {
-        var voltar = '';
-        for (var i = 0; i < qtd; i++) {
-            voltar += '../';
-        }
-        window.location.href = `${voltar}logar.html`; // Redireciona para a página de login       
-    }
-};
 // Função para exibir/esconder o loader
 export const displayLoader = (isLoading) => {
     const loader = document.getElementById('loader');
@@ -139,5 +87,6 @@ export const displayLoader = (isLoading) => {
         loader.style.display = isLoading ? 'flex' : 'none';
     }
 };
+
+listarProdutos();
 window.listarProdutos = listarProdutos; 
-window.logoutCliente = logoutCliente;
