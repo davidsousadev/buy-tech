@@ -37,7 +37,7 @@ async function cancelarPedido(id) {
     } catch (error) {
         setTimeout(() => {
             cancelarPedido(id);
-        }, 100);
+        }, 1000);
     }
 }
 
@@ -138,7 +138,7 @@ async function extrato(editar) {
         } catch (error) {
             setTimeout(() => {
                 extrato(editar);
-            }, 100);
+            }, 1000);
         }
     }
 }

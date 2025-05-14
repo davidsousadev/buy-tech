@@ -70,7 +70,7 @@ async function listarCupons(editar = false) {
     } catch (error) {
         setTimeout(() => {
             listarCupons(editar);
-        }, 100);
+        }, 1000);
     } finally {
         displayLoader(false); // Esconder loader após carregar
     }
@@ -132,7 +132,7 @@ if (formCadastroCupons) {
                 } catch (error) {
                     setTimeout(() => {
                         carregarCupom();
-                    }, 100);
+                    }, 1000);
                 }
             }
             await carregarCupom();
@@ -193,7 +193,7 @@ if (formCadastroCupons) {
             } catch (error) {
                 setTimeout(() => {
                     location.reload();
-                }, 100);
+                }, 1000);
             } finally {
                 displayLoader(false);
                 disableSubmitButton(false);

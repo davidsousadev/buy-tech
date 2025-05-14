@@ -36,7 +36,7 @@ if (tokenAdmin || tokenAdminRefresh) {
     } catch (error) {
       setTimeout(() => {
         authenticate();
-      }, 100);
+      }, 1000);
 
     }
   }

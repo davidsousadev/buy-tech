@@ -35,7 +35,7 @@ if (tokenCliente || tokenClienteRefresh) {
     } catch (error) {
       setTimeout(() => {
         authenticate();
-      }, 100);
+      }, 1000);
     }
   }
 

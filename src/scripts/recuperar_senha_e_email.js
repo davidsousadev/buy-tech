@@ -146,7 +146,7 @@ if (formRecuperarEmail) {
                 disableSubmitButton('submitButtonEmail', false);
                 setTimeout(() => {
                     location.reload();
-                }, 100);
+                }, 1000);
             }
         }
     });

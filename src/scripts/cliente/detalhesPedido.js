@@ -49,12 +49,12 @@ export async function authenticate() {
         } else {
             setTimeout(() => {
                 authenticate();
-            }, 100);
+            }, 1000);
         }
     } catch (error) {
         setTimeout(() => {
             authenticate();
-        }, 100);
+        }, 1000);
     }
     return null;
 }
@@ -158,7 +158,7 @@ formCadastroPedido.addEventListener('submit', async (event) => {
         disableSubmitButton(false);
         setTimeout(() => {
             location.reload();
-        }, 100);
+        }, 1000);
     }
 });
 
@@ -235,7 +235,7 @@ verifica_cupom_de_desconto.addEventListener('click', async () => {
         } catch (error) {
             setTimeout(() => {
                 location.reload();
-            }, 100);
+            }, 1000);
         }
     }
 });

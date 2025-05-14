@@ -106,7 +106,7 @@ export async function extrato() {
         } catch (error) {
             setTimeout(() => {
                 extrato();
-            }, 100);
+            }, 1000);
         }
     }
 }
@@ -150,7 +150,7 @@ export async function pagarPedido(tokenDePagamento) {
         } catch (error) {
             setTimeout(() => {
                 pagarPedido(tokenDePagamento);
-            }, 100);
+            }, 1000);
         }
 
     }

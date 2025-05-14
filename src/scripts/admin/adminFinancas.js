@@ -41,7 +41,7 @@ if (tokenAdmin || tokenAdminRefresh) {
             } catch (error) {
                 setTimeout(() => {
                     buscarDados();
-                }, 100);
+                }, 1000);
             }
         }
 
@@ -172,7 +172,7 @@ async function listarDebitos() {
         }catch (error) {
             setTimeout(() => {
                 listarDebitos();
-            }, 100);
+            }, 1000);
         }
 }
 }

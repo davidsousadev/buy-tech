@@ -58,7 +58,7 @@ function listarCategorias(editar) {
             } catch (error) {
                 setTimeout(() => {
                     listarCategorias(editar);
-                }, 100);
+                }, 1000);
             }
         }
         authenticate();
@@ -107,7 +107,7 @@ if (formCadastroCategoria) {
             } catch (error) {
                 setTimeout(() => {
                     carregarCategoria();
-                }, 100);
+                }, 1000);
             }
         }
         carregarCategoria();
@@ -153,7 +153,7 @@ if (formCadastroCategoria) {
             } catch (error) {
                 setTimeout(() => {
                     location.reload();
-                }, 100);
+                }, 1000);
             }
         });
     }
@@ -208,7 +208,7 @@ if (formCadastroCategoria) {
             } catch (error) {
                 setTimeout(() => {
                     location.reload();
-                }, 100);
+                }, 1000);
             }
         });
     }

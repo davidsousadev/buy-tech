@@ -57,7 +57,7 @@ function listarProdutos(editar) {
             } catch (error) {
                 setTimeout(() => {
                     authenticate();
-                }, 100);
+                }, 1000);
             }
         }
         authenticate();

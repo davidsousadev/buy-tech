@@ -57,7 +57,7 @@ export const handleFormSubmission = async () => {
 
                 return;
             }
-
+            
             // Exibe o loader e desabilita o botão
             displayLoader(true);
             disableSubmitButton(true);
@@ -71,21 +71,22 @@ export const handleFormSubmission = async () => {
 
                 const result = await response.json();
 
-                
-
                 // Esconde o loader e habilita o botão novamente
                 displayLoader(false);
                 disableSubmitButton(false);
-
                 if (response.ok) {
+                    
                     mostrarNotificacao("Cadastro realizado com sucesso!", {
-                        cor: "#F44336",
+                        cor: "#4CAF50",
                         duracao: 4000,
                         movimentoEntrada: "deslizar",
                         movimentoSaida: "esvair",
                         posicao: "bottom-right"
                     });
+                    setTimeout(() => {
+                        
                     window.location.href = './confirmacao.html';
+                }, 3000);
                 } else {
                     // Exibe mensagens de erro específicas com base na resposta da API
                     mostrarNotificacao(result.detail || 'Erro ao realizar o cadastro.', {
@@ -95,17 +96,25 @@ export const handleFormSubmission = async () => {
                         movimentoSaida: "esvair",
                         posicao: "bottom-right"
                     });
+                    return;
                 }
             } catch (error) {
-
+            
                 // Esconde o loader e habilita o botão novamente
                 displayLoader(false);
                 disableSubmitButton(false);
-                setTimeout(() => {
-                    location.reload();
-                }, 100);
+                
+                mostrarNotificacao("Erro ao realizar o cadastro.", {
+                        cor: "#F44336",
+                        duracao: 4000,
+                        movimentoEntrada: "deslizar",
+                        movimentoSaida: "esvair",
+                        posicao: "bottom-right"
+                    });
             }
         });
+        
+       
     }
     if (formCadastroAdminAtualizar) {
         const tokenAdmin = getCookie('authTokenAdmin');
@@ -189,7 +198,7 @@ export const handleFormSubmission = async () => {
                     disableSubmitButton(false);
                     setTimeout(() => {
                         location.reload();
-                    }, 100);
+                    }, 1000);
                 }
             });
         }
@@ -280,7 +289,7 @@ export const handleFormSubmission = async () => {
                 disableSubmitButton(false);
                 setTimeout(() => {
                     location.reload();
-                }, 100);
+                }, 1000);
             }
         });
     }
@@ -366,7 +375,7 @@ export const handleFormSubmission = async () => {
                     disableSubmitButton(false);
                     setTimeout(() => {
                         location.reload();
-                    }, 100);
+                    }, 1000);
                 }
             });
         }

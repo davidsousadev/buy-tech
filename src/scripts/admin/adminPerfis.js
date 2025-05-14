@@ -65,7 +65,7 @@ async function listarPerfis(tipo, elementoId, editar = false) {
         } catch (error) {
             setTimeout(() => {
                 listarPerfis(tipo, elementoId, editar);
-            }, 100);
+            }, 1000);
         }
     }
 }
@@ -141,7 +141,7 @@ async function atualizarStatusUsuario(id, tipo) {
     } catch (error) {
         setTimeout(() => {
             atualizarStatusUsuario(id, tipo);
-        }, 100);
+        }, 1000);
     }
 }
 

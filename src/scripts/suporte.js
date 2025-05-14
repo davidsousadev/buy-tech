@@ -70,7 +70,7 @@ if (formSuporte) {
         disableSubmitButton(false);
         setTimeout(() => {
             location.reload();
-        }, 100);
+        }, 1000);
         }
     });
 }

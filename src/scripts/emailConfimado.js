@@ -20,12 +20,11 @@ if (codigo) {
             if (result.email===true) {
                 confirmado.innerHTML = `E-mail Confirmado com sucesso!`;
             } else {
-                
                 confirmado.innerHTML = `Codigo invalido!`;
             }
         } catch (error) {
             setTimeout(() => {
                 location.reload();
-            }, 100);
+            }, 10000);
         }
 }
