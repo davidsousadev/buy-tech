@@ -57,12 +57,12 @@ export const handleFormSubmission = async () => {
 
                 return;
             }
-            
+
             // Exibe o loader e desabilita o botão
             displayLoader(true);
             disableSubmitButton(true);
             try {
-                
+
                 const response = await fetch(`${config.API_URL}/clientes/cadastrar`, {
                     method: 'POST',
                     body: JSON.stringify(formData),
@@ -71,11 +71,10 @@ export const handleFormSubmission = async () => {
 
                 const result = await response.json();
 
-                // Esconde o loader e habilita o botão novamente
                 displayLoader(false);
                 disableSubmitButton(false);
-                if (response.ok) {
-                    
+
+                if (response.status === 201) {
                     mostrarNotificacao("Cadastro realizado com sucesso!", {
                         cor: "#4CAF50",
                         duracao: 4000,
@@ -83,12 +82,12 @@ export const handleFormSubmission = async () => {
                         movimentoSaida: "esvair",
                         posicao: "bottom-right"
                     });
+
                     setTimeout(() => {
-                        
-                    window.location.href = './confirmacao.html';
-                }, 3000);
+                        window.location.href = `${config.FRONT_URL}/confirmacao.html`;
+                    }, 3000);
+
                 } else {
-                    // Exibe mensagens de erro específicas com base na resposta da API
                     mostrarNotificacao(result.detail || 'Erro ao realizar o cadastro.', {
                         cor: "#F44336",
                         duracao: 4000,
@@ -96,25 +95,24 @@ export const handleFormSubmission = async () => {
                         movimentoSaida: "esvair",
                         posicao: "bottom-right"
                     });
-                    return;
                 }
             } catch (error) {
-            
+
                 // Esconde o loader e habilita o botão novamente
                 displayLoader(false);
                 disableSubmitButton(false);
-                
+
                 mostrarNotificacao("Erro ao realizar o cadastro.", {
-                        cor: "#F44336",
-                        duracao: 4000,
-                        movimentoEntrada: "deslizar",
-                        movimentoSaida: "esvair",
-                        posicao: "bottom-right"
-                    });
+                    cor: "#F44336",
+                    duracao: 4000,
+                    movimentoEntrada: "deslizar",
+                    movimentoSaida: "esvair",
+                    posicao: "bottom-right"
+                });
             }
         });
-        
-       
+
+
     }
     if (formCadastroAdminAtualizar) {
         const tokenAdmin = getCookie('authTokenAdmin');
@@ -249,7 +247,7 @@ export const handleFormSubmission = async () => {
             displayLoader(true);
             disableSubmitButton(true);
             try {
-               
+
                 const response = await fetch(`${config.API_URL}/admins/cadastrar`, {
                     method: 'POST',
                     body: JSON.stringify(formData),
@@ -258,7 +256,7 @@ export const handleFormSubmission = async () => {
 
                 const result = await response.json();
 
-                
+
 
                 // Esconde o loader e habilita o botão novamente
                 displayLoader(false);
@@ -328,7 +326,7 @@ export const handleFormSubmission = async () => {
                 displayLoader(true);
                 disableSubmitButton(true);
                 try {
-                    
+
                     const response = await fetch(`${config.API_URL}/clientes`, {
                         method: 'PATCH',
                         body: JSON.stringify(formData),
@@ -340,7 +338,7 @@ export const handleFormSubmission = async () => {
 
                     const result = await response.json();
 
-                
+
 
                     // Esconde o loader e habilita o botão novamente
                     displayLoader(false);
@@ -369,7 +367,7 @@ export const handleFormSubmission = async () => {
                         });
                     }
                 } catch (error) {
-                   
+
                     // Esconde o loader e habilita o botão novamente
                     displayLoader(false);
                     disableSubmitButton(false);
