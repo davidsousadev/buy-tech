@@ -19,8 +19,10 @@ const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
 function listarCategorias(editar) {
     if (tokenAdmin || tokenAdminRefresh) {
         async function authenticate() {
+            displayLoader(true);
+            disableSubmitButton(true);
             try {
-                const response = await fetch('`${config.API_URL}/categorias', {
+                const response = await fetch(`${config.API_URL}/categorias`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -52,8 +54,12 @@ function listarCategorias(editar) {
 
                         lista_de_categorias.appendChild(li);
                     });
+                    displayLoader(false);
+
                 } else {
                     lista_de_categorias.innerHTML = "<li>Nenhuma categoria encontrada.</li>";
+                    displayLoader(false);
+
                 }
             } catch (error) {
                 setTimeout(() => {
@@ -65,7 +71,7 @@ function listarCategorias(editar) {
     }
 }
 
-function editarCategoria(id) {
+export function editarCategoria(id) {
     window.location.href = `cadastrar_categorias.html?id=${id}`;
 }
 
@@ -89,6 +95,8 @@ if (formCadastroCategoria) {
     // Se ID existir, preenche o formulário
     if (idCategoria) {
         async function carregarCategoria() {
+            displayLoader(true);
+            disableSubmitButton(true);
             try {
                 const response = await fetch(`${config.API_URL}/categorias/${idCategoria}`, {
                     method: 'GET',
@@ -103,7 +111,8 @@ if (formCadastroCategoria) {
 
                 // Preenche os campos do formulário
                 document.getElementById('nome').value = produto.nome;
-
+                displayLoader(false);
+                disableSubmitButton(false);
             } catch (error) {
                 setTimeout(() => {
                     carregarCategoria();
@@ -118,7 +127,8 @@ if (formCadastroCategoria) {
             let formData = {
                 nome: document.getElementById('nome').value,
             };
-
+            displayLoader(true);
+            disableSubmitButton(true);
             try {
                 const response = await fetch(`${config.API_URL}/categorias/${idCategoria}`, {
                     method: 'PATCH',
@@ -131,8 +141,8 @@ if (formCadastroCategoria) {
 
                 const result = await response.json();
 
-                if (response.ok) {
-                    mostrarNotificacao("Categoria atualizado com sucesso!", {
+                if (result.message === "Categoria atualizada com sucesso!") {
+                    mostrarNotificacao(result.message, {
                         cor: "#4CAF50",
                         duracao: 3000,
                         posicao: "bottom-right"
@@ -140,8 +150,9 @@ if (formCadastroCategoria) {
                     setTimeout(() => {
                         window.location.href = './atualizar_categorias.html';
                     }, 3000);
-
                 } else {
+                    displayLoader(false);
+                    disableSubmitButton(false);
                     if (result.detail) {
                         mostrarNotificacao(`${result.detail}`, {
                             cor: "#F44336",
@@ -213,3 +224,7 @@ if (formCadastroCategoria) {
         });
     }
 }
+
+window.listarCategorias = listarCategorias;
+window.editarCategoria = editarCategoria;
+window.displayLoader = displayLoader;

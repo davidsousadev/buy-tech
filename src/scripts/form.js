@@ -71,9 +71,6 @@ export const handleFormSubmission = async () => {
 
                 const result = await response.json();
 
-                displayLoader(false);
-                disableSubmitButton(false);
-
                 if (response.status === 201) {
                     mostrarNotificacao("Cadastro realizado com sucesso!", {
                         cor: "#4CAF50",
@@ -84,10 +81,13 @@ export const handleFormSubmission = async () => {
                     });
 
                     setTimeout(() => {
-                        window.location.href = `${config.FRONT_URL}/confirmacao.html`;
+                        window.location.href = `./confirmacao.html`;
                     }, 3000);
 
                 } else {
+                    displayLoader(false);
+                    disableSubmitButton(false);
+
                     mostrarNotificacao(result.detail || 'Erro ao realizar o cadastro.', {
                         cor: "#F44336",
                         duracao: 4000,
@@ -163,11 +163,6 @@ export const handleFormSubmission = async () => {
 
                     const result = await response.json();
 
-
-                    // Esconde o loader e habilita o botão novamente
-                    displayLoader(false);
-                    disableSubmitButton(false);
-
                     if (response.ok) {
                         mostrarNotificacao("Cadastro Atualizado com sucesso!", {
                             cor: "#4CAF50",
@@ -181,6 +176,10 @@ export const handleFormSubmission = async () => {
                         }, 5000);
 
                     } else {
+                        // Esconde o loader e habilita o botão novamente
+                        displayLoader(false);
+                        disableSubmitButton(false);
+
                         // Exibe mensagens de erro específicas com base na resposta da API
                         mostrarNotificacao(result.detail || 'Erro ao realizar o cadastro.', {
                             cor: "#F44336",
@@ -258,9 +257,7 @@ export const handleFormSubmission = async () => {
 
 
 
-                // Esconde o loader e habilita o botão novamente
-                displayLoader(false);
-                disableSubmitButton(false);
+
 
                 if (response.ok) {
                     mostrarNotificacao("Cadastro realizado com sucesso!", {
@@ -272,6 +269,11 @@ export const handleFormSubmission = async () => {
                     });
                     window.location.href = '../confirmacao.html';
                 } else {
+
+                    // Esconde o loader e habilita o botão novamente
+                    displayLoader(false);
+                    disableSubmitButton(false);
+
                     // Exibe mensagens de erro específicas com base na resposta da API
                     mostrarNotificacao(result.detail || 'Erro ao realizar o cadastro.', {
                         cor: "#F44336",
@@ -338,12 +340,6 @@ export const handleFormSubmission = async () => {
 
                     const result = await response.json();
 
-
-
-                    // Esconde o loader e habilita o botão novamente
-                    displayLoader(false);
-                    disableSubmitButton(false);
-
                     if (response.ok) {
                         mostrarNotificacao("Cadastro Atualizado com sucesso!", {
                             cor: "#4CAF50",
@@ -357,6 +353,11 @@ export const handleFormSubmission = async () => {
                         }, 5000);
 
                     } else {
+
+                        // Esconde o loader e habilita o botão novamente
+                        displayLoader(false);
+                        disableSubmitButton(false);
+
                         // Exibe mensagens de erro específicas com base na resposta da API
                         mostrarNotificacao(result.detail || 'Erro ao realizar o cadastro.', {
                             cor: "#F44336",

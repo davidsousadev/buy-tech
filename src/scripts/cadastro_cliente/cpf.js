@@ -91,11 +91,11 @@ export function configurarEventosCPF() {
                 if (response.ok) {
                     const result = await response.json();
 
-                    if (result.cpf === true) {
+                    if (result.detail === true) {
                         cpfInput.style.borderColor = 'green';
                     } else {
                         cpfInput.style.borderColor = 'red';
-                        mostrarNotificacao("Valor inválido já em uso.", {
+                        mostrarNotificacao(result.detail, {
                             cor: "#F44336",
                             duracao: 4000,
                             movimentoEntrada: "deslizar",

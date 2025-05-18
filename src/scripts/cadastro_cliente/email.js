@@ -29,18 +29,34 @@ export const validateEmail = async () => {
 
         try {
             const response = await fetch(`${config.API_URL}/clientes/verificar-email?${emailInput.name}=${value}`);
-            if (response.ok) {
+            const result = await response.json();
+            
+            if (result.detail === true) {
                 emailInput.style.borderColor = 'green';
+                return;
             } else {
-                const result = await response.json();
-                emailInput.style.borderColor = 'red';
-                mostrarNotificacao(result.detail || "Valor inválido.", {
-                    cor: "#F44336",
-                    duracao: 4000,
-                    movimentoEntrada: "deslizar",
-                    movimentoSaida: "esvair",
-                    posicao: "bottom-right"
-                });
+                if (result.detail === "E-mail já cadastrado.") {
+                    emailInput.style.borderColor = 'red';
+                    mostrarNotificacao(result.detail, {
+                        cor: "#F44336",
+                        duracao: 4000,
+                        movimentoEntrada: "deslizar",
+                        movimentoSaida: "esvair",
+                        posicao: "bottom-right"
+                    });
+                    return;
+                }
+                else {
+                        emailInput.style.borderColor = 'red';
+                        mostrarNotificacao(result.detail, {
+                            cor: "#F44336",
+                            duracao: 4000,
+                            movimentoEntrada: "deslizar",
+                            movimentoSaida: "esvair",
+                            posicao: "bottom-right"
+                        });
+                        return;
+                    } 
             }
         } catch (error) {
             emailInput.style.borderColor = 'red';

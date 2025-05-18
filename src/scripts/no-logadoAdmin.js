@@ -47,3 +47,23 @@ themeToggleButton.addEventListener('click', () => {
   applyTheme(newTheme);
   localStorage.setItem('theme', newTheme); // Salvar a escolha do usuário
 });
+
+// Função de logoutAdmin 
+export function logoutAdmin(qtd) {
+  // Remove os cookies "authTokenAdmin e authTokenAdminRefresh"
+  document.cookie = 'authTokenAdmin=; Max-Age=0; path=/;';
+  document.cookie = 'authTokenAdminRefresh=; Max-Age=0; path=/;';
+  if (qtd === 0) {
+    var voltar = '.';
+    window.location.href = `${voltar}/index.html`; // Redireciona para a página de login
+  }
+  else {
+    var voltar = '';
+    for (var i = 0; i < qtd; i++) {
+      voltar += '../';
+    }
+    window.location.href = `${voltar}index.html`; // Redireciona para a página de login       
+  }
+};
+
+window.logoutAdmin = logoutAdmin; 

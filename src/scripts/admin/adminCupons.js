@@ -206,3 +206,8 @@ if (formCadastroCupons) {
         quantidadeInput.addEventListener("input", validarFormulario);
     })();
 }
+
+window.listarCupons = listarCupons;
+window.editarCupom = editarCupom;
+window.displayLoader = displayLoader;
+window.disableSubmitButton = disableSubmitButton;

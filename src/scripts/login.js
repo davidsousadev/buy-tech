@@ -67,25 +67,26 @@ export const login = async () => {
                 });
 
                 const result = await response.json();
-                displayLoader(false);
-                disableSubmitButton(false);
-
-                if (response.ok) {
+                
+                if (result.access_token) {
                     // Armazena o token no cookie com tempo de expiração
                     document.cookie = `${authTokenName}=${result.access_token}; path=/; max-age=${6000}`;
                     document.cookie = `${authTokenName}Refresh=${result.refresh_token}; path=/; max-age=${7 * 24 * 60 * 60}`;
                     mostrarNotificacao("Logado com sucesso!", {
                         cor: "#4CAF50",
-                        duracao: 4000,
+                        duracao: 3000,
                         movimentoEntrada: "deslizar",
                         movimentoSaida: "esvair",
                         posicao: "bottom-right"
                     });
                     setTimeout(() => {
                         window.location.href = `${tipoUsuario}/index.html`;
-                    }, 3000);
+                    }, 2000);
 
                 } else {
+                    displayLoader(false);
+                    disableSubmitButton(false);
+
                     mostrarNotificacao(`${result.detail}`, {
                         cor: "#F44336",
                         duracao: 4000,

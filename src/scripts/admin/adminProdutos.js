@@ -18,6 +18,8 @@ function listarProdutos(editar) {
 
     if (tokenAdmin || tokenAdminRefresh) {
         async function authenticate() {
+            displayLoader(true);
+            
             try {
                 const response = await fetch(`${config.API_URL}/produtos`, {
                     method: 'GET',
@@ -53,6 +55,13 @@ function listarProdutos(editar) {
 
                         lista_de_produtos_admin.appendChild(li);
                     });
+                    displayLoader(false);
+                    
+                }
+                else {
+                    lista_de_produtos_admin.innerHTML = "<li>Nenhum produto encontrado.</li>";
+                    displayLoader(false);
+                    
                 }
             } catch (error) {
                 setTimeout(() => {
@@ -90,6 +99,8 @@ if (formCadastroProdutoAdmin) {
     if (tokenAdmin || tokenAdminRefresh) {// Se ID existir, preenche o formulário
         if (idProduto) {
             async function carregarProduto() {
+                displayLoader(true);
+                disableSubmitButton(true);
                 try {
                     const response = await fetch(`${config.API_URL}/produtos/${idProduto}`, {
                         method: 'GET',
@@ -112,8 +123,11 @@ if (formCadastroProdutoAdmin) {
                     document.getElementById('quantidade_estoque').value = produto.quantidade_estoque;
                     document.getElementById('opcao_de_personalizado').value = produto.personalizado;
                     document.getElementById('opcao_de_status').value = produto.status;
-
+                    displayLoader(false);
+                    disableSubmitButton(false);
                 } catch (error) {
+                    displayLoader(false);
+                    disableSubmitButton(false);
                     console.error("Erro ao carregar produto:", error);
                     mostrarNotificacao("Erro ao carregar os dados do produto.", {
                         cor: "#F44336",
@@ -138,7 +152,8 @@ if (formCadastroProdutoAdmin) {
                     personalizado: document.getElementById('opcao_de_personalizado').value,
                     status: document.getElementById('opcao_de_status').value,
                 };
-
+                displayLoader(true);
+                disableSubmitButton(true);
                 try {
                     const response = await fetch(`${config.API_URL}/produtos/${idProduto}`, {
                         method: 'PATCH',
@@ -160,7 +175,9 @@ if (formCadastroProdutoAdmin) {
                             window.location.href = './atualizar_produtos.html';
                         }, 3000);
                     } else {
-                        if(result.detail) {
+                        if (result.detail) {
+                            displayLoader(false);
+                            disableSubmitButton(false);
                         mostrarNotificacao(`${result.detail}`, {
                             cor: "#F44336",
                             duracao: 4000,
@@ -203,7 +220,8 @@ if (formCadastroProdutoAdmin) {
                     });
                     return;
                 }
-
+                displayLoader(true);
+                disableSubmitButton(true);
                 try {
                     const response = await fetch(`${config.API_URL}/produtos`, {
                         method: 'POST',
@@ -227,7 +245,9 @@ if (formCadastroProdutoAdmin) {
                         }, 3000);
 
                     } else {
-                        if(result.detail) {
+                        if (result.detail) {
+                            displayLoader(false);
+                            disableSubmitButton(false);
                             mostrarNotificacao(`${result.detail}`, {
                                 cor: "#F44336",
                                 duracao: 4000,
@@ -273,3 +293,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         categoriaSelect.innerHTML = '<option value="">Erro ao carregar categorias</option>';
     }
 });
+
+window.listarProdutos = listarProdutos;
+window.editarProduto = editarProduto;
+window.displayLoader = displayLoader;
+window.disableSubmitButton = disableSubmitButton;

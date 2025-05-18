@@ -123,6 +123,9 @@ export async function listaItensCarrinho() {
             }, 10000);
         }
     }
+    else {
+        document.getElementById('btnCart').style.display = 'none';
+    }
 }
 
 export function verDetalhes(id) {
@@ -221,6 +224,7 @@ export function buyCart() {
             itens_carrinho.style.display = 'block';
         }
     }
+    
 }
 
 function toggleDrawer() {

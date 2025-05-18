@@ -1,4 +1,4 @@
-// adminPerfis.js
+// adminPerfisAtualizar.js
 
 import * as config from '../consts.js';
 
@@ -59,7 +59,7 @@ async function listarPerfis(tipo, elementoId, editar = false) {
                     li.innerHTML = usuarioHTML;
                     listarElemento.appendChild(li);
                 });
-
+                
             }
         } catch (error) {
             setTimeout(() => {
@@ -70,13 +70,13 @@ async function listarPerfis(tipo, elementoId, editar = false) {
 }
 
 
-async function listarEEditarPerfisAdmin() {
+export async function listarEEditarPerfisAdmin() {
     listarPerfis('admins', 'listar_de_perfis_admins', true);
     listarPerfis('clientes', 'listar_de_perfis_clientes', true);
     listarPerfis('revendedores', 'listar_de_perfis_revendedores', true);
 }
 
-function listarPerfisAdmin() {
+export function listarPerfisAdmin() {
     listarPerfis('admins', 'listar_de_perfis_admins', false);
     listarPerfis('clientes', 'listar_de_perfis_clientes', false);
     listarPerfis('revendedores', 'listar_de_perfis_revendedores', false);
@@ -116,13 +116,15 @@ export async function atualizarStatusUsuario(id, tipo) {
                 movimentoSaida: "esvair",
                 posicao: "bottom-right"
             });
-            displayLoader(false);
-            disableButton(false);
+            
             setTimeout(() => {
+                displayLoader(false);
+                disableButton(false);
                 listarEEditarPerfisAdmin();
             }, 3000);
+            
         } else {
-            if (response.status === 403) {
+            if(response.status === 403) {
                 mostrarNotificacao("Você não tem permissão para realizar essa ação!", {
                     cor: "#F44336",
                     duracao: 4000,
@@ -131,10 +133,10 @@ export async function atualizarStatusUsuario(id, tipo) {
                     posicao: "bottom-right"
                 });
                 displayLoader(false);
-                disableButton(false);
-                setTimeout(() => {
-                    listarEEditarPerfisAdmin();
-                }, 3000);
+            disableButton(false);
+            setTimeout(() => {
+                listarEEditarPerfisAdmin();
+            }, 3000);
             }
         }
     } catch (error) {
@@ -162,4 +164,7 @@ const disableButton = (isDisabled) => {
     }
 };
 
-listarPerfisAdmin();
+listarEEditarPerfisAdmin();
+
+window.listarEEditarPerfisAdmin = listarEEditarPerfisAdmin; 
+window.atualizarStatusUsuario = atualizarStatusUsuario;

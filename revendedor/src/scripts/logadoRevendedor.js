@@ -1,3 +1,6 @@
+// logadoRevendedor.js
+import config from '../config.js';
+
 const getCookie = (name) => {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);

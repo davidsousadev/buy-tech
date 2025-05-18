@@ -43,16 +43,21 @@ div#search input::placeholder {
   color: #999;
 }
 
-.icones {
+.icones { 
   width: 50%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-left: -80px;
+}
+
+.icones a {
+  text-decoration: none;
+  margin-right: 20px;
 }
 
 .icones i {
-  padding-right: 20px;
+  
+  padding-right: 10px;
   margin: 15px;
   scale: 3;
 }

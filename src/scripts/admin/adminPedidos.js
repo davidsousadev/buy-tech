@@ -13,6 +13,8 @@ const tokenAdmin = getCookie('authTokenAdmin');
 const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
 
 async function cancelarPedido(id) {
+    displayLoader(true);
+    disableButton(true);
     try {
         const response = await fetch(`${config.API_URL}/pedidos/admin/${id}`, {
             method: 'PATCH',
@@ -21,7 +23,7 @@ async function cancelarPedido(id) {
                 'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`
             },
         });
-
+        const result = await response.json();
         if (response.ok) {
             mostrarNotificacao("Pedido Cancelado com sucesso!", {
                 cor: "#F44336",
@@ -32,7 +34,15 @@ async function cancelarPedido(id) {
             });
             window.location.href = 'lista_pedidos_cancelados.html';
         } else {
-            alert(`Erro ao cancelar o pedido #${id}`);
+            mostrarNotificacao(result.detail, {
+                cor: "#F44336",
+                duracao: 4000,
+                movimentoEntrada: "deslizar",
+                movimentoSaida: "esvair",
+                posicao: "bottom-right"
+            });
+            displayLoader(false);
+            disableButton(false);
         }
     } catch (error) {
         setTimeout(() => {
@@ -45,6 +55,7 @@ async function cancelarPedido(id) {
 async function extrato(editar) {
 
     if (tokenAdmin || tokenAdminRefresh) {
+        displayLoader(true);
         try {
             const response = await fetch(`${config.API_URL}/pedidos/admin`, {
                 method: 'GET',
@@ -84,6 +95,7 @@ async function extrato(editar) {
                         </div>
                     `;
                         listaDePedidos.appendChild(li);
+                        displayLoader(false);
                     }
                     else if (editar === true && pedido.codigo.length === 6 && pedido.status) {
                         statusPedido = "Pedido Pago";
@@ -107,6 +119,7 @@ async function extrato(editar) {
                         </div>
                     `;
                         listaDePedidos.appendChild(li);
+                        displayLoader(false);
                     } else if (editar === false && pedido.codigo.length > 6 && pedido.status) {
                         codigoPedido = "Pedido está esperando pagamento";
                         statusPedido = "Pedido está esperando pagamento";
@@ -130,10 +143,12 @@ async function extrato(editar) {
                         </div>
                     `;
                         listaDePedidos.appendChild(li);
+                        displayLoader(false);
                     }
                 });
             } else {
                 listaDePedidos.innerHTML = "<p>Nenhum pedido encontrado.</p>";
+                displayLoader(false);
             }
         } catch (error) {
             setTimeout(() => {
@@ -142,3 +157,24 @@ async function extrato(editar) {
         }
     }
 }
+
+// Função para exibir/esconder o loader
+const displayLoader = (isLoading) => {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.style.display = isLoading ? 'flex' : 'none';
+    }
+};
+
+// Função para habilitar/desabilitar o botão de submit
+const disableButton = (isDisabled) => {
+    // Seleciona o botão pela classe "botaoAtivarDesativar"
+    const submitButton = document.querySelector('.botaoAtivarDesativar');
+
+    if (submitButton) {
+        submitButton.disabled = isDisabled;
+    }
+};
+
+window.extrato = extrato;
+window.cancelarPedido = cancelarPedido;

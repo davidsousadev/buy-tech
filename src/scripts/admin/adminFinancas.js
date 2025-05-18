@@ -204,4 +204,9 @@ const disableSubmitButton = (isDisabled) => {
     }
 };
 
-
+window.grafico = grafico;
+window.listarDebitos = listarDebitos;
+window.motivoTexto = motivoTexto;
+window.extratoCliente = extratoCliente;
+window.disableSubmitButton = disableSubmitButton;
+window.displayLoader = displayLoader;
