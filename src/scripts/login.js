@@ -67,7 +67,7 @@ export const login = async () => {
                 });
 
                 const result = await response.json();
-                
+
                 if (result.access_token) {
                     // Armazena o token no cookie com tempo de expiração
                     document.cookie = `${authTokenName}=${result.access_token}; path=/; max-age=${6000}`;
@@ -108,7 +108,7 @@ export const login = async () => {
             }
         });
     }
-    
+
 };
 
 // Função para exibir/esconder o loader

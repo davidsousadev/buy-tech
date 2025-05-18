@@ -118,7 +118,7 @@ export async function listaItensCarrinho() {
 
         } catch (error) {
             setTimeout(() => {
-                console.log("Erro ao buscar detalhes do produto:", error);
+                
                 listaItensCarrinho();
             }, 10000);
         }
@@ -129,7 +129,7 @@ export async function listaItensCarrinho() {
 }
 
 export function verDetalhes(id) {
-    window.location.href = `produto.html?id=${id}`;
+    window.location.href = `${config.FRONT_URL}/produto.html?id=${id}`;
 }
 
 export async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
@@ -224,7 +224,7 @@ export function buyCart() {
             itens_carrinho.style.display = 'block';
         }
     }
-    
+
 }
 
 function toggleDrawer() {
@@ -284,7 +284,6 @@ export function pedido(qtd) {
                         for (var i = 0; i < qtd; i++) {
                             voltar += '../';
                         }
-
                         window.location.href = `${voltar}cliente/pedido.html?id=${result.id}`;
                     }
                 }
@@ -396,7 +395,13 @@ listaItensCarrinho();
 
 window.logoutAdmin = logoutAdmin;
 window.logoutRevendedor = logoutRevendedor;
-window.logoutCliente = logoutCliente; 
-
-window.atualizarQuantidade = atualizarQuantidade; 
+window.logoutCliente = logoutCliente;
+window.pedido = pedido;
+window.buyCart = buyCart;
+window.opcoes = opcoes;
+window.listaItensCarrinho = listaItensCarrinho;
+window.buscar = buscar;
+window.toggleDrawer = toggleDrawer;
+window.displayLoader = displayLoader;
+window.atualizarQuantidade = atualizarQuantidade;
 window.verDetalhes = verDetalhes;

@@ -17,7 +17,7 @@ async function cancelarPedido(id) {
 
         if (response.ok) {
             mostrarNotificacao("Pedido Cancelado com sucesso!", {
-                cor: "#F44336",
+                cor: "#4CAF50",
                 duracao: 4000,
                 movimentoEntrada: "deslizar",
                 movimentoSaida: "esvair",
@@ -25,10 +25,19 @@ async function cancelarPedido(id) {
             });
             window.location.href = 'pedidosRevendedor.html';
         } else {
-            alert(`Erro ao cancelar o pedido #${id}`);
+            mostrarNotificacao("Erro ao cancelar pedido!", {
+                cor: "#F44336",
+                duracao: 4000,
+                movimentoEntrada: "deslizar",
+                movimentoSaida: "esvair",
+                posicao: "bottom-right"
+            });
         }
     } catch (error) {
-        console.error("Erro ao cancelar pedido:", error);
+        setTimeout(() => {
+            cancelarPedido(id);
+        }
+        , 1000);
     }
 }
 
@@ -93,7 +102,10 @@ async function extrato() {
                 listaDePedidos.innerHTML = "<p>Nenhum pedido encontrado.</p>";
             }
         } catch (error) {
-            console.error(error);
+            setTimeout(() => {  
+                extrato();
+            }
+            , 1000);
         }
     }
 }
@@ -136,7 +148,10 @@ async function pagarPedido(tokenDePagamento) {
 
 
         } catch (error) {
-            console.error(error);
+            setTimeout(() => {
+                pagarPedido(tokenDePagamento);
+            }
+            , 1000);
         }
 
     }

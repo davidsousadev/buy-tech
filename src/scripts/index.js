@@ -30,16 +30,16 @@ export async function listarProdutos() {
                 lista_produtos.appendChild(li);
             });
         } else {
-            
+
             lista_produtos.innerHTML = '<p>Nenhum produto encontrado!</p>';
         }
         displayLoader(false);
     } catch (error) {
-        console.error('Erro ao listar produtos:', error);
+        
         lista_produtos.innerHTML = '<p>Erro ao carregar produtos. Tentando novamente...</p>';
         setTimeout(listarProdutos, 10000);
     } finally {
-       
+
     }
 }
 

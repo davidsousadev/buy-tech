@@ -66,7 +66,7 @@ async function extrato(editar) {
             });
 
             const result = await response.json();
-
+            
             listaDePedidos.innerHTML = "";
 
             if (result && result.length > 0) {
@@ -74,7 +74,8 @@ async function extrato(editar) {
                     let statusPedido = "";
                     let botoes = ""; // Variável para os botões
                     let codigoPedido = "";
-                    if (editar === undefined && pedido.codigo === "" && pedido.status===false) {
+                    // Pedido Cancelado
+                    if (editar === undefined && pedido.codigo === "" && pedido.status === false) {
                         statusPedido = "Pedido Cancelado";
                         const li = document.createElement("li");
                         li.classList.add("card");
@@ -97,6 +98,7 @@ async function extrato(editar) {
                         listaDePedidos.appendChild(li);
                         displayLoader(false);
                     }
+                    // Pedido Pago
                     else if (editar === true && pedido.codigo.length === 6 && pedido.status) {
                         statusPedido = "Pedido Pago";
                         codigoPedido = pedido.codigo;
@@ -120,7 +122,9 @@ async function extrato(editar) {
                     `;
                         listaDePedidos.appendChild(li);
                         displayLoader(false);
-                    } else if (editar === false && pedido.codigo.length > 6 && pedido.status) {
+                    }
+                    // Pedido Aguardando Pagamento
+                    else if (editar === false && pedido.codigo.length > 6 && pedido.status) {
                         codigoPedido = "Pedido está esperando pagamento";
                         statusPedido = "Pedido está esperando pagamento";
                         botoes = ` <button class="cancel-btn" onclick="cancelarPedido(${pedido.id})">Cancelar Pedido</button>`;
@@ -144,12 +148,15 @@ async function extrato(editar) {
                     `;
                         listaDePedidos.appendChild(li);
                         displayLoader(false);
+                        
                     }
                 });
+                displayLoader(false);
             } else {
                 listaDePedidos.innerHTML = "<p>Nenhum pedido encontrado.</p>";
                 displayLoader(false);
             }
+            
         } catch (error) {
             setTimeout(() => {
                 extrato(editar);

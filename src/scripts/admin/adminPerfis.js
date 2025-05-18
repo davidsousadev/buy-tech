@@ -10,14 +10,17 @@ const getCookie = (name) => {
 const tokenAdmin = getCookie('authTokenAdmin');
 const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
 
-async function listarPerfis(tipo, elementoId, editar = false) {
+async function listarPerfis(tipo, elementoId, editar = false, tentativas = 0) {
     const urls = {
         admins: `${config.API_URL}/admins`,
         clientes: `${config.API_URL}/clientes/admin`,
         revendedores: `${config.API_URL}/revendedores`
     };
 
+    const MAX_TENTATIVAS = 3;
+
     if (tokenAdmin || tokenAdminRefresh) {
+        displayLoader(true);
         try {
             const response = await fetch(urls[tipo], {
                 method: 'GET',
@@ -26,16 +29,18 @@ async function listarPerfis(tipo, elementoId, editar = false) {
                     'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`
                 },
             });
+
             const result = await response.json();
+            const listarElemento = document.getElementById(elementoId);
 
             if (result && result.length > 0) {
-                const listarElemento = document.getElementById(elementoId);
                 listarElemento.innerHTML = `<h3>${tipo.charAt(0).toUpperCase() + tipo.slice(1)}</h3>`;
                 listarElemento.innerHTML += `<hr /> <br />`;
+
                 result.forEach((usuario) => {
                     const li = document.createElement("li");
                     li.classList.add("usuario-item");
-                    // Verifica se deve usar 'nome' ou 'razao_social'
+
                     const nomeOuRazao = (tipo === "revendedores" || tipo === "cliente") ? usuario.razao_social : usuario.nome;
 
                     let usuarioHTML = `
@@ -60,26 +65,48 @@ async function listarPerfis(tipo, elementoId, editar = false) {
                     listarElemento.appendChild(li);
                 });
 
+            } else {
+                listarElemento.innerHTML = `<h3>Nenhum dos ${tipo} foi cadastrado.</h3><hr />`;
             }
+
         } catch (error) {
-            setTimeout(() => {
-                listarPerfis(tipo, elementoId, editar);
-            }, 1000);
+            
+            if (tentativas < MAX_TENTATIVAS) {
+                setTimeout(() => {
+                    listarPerfis(tipo, elementoId, editar, tentativas + 1);
+                }, 1000);
+            } else {
+                const listarElemento = document.getElementById(elementoId);
+                listarElemento.innerHTML = `<h3>Erro ao carregar ${tipo}. Tente novamente mais tarde.</h3>`;
+            }
+        } finally {
+            displayLoader(false);
         }
     }
 }
 
-
 async function listarEEditarPerfisAdmin() {
-    listarPerfis('admins', 'listar_de_perfis_admins', true);
-    listarPerfis('clientes', 'listar_de_perfis_clientes', true);
-    listarPerfis('revendedores', 'listar_de_perfis_revendedores', true);
+    setTimeout(() => {
+        listarPerfis('admins', 'listar_de_perfis_admins', true);
+    }, 1000);
+    setTimeout(() => {
+        listarPerfis('clientes', 'listar_de_perfis_clientes', true);
+    }, 1000);
+    setTimeout(() => {
+        listarPerfis('revendedores', 'listar_de_perfis_revendedores', true);
+    }, 1000);
 }
 
 function listarPerfisAdmin() {
-    listarPerfis('admins', 'listar_de_perfis_admins', false);
-    listarPerfis('clientes', 'listar_de_perfis_clientes', false);
-    listarPerfis('revendedores', 'listar_de_perfis_revendedores', false);
+    setTimeout(() => {
+        listarPerfis('admins', 'listar_de_perfis_admins', false);
+    }, 1000);
+    setTimeout(() => {
+        listarPerfis('clientes', 'listar_de_perfis_clientes', false);
+    }, 1000);
+    setTimeout(() => {
+        listarPerfis('revendedores', 'listar_de_perfis_revendedores', false);
+    }, 1000);
 }
 
 

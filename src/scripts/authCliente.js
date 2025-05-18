@@ -11,6 +11,6 @@ const getCookie = (name) => {
 const tokenCliente = getCookie('authTokenCliente');
 const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
 
-if (!tokenCliente || !tokenClienteRefresh) { 
+if (!tokenCliente || !tokenClienteRefresh) {
     window.location.href = `${config.FRONT_URL}/logar.html`;
- }
+}

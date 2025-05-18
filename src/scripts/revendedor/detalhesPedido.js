@@ -42,7 +42,10 @@ async function authenticate() {
             return result;
         } 
     } catch (error) {
-        console.error('Erro ao enviar os dados:', error);
+        
+        setTimeout(() => {
+            authenticate();
+        }, 1000);
     }
     return null;
 }
@@ -104,7 +107,7 @@ document.getElementById('formCadastroPedido').addEventListener('submit', async (
     } catch (error) {
         displayLoader(false);
         disableSubmitButton(false);
-        console.error('Erro ao enviar os dados:', error);
+            
         mostrarNotificacao("Erro ao enviar os dados. Tente novamente.", {
             cor: "#F44336",
             duracao: 4000,
@@ -178,7 +181,10 @@ async function listaItensCarrinho() {
                         quantidadeDeProdutos += 1;
                         lista_itens.appendChild(li);
                     } catch (error) {
-                        console.error("Erro ao buscar detalhes do produto:", error);
+                        setTimeout(() => {
+                            listaItensCarrinho();
+                        }
+                        , 1000);
                     }
                 }
             }
@@ -192,7 +198,7 @@ async function listaItensCarrinho() {
             atualizaTotalPedido();
 
         } catch (error) {
-            console.error("Erro ao carregar o carrinho:", error);
+            
         }
     }
 }
@@ -269,7 +275,7 @@ async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
             listaItensCarrinho();
 
         } catch (error) {
-            //console.error("Erro ao atualizar a quantidade:", error);
+                
         }
     }
 }

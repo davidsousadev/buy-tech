@@ -182,7 +182,7 @@ if (formCadastroCupons) {
                     );
                     setTimeout(() => (window.location.href = "./atualizar_cupons.html"), 5000);
                 } else {
-                    if(result.detail) {
+                    if (result.detail) {
                         mostrarNotificacao(`${result.detail}`, {
                             cor: "#F44336",
                             duracao: 4000,

@@ -2,20 +2,20 @@
 
 // Função para obter o valor do cookie "authTokenAdmin"
 const getCookie = (name) => {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
 };
 
 const tokenAdmin = getCookie('authTokenAdmin');
 const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
 
 if (tokenAdmin || tokenAdminRefresh) {
-    window.location.href = 'admin/index.html';
+  window.location.href = 'admin/index.html';
 }
-else{
-    const exit = document.getElementById('exit');
-    exit.classList.add('bx-exit');
+else {
+  const exit = document.getElementById('exit');
+  exit.classList.add('bx-exit');
 }
 const themeToggleButton = document.getElementById('theme-toggle');
 

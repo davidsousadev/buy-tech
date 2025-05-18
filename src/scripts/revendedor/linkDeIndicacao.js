@@ -16,7 +16,12 @@ function copiarCodigo() {
             posicao: "bottom-right"
         });
     }).catch(err => {
-        console.error("Erro ao copiar o código: ", err);
+            
+        mostrarNotificacao("Erro ao copiar o link!", {
+            cor: "#F44336",
+            duracao: 4000,
+            posicao: "bottom-right"
+        });
     });
 }
 
@@ -41,10 +46,26 @@ if (tokenCliente || tokenClienteRefresh) {
                 const link = `${config.FRONT_URL}/cadastrar.html?ref=${clienteId}`;
                 linkDeIndicacaoTexto.textContent = link;
             } else {
-                console.error('Erro na autenticação');
+                const result = await response.json();
+                if (result.detail) {
+                    mostrarNotificacao("Token inválido!", {
+                        cor: "#F44336",
+                        duracao: 4000,
+                        posicao: "bottom-right"
+                    });
+                } else {
+                    mostrarNotificacao("Erro ao autenticar!", {
+                        cor: "#F44336",
+                        duracao: 4000,
+                        posicao: "bottom-right"
+                    });
+                }
             }
         } catch (error) {
-            console.error('Erro ao autenticar:', error);
+            setTimeout(() => {
+                authenticate();
+            }
+            , 1000);
         }
     }
 

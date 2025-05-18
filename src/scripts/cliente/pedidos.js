@@ -14,6 +14,8 @@ const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
 const listaDePedidos = document.getElementById("listaDePedidos");
 
 export async function cancelarPedido(id) {
+    displayLoader(true);
+    disableSubmitButton(true);
     try {
         const response = await fetch(`${config.API_URL}/pedidos/${id}`, {
             method: 'PATCH',
@@ -23,7 +25,7 @@ export async function cancelarPedido(id) {
             },
             body: JSON.stringify({ status: "Cancelado" })
         });
-
+        const result = await response.json();
         if (response.ok) {
             mostrarNotificacao("Pedido Cancelado com sucesso!", {
                 cor: "#F44336",
@@ -32,9 +34,23 @@ export async function cancelarPedido(id) {
                 movimentoSaida: "esvair",
                 posicao: "bottom-right"
             });
-            window.location.href = 'pedidos.html';
+            displayLoader(false);
+            disableSubmitButton(false);
+            setTimeout(() => {
+                window.location.href = 'pedidos.html';
+            }
+            , 2000);
         } else {
-            alert(`Erro ao cancelar o pedido #${id}`);
+            
+            mostrarNotificacao(`${result.detail}`, {
+                cor: "#F44336",
+                duracao: 4000,
+                movimentoEntrada: "deslizar",
+                movimentoSaida: "esvair",
+                posicao: "bottom-right"
+            });
+            displayLoader(false);
+            disableSubmitButton(false);
         }
     } catch (error) {
         setTimeout(() => {
@@ -46,6 +62,7 @@ export async function cancelarPedido(id) {
 
 export async function extrato() {
     if (tokenCliente || tokenClienteRefresh) {
+        displayLoader(true);
         try {
             const response = await fetch(`${config.API_URL}/pedidos`, {
                 method: 'GET',
@@ -100,8 +117,10 @@ export async function extrato() {
                     `;
                     listaDePedidos.appendChild(li);
                 });
+                displayLoader(false);
             } else {
                 listaDePedidos.innerHTML = "<p>Nenhum pedido encontrado.</p>";
+                displayLoader(false);
             }
         } catch (error) {
             setTimeout(() => {
@@ -114,6 +133,8 @@ export async function extrato() {
 
 export async function pagarPedido(tokenDePagamento) {
     if (tokenCliente || tokenClienteRefresh) {
+        displayLoader(true);
+        disableSubmitButton(true);
         try {
             const response = await fetch(`${config.API_URL}/operacoes/pagamentos/${tokenDePagamento}`, {
                 method: 'GET',
@@ -133,6 +154,8 @@ export async function pagarPedido(tokenDePagamento) {
                     movimentoSaida: "esvair",
                     posicao: "bottom-right"
                 });
+                displayLoader(false);
+                disableSubmitButton(false);
             } else if (result.mensage === "Pagamento realizado com sucesso!") {
                 mostrarNotificacao("Pagamento realizado com sucesso!", {
                     cor: "#4CAF50",
@@ -141,10 +164,12 @@ export async function pagarPedido(tokenDePagamento) {
                     movimentoSaida: "esvair",
                     posicao: "bottom-right"
                 });
+                displayLoader(false);
+                disableSubmitButton(false);
                 setTimeout(() => {
                     location.reload();
                 }, 5000);
-            } 
+            }
 
 
         } catch (error) {
@@ -155,6 +180,23 @@ export async function pagarPedido(tokenDePagamento) {
 
     }
 }
+
+// Função para exibir/esconder o loader
+const displayLoader = (isLoading) => {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.style.display = isLoading ? 'flex' : 'none';
+    }
+};
+
+// Função para habilitar/desabilitar o botão de submit
+const disableSubmitButton = (isDisabled) => {
+    const submitButton = document.getElementById('submitButton');
+    if (submitButton) {
+        submitButton.disabled = isDisabled;
+    }
+};
+
 // Chamar a listagem ao carregar a página
 extrato();
 

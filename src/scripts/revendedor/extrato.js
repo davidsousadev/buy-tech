@@ -41,7 +41,7 @@ async function extrato() {
             extratoCliente.innerHTML = "<p>Nenhuma operação encontrada.</p>";
         }
     } catch (error) {
-        console.error("Erro ao carregar extrato:", error);
+            
         extratoCliente.innerHTML = "<p>Erro ao carregar o extrato.</p>";
     }
 }

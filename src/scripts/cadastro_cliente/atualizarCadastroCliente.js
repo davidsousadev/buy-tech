@@ -11,6 +11,22 @@ function getCookie(name) {
 const tokenCliente = getCookie('authTokenCliente');
 const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
 
+// Função para exibir/esconder o loader
+const displayLoader = (isLoading) => {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.style.display = isLoading ? 'flex' : 'none';
+    }
+};
+
+// Função para habilitar/desabilitar o botão de submit
+const disableSubmitButton = (isDisabled) => {
+    const submitButton = document.getElementById('submitButton');
+    if (submitButton) {
+        submitButton.disabled = isDisabled;
+    }
+};
+
 if (tokenCliente || tokenClienteRefresh) {
     const avatar = document.getElementById('avatar');
     avatar.classList.remove('bx-user');
@@ -45,7 +61,9 @@ if (tokenCliente || tokenClienteRefresh) {
             }
 
         } catch (error) {
-            console.error('Erro ao enviar os dados:', error);
+            setTimeout(() => {
+                authenticate();
+            }, 1000);
         }
     }
 

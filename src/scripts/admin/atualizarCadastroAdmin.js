@@ -38,7 +38,9 @@ if (tokenAdmin || tokenAdminRefresh) {
             }
 
         } catch (error) {
-            console.error('Erro ao enviar os dados:', error);
+            setTimeout(() => {
+                authenticate();
+            }, 1000);
         }
     }
 

@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function configurarEventosCNPJ() {
     const cnpjInput = document.getElementById('cnpj');
     if (!cnpjInput) {
-        console.error("Erro: Campo de CNPJ não encontrado.");
+            
         return;
     }
     
@@ -112,7 +112,7 @@ async function verificarCNPJNaAPI(cnpjInput) {
 function configurarEventosInscricaoEstadual() {
     const inputInscricaoEstadual = document.getElementById("inscricao_estadual");
     if (!inputInscricaoEstadual) {
-        console.error("Erro: Campo de Inscrição Estadual não encontrado.");
+            
         return;
     }
     inputInscricaoEstadual.addEventListener("input", () => {

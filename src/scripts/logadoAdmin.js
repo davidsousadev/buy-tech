@@ -31,7 +31,7 @@ if (tokenAdmin || tokenAdminRefresh) {
         throw new Error(`Erro ao autenticar: ${response.statusText}`);
       }
 
-      const result = await response.json(); 
+      const result = await response.json();
 
     } catch (error) {
       setTimeout(() => {

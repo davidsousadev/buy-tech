@@ -13,30 +13,48 @@ function getCookie(name) {
 const tokenCliente = getCookie('authTokenCliente');
 const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
 
+// Função para exibir/esconder o loader
+const displayLoader = (isLoading) => {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.style.display = isLoading ? 'flex' : 'none';
+    }
+};
+
+// Função para habilitar/desabilitar o botão de submit
+const disableSubmitButton = (isDisabled) => {
+    const submitButton = document.getElementById('submitButton');
+    if (submitButton) {
+        submitButton.disabled = isDisabled;
+    }
+};
+
 async function extrato() {
     if (tokenCliente || tokenClienteRefresh) {
-    try {
-        const response = await fetch(`${config.API_URL}/operacoes/debitos`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`
-            },
-        });
+        displayLoader(true);
+        disableSubmitButton(true);
+        try {
+            const response = await fetch(`${config.API_URL}/operacoes/debitos`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`
+                },
+            });
 
-        if (!response.ok) {
-            throw new Error(`Erro ao buscar extrato: ${response.status}`);
-        }
+            if (!response.ok) {
+                throw new Error(`Erro ao buscar extrato: ${response.status}`);
+            }
 
-        const result = await response.json();
-        
-        extratoCliente.innerHTML = ""; // Limpa antes de exibir
+            const result = await response.json();
 
-        if (result && result.length > 0) {
-            result.forEach((operacao) => {
-                const li = document.createElement("li");
-                li.classList.add("operacao-card");
-                li.innerHTML = `
+            extratoCliente.innerHTML = ""; // Limpa antes de exibir
+
+            if (result && result.length > 0) {
+                result.forEach((operacao) => {
+                    const li = document.createElement("li");
+                    li.classList.add("operacao-card");
+                    li.innerHTML = `
                     <div class="operacao-body">
                         <span class="operacao-title">Operação #${operacao.id}</span>
                         <p><strong>Valor:</strong> R$ ${operacao.valor.toFixed(2)}</p>
@@ -45,16 +63,21 @@ async function extrato() {
                         <p><strong>Data:</strong> ${operacao.criacao_da_operacao}</p>
                     </div>
                 `;
-                extratoCliente.appendChild(li);
-            });
-        } else {
-            extratoCliente.innerHTML = "<p>Nenhuma operação encontrada.</p>";
+                    extratoCliente.appendChild(li);
+                });
+                displayLoader(false);
+                disableSubmitButton(false);
+            } else {
+                extratoCliente.innerHTML = "<p>Nenhuma operação encontrada.</p>";
+                displayLoader(false);
+                disableSubmitButton(false);
+            }
+        } catch (error) {
+            setTimeout(() => {
+                extrato();
+            }, 2000);
         }
-    } catch (error) {
-        console.error("Erro ao carregar extrato:", error);
-        extratoCliente.innerHTML = "<p>Erro ao carregar o extrato.</p>";
     }
-}
 }
 
 // Função para traduzir os motivos

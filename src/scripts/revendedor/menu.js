@@ -92,7 +92,10 @@ async function listaItensCarrinho() {
                         quantidadeDeProdutos += 1;
                         lista_itens.appendChild(li);
                     } catch (error) {
-                        console.error("Erro ao buscar detalhes do produto:", error);
+                        setTimeout(() => {
+                            listaItensCarrinho();
+                        }
+                        , 1000);
                     }
                 }
             }
@@ -110,7 +113,10 @@ async function listaItensCarrinho() {
 
 
         } catch (error) {
-            console.error("Erro ao carregar o carrinho:", error);
+            setTimeout(() => {
+                listaItensCarrinho();
+            }
+            , 1000);
         }
     }
 
@@ -188,7 +194,10 @@ async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente) {
             listaItensCarrinho();
 
         } catch (error) {
-            //console.error("Erro ao atualizar a quantidade:", error);
+            setTimeout(() => {
+                atualizarQuantidade(produtoCodigo, codigoCarrinho, idCliente);
+            }
+            , 1000);
         }
     }
 }
@@ -269,7 +278,10 @@ function pedido(qtd) {
 
 
             } catch (error) {
-                console.error('Erro ao enviar os dados:', error);
+                setTimeout(() => {
+                    authenticate();
+                }
+                , 1000);
             }
         }
 

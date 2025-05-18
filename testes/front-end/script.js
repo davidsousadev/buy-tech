@@ -27,7 +27,6 @@ const validateFieldAsync = async (input, endpoint, errorSpanId) => {
             }
         } catch (error) {
             // Erro na requisição
-            console.error('Erro na validação:', error);
             errorSpan.textContent = 'Erro na validação. Tente novamente.';
             input.style.borderColor = 'red';
         }

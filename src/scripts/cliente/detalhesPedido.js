@@ -27,6 +27,8 @@ const campoCEP = document.getElementById('campoCEP');
 document.getElementById('btnLogin').addEventListener('click', opcoes);
 
 export async function authenticate() {
+    displayLoader(true);
+    disableSubmitButton(true);
     try {
         const response = await fetch(`${config.API_URL}/clientes/autenticar`, {
             method: 'GET',
@@ -45,6 +47,8 @@ export async function authenticate() {
                 : String(result.cep).replace(/^(\d{5})(\d{3})$/, "$1-$2");
 
             campoCEP.innerHTML = cepFormatado;
+            displayLoader(false);
+
             return result;
         } else {
             setTimeout(() => {
@@ -166,7 +170,8 @@ verifica_cupom_de_desconto.addEventListener('click', async () => {
     if (descontoAplicado) return;
     if (tokenCliente || tokenClienteRefresh) {
         var cupom_de_desconto = document.getElementById('cupom_de_desconto').value;
-
+        displayLoader(true);
+        disableSubmitButton(true);
         try {
             const response = await fetch(`${config.API_URL}/cupons/verificar-cupom?cupom_nome=${cupom_de_desconto}`, {
                 method: 'GET',
@@ -192,12 +197,8 @@ verifica_cupom_de_desconto.addEventListener('click', async () => {
             if (resultado.cupom) {
                 let desconto = resultado.cupom["valor"];
                 let tipoCupom = resultado.cupom["tipo"];
-
                 if (valor_cupom_desconto) {
                     valor_cupom_desconto.innerHTML = `R$ ${desconto.toFixed(2)}`;
-
-
-
                     if (tipoCupom) {
                         // Valor fixo
                         totalCarrinho -= desconto;
@@ -221,6 +222,8 @@ verifica_cupom_de_desconto.addEventListener('click', async () => {
                     movimentoSaida: "esvair",
                     posicao: "bottom-right"
                 });
+                displayLoader(false);
+                disableSubmitButton(false);
             }
             else {
                 valor_cupom_desconto.innerHTML = `R$ 00.00`;
@@ -231,6 +234,8 @@ verifica_cupom_de_desconto.addEventListener('click', async () => {
                     movimentoSaida: "esvair",
                     posicao: "bottom-right"
                 });
+                displayLoader(false);
+                disableSubmitButton(false);
             }
         } catch (error) {
             setTimeout(() => {
@@ -248,6 +253,8 @@ verifica_frete.addEventListener('click', async () => {
     if (clubeFidelidade === false) {
         // Consulta de CEP com fallback dinâmico
         const fetchCepData = async (cep) => {
+            displayLoader(true);
+            disableSubmitButton(true);
             try {
                 // Primeira tentativa: ViaCEP
                 let response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
@@ -291,6 +298,8 @@ verifica_frete.addEventListener('click', async () => {
                     movimentoSaida: "esvair",
                     posicao: "bottom-right"
                 });
+                displayLoader(false);
+                disableSubmitButton(false);
                 return frete.toFixed(2);
             }
 
@@ -304,11 +313,13 @@ verifica_frete.addEventListener('click', async () => {
                 movimentoSaida: "esvair",
                 posicao: "bottom-right"
             });
-            
+
             freteCalculado = true;
             totalCarrinho += 39.00;
             precoFrete = 39.00;
             document.getElementById('valorFrete').innerText = 39.00;
+            displayLoader(false);
+            disableSubmitButton(false);
         }
     }
     else {
@@ -331,6 +342,8 @@ verifica_frete.addEventListener('click', async () => {
 export async function listaItensCarrinho() {
 
     if (tokenCliente || tokenClienteRefresh) {
+        displayLoader(true);
+        disableSubmitButton(true);
         try {
             const response = await fetch(`${config.API_URL}/carrinhos`, {
                 method: 'GET',
@@ -350,6 +363,8 @@ export async function listaItensCarrinho() {
                     finalizar_pedido.style.display = "none";
                     lista_itens.innerHTML = `<p class="carrinho-vazio-texto">Seu carrinho está vazio.</p>`;
                 }
+                displayLoader(false);
+                disableSubmitButton(false);
                 return;
             }
 
@@ -358,6 +373,8 @@ export async function listaItensCarrinho() {
             var quantidadeDeProdutos = 0;
             for (const produto of resultadoItensCarrinho) {
                 if (produto.codigo.length != 6) {
+                    displayLoader(false);
+                    disableSubmitButton(false);
                     try {
                         const produtoResponse = await fetch(`${config.API_URL}/produtos/${produto.produto_codigo}`, {
                             method: 'GET',
@@ -393,6 +410,8 @@ export async function listaItensCarrinho() {
                     `;
                         quantidadeDeProdutos += 1;
                         lista_itens.appendChild(li);
+                        displayLoader(false);
+                        disableSubmitButton(false);
                     } catch (error) {
                         setTimeout(() => {
                             listaItensCarrinho();
@@ -421,6 +440,8 @@ export async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idClien
 
     const novaQuantidade = document.getElementById(`quantidade_${produtoCodigo}`).value;
     if ((tokenCliente || tokenClienteRefresh) && novaQuantidade) {
+        displayLoader(true);
+        disableSubmitButton(true);
         try {
             const response = await fetch(`${config.API_URL}/carrinhos/${codigoCarrinho}`, {
                 method: 'PATCH',
@@ -441,7 +462,7 @@ export async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idClien
                 if (resultado.message) {
                     mostrarNotificacao("Produto Atualizado com sucesso!", {
                         cor: "#4CAF50",
-                        duracao: 4000,
+                        duracao: 3000,
                         movimentoEntrada: "deslizar",
                         movimentoSaida: "esvair",
                         posicao: "bottom-right"
@@ -453,26 +474,26 @@ export async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idClien
                 if (resultado.detail === "Item removido do carrinho!") {
                     mostrarNotificacao(`${resultado.detail}`, {
                         cor: "#F44336",
-                        duracao: 4000,
+                        duracao: 3000,
                         movimentoEntrada: "deslizar",
                         movimentoSaida: "esvair",
                         posicao: "bottom-right"
                     });
                     setTimeout(() => {
                         location.reload();
-                    }, 5000);
+                    }, 3000);
                 }
                 if (resultado.detail === "Token expirado!") {
                     mostrarNotificacao(`Token expirado!`, {
                         cor: "#F44336",
-                        duracao: 4000,
+                        duracao: 3000,
                         movimentoEntrada: "deslizar",
                         movimentoSaida: "esvair",
                         posicao: "bottom-right"
                     });
                     setTimeout(() => {
                         window.location.href = './logar.html';
-                    }, 5000);
+                    }, 3000);
                 }
                 if (resultado.detail === "Pedido maior que estoque!") {
                     mostrarNotificacao(`Pedido maior que estoque!`, {
@@ -482,6 +503,11 @@ export async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idClien
                         movimentoSaida: "esvair",
                         posicao: "bottom-right"
                     });
+                    displayLoader(false);
+                    disableSubmitButton(false);
+                    setTimeout(() => {
+                        location.reload();
+                    }, 3000);
                 }
             }//
 
@@ -520,3 +546,7 @@ const disableSubmitButton = (isDisabled) => {
 listaItensCarrinho();
 
 window.listaItensCarrinho = listaItensCarrinho;
+window.atualizarQuantidade = atualizarQuantidade;
+window.opcoes = opcoes;
+window.toggleDrawer = toggleDrawer;
+window.atualizaTotalPedido = atualizaTotalPedido;

@@ -198,7 +198,7 @@ if (formCadastroCategoria) {
                 });
 
                 const result = await response.json();
-                
+
 
                 if (response.ok) {
                     mostrarNotificacao("Cadastro realizado com sucesso!", {

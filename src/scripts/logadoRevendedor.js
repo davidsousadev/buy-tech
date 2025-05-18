@@ -26,20 +26,20 @@ if (tokenRevendedor || tokenRevendedorRefresh) {
 
       if (response.ok) {
         const result = await response.json();
-        
+
       }
 
     } catch (error) {
       setTimeout(() => {
         authenticate();
-    }, 1000);
+      }, 1000);
     }
   }
 
   // Chama a função de autenticação
   authenticate();
 }
-else{
+else {
   window.location.href = '../index.html';
 }
 const themeToggleButton = document.getElementById('theme-toggle');

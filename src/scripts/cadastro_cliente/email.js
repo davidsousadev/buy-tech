@@ -30,7 +30,7 @@ export const validateEmail = async () => {
         try {
             const response = await fetch(`${config.API_URL}/clientes/verificar-email?${emailInput.name}=${value}`);
             const result = await response.json();
-            
+
             if (result.detail === true) {
                 emailInput.style.borderColor = 'green';
                 return;
@@ -47,16 +47,16 @@ export const validateEmail = async () => {
                     return;
                 }
                 else {
-                        emailInput.style.borderColor = 'red';
-                        mostrarNotificacao(result.detail, {
-                            cor: "#F44336",
-                            duracao: 4000,
-                            movimentoEntrada: "deslizar",
-                            movimentoSaida: "esvair",
-                            posicao: "bottom-right"
-                        });
-                        return;
-                    } 
+                    emailInput.style.borderColor = 'red';
+                    mostrarNotificacao(result.detail, {
+                        cor: "#F44336",
+                        duracao: 4000,
+                        movimentoEntrada: "deslizar",
+                        movimentoSaida: "esvair",
+                        posicao: "bottom-right"
+                    });
+                    return;
+                }
             }
         } catch (error) {
             emailInput.style.borderColor = 'red';

@@ -61,7 +61,10 @@ async function listarProdutos(editar) {
         });
 
     } catch (error) {
-        console.error("Erro ao listar produtos:", error);
+        setTimeout(() => {
+            listarProdutos(editar);
+        }
+        , 10000);
     }
 }
 
@@ -85,7 +88,7 @@ const disableSubmitButton = (isDisabled) => {
 async function adicionarAoCarrinho(produtoId) {
     const tokenRevendedor = getCookie('authTokenRevendedor');
     if (!tokenRevendedor) {
-        alert("Você precisa estar logado para adicionar produtos ao carrinho.");
+        
         return;
     }
 
@@ -93,7 +96,7 @@ async function adicionarAoCarrinho(produtoId) {
 
     // Garantindo que a quantidade seja um número válido
     if (isNaN(quantidade) || quantidade <= 0) {
-        alert("Por favor, insira uma quantidade válida.");
+        
         return;
     }
     async function authenticate() {
@@ -113,7 +116,10 @@ async function adicionarAoCarrinho(produtoId) {
                 return result.id;
             } 
         } catch (error) {
-            console.error('Erro ao enviar os dados:', error);
+            setTimeout(() => {
+                authenticate();
+            }
+            , 1000);
         }
         return null;
     }
@@ -157,6 +163,9 @@ async function adicionarAoCarrinho(produtoId) {
         }
 
     } catch (error) {
-        console.error("Erro ao adicionar produto ao carrinho:", error);
+        setTimeout(() => {
+            adicionarAoCarrinho(produtoId);
+        }
+        , 1000);
     }
 }

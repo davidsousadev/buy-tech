@@ -88,7 +88,7 @@ export const handleFormSubmission = async () => {
                     });
                 }
             } catch (error) {
-                console.error('Erro ao enviar os dados:', error);
+                    
                 // Esconde o loader e habilita o botão novamente
                 displayLoader(false);
                 disableSubmitButton(false);
@@ -186,7 +186,7 @@ export const handleFormSubmission = async () => {
                     });
                 }
             } catch (error) {
-                console.error('Erro ao enviar os dados:', error);
+                    
                 // Esconde o loader e habilita o botão novamente
                 displayLoader(false);
                 disableSubmitButton(false);

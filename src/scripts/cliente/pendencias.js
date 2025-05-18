@@ -4,14 +4,33 @@ import * as config from '../consts.js';
 
 const tokenCliente = getCookie('authTokenCliente');
 const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
-
 const listaDePedidos = document.getElementById("listaDePedidos");
+
+// Função para exibir/esconder o loader
+const displayLoader = (isLoading) => {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.style.display = isLoading ? 'flex' : 'none';
+    }
+};
+
+// Função para habilitar/desabilitar o botão de submit
+const disableSubmitButton = (isDisabled) => {
+    const submitButton = document.getElementById('submitButton');
+    if (submitButton) {
+        submitButton.disabled = isDisabled;
+    }
+};
+
 function getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
 };
+
 export async function cancelarPedido(id) {
+    displayLoader(true);
+    disableSubmitButton(true);
     try {
         const response = await fetch(`${config.API_URL}/pedidos/${id}`, {
             method: 'PATCH',
@@ -24,23 +43,40 @@ export async function cancelarPedido(id) {
 
         if (response.ok) {
             mostrarNotificacao("Pedido Cancelado com sucesso!", {
+                cor: "#4CAF50",
+                duracao: 4000,
+                movimentoEntrada: "deslizar",
+                movimentoSaida: "esvair",
+                posicao: "bottom-right"
+            });
+            displayLoader(false);
+            disableSubmitButton(false);
+            // Redireciona para a página de pedidos
+            setTimeout(() => {
+                location.reload();
+            }, 2000);
+        } else {
+            mostrarNotificacao("Erro ao cancelar pedido!", {
                 cor: "#F44336",
                 duracao: 4000,
                 movimentoEntrada: "deslizar",
                 movimentoSaida: "esvair",
                 posicao: "bottom-right"
             });
-            window.location.href = 'pedidos.html';
-        } else {
-            alert(`Erro ao cancelar o pedido #${id}`);
+            displayLoader(false);
+            disableSubmitButton(false);
         }
     } catch (error) {
-        console.error("Erro ao cancelar pedido:", error);
+        setTimeout(() => {
+            cancelarPedido(id);
+        }, 1000);
     }
 }
 
 export async function pagarPedido(tokenDePagamento) {
     if (tokenCliente || tokenClienteRefresh) {
+        displayLoader(true);
+        disableSubmitButton(true);
         try {
             const response = await fetch(`${config.API_URL}/operacoes/pagamentos/${tokenDePagamento}`, {
                 method: 'GET',
@@ -59,6 +95,8 @@ export async function pagarPedido(tokenDePagamento) {
                     movimentoSaida: "esvair",
                     posicao: "bottom-right"
                 });
+                displayLoader(false);
+                disableSubmitButton(false);
             } else {
                 if (result.mensage === "Pagamento realizado com sucesso!") {
                     mostrarNotificacao("Pagamento realizado com sucesso!", {
@@ -68,14 +106,18 @@ export async function pagarPedido(tokenDePagamento) {
                         movimentoSaida: "esvair",
                         posicao: "bottom-right"
                     });
+                    displayLoader(false);
+                    disableSubmitButton(false);
                     setTimeout(() => {
                         location.reload();
-                    }, 5000);
+                    }, 3000);
                 }
             }
 
         } catch (error) {
-            console.error(error);
+            setTimeout(() => {
+                pagarPedido(tokenDePagamento);
+            }, 1000);
         }
 
     }
@@ -83,6 +125,8 @@ export async function pagarPedido(tokenDePagamento) {
 
 export async function extrato() {
     if (tokenCliente || tokenClienteRefresh) {
+        displayLoader(true);
+        disableSubmitButton(true);
         try {
             const response = await fetch(`${config.API_URL}/operacoes/pendencias`, {
                 method: 'GET',
@@ -110,11 +154,11 @@ export async function extrato() {
                                 <button class="pay-btn" onclick="pagarPedido('${pedido.token_pagamento}')">Pagar Pedido</button>
                             </div>
                         `;
-                    
 
-                    const li = document.createElement("li");
-                    li.classList.add("card");
-                    li.innerHTML = `
+
+                        const li = document.createElement("li");
+                        li.classList.add("card");
+                        li.innerHTML = `
                         <div class="card-body">
                             <h3 class="card-title">Pedido #${pedido.id}</h3>
                             <p><strong>Cliente:</strong> ${pedido.cliente}</p>
@@ -130,15 +174,22 @@ export async function extrato() {
                             ${botoes} <!-- Adiciona os botões somente se necessário -->
                         </div>
                     `;
-                    listaDePedidos.appendChild(li);
+                        listaDePedidos.appendChild(li);
 
-                }
+                    }
                 });
+                displayLoader(false);
+                disableSubmitButton(false);
             } else {
                 listaDePedidos.innerHTML = "<p>Nenhuma pendência encontrada.</p>";
+                displayLoader(false);
+                disableSubmitButton(false);
             }
         } catch (error) {
-            console.error(error);
+            setTimeout(() => {
+                extrato();
+            }
+                , 2000);
         }
     }
 }

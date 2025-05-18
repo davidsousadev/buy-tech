@@ -12,10 +12,11 @@ const getCookie = (name) => {
 const tokenAdmin = getCookie('authTokenAdmin');
 const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
 async function grafico() {
-if (tokenAdmin || tokenAdminRefresh) {
+    if (tokenAdmin || tokenAdminRefresh) {
         let dadosGrafico = [];
 
         async function buscarDados() {
+            displayLoader(true);
             try {
                 const resposta = await fetch(`${config.API_URL}/operacoes/vendas/cashback/admin`, {
                     method: 'GET',
@@ -25,7 +26,7 @@ if (tokenAdmin || tokenAdminRefresh) {
                     },
                 });
 
-                displayLoader(true);
+                
                 const dados = await resposta.json();
                 setTimeout(() => {
                     displayLoader(false);
@@ -96,11 +97,11 @@ if (tokenAdmin || tokenAdminRefresh) {
                 const y = event.clientY - rect.top - centroY;
                 const anguloClicado = Math.atan2(y, x);
                 const anguloNormalizado = anguloClicado < 0 ? anguloClicado + 2 * Math.PI : anguloClicado;
-            
-                const fatiaClicada = fatias.find(fatia => 
+
+                const fatiaClicada = fatias.find(fatia =>
                     anguloNormalizado >= fatia.inicio && anguloNormalizado <= fatia.fim
                 );
-            
+
                 if (fatiaClicada) {
                     if (fatiaClicada.dado.label === "Créditos") {
                         window.location.href = "../pedidos/index.html";
@@ -109,7 +110,7 @@ if (tokenAdmin || tokenAdminRefresh) {
                     }
                 }
             });
-            
+
         }
 
         function gerarLegenda(dados) {
@@ -141,6 +142,7 @@ if (tokenAdmin || tokenAdminRefresh) {
 
 async function listarDebitos() {
     if (tokenAdmin || tokenAdminRefresh) {
+        displayLoader(true);
         try {
             const resposta = await fetch(`${config.API_URL}/operacoes/cashback/admin`, {
                 method: 'GET',
@@ -166,28 +168,18 @@ async function listarDebitos() {
                     `;
                     extratoCliente.appendChild(li);
                 });
+                displayLoader(false);
             } else {
+                displayLoader(false);
                 extratoCliente.innerHTML = "<p>Nenhuma operação encontrada.</p>";
             }
-        }catch (error) {
+        } catch (error) {
             setTimeout(() => {
                 listarDebitos();
             }, 1000);
         }
-}
-}
-
-// Função para traduzir os motivos
-function motivoTexto(motivo) {
-    switch (motivo) {
-        case 1: return "Referência";
-        case 2: return "Cashback";
-        case 3: return "Pagamento";
-        default: return "Desconhecido";
     }
 }
-
-
 // Função para exibir/esconder o loader
 const displayLoader = (isLoading) => {
     const loader = document.getElementById('loader');
@@ -204,9 +196,24 @@ const disableSubmitButton = (isDisabled) => {
     }
 };
 
+if (extratoCliente) {
+    listarDebitos();
+}
+
+// Função para traduzir os motivos
+function motivoTexto(motivo) {
+    switch (motivo) {
+        case 1: return "Referência";
+        case 2: return "Cashback";
+        case 3: return "Pagamento";
+        default: return "Desconhecido";
+    }
+}
+
+
+
 window.grafico = grafico;
 window.listarDebitos = listarDebitos;
 window.motivoTexto = motivoTexto;
-window.extratoCliente = extratoCliente;
 window.disableSubmitButton = disableSubmitButton;
 window.displayLoader = displayLoader;

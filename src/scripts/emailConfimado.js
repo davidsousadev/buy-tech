@@ -31,26 +31,26 @@ if (btnLogin) {
 }
 
 if (codigo) {
-    
-        try {
-            const response = await fetch(`${config.API_URL}/emails/confirmado/?codigo=${codigo}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            });
-            const result = await response.json();
 
-            if (result.email===true) {
-                confirmado.innerHTML = `E-mail Confirmado com sucesso!`;
-            } else {
-                confirmado.innerHTML = `${result.detail}`;
-            }
-        } catch (error) {
-            setTimeout(() => {
-                location.reload();
-            }, 10000);
+    try {
+        const response = await fetch(`${config.API_URL}/emails/confirmado/?codigo=${codigo}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+        const result = await response.json();
+
+        if (result.email === true) {
+            confirmado.innerHTML = `E-mail Confirmado com sucesso!`;
+        } else {
+            confirmado.innerHTML = `${result.detail}`;
         }
+    } catch (error) {
+        setTimeout(() => {
+            location.reload();
+        }, 10000);
+    }
 }
 
 const themeToggleButton = document.getElementById('theme-toggle');

@@ -34,7 +34,7 @@ export function listarCategorias() {
                             </div>
                         `;
 
-                        lista_categorias_cliente.appendChild(li);
+                    lista_categorias_cliente.appendChild(li);
                 });
             } else {
                 lista_categorias_cliente.innerHTML = '<p>Nenhuma categoria encontrada!</p>';

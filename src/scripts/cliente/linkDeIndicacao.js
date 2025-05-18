@@ -16,6 +16,22 @@ const tokenCliente = getCookie('authTokenCliente');
 const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
 document.getElementById('copiar_link').addEventListener('click', copiarCodigo);
 
+// Função para exibir/esconder o loader
+const displayLoader = (isLoading) => {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.style.display = isLoading ? 'flex' : 'none';
+    }
+};
+
+// Função para habilitar/desabilitar o botão de submit
+const disableSubmitButton = (isDisabled) => {
+    const submitButton = document.getElementById('submitButton');
+    if (submitButton) {
+        submitButton.disabled = isDisabled;
+    }
+};
+
 // Função para copiar o código do link
 export function copiarCodigo() {
     const codigo = linkDeIndicacaoTexto.innerText;
@@ -23,16 +39,22 @@ export function copiarCodigo() {
         mostrarNotificacao("Link copiado com sucesso!", {
             cor: "#4CAF50",
             duracao: 4000,
+            movimentoEntrada: "deslizar",
+            movimentoSaida: "esvair",
             posicao: "bottom-right"
         });
     }).catch(err => {
-        console.error("Erro ao copiar o código: ", err);
+        setTimeout(() => {
+            copiarCodigo();
+        }, 2000);
     });
 }
 
 // Verificando se o token existe
 if (tokenCliente || tokenClienteRefresh) {
     async function authenticate() {
+        displayLoader(true);
+        disableSubmitButton(true);
         try {
             // Fazendo a requisição para autenticar o cliente
             const response = await fetch(`${config.API_URL}/clientes/autenticar`, {
@@ -50,11 +72,23 @@ if (tokenCliente || tokenClienteRefresh) {
                 // Atualizando o texto do link de indicação
                 const link = `${config.FRONT_URL}/cadastrar.html?ref=${clienteId}`;
                 linkDeIndicacaoTexto.textContent = link;
+                displayLoader(false);
+                disableSubmitButton(false);
             } else {
-                console.error('Erro na autenticação');
+                mostrarNotificacao("Erro ao autenticar!", {
+                    cor: "#F44336",
+                    duracao: 4000,
+                    movimentoEntrada: "deslizar",
+                    movimentoSaida: "esvair",
+                    posicao: "bottom-right"
+                });
+                displayLoader(false);
+                disableSubmitButton(false);
             }
         } catch (error) {
-            console.error('Erro ao autenticar:', error);
+            setTimeout(() => {
+                authenticate();
+            }, 2000);
         }
     }
 

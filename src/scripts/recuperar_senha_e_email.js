@@ -5,7 +5,7 @@ import * as config from './consts.js';
 // Formulário para Recuperar Senha
 const formRecuperarSenha = document.getElementById('formRecuperarSenha');
 if (formRecuperarSenha) {
-   
+
     formRecuperarSenha.addEventListener('submit', async (e) => {
         e.preventDefault();  // Impede o envio tradicional do formulário
 
@@ -85,7 +85,7 @@ if (formRecuperarSenha) {
                 displayLoader(false);
                 disableSubmitButton('submitButtonSenha', false);
                 setTimeout(() => {
-                location.reload();
+                    location.reload();
                 }, 1000);
             }
         }

@@ -59,7 +59,7 @@ async function listarPerfis(tipo, elementoId, editar = false) {
                     li.innerHTML = usuarioHTML;
                     listarElemento.appendChild(li);
                 });
-                
+
             }
         } catch (error) {
             setTimeout(() => {
@@ -116,15 +116,15 @@ export async function atualizarStatusUsuario(id, tipo) {
                 movimentoSaida: "esvair",
                 posicao: "bottom-right"
             });
-            
+
             setTimeout(() => {
                 displayLoader(false);
                 disableButton(false);
                 listarEEditarPerfisAdmin();
             }, 3000);
-            
+
         } else {
-            if(response.status === 403) {
+            if (response.status === 403) {
                 mostrarNotificacao("Você não tem permissão para realizar essa ação!", {
                     cor: "#F44336",
                     duracao: 4000,
@@ -133,10 +133,10 @@ export async function atualizarStatusUsuario(id, tipo) {
                     posicao: "bottom-right"
                 });
                 displayLoader(false);
-            disableButton(false);
-            setTimeout(() => {
-                listarEEditarPerfisAdmin();
-            }, 3000);
+                disableButton(false);
+                setTimeout(() => {
+                    listarEEditarPerfisAdmin();
+                }, 3000);
             }
         }
     } catch (error) {
@@ -166,5 +166,5 @@ const disableButton = (isDisabled) => {
 
 listarEEditarPerfisAdmin();
 
-window.listarEEditarPerfisAdmin = listarEEditarPerfisAdmin; 
+window.listarEEditarPerfisAdmin = listarEEditarPerfisAdmin;
 window.atualizarStatusUsuario = atualizarStatusUsuario;

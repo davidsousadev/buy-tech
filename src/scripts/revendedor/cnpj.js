@@ -30,14 +30,14 @@ export function somenteNumerosCNPJ(cnpjInput) {
 export function validarCNPJ(cnpj) {
 
     if (!cnpj) {
-        console.error("Erro: CNPJ está undefined ou vazio.");
+        
         return false;
     }
     
     cnpj = cnpj.replace(/[^\d]+/g, ''); // Erro ocorre aqui
     
     if (cnpj.length !== 14) {
-        console.error("Erro: CNPJ inválido.");
+        
         return false;
     }
 

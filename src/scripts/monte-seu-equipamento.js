@@ -92,10 +92,10 @@ if (formPC) {
 
         } catch (error) {
             displayLoader(false);
-        disableSubmitButton(false);
-        setTimeout(() => {
-            location.reload();
-        }, 1000);
+            disableSubmitButton(false);
+            setTimeout(() => {
+                location.reload();
+            }, 1000);
         }
     });
 }

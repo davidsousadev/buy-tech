@@ -130,7 +130,7 @@ export async function adicionarAoCarrinho(produtoId) {
             cliente_id: clienteId,
             quantidade: quantidade
         };
-        
+
         try {
             const response = await fetch(`${config.API_URL}/carrinhos`, {
                 method: "POST",
@@ -141,7 +141,7 @@ export async function adicionarAoCarrinho(produtoId) {
                 body: JSON.stringify(data)
             });
             const result = await response.json();
-            
+
             if (response.ok && response.status === 201) {
                 mostrarNotificacao("Produto adicionado ao carrinho!", {
                     cor: "#4CAF50",
@@ -164,7 +164,7 @@ export async function adicionarAoCarrinho(produtoId) {
             }
 
         } catch {
-            displayLoader(false);   
+            displayLoader(false);
             mostrarNotificacao("Erro ao adicionar ao carrinho", {
                 cor: "#F44336",
                 duracao: 4000,

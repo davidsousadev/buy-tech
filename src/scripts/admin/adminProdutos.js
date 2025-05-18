@@ -19,7 +19,7 @@ function listarProdutos(editar) {
     if (tokenAdmin || tokenAdminRefresh) {
         async function authenticate() {
             displayLoader(true);
-            
+
             try {
                 const response = await fetch(`${config.API_URL}/produtos`, {
                     method: 'GET',
@@ -56,12 +56,12 @@ function listarProdutos(editar) {
                         lista_de_produtos_admin.appendChild(li);
                     });
                     displayLoader(false);
-                    
+
                 }
                 else {
                     lista_de_produtos_admin.innerHTML = "<li>Nenhum produto encontrado.</li>";
                     displayLoader(false);
-                    
+
                 }
             } catch (error) {
                 setTimeout(() => {
@@ -128,7 +128,7 @@ if (formCadastroProdutoAdmin) {
                 } catch (error) {
                     displayLoader(false);
                     disableSubmitButton(false);
-                    console.error("Erro ao carregar produto:", error);
+                    
                     mostrarNotificacao("Erro ao carregar os dados do produto.", {
                         cor: "#F44336",
                         duracao: 4000,
@@ -154,45 +154,50 @@ if (formCadastroProdutoAdmin) {
                 };
                 displayLoader(true);
                 disableSubmitButton(true);
-                try {
-                    const response = await fetch(`${config.API_URL}/produtos/${idProduto}`, {
-                        method: 'PATCH',
-                        body: JSON.stringify(formData),
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`
-                        }
-                    });
-
-                    const result = await response.json();
-                    if (response.ok) {
-                        mostrarNotificacao("Produto atualizado com sucesso!", {
-                            cor: "#4CAF50",
-                            duracao: 4000,
-                            posicao: "bottom-right"
+                async function atualizarProdutos() {
+                    try {
+                        const response = await fetch(`${config.API_URL}/produtos/${idProduto}`, {
+                            method: 'PATCH',
+                            body: JSON.stringify(formData),
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${tokenAdmin || tokenAdminRefresh}`
+                            }
                         });
-                        setTimeout(() => {
-                            window.location.href = './atualizar_produtos.html';
-                        }, 3000);
-                    } else {
-                        if (result.detail) {
-                            displayLoader(false);
-                            disableSubmitButton(false);
-                        mostrarNotificacao(`${result.detail}`, {
+
+                        const result = await response.json();
+                        if (response.ok) {
+                            mostrarNotificacao("Produto atualizado com sucesso!", {
+                                cor: "#4CAF50",
+                                duracao: 4000,
+                                posicao: "bottom-right"
+                            });
+                            setTimeout(() => {
+                                window.location.href = './atualizar_produtos.html';
+                            }, 3000);
+                        } else {
+                            if (result.detail) {
+                                displayLoader(false);
+                                disableSubmitButton(false);
+                                mostrarNotificacao(`${result.detail}`, {
+                                    cor: "#F44336",
+                                    duracao: 4000,
+                                    posicao: "bottom-right"
+                                });
+                            }
+                        }
+                    } catch (error) {
+                        mostrarNotificacao("Erro ao atualizar os dados. Tente novamente.", {
                             cor: "#F44336",
                             duracao: 4000,
                             posicao: "bottom-right"
                         });
+                        setTimeout(() => {
+                            atualizarProdutos();
+                        }, 3000);
                     }
-                    }
-                } catch (error) {
-                    console.error('Erro ao atualizar o produto:', error);
-                    mostrarNotificacao("Erro ao atualizar os dados. Tente novamente.", {
-                        cor: "#F44336",
-                        duracao: 4000,
-                        posicao: "bottom-right"
-                    });
                 }
+                atualizarProdutos();
             });
         }
         else {
@@ -256,7 +261,7 @@ if (formCadastroProdutoAdmin) {
                         }
                     }
                 } catch (error) {
-                    console.error('Erro ao enviar os dados:', error);
+                    
                     mostrarNotificacao("Erro ao enviar os dados. Tente novamente.", {
                         cor: "#F44336",
                         duracao: 4000,
@@ -268,32 +273,39 @@ if (formCadastroProdutoAdmin) {
     }
 
 }
-
-// Lista categorias e manda para o select
-document.addEventListener("DOMContentLoaded", async function () {
+export async function carregarCatagorias() {
     const categoriaSelect = document.getElementById("categoria");
-
-    try {
-        const response = await fetch(`${config.API_URL}/categorias`);
-        const categorias = await response.json();
-
-        // Limpa opções antigas
-        categoriaSelect.innerHTML = '<option value="">Selecione uma categoria</option>';
-
-        // Adiciona as categorias ao select
-        categorias.forEach(categoria => {
-            const option = document.createElement("option");
-            option.value = categoria.id;
-            option.textContent = categoria.nome;
-            categoriaSelect.appendChild(option);
-        });
-
-    } catch (error) {
-        console.error("Erro ao carregar categorias:", error);
-        categoriaSelect.innerHTML = '<option value="">Erro ao carregar categorias</option>';
+    displayLoader(true);
+    if (!categoriaSelect) {
+        return;
     }
-});
+    else {
+        try {
+            const response = await fetch(`${config.API_URL}/categorias`);
+            const categorias = await response.json();
 
+            // Limpa opções antigas
+            categoriaSelect.innerHTML = '<option value="">Selecione uma categoria</option>';
+
+            // Adiciona as categorias ao select
+            categorias.forEach(categoria => {
+                const option = document.createElement("option");
+                option.value = categoria.id;
+                option.textContent = categoria.nome;
+                categoriaSelect.appendChild(option);
+            });
+
+        } catch (error) {
+            setTimeout(() => {
+                carregarCatagorias();
+            }, 3000);
+        }
+    }
+}
+
+carregarCatagorias();
+
+window.carregarCatagorias = carregarCatagorias;
 window.listarProdutos = listarProdutos;
 window.editarProduto = editarProduto;
 window.displayLoader = displayLoader;
