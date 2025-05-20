@@ -68,12 +68,14 @@ async function extrato(editar) {
             const result = await response.json();
             
             listaDePedidos.innerHTML = "";
-
+            var quantidadeDePedidos = 0;
             if (result && result.length > 0) {
+                
                 result.forEach((pedido) => {
                     let statusPedido = "";
                     let botoes = ""; // Variável para os botões
                     let codigoPedido = "";
+
                     // Pedido Cancelado
                     if (editar === undefined && pedido.codigo === "" && pedido.status === false) {
                         statusPedido = "Pedido Cancelado";
@@ -96,7 +98,7 @@ async function extrato(editar) {
                         </div>
                     `;
                         listaDePedidos.appendChild(li);
-                        displayLoader(false);
+                        quantidadeDePedidos++;
                     }
                     // Pedido Pago
                     else if (editar === true && pedido.codigo.length === 6 && pedido.status) {
@@ -121,7 +123,8 @@ async function extrato(editar) {
                         </div>
                     `;
                         listaDePedidos.appendChild(li);
-                        displayLoader(false);
+                        quantidadeDePedidos++;
+                        
                     }
                     // Pedido Aguardando Pagamento
                     else if (editar === false && pedido.codigo.length > 6 && pedido.status) {
@@ -146,17 +149,25 @@ async function extrato(editar) {
                             ${botoes} <!-- Adiciona os botões somente se necessário -->
                         </div>
                     `;
-                        listaDePedidos.appendChild(li);
-                        displayLoader(false);
-                        
+                        listaDePedidos.appendChild(li); 
+                        quantidadeDePedidos++;                  
                     }
+                    
                 });
                 displayLoader(false);
             } else {
                 listaDePedidos.innerHTML = "<p>Nenhum pedido encontrado.</p>";
                 displayLoader(false);
             }
-            
+            if (quantidadeDePedidos === 0) {
+                       listaDePedidos.innerHTML = "<p>Nenhum pedido encontrado.</p>";
+                displayLoader(false); 
+                    }
+        else{
+            listaDePedidos.innerHTML += `<hr /><p>Total de pedidos: ${quantidadeDePedidos} ${quantidadeDePedidos === 1 ? 'pedido' : 'pedidos'}.</p>`;
+
+            displayLoader(false);
+        }
         } catch (error) {
             setTimeout(() => {
                 extrato(editar);
