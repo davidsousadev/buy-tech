@@ -24,6 +24,8 @@ const totalPedido = document.getElementById('totalPedido');
 const valor_cupom_desconto = document.getElementById('valor_cupom_desconto');
 const campoCEP = document.getElementById('campoCEP');
 
+const formContainer = document.getElementById('formContainer');
+
 document.getElementById('btnLogin').addEventListener('click', opcoes);
 
 export async function authenticate() {
@@ -344,6 +346,7 @@ export async function listaItensCarrinho() {
     if (tokenCliente || tokenClienteRefresh) {
         displayLoader(true);
         disableSubmitButton(true);
+
         try {
             const response = await fetch(`${config.API_URL}/carrinhos`, {
                 method: 'GET',
@@ -352,21 +355,31 @@ export async function listaItensCarrinho() {
                     'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
                 },
             });
+            
+            if (response.status === 204) {
+                formContainer.style.display = "none";
+                lista_itens.innerHTML = `<p class="carrinho-vazio-texto">Seu carrinho está vazio.</p>`;
+                displayLoader(false);
+                disableSubmitButton(false);
+                return;
+            }
 
             const resultadoItensCarrinho = await response.json();
 
-            if (resultadoItensCarrinho.detail) {
+
+            if (resultadoItensCarrinho.ok) {
                 if (resultadoItensCarrinho.detail === "Token expirado!") {
                     window.location.href = './logar.html';
                 }
                 if (resultadoItensCarrinho.detail === "Carrinho vazio!") {
-                    finalizar_pedido.style.display = "none";
+                    formContainer.style.display = "none";
                     lista_itens.innerHTML = `<p class="carrinho-vazio-texto">Seu carrinho está vazio.</p>`;
                 }
                 displayLoader(false);
                 disableSubmitButton(false);
                 return;
             }
+
 
             lista_itens.innerHTML = "";
 
@@ -415,7 +428,7 @@ export async function listaItensCarrinho() {
                     } catch (error) {
                         setTimeout(() => {
                             listaItensCarrinho();
-                        }, 1000);
+                        }, 10000);
                     }
                 }
             }
@@ -431,7 +444,7 @@ export async function listaItensCarrinho() {
         } catch (error) {
             setTimeout(() => {
                 listaItensCarrinho();
-            }, 1000);
+            }, 10000);
         }
     }
 }
