@@ -47,8 +47,11 @@ h3.card-title {
     font-weight: bold;
     margin: 10px 0;
     word-wrap: break-word;
-    white-space: normal;
     text-align: center;
+    width: 95%;
+    height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 p.card-brand {
