@@ -1,7 +1,7 @@
 // consts.js
 
 // Constantes para URLs da API e do Frontend
-export const API_URL = 'https://api-buy-tech.onrender.com';
+export const API_URL = 'https://api-buy-tech.vercel.app';
 export const FRONT_URL = 'https://buy-tech.vercel.app';
 
 // Constantes para URLs da API e do Frontend (para desenvolvimento local)
