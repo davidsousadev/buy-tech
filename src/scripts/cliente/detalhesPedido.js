@@ -143,8 +143,7 @@ formCadastroPedido.addEventListener('submit', async (event) => {
 
         const result = await response.json();
         // Esconde o loader e habilita o botão novamente
-        displayLoader(false);
-        disableSubmitButton(false);
+        
         if (response.ok) {
             mostrarNotificacao("Pedido realizado com sucesso!", {
                 cor: "#4CAF50",
@@ -153,6 +152,8 @@ formCadastroPedido.addEventListener('submit', async (event) => {
             });
             window.location.href = './pedidos.html';
         } else {
+            displayLoader(false);
+            disableSubmitButton(false);
             mostrarNotificacao(`${result.detail}`, {
                 cor: "#F44336",
                 duracao: 4000,

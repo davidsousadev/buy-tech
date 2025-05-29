@@ -4,7 +4,14 @@
 
 ## 📄 Descrição
 
-Este front-end foi construído com **HTML**, **CSS** e **JavaScript** para oferecer uma experiência completa de e-commerce.  
+Este front-end foi construído com **HTML**, **CSS** e **JavaScript** para oferecer uma experiência completa de e-commerce. 
+
+## 📚 Bibliotecas Utilizadas
+
+- [Notify](https://libsme.vercel.app/src/notify/v3/index.js)
+- [Box Icons](https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css)
+- [Chart.js](https://cdn.jsdelivr.net/npm/chart.js) *Experimental
+
 👉 **Funcionalidades prontas para uso** e **próximos passos** indicados abaixo.  
 
 ## ✅ O que foi implementado no Sistema
@@ -77,8 +84,11 @@ Este front-end foi construído com **HTML**, **CSS** e **JavaScript** para ofere
 - 🔔 Notificações de produtos novos e itens removidos do carrinho (remarketing)  
 - 🛎️ Implementação de painel de notificações  
 - 🔗 Integração com outros projetos  
-- 🎨 Ajustes no layout de detalhes de produtos  
+- 🎨 Ajustes no layout de detalhes de produtos 
+- 🎨 Ajustes no layout do rodapé
+- ℹ️ Melhorar os gráficos implementando Chart.js
 
+---
 
 ## 📂 Estrutura Inicial
 
