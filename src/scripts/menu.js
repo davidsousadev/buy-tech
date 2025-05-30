@@ -29,16 +29,17 @@ export async function listaItensCarrinho() {
                     'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
                 },
             });
+            
+            const resultadoItensCarrinho = await response.json();
 
-            // Se o status for 204 No Content → Carrinho vazio
-            if (response.status === 204) {
+            // Se o status for 200 → Carrinho vazio
+            if (response.status === 200 && resultadoItensCarrinho.detail === "Carrinho vazio!") {
                 finalizar_pedido.style.display = "none";
                 lista_itens.innerHTML = `<p class="carrinho-vazio-texto">Seu carrinho está vazio.</p>`;
                 return;
             }
 
-            // Se não for 204 → tenta ler o JSON normalmente
-            const resultadoItensCarrinho = await response.json();
+            
 
             // Aqui continua o seu código normal:
             if (resultadoItensCarrinho.detail) {
