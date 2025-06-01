@@ -39,6 +39,7 @@ async function carregarDetalhesProduto() {
                 <img src="${produto.foto}" alt="${produto.nome}" class="produto-imagem">
                 <div class="produto-info">
                     <h2>${produto.nome}</h2>
+                    <p><strong>ID:</strong> ${produto.id} | <strong>Quantidade disponível:</strong> ${produto.quantidade_estoque}</p>
                     <p><strong>Marca:</strong> ${produto.marca}</p>
                     <p><strong>Descrição:</strong> ${produto.descricao}</p>
                     <p class="descontoDe"><strong>De:</strong> R$ ${precoOriginal}</p>
@@ -142,7 +143,7 @@ export async function adicionarAoCarrinho(produtoId) {
             });
             const result = await response.json();
 
-            if (response.ok && response.status === 201) {
+            if (response.status === 201) {
                 mostrarNotificacao("Produto adicionado ao carrinho!", {
                     cor: "#4CAF50",
                     duracao: 4000,

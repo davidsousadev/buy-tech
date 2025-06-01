@@ -119,6 +119,8 @@ nav ul li {
 }
 
 nav ul li a {
+  position: relative;
+  /* 🔥 Necessário para o ::after funcionar corretamente */
   text-decoration: none;
   font-size: 16px;
   color: inherit;
@@ -126,7 +128,21 @@ nav ul li a {
 
 nav ul li a:hover {
   color: inherit;
-  background-color: inherit;
+}
+
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #00f7ff;
+  transition: width 0.4s ease;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
 }
 
 .opcoes,

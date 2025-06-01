@@ -79,14 +79,17 @@ Este front-end foi construído com **HTML**, **CSS** e **JavaScript** para ofere
 
 ## 🚀 O que vai ser implementado no Sistema
 
+- 🖌️ Tornar a plataforma mais agradevel ao mobile
+- 🌘 Ajuste no icone do darkmode
 - ✉️ Disparo de e-mail em massa  
 - 🌐 Verificação de clientes online  
 - 🔔 Notificações de produtos novos e itens removidos do carrinho (remarketing)  
 - 🛎️ Implementação de painel de notificações  
-- 🔗 Integração com outros projetos  
+- 🔗 Integração com outros projetos QR code at cutme.vercel.app
 - 🎨 Ajustes no layout de detalhes de produtos 
 - 🎨 Ajustes no layout do rodapé
 - ℹ️ Melhorar os gráficos implementando Chart.js
+- ⚠️ Remover ajustando com o backend todos os response.ok
 
 ---
 

@@ -1,0 +1,15 @@
+/* Roboto+Mono */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+@font-face {
+    font-family: 'boxicons';
+    src: url('https://unpkg.com/boxicons@2.1.4/fonts/boxicons.woff2') format('woff2');
+    font-display: swap;
+}
+
+* {
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}

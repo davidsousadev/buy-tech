@@ -28,6 +28,8 @@ const formContainer = document.getElementById('formContainer');
 
 document.getElementById('btnLogin').addEventListener('click', opcoes);
 
+
+
 export async function authenticate() {
     displayLoader(true);
     disableSubmitButton(true);
@@ -49,6 +51,8 @@ export async function authenticate() {
                 : String(result.cep).replace(/^(\d{5})(\d{3})$/, "$1-$2");
 
             campoCEP.innerHTML = cepFormatado;
+            const pontosFidelidade = document.getElementById('pontosFidelidade');
+            pontosFidelidade.innerHTML = result.pontos_fidelidade.toFixed(2);
             displayLoader(false);
 
             return result;
@@ -83,6 +87,7 @@ export function opcoes(qtd) {
         toggleDrawer();
     }
 }
+
 export function toggleDrawer() {
 
     if (tokenCliente || tokenClienteRefresh) {
@@ -98,7 +103,7 @@ formCadastroPedido.addEventListener('submit', async (event) => {
     event.preventDefault(); // Evita o envio padrão do formulário
     const idAutenticado = await authenticate(); // Aguarda a autenticação
 
-    if (precoFrete === 0) {
+    if (freteCalculado === false) {
         mostrarNotificacao("Calcule o frete.", {
             cor: "#F44336",
             duracao: 4000,
@@ -291,6 +296,7 @@ verifica_frete.addEventListener('click', async () => {
                 }
 
                 totalCarrinho += frete;
+                totalCarrinho -= cliente.pontos_fidelidade.toFixed(2);
                 precoFrete = frete;
                 freteCalculado = true;
                 atualizaTotalPedido();
@@ -305,9 +311,9 @@ verifica_frete.addEventListener('click', async () => {
                 disableSubmitButton(false);
                 return frete.toFixed(2);
             }
-
             // Atualiza o valor do frete
             document.getElementById('valorFrete').innerText = calcularFrete(estado_para_calculo);
+            document.getElementById('valor_frete').innerText = calcularFrete(estado_para_calculo);
         } catch (error) {
             mostrarNotificacao("Frete padrão calculado CEP invalido", {
                 cor: "#4CAF50",
@@ -319,16 +325,23 @@ verifica_frete.addEventListener('click', async () => {
 
             freteCalculado = true;
             totalCarrinho += 39.00;
+            totalCarrinho -= cliente.pontos_fidelidade.toFixed(2);
             precoFrete = 39.00;
             document.getElementById('valorFrete').innerText = 39.00;
+            document.getElementById('valor_frete').innerText = 39.00;
             displayLoader(false);
             disableSubmitButton(false);
         }
     }
     else {
+        const frete = 0;
         freteCalculado = true;
-        document.getElementById('valorFrete').innerText = 0.00;
+        totalCarrinho += 0;
+        totalCarrinho -= cliente.pontos_fidelidade.toFixed(2);
         precoFrete = 0;
+        document.getElementById('valorFrete').innerText = '0.00';
+        document.getElementById('valor_frete').innerText = '0.00';
+        precoFrete = frete;
         atualizaTotalPedido();
         mostrarNotificacao("Cliente clube fidelidade paga zero de frete!", {
             cor: "#4CAF50",
@@ -338,8 +351,7 @@ verifica_frete.addEventListener('click', async () => {
             posicao: "bottom-right"
         });
         return frete.toFixed(2);
-
-    }
+    }    
 });
 
 export async function listaItensCarrinho() {
@@ -357,7 +369,9 @@ export async function listaItensCarrinho() {
                 },
             });
             
-            if (response.status === 204) {
+            const resultadoItensCarrinho = await response.json();
+            
+            if (response.status === 200 && !Array.isArray(resultadoItensCarrinho)) {
                 formContainer.style.display = "none";
                 lista_itens.innerHTML = `<p class="carrinho-vazio-texto">Seu carrinho está vazio.</p>`;
                 displayLoader(false);
@@ -365,7 +379,6 @@ export async function listaItensCarrinho() {
                 return;
             }
 
-            const resultadoItensCarrinho = await response.json();
 
 
             if (resultadoItensCarrinho.ok) {
@@ -381,14 +394,13 @@ export async function listaItensCarrinho() {
                 return;
             }
 
-
+            formContainer.style.display = "block";
             lista_itens.innerHTML = "";
 
             var quantidadeDeProdutos = 0;
             for (const produto of resultadoItensCarrinho) {
                 if (produto.codigo.length != 6) {
-                    displayLoader(false);
-                    disableSubmitButton(false);
+                    
                     try {
                         const produtoResponse = await fetch(`${config.API_URL}/produtos/${produto.produto_codigo}`, {
                             method: 'GET',
@@ -557,6 +569,7 @@ const disableSubmitButton = (isDisabled) => {
 };
 
 // Chama a funções ao iniciar
+formContainer.style.display = "none";
 listaItensCarrinho();
 
 window.listaItensCarrinho = listaItensCarrinho;

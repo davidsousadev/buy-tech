@@ -72,7 +72,7 @@ export const handleFormSubmission = async () => {
                 const result = await response.json();
 
                 if (response.status === 201) {
-                    mostrarNotificacao("Cadastro realizado com sucesso!", {
+                    mostrarNotificacao(result.detail, {
                         cor: "#4CAF50",
                         duracao: 4000,
                         movimentoEntrada: "deslizar",
@@ -163,8 +163,8 @@ export const handleFormSubmission = async () => {
 
                     const result = await response.json();
 
-                    if (response.ok) {
-                        mostrarNotificacao("Cadastro Atualizado com sucesso!", {
+                    if (result.detail === true) {
+                        mostrarNotificacao(result.message, {
                             cor: "#4CAF50",
                             duracao: 4000,
                             movimentoEntrada: "deslizar",
@@ -255,12 +255,8 @@ export const handleFormSubmission = async () => {
 
                 const result = await response.json();
 
-
-
-
-
-                if (response.ok) {
-                    mostrarNotificacao("Cadastro realizado com sucesso!", {
+                if (result.detail === true) {
+                    mostrarNotificacao(result.message, {
                         cor: "#F44336",
                         duracao: 4000,
                         movimentoEntrada: "deslizar",
@@ -340,8 +336,8 @@ export const handleFormSubmission = async () => {
 
                     const result = await response.json();
 
-                    if (response.ok) {
-                        mostrarNotificacao("Cadastro Atualizado com sucesso!", {
+                    if (result.detail === true) {
+                        mostrarNotificacao(result.message, {
                             cor: "#4CAF50",
                             duracao: 4000,
                             movimentoEntrada: "deslizar",
