@@ -71,9 +71,11 @@ Este front-end foi construído com **HTML**, **CSS** e **JavaScript** para ofere
 
 - 🔗 Ajustar URLs dos cadastros  
 - 🛡️ Minimização de erros com a API  
-  - 📦 Em pedidos de cliente logado  
+- 📦 Em pedidos de cliente logado  
 - 🔧 Ajustes no fluxo de Revendedor  
 - 🧪 Testes gerais  
+- 🖌️ Melhorar o visual de produtos com desconto e demonstrar isso na finalização do pedido
+- 🖌️ Melhotar o visual das listagens 
 
 ---
 

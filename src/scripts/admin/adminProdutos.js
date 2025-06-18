@@ -6,6 +6,9 @@ const urlParams = new URLSearchParams(window.location.search);
 const idProduto = urlParams.get("id");
 const formCadastroProdutoAdmin = document.getElementById('formCadastroProdutoAdmin');
 
+//.container
+const container = document.querySelector('.container');
+
 const getCookie = (name) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
@@ -286,7 +289,33 @@ export async function carregarCatagorias() {
 
             // Limpa opções antigas
             categoriaSelect.innerHTML = '<option value="">Selecione uma categoria</option>';
+            
+            if (categorias.length === 0) {
+                formCadastroProdutoAdmin.style.display = 'none';
 
+                mostrarNotificacao("Nenhuma categoria encontrada. Por favor, crie uma categoria antes de cadastrar produtos.", {
+                    cor: "#F44336",
+                    duracao: 4000,
+                    posicao: "bottom-right"
+                });
+                container.innerHTML = `
+                <h2>Cadastro de produto - Admin</h2>
+                <div id="cards">
+                <ul
+                    <a href="../categorias/cadastrar_categorias.html">
+                        <i class='bx bx-list-plus'></i>
+                        <li>Cadastrar Categorias</li>
+                    </a>
+                    <a href="../gerenciar_produtos.html">
+                        <i class='bx bx-arrow-back'></i>
+                        <li>Voltar</li>
+                    </a>
+                </ul>
+            </div>`;
+                displayLoader(false);
+                return;
+            }
+            
             // Adiciona as categorias ao select
             categorias.forEach(categoria => {
                 const option = document.createElement("option");
@@ -294,7 +323,7 @@ export async function carregarCatagorias() {
                 option.textContent = categoria.nome;
                 categoriaSelect.appendChild(option);
             });
-
+            displayLoader(false)
         } catch (error) {
             setTimeout(() => {
                 carregarCatagorias();

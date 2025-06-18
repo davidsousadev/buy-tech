@@ -172,7 +172,8 @@ if (formCadastroCategoria) {
         // Cadastro de nova categoria
         formCadastroCategoria.addEventListener('submit', async (event) => {
             event.preventDefault();
-
+            displayLoader(true);
+            disableSubmitButton(true);
             let formData = {
                 nome: document.getElementById('nome').value,
 
@@ -199,9 +200,16 @@ if (formCadastroCategoria) {
 
                 const result = await response.json();
 
-
-                if (response.ok) {
-                    mostrarNotificacao("Cadastro realizado com sucesso!", {
+                if (response.status===200) {
+                    mostrarNotificacao(result.detail, {
+                        cor: "#F44336",
+                        duracao: 4000,
+                        posicao: "bottom-right"
+                    });
+                    displayLoader(false);
+                    disableSubmitButton(false);
+                } else if(response.status===201){
+                    mostrarNotificacao("Categoria cadastrada!", {
                         cor: "#4CAF50",
                         duracao: 4000,
                         posicao: "bottom-right"
@@ -209,12 +217,6 @@ if (formCadastroCategoria) {
                     setTimeout(() => {
                         window.location.href = './index.html';
                     }, 5000);
-                } else {
-                    mostrarNotificacao('Erro ao realizar o cadastro.', {
-                        cor: "#F44336",
-                        duracao: 4000,
-                        posicao: "bottom-right"
-                    });
                 }
             } catch (error) {
                 setTimeout(() => {

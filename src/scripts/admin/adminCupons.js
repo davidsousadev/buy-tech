@@ -51,7 +51,7 @@ async function listarCupons(editar = false) {
                     Valor: ${valorFormatado} <br>
                     Quantidade: ${cupom.quantidade_de_ultilizacao} usos <br>
                     Status: ${status} <br>
-                    Criado em: ${new Date(cupom.criacao).toLocaleDateString()} 
+                    Criado em: ${cupom.criacao} 
                 `;
 
                 // Adicionar botão "Editar" apenas para cupons não resgatados

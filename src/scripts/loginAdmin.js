@@ -32,7 +32,7 @@ export const login = async () => {
                 displayLoader(false);
                 disableSubmitButton(false);
 
-                if (response.ok) {
+                if (response.ok && result.access_token) {
                     // Armazena o token no cookie com tempo de expiração
                     document.cookie = `authTokenAdmin=${result.access_token}; path=/; max-age=${7 * 24 * 60 * 60}`;
                     document.cookie = `authTokenAdminRefresh=${result.refresh_token}; path=/; max-age=${7 * 24 * 60 * 60}`;
