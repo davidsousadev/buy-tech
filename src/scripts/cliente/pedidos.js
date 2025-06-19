@@ -109,7 +109,6 @@ export async function extrato() {
                             <p><strong>Frete:</strong> R$ ${pedido.frete.toFixed(2)}</p>
                             <p><strong>Opção de Pagamento:</strong> ${pedido.opcao_de_pagamento ? "Boleto" : "À vista"}</p>
                             <p><strong>Pontos Fidelidade:</strong> ${pedido.pontos_fidelidade_resgatados}</p>
-                            <p><strong>Produtos:</strong> ${pedido.produtos}</p>
                             <p><strong>Status:</strong> ${statusPedido}</p>
                             <p><strong>Total:</strong> R$ ${pedido.total.toFixed(2)}</p>
                             ${botoes} <!-- Adiciona os botões somente se necessário -->
