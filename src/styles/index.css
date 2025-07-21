@@ -13,6 +13,8 @@ ul#lista_produtos li {
     min-width: 250px;
     display: flex;
     justify-content: center;
+    font-weight: bolder;
+    font-size: larger;
 }
 
 div.card {
@@ -27,6 +29,7 @@ div.card {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    
 }
 
 img.card-img {

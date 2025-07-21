@@ -35,8 +35,9 @@ Este front-end foi construído com **HTML**, **CSS** e **JavaScript** para ofere
 - 🛎️ Página de Suporte  
 - 🚨 Página de aviso para confirmação de e-mail  
 - ✅ Página de e-mail confirmado  
+- 💻 Ajuste monte_seu_equipamento.html, não era possivel enviar por email
 
-**👤 Painel Administrativo de Cliente:**  
+**👤 Dashboard Administrativo de Cliente:**  
 - 📊 Extrato  
 - 💳 Créditos  
 - 💸 Débitos  
@@ -46,7 +47,7 @@ Este front-end foi construído com **HTML**, **CSS** e **JavaScript** para ofere
 - 🔗 Link de Indicação  
 - 🔄 Atualizar Perfil  
 
-**🏬 Painel Administrativo de Revendedor:**  
+**🏬 Dashboard Administrativo de Revendedor:**  
 - 📊 Extrato  
 - 💳 Créditos  
 - 💸 Débitos  
@@ -56,7 +57,7 @@ Este front-end foi construído com **HTML**, **CSS** e **JavaScript** para ofere
 - 🛒 Criar Pedido  
 - 🔄 Atualizar Perfil  
 
-**🛠️ Painel Administrativo de Administrador:**  
+**🛠️ Dashboard Administrativo de Administrador:**  
 - 👥 Gerenciar Perfis: Listar perfis e atualizar status  
 - 🏷️ Gerenciar Categorias: Listar, cadastrar e atualizar  
 - 🛒 Gerenciar Produtos: Listar, cadastrar e atualizar  
@@ -76,6 +77,8 @@ Este front-end foi construído com **HTML**, **CSS** e **JavaScript** para ofere
 - 🧪 Testes gerais  
 - 🖌️ Melhorar o visual de produtos com desconto e demonstrar isso na finalização do pedido
 - 🖌️ Melhotar o visual das listagens 
+- 🎨 Ajustes no layout do rodapé
+
 
 ---
 
@@ -84,14 +87,15 @@ Este front-end foi construído com **HTML**, **CSS** e **JavaScript** para ofere
 - 🖌️ Tornar a plataforma mais agradevel ao mobile
 - 🌘 Ajuste no icone do darkmode
 - ✉️ Disparo de e-mail em massa  
-- 🌐 Verificação de clientes online  
+- 🌐 Verificação de clientes online / Rastreabilidade  
 - 🔔 Notificações de produtos novos e itens removidos do carrinho (remarketing)  
-- 🛎️ Implementação de painel de notificações  
+- 🛎️ Implementação de Dashboard de notificações  
 - 🔗 Integração com outros projetos QR code at cutme.vercel.app
 - 🎨 Ajustes no layout de detalhes de produtos 
-- 🎨 Ajustes no layout do rodapé
+
 - ℹ️ Melhorar os gráficos implementando Chart.js
 - ⚠️ Remover ajustando com o backend todos os response.ok
+- 🚩 Adicionar logica de banners
 
 ---
 
@@ -100,7 +104,7 @@ Este front-end foi construído com **HTML**, **CSS** e **JavaScript** para ofere
 ```plaintext
 buy-tech/
 |
-├── admin/                                                  # 🏢 Painel Administrativo
+├── admin/                                                  # 🏢 Dashboard Administrativo
 |   |
 │   ├── admin/                                              # 🛠️ Área principal de administração
 |   |   |
@@ -146,8 +150,8 @@ buy-tech/
 │
 ├── cliente/                                                # 👤 Área do Cliente
 │   │   
-│   ├── index.html                                          # 🏠 Painel do Cliente
-│   ├── atualizar-perfil.html                               # ✏️ Editar perfil
+│   ├── index.html                                          # 🏠 Dashboard do Cliente
+│   ├── atualizar_perfil.html                               # ✏️ Editar perfil
 │   ├── creditos.html                                       # 💳 Créditos
 │   ├── debitos.html                                        # 💸 Débitos
 │   ├── extrato.html                                        # 📄 Extrato
@@ -197,8 +201,8 @@ buy-tech/
 │   │   
 │   └── styles/                                             # 🎨 CSS
 │       │
-│       ├── admin.css                                       # 🏢 Painel Admin
-│       ├── cliente.css                                     # 👤 Painel Cliente
+│       ├── admin.css                                       # 🏢 Dashboard Admin
+│       ├── cliente.css                                     # 👤 Dashboard Cliente
 │       ├── categorias.css                                  # 🏷️ Categorias
 │       ├── detalhes.css                                    # 📋 Detalhes do produto
 │       ├── index.css                                       # 🌐 Estilos globais
@@ -206,7 +210,7 @@ buy-tech/
 │
 ├── index.html                                              # 🏠 Home pública
 ├── produto.html                                            # 📦 Detalhes do produto
-├── monte-seu-equipamento.html                              # 🛠️ Monte seu equipamento
+├── monte_seu_equipamento.html                              # 🛠️ Monte seu equipamento
 ├── categorias.html                                         # 🏷️ Página de categorias
 ├── cadastrar.html                                          # 📝 Cadastro geral
 ├── logar.html                                              # 🔐 Login geral

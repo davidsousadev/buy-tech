@@ -335,8 +335,8 @@ export const handleFormSubmission = async () => {
                     });
 
                     const result = await response.json();
-
-                    if (result.detail === true) {
+                    
+                    if (response.status === 200) {
                         mostrarNotificacao(result.message, {
                             cor: "#4CAF50",
                             duracao: 4000,
@@ -344,8 +344,10 @@ export const handleFormSubmission = async () => {
                             movimentoSaida: "esvair",
                             posicao: "bottom-right"
                         });
+                        displayLoader(false);
+                        disableSubmitButton(false);
                         setTimeout(() => {
-                            window.location.href = '../logar.html';
+                            window.location.href = './index.html';
                         }, 5000);
 
                     } else {

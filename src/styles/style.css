@@ -12,12 +12,21 @@
 body.light-mode {
   background-color: #004AAD;
   color: #FFF;
+
+  
 }
 
 /* Tema escuro */
 body.dark-mode {
   background-color: #FFF;
   color: #004AAD;
+
+  header i.bx.bx-user,
+    i.bx.bxs-user-circle,
+    i.bx.bxs-exit {
+      border: 1px #004AAD solid;
+    }
+
 }
 
 a {
@@ -48,11 +57,18 @@ main {
 }
 
 footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   height: 5vh;
   text-align: center;
-  display: block;
   bottom: 0;
   width: 100%;
+  
+}
+footer span {
+  margin-bottom: 10px;
 }
 
 /* Formulário */
@@ -364,6 +380,7 @@ a.cadastrar-pessoa:visited {
     padding: 12px;
     margin: 12px;
     margin-bottom: 30px;
+    border-radius: 8px;
   }
 
   li {
@@ -371,6 +388,7 @@ a.cadastrar-pessoa:visited {
     margin-bottom: 10px;
     text-align: center;
     word-wrap: break-word;
+    font-weight: bolder;
   }
 }
 

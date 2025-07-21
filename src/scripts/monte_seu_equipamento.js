@@ -1,15 +1,26 @@
-//monte-seu-equipamento.js
+//monte_seu_equipamento.js
 
 import * as config from './consts.js';
 
+
+// Função para obter o cookie pelo nome
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+
+
 const formPC = document.getElementById('formPC');
-const tokenAdmin = getCookie('authTokenAdmin');
-const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
+const tokenCliente = getCookie('authTokenCliente');
+const tokenClienteRefresh = getCookie('authTokenCliente');
 
 if (formPC) {
+    
     formPC.addEventListener('submit', async (event) => {
         event.preventDefault();
-
+        
         const gabinete = document.getElementById('gabinete').value;
         const placaMae = document.getElementById('placaMae').value;
         const processador = document.getElementById('processador').value;
@@ -27,7 +38,7 @@ if (formPC) {
             return;
         }
 
-        if (!tokenAdmin && !tokenAdminRefresh) {
+        if (!tokenCliente && !tokenClienteRefresh) {
             mostrarNotificacao("Apenas Clientes cadastrados podem fazer pedido!", {
                 cor: "#F44336",
                 duracao: 2000,
@@ -57,7 +68,7 @@ if (formPC) {
             // Exibe o loader e desabilita o botão
             displayLoader(true);
             disableSubmitButton(true);
-
+            
             const response = await fetch(`${config.API_URL}/emails/monteSeuEquipamento/${userId}`, {
                 method: 'POST',
                 body: JSON.stringify({
@@ -87,14 +98,14 @@ if (formPC) {
             });
 
             setTimeout(() => {
-                window.location.href = 'index.html';
+                location.reload();
             }, 5000);
 
         } catch (error) {
             displayLoader(false);
             disableSubmitButton(false);
             setTimeout(() => {
-                location.reload();
+                //location.reload();
             }, 1000);
         }
     });
@@ -110,28 +121,8 @@ const displayLoader = (isLoading) => {
 
 // Função para habilitar/desabilitar o botão de submit
 const disableSubmitButton = (isDisabled) => {
-    const submitButton = document.querySelector('button[type="submit"]');
+    const submitButton = document.getElementById('submitButton');
     if (submitButton) {
         submitButton.disabled = isDisabled;
     }
 };
-
-// Função para obter o cookie pelo nome
-function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-}
-
-// Função para mostrar notificações
-function mostrarNotificacao(mensagem, { cor, duracao, posicao }) {
-    const notificacao = document.createElement('div');
-    notificacao.className = 'notificacao';
-    notificacao.style.backgroundColor = cor;
-    notificacao.textContent = mensagem;
-    document.body.appendChild(notificacao);
-
-    setTimeout(() => {
-        notificacao.style.display = 'none';
-    }, duracao);
-}

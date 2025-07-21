@@ -1,18 +1,22 @@
-// no-logadoCliente.js
+//no_logadoAdmin.js
 
-// Função para obter o valor do cookie "authToken"
+// Função para obter o valor do cookie "authTokenAdmin"
 const getCookie = (name) => {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
   if (parts.length === 2) return parts.pop().split(';').shift();
 };
 
-const tokenCliente = getCookie('authTokenCliente');
-const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
-if (tokenCliente || tokenClienteRefresh) {
-  window.location.href = './index.html';
-}
+const tokenAdmin = getCookie('authTokenAdmin');
+const tokenAdminRefresh = getCookie('authTokenAdminRefresh');
 
+if (tokenAdmin || tokenAdminRefresh) {
+  window.location.href = 'admin/index.html';
+}
+else {
+  const exit = document.getElementById('exit');
+  exit.classList.add('bx-exit');
+}
 const themeToggleButton = document.getElementById('theme-toggle');
 
 // Função para aplicar o tema
@@ -43,3 +47,23 @@ themeToggleButton.addEventListener('click', () => {
   applyTheme(newTheme);
   localStorage.setItem('theme', newTheme); // Salvar a escolha do usuário
 });
+
+// Função de logoutAdmin 
+export function logoutAdmin(qtd) {
+  // Remove os cookies "authTokenAdmin e authTokenAdminRefresh"
+  document.cookie = 'authTokenAdmin=; Max-Age=0; path=/;';
+  document.cookie = 'authTokenAdminRefresh=; Max-Age=0; path=/;';
+  if (qtd === 0) {
+    var voltar = '.';
+    window.location.href = `${voltar}/index.html`; // Redireciona para a página de login
+  }
+  else {
+    var voltar = '';
+    for (var i = 0; i < qtd; i++) {
+      voltar += '../';
+    }
+    window.location.href = `${voltar}index.html`; // Redireciona para a página de login       
+  }
+};
+
+window.logoutAdmin = logoutAdmin; 

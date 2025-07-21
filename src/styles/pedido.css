@@ -9,6 +9,8 @@ span,p,h4{
 }
 li{
     color: #f9f9f9;
+    font-weight: bolder;
+    font-size: larger;
 }
 .lista-container {
     flex: 1;

@@ -1,4 +1,4 @@
-// no-logadoRevendedor.js
+// no_logadoCliente.js
 
 // Função para obter o valor do cookie "authToken"
 const getCookie = (name) => {
@@ -7,10 +7,10 @@ const getCookie = (name) => {
   if (parts.length === 2) return parts.pop().split(';').shift();
 };
 
-const tokenRevendedor = getCookie('authTokenRevendedor');
-const tokenRevendedorRefresh = getCookie('authTokenRevendedorRefresh');
-if (tokenRevendedor || tokenRevendedorRefresh) {
-  window.location.href = 'revendedor/index.html';
+const tokenCliente = getCookie('authTokenCliente');
+const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
+if (tokenCliente || tokenClienteRefresh) {
+  window.location.href = './index.html';
 }
 
 const themeToggleButton = document.getElementById('theme-toggle');
