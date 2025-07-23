@@ -47,12 +47,17 @@ function criarCardProduto(produto) {
     const card = document.createElement("div");
     card.className = `card ${produto.status ? "promo" : ""}`;
 
+    const precoFormatado = produto.preco.toLocaleString('pt-BR', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+
     card.innerHTML = `
         <img src="${produto.foto}" alt="${produto.nome}" class="card-img">
         <div class="card-body">
             <h3 class="card-title">${produto.nome}</h3>
             <p class="card-brand">Marca: ${produto.marca}</p>
-            <p class="card-price">R$ ${produto.preco}</p>
+            <p class="card-price">R$ ${precoFormatado}</p>
         </div>
         ${produto.status ? gerarFlamesHTML() : ""}
     `;

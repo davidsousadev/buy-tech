@@ -29,8 +29,12 @@ if (tokenCliente || tokenClienteRefresh) {
       if (response.ok) {
         const result = await response.json();
         const saldo = document.getElementById('saldo');
-        saldo.innerHTML = result.pontos_fidelidade.toFixed(2);
+        saldo.innerHTML = result.pontos_fidelidade.toLocaleString('pt-BR', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
       }
+    
 
     } catch (error) {
       setTimeout(() => {

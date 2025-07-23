@@ -42,21 +42,32 @@ async function listarProdutos(editar) {
 
             const promoClass = produto.status ? "promo" : "";
 
+            const precoOriginal = (produto.preco + produto.preco / 20).toLocaleString('pt-BR', {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2
+            });
+            
+            const precoAtual = produto.preco.toLocaleString('pt-BR', {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2
+            });
+            
             li.innerHTML = `
-                <div class="produto-detalhes ${promoClass}">
-                    <img src="${produto.foto}" alt="${produto.nome}" class="produto-imagem-revendedor">
-                    <div class="produto-info">
-                        <h2>${produto.nome}</h2>
-                        <p><strong>Marca:</strong> ${produto.marca}</p>
-                        <p><strong>Descrição:</strong> ${produto.descricao}</p>
-                        <p class="descontoDe"><strong>De:</strong> R$ ${parseFloat((produto.preco + produto.preco / 20).toFixed(2))}</p>
-                        <p><strong>Preço:</strong> R$ ${produto.preco}</p>
-                        <label for="quantidade-${produto.id}">Quantidade:</label>
-                        <input type="number" id="quantidade-${produto.id}" min="1" value="1">
-                        <button class="btn" onclick="adicionarAoCarrinho(${produto.id})">Adicionar ao Carrinho</button>
-                    </div>
+              <div class="produto-detalhes ${promoClass}">
+                <img src="${produto.foto}" alt="${produto.nome}" class="produto-imagem-revendedor">
+                <div class="produto-info">
+                  <h2>${produto.nome}</h2>
+                  <p><strong>Marca:</strong> ${produto.marca}</p>
+                  <p><strong>Descrição:</strong> ${produto.descricao}</p>
+                  <p class="descontoDe"><strong>De:</strong> R$ ${precoOriginal}</p>
+                  <p><strong>Preço:</strong> R$ ${precoAtual}</p>
+                  <label for="quantidade-${produto.id}">Quantidade:</label>
+                  <input type="number" id="quantidade-${produto.id}" min="1" value="1">
+                  <button class="btn" onclick="adicionarAoCarrinho(${produto.id})">Adicionar ao Carrinho</button>
                 </div>
+              </div>
             `;
+            
             lista_de_produtos_admin.appendChild(li);
         });
 

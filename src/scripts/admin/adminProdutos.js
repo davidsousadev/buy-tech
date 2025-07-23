@@ -40,18 +40,24 @@ function listarProdutos(editar) {
                         const li = document.createElement("li");
                         li.classList.add("produto-item");
 
+                        const precoFormatado = produto.preco.toLocaleString('pt-BR', {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2
+                        });
+                        
                         li.innerHTML = `
-                            <div class="produto-card">
-                                <div class="produto-imagem">
-                                    <img src="${produto.foto}" alt="${produto.nome}" class="produto-foto">
-                                </div>
-                                <div class="produto-info">
-                                    <span class="produto-nome">${produto.nome}</span>
-                                    <span class="produto-preco">Preço: R$ ${produto.preco.toFixed(2)}</span>
-                                    <span class="produto-descricao">Estoque: ${produto.quantidade_estoque} unidades</span>
-                                </div>
+                          <div class="produto-card">
+                            <div class="produto-imagem">
+                              <img src="${produto.foto}" alt="${produto.nome}" class="produto-foto">
                             </div>
+                            <div class="produto-info">
+                              <span class="produto-nome">${produto.nome}</span>
+                              <span class="produto-preco">Preço: R$ ${precoFormatado}</span>
+                              <span class="produto-descricao">Estoque: ${produto.quantidade_estoque} unidades</span>
+                            </div>
+                          </div>
                         `;
+                        
                         if (editar) {
                             li.innerHTML += ` <button onclick="editarProduto(${produto.id})">Editar</button>`;
                         }

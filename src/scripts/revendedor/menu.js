@@ -260,7 +260,7 @@ function pedido(qtd) {
 
                 if (response.ok) {
                     const result = await response.json();
-                    const saldo = document.getElementById('saldo');
+                    
                     if (qtd === 0) {
                         var voltar = '.';
                         window.location.href = `cliente/pedido.html?id=${result.id}`;

@@ -31,8 +31,16 @@ async function carregarDetalhesProduto() {
 
         const produto = await response.json();
         const promoClass = produto.status ? "promo" : "";
-        const precoOriginal = (produto.preco + produto.preco / 20).toFixed(2);
-        const precoFormatado = produto.preco.toFixed(2);
+        const precoOriginal = 'R$ ' + (produto.preco + produto.preco / 20).toLocaleString('pt-BR', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+        
+        const precoFormatado = 'R$ ' + produto.preco.toLocaleString('pt-BR', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+
 
         container.innerHTML = `
             <div class="produto-detalhes ${promoClass}">

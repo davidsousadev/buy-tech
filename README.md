@@ -78,6 +78,10 @@ Este front-end foi construído com **HTML**, **CSS** e **JavaScript** para ofere
 - 🖌️ Melhorar o visual de produtos com desconto e demonstrar isso na finalização do pedido
 - 🖌️ Melhotar o visual das listagens 
 - 🎨 Ajustes no layout do rodapé
+- 🖌️ Arredondamentos de alguns cantos
+- Adição de alguns itens
+- Ajustes gerais de layout com links do menu possivel adição de novos
+- Adição de regras para indicações
 
 
 ---

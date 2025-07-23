@@ -55,9 +55,6 @@ if (tokenCliente || tokenClienteRefresh) {
                 document.getElementById('cpf').value = result.cpf;
                 document.getElementById('telefone').value = result.telefone;
                 document.getElementById('complemento').value = result.complemento;
-
-                const saldo = document.getElementById('saldo');
-                saldo.innerHTML = result.pontos_fidelidade.toFixed(2);
             }
 
         } catch (error) {
