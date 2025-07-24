@@ -373,7 +373,14 @@ export async function listaItensCarrinho() {
             
             if (response.status === 200 && !Array.isArray(resultadoItensCarrinho)) {
                 formContainer.style.display = "none";
-                lista_itens.innerHTML = `<p class="carrinho-vazio-texto">Seu carrinho está vazio.</p>`;
+                lista_itens.innerHTML = `<p class="carrinho-vazio-texto">Seu carrinho está vazio.</p>
+                <div id="cards">
+                    <ul>
+                        <a href="index.html"><i class='bx bx-arrow-back'></i>
+                            <li>Voltar</li>
+                        </a>
+                    </ul>
+                </div>`;
                 displayLoader(false);
                 disableSubmitButton(false);
                 return;
@@ -387,7 +394,13 @@ export async function listaItensCarrinho() {
                 }
                 if (resultadoItensCarrinho.detail === "Carrinho vazio!") {
                     formContainer.style.display = "none";
-                    lista_itens.innerHTML = `<p class="carrinho-vazio-texto">Seu carrinho está vazio.</p>`;
+                    lista_itens.innerHTML = `<p class="carrinho-vazio-texto">Seu carrinho está vazio.</p><div id="cards">
+                    <ul>
+                        <a href="index.html"><i class='bx bx-arrow-back'></i>
+                            <li>Voltar</li>
+                        </a>
+                    </ul>
+                </div>`;
                 }
                 displayLoader(false);
                 disableSubmitButton(false);
@@ -450,7 +463,14 @@ export async function listaItensCarrinho() {
             total.innerHTML = `Total itens: R$: ${totalCarrinho.toFixed(2)}`;
             lista_itens.appendChild(total);
             if (quantidadeDeProdutos === 0) {
-                lista_itens.innerHTML = `<p class="carrinho-vazio-texto">Seu carrinho está vazio.</p>`;
+                lista_itens.innerHTML = `<p class="carrinho-vazio-texto">Seu carrinho está vazio.</p>
+                <div id="cards">
+                    <ul>
+                        <a href="index.html"><i class='bx bx-arrow-back'></i>
+                            <li>Voltar</li>
+                        </a>
+                    </ul>
+                </div>`;
             }
             atualizaTotalPedido();
 

@@ -12,7 +12,9 @@
 body.light-mode {
   background-color: #004AAD;
   color: #FFF;
-
+  .carrinho-vazio-texto, .opcoes-perfil {
+      color: #FFF;
+    }
   
 }
 
@@ -26,6 +28,9 @@ body.dark-mode {
     i.bx.bxs-exit {
       border: 1px #004AAD solid;
     }
+  #itens_carrinho li, .carrinho-vazio-texto,  .opcoes-perfil{
+    color: #FFF;
+  }
 
 }
 
@@ -76,7 +81,7 @@ footer span {
 .container {
   width: 65%;
   height: 100%;
-  margin: 50px auto;
+  margin: 70px auto;
   padding: 20px;
   background-color: #15B0F8;
   border-radius: 8px;

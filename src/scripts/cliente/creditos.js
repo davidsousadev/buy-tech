@@ -51,20 +51,43 @@ async function extrato() {
             extratoCliente.innerHTML = ""; // Limpa antes de exibir
 
             if (result && result.length > 0) {
+                // Início da tabela
+                let tabelaHTML = `
+      <table class="operacao-tabela">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Valor</th>
+            <th>Motivo</th>
+            <th>Tipo</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+
+                // Adiciona cada operação como uma linha da tabela
                 result.forEach((operacao) => {
-                    const li = document.createElement("li");
-                    li.classList.add("operacao-card");
-                    li.innerHTML = `
-                    <div class="operacao-body">
-                        <span class="operacao-title">Operação #${operacao.id}</span>
-                        <p><strong>Valor:</strong> R$ ${operacao.valor.toFixed(2)}</p>
-                        <p><strong>Motivo:</strong> ${motivoTexto(operacao.motivo)}</p>
-                        <p><strong class="${operacao.tipo === 1 ? "credito" : "debito"}">Tipo:</strong> ${operacao.tipo === 1 ? "Crédito" : "Débito"}</p>
-                        <p><strong>Data:</strong> ${operacao.criacao_da_operacao}</p>
-                    </div>
-                `;
-                    extratoCliente.appendChild(li);
+                    tabelaHTML += `
+          <tr class="${operacao.tipo === 1 ? 'credito' : 'debito'}">
+            <td>#${operacao.id}</td>
+            <td>R$ ${operacao.valor.toFixed(2)}</td>
+            <td>${motivoTexto(operacao.motivo)}</td>
+            <td>${operacao.tipo === 1 ? "Crédito" : "Débito"}</td>
+            <td>${operacao.criacao_da_operacao}</td>
+          </tr>
+        `;
                 });
+
+                // Fim da tabela
+                tabelaHTML += `
+        </tbody>
+      </table>
+    `;
+
+                // Insere a tabela no HTML
+                extratoCliente.innerHTML = tabelaHTML;
+                
                 displayLoader(false);
                 disableSubmitButton(false);
             } else {

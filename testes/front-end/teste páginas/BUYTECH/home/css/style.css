@@ -96,11 +96,11 @@ body {
 /* Banner */
 .banner {
   background-color: #0096FF;
-  height: 200px;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0;
+  margin: 20px 0 20px 0;
 }
 
 .banner2 {
