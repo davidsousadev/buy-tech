@@ -1,17 +1,19 @@
 .container {
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
 }
 
-span,p,h4{
+span,
+p,
+h4 {
     color: #007bff;
 }
-li{
+
+li {
     color: #f9f9f9;
     font-weight: bolder;
     font-size: larger;
 }
+
 .lista-container {
     flex: 1;
 }

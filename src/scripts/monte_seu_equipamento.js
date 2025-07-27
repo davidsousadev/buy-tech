@@ -17,10 +17,10 @@ const tokenCliente = getCookie('authTokenCliente');
 const tokenClienteRefresh = getCookie('authTokenCliente');
 
 if (formPC) {
-    
+
     formPC.addEventListener('submit', async (event) => {
         event.preventDefault();
-        
+
         const gabinete = document.getElementById('gabinete').value;
         const placaMae = document.getElementById('placaMae').value;
         const processador = document.getElementById('processador').value;
@@ -68,7 +68,7 @@ if (formPC) {
             // Exibe o loader e desabilita o botão
             displayLoader(true);
             disableSubmitButton(true);
-            
+
             const response = await fetch(`${config.API_URL}/emails/monteSeuEquipamento/${userId}`, {
                 method: 'POST',
                 body: JSON.stringify({

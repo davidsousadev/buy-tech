@@ -69,22 +69,22 @@ async function extrato() {
 
                 // Adiciona no DOM
                 extratoCliente.innerHTML += tabelaHTML;
-            
 
-            displayLoader(false);
-            disableSubmitButton(false);
-        } else {
-            extratoCliente.innerHTML = "<p>Nenhuma operação encontrada.</p>";
-            displayLoader(false);
-            disableSubmitButton(false);
+
+                displayLoader(false);
+                disableSubmitButton(false);
+            } else {
+                extratoCliente.innerHTML = "<p>Nenhuma operação encontrada.</p>";
+                displayLoader(false);
+                disableSubmitButton(false);
+            }
+        } catch (error) {
+            setTimeout(() => {
+                extrato();
+            }
+                , 1000);
         }
-    } catch (error) {
-        setTimeout(() => {
-            extrato();
-        }
-            , 1000);
     }
-}
 }
 
 // Função para traduzir os motivos

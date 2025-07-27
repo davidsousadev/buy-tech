@@ -39,9 +39,9 @@ export async function cancelarPedido(id) {
             setTimeout(() => {
                 window.location.href = 'pedidos.html';
             }
-            , 2000);
+                , 2000);
         } else {
-            
+
             mostrarNotificacao(`${result.detail}`, {
                 cor: "#F44336",
                 duracao: 4000,

@@ -37,6 +37,15 @@ Este front-end foi construído com **HTML**, **CSS** e **JavaScript** para ofere
 - ✅ Página de e-mail confirmado  
 - 💻 Ajuste monte_seu_equipamento.html, não era possivel enviar por email
 
+- Implementada responsividade para telas de até 720px
+- Adicionados ícones para menu flutuante de clientes/revendedores
+- Aumentada área clicável dos links no menu principal
+- Barra de pesquisa ajustada para permitir acionamento com Enter
+- Melhorias nos espaçamentos de listas e formulários
+- Ajustes em textos de listagens vazias
+- Correção de bug no banco: alterado tipo de cod_indicacao de int para string (local e remoto)
+- Remoção de pastas de testes
+
 **👤 Dashboard Administrativo de Cliente:**  
 - 📊 Extrato  
 - 💳 Créditos  

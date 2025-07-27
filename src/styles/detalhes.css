@@ -9,10 +9,12 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     max-width: 900px;
 }
-.produto-detalhes-revendedor{
+
+.produto-detalhes-revendedor {
     width: 100px;
     display: block;
 }
+
 .descontoDe {
     display: none;
 }
@@ -111,7 +113,7 @@
     background-color: #0056b3;
 }
 
-.produto-imagem-revendedor{
+.produto-imagem-revendedor {
     width: 10px;
     height: 10px;
 }

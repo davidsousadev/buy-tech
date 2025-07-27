@@ -41,10 +41,10 @@ function listarProdutos(editar) {
                         li.classList.add("produto-item");
 
                         const precoFormatado = produto.preco.toLocaleString('pt-BR', {
-                          minimumFractionDigits: 2,
-                          maximumFractionDigits: 2
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
                         });
-                        
+
                         li.innerHTML = `
                           <div class="produto-card">
                             <div class="produto-imagem">
@@ -57,7 +57,7 @@ function listarProdutos(editar) {
                             </div>
                           </div>
                         `;
-                        
+
                         if (editar) {
                             li.innerHTML += ` <button onclick="editarProduto(${produto.id})">Editar</button>`;
                         }
@@ -137,7 +137,7 @@ if (formCadastroProdutoAdmin) {
                 } catch (error) {
                     displayLoader(false);
                     disableSubmitButton(false);
-                    
+
                     mostrarNotificacao("Erro ao carregar os dados do produto.", {
                         cor: "#F44336",
                         duracao: 4000,
@@ -270,7 +270,7 @@ if (formCadastroProdutoAdmin) {
                         }
                     }
                 } catch (error) {
-                    
+
                     mostrarNotificacao("Erro ao enviar os dados. Tente novamente.", {
                         cor: "#F44336",
                         duracao: 4000,
@@ -295,7 +295,7 @@ export async function carregarCatagorias() {
 
             // Limpa opções antigas
             categoriaSelect.innerHTML = '<option value="">Selecione uma categoria</option>';
-            
+
             if (categorias.length === 0) {
                 formCadastroProdutoAdmin.style.display = 'none';
 
@@ -321,7 +321,7 @@ export async function carregarCatagorias() {
                 displayLoader(false);
                 return;
             }
-            
+
             // Adiciona as categorias ao select
             categorias.forEach(categoria => {
                 const option = document.createElement("option");

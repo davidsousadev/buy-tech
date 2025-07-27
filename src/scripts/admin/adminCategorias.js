@@ -200,7 +200,7 @@ if (formCadastroCategoria) {
 
                 const result = await response.json();
 
-                if (response.status===200) {
+                if (response.status === 200) {
                     mostrarNotificacao(result.detail, {
                         cor: "#F44336",
                         duracao: 4000,
@@ -208,7 +208,7 @@ if (formCadastroCategoria) {
                     });
                     displayLoader(false);
                     disableSubmitButton(false);
-                } else if(response.status===201){
+                } else if (response.status === 201) {
                     mostrarNotificacao("Categoria cadastrada!", {
                         cor: "#4CAF50",
                         duracao: 4000,

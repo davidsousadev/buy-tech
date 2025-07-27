@@ -8,7 +8,7 @@
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    
+
 }
 
 .categoria-card {
@@ -25,7 +25,9 @@
     padding: 20px;
 }
 
-.categoria-id, .categoria-nome, .categoria-criacao {
+.categoria-id,
+.categoria-nome,
+.categoria-criacao {
     font-size: 14px;
     color: #555;
 }
@@ -41,4 +43,3 @@
 .categoria-criacao {
     color: #777;
 }
-

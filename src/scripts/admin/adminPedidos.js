@@ -66,11 +66,11 @@ async function extrato(editar) {
             });
 
             const result = await response.json();
-            
+
             listaDePedidos.innerHTML = "";
             var quantidadeDePedidos = 0;
             if (result && result.length > 0) {
-                
+
                 result.forEach((pedido) => {
                     let statusPedido = "";
                     let botoes = ""; // Variável para os botões
@@ -124,7 +124,7 @@ async function extrato(editar) {
                     `;
                         listaDePedidos.appendChild(li);
                         quantidadeDePedidos++;
-                        
+
                     }
                     // Pedido Aguardando Pagamento
                     else if (editar === false && pedido.codigo.length > 6 && pedido.status) {
@@ -149,10 +149,10 @@ async function extrato(editar) {
                             ${botoes} <!-- Adiciona os botões somente se necessário -->
                         </div>
                     `;
-                        listaDePedidos.appendChild(li); 
-                        quantidadeDePedidos++;                  
+                        listaDePedidos.appendChild(li);
+                        quantidadeDePedidos++;
                     }
-                    
+
                 });
                 displayLoader(false);
             } else {
@@ -160,14 +160,14 @@ async function extrato(editar) {
                 displayLoader(false);
             }
             if (quantidadeDePedidos === 0) {
-                       listaDePedidos.innerHTML = "<p>Nenhum pedido encontrado.</p>";
-                displayLoader(false); 
-                    }
-        else{
-            listaDePedidos.innerHTML += `<hr /><p>Total de pedidos: ${quantidadeDePedidos} ${quantidadeDePedidos === 1 ? 'pedido' : 'pedidos'}.</p>`;
+                listaDePedidos.innerHTML = "<p>Nenhum pedido encontrado.</p>";
+                displayLoader(false);
+            }
+            else {
+                listaDePedidos.innerHTML += `<hr /><p>Total de pedidos: ${quantidadeDePedidos} ${quantidadeDePedidos === 1 ? 'pedido' : 'pedidos'}.</p>`;
 
-            displayLoader(false);
-        }
+                displayLoader(false);
+            }
         } catch (error) {
             setTimeout(() => {
                 extrato(editar);

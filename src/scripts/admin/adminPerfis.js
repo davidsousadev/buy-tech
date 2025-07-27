@@ -70,7 +70,7 @@ async function listarPerfis(tipo, elementoId, editar = false, tentativas = 0) {
             }
 
         } catch (error) {
-            
+
             if (tentativas < MAX_TENTATIVAS) {
                 setTimeout(() => {
                     listarPerfis(tipo, elementoId, editar, tentativas + 1);

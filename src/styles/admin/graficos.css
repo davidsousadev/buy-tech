@@ -4,17 +4,20 @@ canvas {
     margin-top: 20px;
     cursor: pointer;
 }
+
 .legenda {
     display: flex;
     justify-content: center;
     gap: 20px;
     margin-top: 10px;
 }
+
 .legenda-item {
     display: flex;
     align-items: center;
     gap: 5px;
 }
+
 .cor {
     width: 15px;
     height: 15px;

@@ -59,26 +59,22 @@
 
 <body>
     <header>
-        <div class="logo-search">
-            <a href="index.html">
-                <h1>BUY TECH</h1>
-            </a>
-            <div id="search">
-                <input type="text" placeholder="Buscar produto..." id="barSearch">
-                <a class="search" id="searchBtn"><i class='bx bx-search-alt-2'></i></a>
-            </div>
-        </div>
+
+        <a href="index.html">
+            <h1>BUY TECH</h1>
+        </a>
+        <h5>Crie sua conta - Admin</h5>
+
         <div class="icones">
             <a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a>
             <a href="../"><i class='bx ' id="exit"></i></a>
         </div>
-        </a>
+
     </header>
 
     <main>
         <div id="loader" class="loader"><img src="../src/imagens/loading.gif" alt="Carregando"></div>
         <div class="container">
-            <h2>Crie sua conta - Admin</h2>
             <form id="formCadastroAdmin">
                 <table>
                     <tr>
@@ -108,19 +104,15 @@
 
                             <label for="confirmPassword">Confirmar Senha:</label>
                             <input type="password" id="confirmPassword" name="confirmPassword" required>
-
-
                             <a class="btn_logar" href="index.html">Logar</a>
                         </td>
-
-
                         <!-- Segunda coluna -->
                         <td>
                             <label for="cep">CEP:</label>
                             <input type="text" id="cep" name="cep" maxlength="9" placeholder="Digite o CEP" required>
                             <button type="button" id="btnCep">Consultar CEP</button>
 
-                            <label for="estado">Estado:</label>
+                            <label for="estado" class="label-estado-atualizar">Estado:</label>
                             <input type="text" id="estado" name="estado" disabled>
 
                             <label for="cidade">Cidade:</label>
@@ -141,11 +133,7 @@
                         </td>
                     </tr>
                 </table>
-
-
-
             </form>
-
         </div>
     </main>
 

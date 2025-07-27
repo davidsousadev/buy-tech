@@ -7,15 +7,28 @@ header {
   width: 100%;
 }
 
-h1 {
-  width: 200px;
-  white-space: nowrap;
+header > h1, header > a {
+  word-wrap: none;
+  display: block;
+  width: 25%;
+}
+
+h1{
   font-style: italic;
+}
+
+h5 {
+  font-size: 30pt;
+  word-wrap: none;
+  word-break: break-all;
+  width: 100%;
+  text-align: center;
+
 }
 
 .logo-search {
   display: flex;
-  width: 50%;
+  width: 70%;
 }
 
 /* Campo de busca */
@@ -24,7 +37,7 @@ div#search {
   align-items: center;
   background-color: #FFF;
   border-radius: 50px;
-  width: 50%;
+  width: 70%;
   height: 35px;
   padding: 0 10px;
   border: #004AAD 1px solid;
@@ -44,8 +57,8 @@ div#search input::placeholder {
   color: #999;
 }
 
-.icones { 
-  width: 50%;
+.icones {
+  width: 25%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -57,7 +70,7 @@ div#search input::placeholder {
 }
 
 .icones i {
-  
+
   padding-right: 10px;
   margin: 15px;
   scale: 3;
@@ -94,7 +107,7 @@ i.bx.bxs-exit {
   font-size: 15pt;
 }
 
-.banner {
+.menu-main {
   height: 50px;
   width: 75%;
   position: absolute;
@@ -126,7 +139,7 @@ nav ul li a {
   position: relative;
   /* 🔥 Necessário para o ::after funcionar corretamente */
   text-decoration: none;
-  font-size: 16px;
+  font-size: 16pt;
   color: inherit;
 }
 
@@ -149,7 +162,7 @@ nav ul li a:hover::after {
   width: 100%;
 }
 
-nav ul li a i{
+nav ul li a i {
   padding-top: 20px;
   display: block;
 }
@@ -173,11 +186,11 @@ nav ul li a i{
 
 }
 
-.destaques .monte-pc span{
+.destaques .monte-pc span {
   display: flex;
   justify-content: center;
   width: 100%;
-  
+
 }
 
 .destaques .monte-pc img {

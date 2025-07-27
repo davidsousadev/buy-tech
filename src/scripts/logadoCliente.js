@@ -34,7 +34,7 @@ if (tokenCliente || tokenClienteRefresh) {
           maximumFractionDigits: 2
         });
       }
-    
+
 
     } catch (error) {
       setTimeout(() => {

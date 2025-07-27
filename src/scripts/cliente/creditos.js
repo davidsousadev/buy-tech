@@ -87,7 +87,7 @@ async function extrato() {
 
                 // Insere a tabela no HTML
                 extratoCliente.innerHTML = tabelaHTML;
-                
+
                 displayLoader(false);
                 disableSubmitButton(false);
             } else {

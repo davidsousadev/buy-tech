@@ -5,7 +5,7 @@
     padding: 0;
     max-width: 100%;
     margin: auto;
-    
+
 }
 
 .operacao-card {
@@ -21,10 +21,12 @@
     flex-direction: column;
     font-size: 30pt;
 }
-.operacao-card{
+
+.operacao-card {
     color: #333;
-    font-size:large;
+    font-size: large;
 }
+
 .operacao-card p {
     font-size: 14px;
     color: #333;
@@ -56,6 +58,7 @@
 .operacao-tabela td {
     padding: 10px;
 }
+
 .operacao-tabela td {
     border: 1px solid #000000;
 }
@@ -68,6 +71,6 @@
     border-left: 5px solid #F44336;
 }
 
-#search{
+#search {
     display: none;
 }

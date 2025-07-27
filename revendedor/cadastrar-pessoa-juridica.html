@@ -47,6 +47,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="../src/styles/style.css">
     <link rel="stylesheet" href="../src/styles/menu.css">
+    <link rel="stylesheet" href="../src/styles/responsivo/main.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
     <!-- Scripts -->
@@ -60,27 +61,23 @@
 
 <body>
     <header>
-        <div class="logo-search">
-            <a href="../index.html">
-                <h1>BUY TECH</h1>
-            </a>
-            <div id="search">
-                <input type="text" placeholder="Buscar produto..." id="barSearch">
-                <a class="search" id="searchBtn"><i class='bx bx-search-alt-2'></i></a>
-            </div>
-        </div>
+
+        <a href="../index.html">
+            <h1>BUY TECH</h1>
+        </a>
+        <h2>Crie sua conta - Revendedor</h2>
+
         <div class="icones">
             <a href="#" id="btnCart"><i class='bx bx-cart'></i></a>
             <a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a>
             <a href="#" id="btnLogin"><i class='bx bx-user' id="avatar"></i>
+            </a>
         </div>
-        </a>
     </header>
 
     <main>
         <div id="loader" class="loader"><img src="../src/imagens/loading.gif" alt="Carregando"></div>
         <div class="container">
-            <h2>Crie sua conta - Revendedor</h2>
             <form id="formCadastroPessoaJuridica">
                 <table>
                     <tr>
@@ -100,7 +97,7 @@
                             <label for="confirmPassword">Confirmar Senha:</label>
                             <input type="password" id="confirmPassword" name="confirmPassword"
                                 placeholder="Confirme sua senha" required>
-                            <h3>Pessoa Física ? <a href="../cadastrar.html" class="cadastrar-pessoa">Clique aqui</a>
+                            <h3>Pessoa Física? <a href="../cadastrar.html" class="cadastrar-pessoa">Clique aqui</a>
                             </h3>
                             <a class="btn_logar" href="../logar.html">Logar</a>
                         </td>
@@ -119,7 +116,7 @@
                             <input type="text" id="telefone" name="telefone" maxlength="15"
                                 pattern="\(\d{2}\) \d\.\d{4}-\d{4}" placeholder="(99) 99999-9999" required>
 
-                            <button type="submit" id="submitButton">Cadastrar</button>
+                            <button type="submit" id="submitButton" class="btn-cadastrar-pessoa-juridica">Cadastrar</button>
                         </td>
                     </tr>
                 </table>

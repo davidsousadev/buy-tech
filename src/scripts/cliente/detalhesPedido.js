@@ -148,7 +148,7 @@ formCadastroPedido.addEventListener('submit', async (event) => {
 
         const result = await response.json();
         // Esconde o loader e habilita o botão novamente
-        
+
         if (response.ok) {
             mostrarNotificacao("Pedido realizado com sucesso!", {
                 cor: "#4CAF50",
@@ -351,7 +351,7 @@ verifica_frete.addEventListener('click', async () => {
             posicao: "bottom-right"
         });
         return frete.toFixed(2);
-    }    
+    }
 });
 
 export async function listaItensCarrinho() {
@@ -368,9 +368,9 @@ export async function listaItensCarrinho() {
                     'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
                 },
             });
-            
+
             const resultadoItensCarrinho = await response.json();
-            
+
             if (response.status === 200 && !Array.isArray(resultadoItensCarrinho)) {
                 formContainer.style.display = "none";
                 lista_itens.innerHTML = `<p class="carrinho-vazio-texto">Seu carrinho está vazio.</p>
@@ -413,7 +413,7 @@ export async function listaItensCarrinho() {
             var quantidadeDeProdutos = 0;
             for (const produto of resultadoItensCarrinho) {
                 if (produto.codigo.length != 6) {
-                    
+
                     try {
                         const produtoResponse = await fetch(`${config.API_URL}/produtos/${produto.produto_codigo}`, {
                             method: 'GET',

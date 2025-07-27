@@ -29,7 +29,6 @@ ul {
 p {
     margin: 5px 0;
     font-size: 14px;
-    color: #555;
 }
 
 strong {
@@ -78,6 +77,6 @@ button {
 }
 
 
-#search{
+#search {
     display: none;
 }

@@ -1,0 +1,212 @@
+@media (max-width: 720px) {
+
+    /* Reset básico - sem unset para nav e filhos! */
+    main,
+    header,
+    .logo-search,
+    #search,
+    .icones,
+    .menu-main,
+    .destaques,
+    .container,
+    .opcoes,
+    .itens_carrinho,
+    .opcoes_perfil,
+    footer,
+    footer span, img {
+        all: unset;
+        display: revert;
+    }
+
+    nav,
+    nav ul,
+    nav ul li,
+    nav ul li a {
+        all: revert;
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav ul {
+        list-style: none;
+        padding-left: 10px;
+        display: flex; 
+        font-size: 15px;
+    }
+
+    nav ul li {
+        margin-bottom: 10px;
+    }
+
+    nav ul li a {
+        color: inherit;
+        text-decoration: none;
+        padding: 6px 10px;
+        display: inline-block;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .logo-search {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        flex-grow: 1;
+    }
+
+    .logo-search h1 {
+        font-size: 1.8rem;
+        margin: 0;
+        /* remove margem padrão */
+    }
+
+    #search {
+        display: flex;
+        justify-content: center;
+    }
+
+    #search input {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    .search {
+        font-size: 20px;
+        margin-left: 5px;
+    }
+
+    .icones {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .opcoes {
+        display: block !important;
+        order: -1;
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        z-index: 1000;
+    }
+
+    .menu-main {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .destaques {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 10px;
+        width: 100%;
+        padding: 10px;
+        position: relative;
+        box-sizing: border-box;
+        order: 2;
+    }
+
+    .container {
+        display: block !important;
+        order: 0;
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        
+    }
+
+    .itens_carrinho,
+    .opcoes_perfil {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    footer span {
+        display: block;
+    }
+
+    .destaques a {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    
+
+    .monte-pc img {
+        all: unset;
+        display: block;
+        max-height: 400px;
+        width: 200px;
+        object-fit: contain;
+        padding: 0;
+        position: relative;
+        box-sizing: border-box;
+        margin-top: 20px;
+    }
+
+
+    .monte-pc span {
+        display: block;
+        margin-top: 5px;
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    .img-gabinete {
+        all: unset;
+        display: block;
+        max-height: 400px;
+        width: 300px;
+        object-fit: contain;
+        padding: 0;
+        position: relative;
+        box-sizing: border-box;
+        margin-top: 20px;
+    }
+
+    h5{
+        font-size: 1.7rem;
+        margin: 14px 0;
+        text-align: center;
+        margin-left: -30px;
+    }
+    ul#listaDePedidos > p{
+        text-align: center;
+        font-size: 1.2rem;
+    }
+}

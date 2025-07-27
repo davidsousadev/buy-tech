@@ -1,54 +1,97 @@
 form#formPC {
-    background: #003580;
+    
     padding: 20px;
     border-radius: 10px;
-    width: 95%;
-    display: block;
-    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+}
 
-    color: white;
-    label{
-        color: inherit;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
+.form-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: flex-start;
+}
 
-    td {
-        padding: 10px;
-    }
+
+
+.form-info h6 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.img-gabinete {
+    width: 100%;
     
-    select,
-    textarea {
-        width: 100%;
-        padding: 5px;
-        border-radius: 5px;
-        border: none;
-    }
-    textarea{
-        width: 98%;
-        height: 50px;
-    }
-    #observacoes{
-        border: 1px red solid;
-    }
-    button {
-        background: white;
-        color: blue;
-        border: none;
-        padding: 10px;
-        font-weight: bold;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 100%;
-    }
+    border-radius: 10px;
+}
 
-    button:hover {
-        background: #ccc;
-    }
+.form-fields {
+    flex: 2;
+    min-width: 300px;
+}
 
-    .center {
-        text-align: center;
-    }
+.form-fields label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+
+.form-fields select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 7px;
+}
+
+.observacoes-wrapper {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+}
+
+#observacoes {
+    width: 100%;
+    padding: 10px;
+    border: 1px red solid;
+    border-radius: 5px;
+    resize: vertical;
+    height: 60px;
+    border-bottom: 20px;
+    
+}
+
+.observacoes-wrapper {
+    margin-top: 20px;
+}
+
+.observacoes-wrapper::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#observacoes {
+    width: 100%;
+    padding: 10px;
+    border: 1px red solid;
+    border-radius: 5px;
+    resize: vertical;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.botao-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#montar-equipamento {
+   
+    border-radius: 50px;
+    cursor: pointer;
+    width: 50%;
+    padding: 10px;
 }

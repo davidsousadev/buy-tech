@@ -29,7 +29,7 @@ export async function listaItensCarrinho() {
                     'Authorization': `Bearer ${tokenCliente || tokenClienteRefresh}`,
                 },
             });
-            
+
             const resultadoItensCarrinho = await response.json();
 
             // Se o status for 200 → Carrinho vazio
@@ -39,7 +39,7 @@ export async function listaItensCarrinho() {
                 return;
             }
 
-            
+
 
             // Aqui continua o seu código normal:
             if (resultadoItensCarrinho.detail) {
@@ -119,7 +119,7 @@ export async function listaItensCarrinho() {
 
         } catch (error) {
             setTimeout(() => {
-                
+
                 listaItensCarrinho();
             }, 10000);
         }
@@ -320,14 +320,25 @@ function buscar() {
 }
 
 // Evento de pressionar "Enter"
-document.querySelector("#barSearch").addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
-        buscar(); // Chama a função de busca ao pressionar Enter
-    }
-});
+if (document.querySelector("#barSearch")) {
+    document.querySelector("#barSearch").addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            buscar(); // Chama a função de busca ao pressionar Enter
+        }
+    });
+}
+
 
 // Evento de clique no botão de busca
-document.querySelector("#searchBtn").addEventListener("click", buscar);
+if (document.querySelector("#searchBtn")) {
+    document.querySelector("#searchBtn").addEventListener("click", buscar);
+    document.querySelector("#searchBtn").addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            buscar(); // Chama a função de busca ao pressionar Enter
+        }
+    });
+}
+
 
 // Função de logoutAdmin 
 export function logoutAdmin(qtd) {

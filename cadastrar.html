@@ -57,26 +57,21 @@
 
 <body>
     <header>
-        <div class="logo-search">
-            <a href="index.html">
-                <h1>BUY TECH</h1>
-            </a>
-            <div id="search">
-                <input type="text" placeholder="Buscar produto..." id="barSearch">
-                <a class="search" id="searchBtn"><i class='bx bx-search-alt-2'></i></a>
-            </div>
-        </div>
+        <a href="index.html">
+            <h1>BUY TECH</h1>
+        </a>
+        <h5>Crie sua conta - Cliente</h5>
         <div class="icones">
             <a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a>
-            <a href="logar.html" id="btnLogin"><i class='bx bx-user' id="avatar"></i>
+            <a href="logar.html" id="btnLogin"><i class='bx bx-user' id="avatar"></i></a>
         </div>
-        </a>
+
     </header>
 
     <main>
         <div id="loader" class="loader"><img src="src/imagens/loading.gif" alt="Carregando"></div>
         <div class="container">
-            <h2>Crie sua conta - Cliente</h2>
+
             <form id="formCadastroCliente">
                 <table>
                     <tr>
@@ -107,9 +102,11 @@
                             <label for="confirmPassword">Confirmar Senha:</label>
                             <input type="password" id="confirmPassword" name="confirmPassword" required>
 
-                            <h3>Pessoa jurídica? <a href="revendedor/cadastrar-pessoa-juridica.html"
-                                    class="cadastrar-pessoa">Clique aqui</a></h3>
-                            <a class="btn_logar" href="logar.html">Logar</a>
+                            <h3>
+                                Pessoa jurídica? <a href="revendedor/cadastrar-pessoa-juridica.html"
+                                    class="cadastrar-pessoa">Clique aqui</a>
+                            </h3>
+
                         </td>
 
 
@@ -119,7 +116,7 @@
                             <input type="text" id="cep" name="cep" maxlength="9" placeholder="Digite o CEP" required>
                             <button type="button" id="btnCep">Consultar CEP</button>
 
-                            <label for="estado">Estado:</label>
+                            <label for="estado" id="label-estado">Estado:</label>
                             <input type="text" id="estado" name="estado" disabled>
 
                             <label for="cidade">Cidade:</label>
@@ -140,12 +137,9 @@
                         </td>
                     </tr>
                 </table>
-                <div></div>
-
-
+                <a class="btn_logar" href="logar.html">Logar</a>
             </form>
-
-            <div id="messageBox"></div>
+            
         </div>
     </main>
 

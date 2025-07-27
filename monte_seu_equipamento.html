@@ -49,6 +49,7 @@
     <link rel="stylesheet" href="src/styles/index.css">
     <link rel="stylesheet" href="src/styles/menu.css">
     <link rel="stylesheet" href="src/styles/monte_seu_pc.css">
+    <link rel="stylesheet" href="src/styles/responsivo/main.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
     <!-- Scripts -->
@@ -59,10 +60,10 @@
 
 <body>
     <header>
+        <a href="index.html">
+            <h1>BUY TECH</h1>
+        </a>
         <div class="logo-search">
-            <a href="index.html">
-                <h1>BUY TECH</h1>
-            </a>
             <div id="search">
                 <input type="text" placeholder="Buscar produto..." id="barSearch">
                 <a class="search" id="searchBtn"><i class='bx bx-search-alt-2'></i></a>
@@ -71,12 +72,11 @@
         <div class="icones">
             <a href="#" id="btnCart"><i class='bx bx-cart'></i></a>
             <a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a>
-            <a href="#" id="btnLogin"><i class='bx bx-user' id="avatar"></i>
+            <a href="#" id="btnLogin"><i class='bx bx-user' id="avatar"></i></a>
         </div>
-        </a>
     </header>
     <main>
-        <div class="banner">
+        <div class="menu-main">
             <nav>
                 <ul>
                     <li><a href="index.html" class="menu-sun"><i class='bx bx-home'></i> Home</a></li>
@@ -96,134 +96,123 @@
         <div class="container">
 
             <ul id="lista_produtos"></ul>
-            <h6>Monte Seu Equipamento</h6>
+
             <form id="formPC">
-                <table>
-                    <tr>
-                        <td rowspan="7">
-                            <img src="src/imagens/gabinete.webp" alt="Gabinete" width="70%">
-                        </td>
-                    <tr>
-                        <td><label for="gabinete">Gabinete:</label></td>
-                        <td>
-                            <select id="gabinete" name="gabinete">
-                                <option value="">Opções...</option>
-                                <option value="gamer_rgb">Gamer RGB</option>
-                                <option value="simples">Simples</option>
-                                <option value="mid_tower">Mid Tower</option>
-                                <option value="full_tower">Full Tower</option>
-                                <option value="mini_itx">Mini ITX</option>
-                                <option value="vidro_temperado">Vidro Temperado</option>
-                                <option value="compacto">Compacto</option>
-                                <option value="preto">Preto Clássico</option>
-                                <option value="branco">Branco Minimalista</option>
-                                <option value="custom">Customizado</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="placaMae">Placa-mãe:</label></td>
-                        <td>
-                            <select id="placaMae" name="placaMae">
-                                <option value="">Opções...</option>
-                                <option value="asus">ASUS</option>
-                                <option value="gigabyte">Gigabyte</option>
-                                <option value="msi">MSI</option>
+                <div class="form-wrapper">
+                    <!-- Coluna da imagem e título -->
+                    <div class="form-info">
+                        <h6>Monte Seu Equipamento</h6>
+                        <img src="src/imagens/gabinete.webp" alt="Gabinete" class="img-gabinete">
+                    </div>
 
-                                <option value="asrock">ASRock</option>
-                                <option value="biostar">Biostar</option>
-                                <option value="evga">EVGA</option>
-                                <option value="supermicro">Supermicro</option>
-                                <option value="foxconn">Foxconn</option>
-                                <option value="ecs">ECS</option>
-                                <option value="nzxt">NZXT</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="processador">Processador:</label></td>
-                        <td>
-                            <select id="processador" name="processador">
-                                <option value="">Opções...</option>
-                                <option value="intel_i3">Intel i3</option>
-                                <option value="intel_i5">Intel i5</option>
-                                <option value="intel_i7">Intel i7</option>
-                                <option value="intel_i9">Intel i9</option>
-                                <option value="ryzen_3">Ryzen 3</option>
-                                <option value="ryzen_5">Ryzen 5</option>
-                                <option value="ryzen_7">Ryzen 7</option>
-                                <option value="ryzen_9">Ryzen 9</option>
-                                <option value="threadripper">Ryzen Threadripper</option>
-                                <option value="xeon">Intel Xeon</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="ram">Memória RAM:</label></td>
-                        <td>
-                            <select id="ram" name="ram">
-                                <option value="">Opções...</option>
-                                <option value="4gb">4GB</option>
-                                <option value="8gb">8GB</option>
-                                <option value="16gb">16GB</option>
-                                <option value="32gb">32GB</option>
-                                <option value="64gb">64GB</option>
-                                <option value="128gb">128GB</option>
-                                <option value="256gb">256GB</option>
-                                <option value="ddr3">DDR3</option>
-                                <option value="ddr4">DDR4</option>
-                                <option value="ddr5">DDR5</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="ssd">SSD:</label></td>
-                        <td>
-                            <select id="ssd" name="ssd">
-                                <option value="">Opções...</option>
-                                <option value="128gb">128GB</option>
-                                <option value="256gb">256GB</option>
-                                <option value="512gb">512GB</option>
-                                <option value="1tb">1TB</option>
-                                <option value="2tb">2TB</option>
-                                <option value="4tb">4TB</option>
-                                <option value="nvme">NVMe</option>
-                                <option value="sata">SATA</option>
-                                <option value="m2">M.2</option>
-                                <option value="externo">Externo</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="fonte">Fonte:</label></td>
-                        <td>
-                            <select id="fonte" name="fonte">
-                                <option value="">Opções...</option>
-                                <option value="400w">400W</option>
-                                <option value="500w">500W</option>
-                                <option value="600w">600W</option>
-                                <option value="750w">750W</option>
-                                <option value="850w">850W</option>
-                                <option value="1000w">1000W</option>
-                                <option value="1200w">1200W</option>
-                                <option value="modular">Modular</option>
-                                <option value="semi_modular">Semi-Modular</option>
-                                <option value="80plus">80 Plus Gold</option>
-                            </select>
-                        </td>
-                    </tr>
+                    <!-- Coluna dos campos -->
+                    <div class="form-fields">
+                        <label for="gabinete">Gabinete:</label>
+                        <select id="gabinete" name="gabinete">
+                            <option value="">Opções...</option>
+                            <option value="gamer_rgb">Gamer RGB</option>
+                            <option value="simples">Simples</option>
+                            <option value="mid_tower">Mid Tower</option>
+                            <option value="full_tower">Full Tower</option>
+                            <option value="mini_itx">Mini ITX</option>
+                            <option value="vidro_temperado">Vidro Temperado</option>
+                            <option value="compacto">Compacto</option>
+                            <option value="preto">Preto Clássico</option>
+                            <option value="branco">Branco Minimalista</option>
+                            <option value="custom">Customizado</option>
+                        </select>
 
-                    <tr>
-                        <td colspan="1"><label for="observacoes">Observações:</label></td>
-                        <td colspan="2"><textarea id="observacoes" name="observacoes" rows="1"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" class="center">
-                            <button type="submit">CONFIRMAR</button>
-                        </td>
-                    </tr>
-                </table>
+                        <label for="placaMae">Placa-mãe:</label>
+                        <select id="placaMae" name="placaMae">
+                            <option value="">Opções...</option>
+                            <option value="asus">ASUS</option>
+                            <option value="gigabyte">Gigabyte</option>
+                            <option value="msi">MSI</option>
+                            <option value="asrock">ASRock</option>
+                            <option value="biostar">Biostar</option>
+                            <option value="evga">EVGA</option>
+                            <option value="supermicro">Supermicro</option>
+                            <option value="foxconn">Foxconn</option>
+                            <option value="ecs">ECS</option>
+                            <option value="nzxt">NZXT</option>
+                        </select>
+
+                        <label for="processador">Processador:</label>
+                        <select id="processador" name="processador">
+                            <option value="">Opções...</option>
+                            <option value="intel_i3">Intel i3</option>
+                            <option value="intel_i5">Intel i5</option>
+                            <option value="intel_i7">Intel i7</option>
+                            <option value="intel_i9">Intel i9</option>
+                            <option value="ryzen_3">Ryzen 3</option>
+                            <option value="ryzen_5">Ryzen 5</option>
+                            <option value="ryzen_7">Ryzen 7</option>
+                            <option value="ryzen_9">Ryzen 9</option>
+                            <option value="threadripper">Ryzen Threadripper</option>
+                            <option value="xeon">Intel Xeon</option>
+                        </select>
+
+                        <label for="ram">Memória RAM:</label>
+                        <select id="ram" name="ram">
+                            <option value="">Opções...</option>
+                            <option value="4gb">4GB</option>
+                            <option value="8gb">8GB</option>
+                            <option value="16gb">16GB</option>
+                            <option value="32gb">32GB</option>
+                            <option value="64gb">64GB</option>
+                            <option value="128gb">128GB</option>
+                            <option value="256gb">256GB</option>
+                            <option value="ddr3">DDR3</option>
+                            <option value="ddr4">DDR4</option>
+                            <option value="ddr5">DDR5</option>
+                        </select>
+
+                        <label for="ssd">SSD:</label>
+                        <select id="ssd" name="ssd">
+                            <option value="">Opções...</option>
+                            <option value="128gb">128GB</option>
+                            <option value="256gb">256GB</option>
+                            <option value="512gb">512GB</option>
+                            <option value="1tb">1TB</option>
+                            <option value="2tb">2TB</option>
+                            <option value="4tb">4TB</option>
+                            <option value="nvme">NVMe</option>
+                            <option value="sata">SATA</option>
+                            <option value="m2">M.2</option>
+                            <option value="externo">Externo</option>
+                        </select>
+
+                        <label for="fonte">Fonte:</label>
+                        <select id="fonte" name="fonte">
+                            <option value="">Opções...</option>
+                            <option value="400w">400W</option>
+                            <option value="500w">500W</option>
+                            <option value="600w">600W</option>
+                            <option value="750w">750W</option>
+                            <option value="850w">850W</option>
+                            <option value="1000w">1000W</option>
+                            <option value="1200w">1200W</option>
+                            <option value="modular">Modular</option>
+                            <option value="semi_modular">Semi-Modular</option>
+                            <option value="80plus">80 Plus Gold</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Área de observações e botão -->
+                <div class="observacoes-wrapper">
+                    <label for="observacoes">Observações:</label>
+                    <textarea id="observacoes" name="observacoes" rows="3" cols="40"></textarea>
+
+                    <div class="botao-wrapper">
+                        <button type="submit" id="montar-equipamento">CONFIRMAR</button>
+                    </div>
+
+                </div>
             </form>
+
+
+
         </div>
         <div class="opcoes">
             <div class="itens_carrinho" id="itens_carrinho">

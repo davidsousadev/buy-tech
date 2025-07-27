@@ -1,21 +1,26 @@
+/* style.css */
+
 /* Fonts */
 @import url("/src/styles/fonts.css");
+
 
 /* Geral */
 * {
   margin: 0;
   padding: 0;
-  
+
 }
 
 /* Tema claro */
 body.light-mode {
   background-color: #004AAD;
   color: #FFF;
-  .carrinho-vazio-texto, .opcoes-perfil {
-      color: #FFF;
-    }
-  
+
+  .carrinho-vazio-texto,
+  .opcoes-perfil {
+    color: #FFF;
+  }
+
 }
 
 /* Tema escuro */
@@ -24,11 +29,14 @@ body.dark-mode {
   color: #004AAD;
 
   header i.bx.bx-user,
-    i.bx.bxs-user-circle,
-    i.bx.bxs-exit {
-      border: 1px #004AAD solid;
-    }
-  #itens_carrinho li, .carrinho-vazio-texto,  .opcoes-perfil{
+  i.bx.bxs-user-circle,
+  i.bx.bxs-exit {
+    border: 1px #004AAD solid;
+  }
+
+  #itens_carrinho li,
+  .carrinho-vazio-texto,
+  .opcoes-perfil {
     color: #FFF;
   }
 
@@ -71,8 +79,9 @@ footer {
   text-align: center;
   bottom: 0;
   width: 100%;
-  
+
 }
+
 footer span {
   margin-bottom: 10px;
 }
@@ -83,9 +92,7 @@ footer span {
   height: 100%;
   margin: 70px auto;
   padding: 20px;
-  background-color: #15B0F8;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   display: block;
 
   li {
@@ -93,14 +100,14 @@ footer span {
   }
 }
 
-.fromcadastro {
+/* .fromcadastro, #formCadastroCliente {
   height: 100%;
   display: block;
-}
+} */
 
 h2 {
   text-align: center;
-  color: #000000;
+
 }
 
 form {
@@ -108,6 +115,7 @@ form {
   flex-direction: column;
   align-items: center;
 }
+
 button {
   margin-top: 20px;
   padding: 12px;
@@ -121,6 +129,7 @@ button {
   font-size: 16px;
   margin-bottom: 5px;
 }
+
 button[type="submit"] {
   border-radius: 50px;
   background-color: #2ec050;
@@ -134,17 +143,21 @@ button[type="submit"]:hover {
 button:hover {
   background-color: #0056b3;
 }
-#recuperarSenha {
+
+#recuperar {
   display: block;
-  width: 60%;
-  margin: 0 auto; /* Centraliza o botão */
+  width: 100%;
+  word-break: break-all;
+  border-radius: 10px;
   text-align: center;
 }
 
 /*Login formLogin formLoginAdmin*/
 #formLogin,
 #formLoginAdmin,
-#formLoginRevendedor, #formRecuperarEmail, #formRecuperarSenha {
+#formLoginRevendedor,
+#formRecuperarEmail,
+#formRecuperarSenha {
   display: flex;
   align-items: center;
   width: 100%;
@@ -163,7 +176,7 @@ button:hover {
     margin-top: 10px;
     width: 25%;
   }
-  
+
   #submitButton {
     display: block;
     align-items: center;
@@ -184,11 +197,30 @@ table {
 }
 
 td {
-  padding: 15px;
   vertical-align: top;
-  width: 50%;
+  padding: 15px;
   box-sizing: border-box;
 }
+
+/* td {
+  padding: 15px;
+  vertical-align: top;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  input {
+    width: 50%;
+    margin-top: 15px;
+  }
+
+  button {
+    width: 50%;
+
+  }
+} */
+
 
 td:first-child,
 td:last-child {
@@ -197,7 +229,7 @@ td:last-child {
 
 label {
   margin-top: 10px;
-  color: #000000;
+
 }
 
 input {
@@ -224,13 +256,73 @@ input:valid {
 
 
 
-h3 {
-  color: #000000;
-  margin-top: 20px;
-
-  align-items: center;
+button#btnCep {
+  margin-top: 42px;
+  margin-bottom: 20px;
+  border: 1px solid #99ccff;
 }
 
+#label-estado {
+  margin-top: 15px;
+}
+
+.label-estado-atualizar{
+  margin-top: -5px;
+}
+
+#formCadastroCliente h3 {
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #004aad;
+  color: #ffffff;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+  margin-left: -10px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+
+}
+
+#formCadastroCliente>.btn_logar,
+a.btn_logar {
+  margin-top: 10px;
+  width: 50%;
+  display: block;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  left: 0;
+  padding: 10px;
+  text-align: center;
+  background-color: #2ec050;
+  border-radius: 50px;
+}
+
+#formCadastroCliente>.btn_logar {
+
+  width: 25%;
+  margin-top: -20px;
+  display: block;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  padding: 10px;
+  text-align: center;
+  background-color: #2ec050;
+  border-radius: 50px;
+  margin-left: 10px;
+  
+  margin-right: auto;
+
+}
+
+.btn_logar:hover {
+  background-color: #09a32d;
+}
 
 #responseMessage {
   margin-top: 15px;
@@ -248,27 +340,6 @@ h3 {
   color: red;
   font-size: 0.9em;
   margin-top: 5px;
-}
-
-/* Mensagem de sucesso ou erro */
-#messageBox {
-  margin-top: 15px;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  width: 100%;
-}
-
-#messageBox.success {
-  background-color: #d4edda;
-  color: #155724;
-}
-
-#messageBox.error {
-  background-color: #f8d7da;
-  color: #721c24;
 }
 
 input[type="date"],
@@ -311,7 +382,7 @@ input[disabled] {
   color: #0056b3;
 }
 
-.btn_logar,
+
 .btncadastrarProdutos {
   margin-top: 20px;
   padding: 10px;
@@ -403,17 +474,6 @@ select {
   width: 100%;
 }
 
-h5 {
-  display: flex;
-  width: 100%;
-  text-align: center;
-  position: absolute;
-  font-size: 40pt;
-  top: 0;
-  justify-content: center;
-  align-items: center;
-  z-index: -10;
-}
 
 h6 {
   display: flex;
@@ -430,6 +490,7 @@ h6 {
   text-align: center;
   font-size: 20pt;
   color: inherit;
+  margin-bottom: 20px;
 }
 
 textarea#enviar_email {
@@ -437,3 +498,105 @@ textarea#enviar_email {
   width: 100%;
 }
 
+textarea::placeholder {
+  padding: 10px;
+
+}
+
+textarea {
+  padding: 10px;
+}
+
+.esquecer-cadastrar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+
+  div#recuperar {
+    display: block;
+    width: 100%;
+  }
+
+  .btn_cadastrar {
+    padding: 10px;
+    display: block;
+    text-align: center;
+    background-color: #2ec050;
+    border-radius: 50px;
+    width: 50%;
+    margin-left: 25%;
+  }
+}
+
+#lista_de_cupons {
+  p {
+    text-align: center;
+
+  }
+}
+
+select#tipo {
+  width: 50%;
+}
+
+#formCadastroCliente table {
+  width: 100%;
+  table-layout: fixed;
+  border-spacing: 20px;
+}
+
+#formCadastroCliente td {
+  vertical-align: top;
+  width: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+#formCadastroCliente label,
+#formCadastroCliente input,
+#formCadastroCliente button,
+#formCadastroPessoaJuridica label ,
+#formAtualizacaoCliente label, 
+#formCadastroAdmin label{
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#formCadastroAdmin .btn_logar{
+margin-top: 20px;
+}
+
+td>h3 {
+  margin-top: 10px;
+}
+
+.btn-cadastrar-pessoa-juridica {
+  margin-top: 40px;
+
+}
+
+ol > p, ul#listaDePedidos > p{
+  text-align: center;
+}
+
+.btn_cadastrar_admin {
+  margin: 10px auto;
+  width: 50%;
+  display: flex;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+  background-color: #2ec050;
+  border-radius: 50px;
+}

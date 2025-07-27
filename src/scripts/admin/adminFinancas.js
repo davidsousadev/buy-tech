@@ -26,7 +26,7 @@ async function grafico() {
                     },
                 });
 
-                
+
                 const dados = await resposta.json();
                 setTimeout(() => {
                     displayLoader(false);
