@@ -600,3 +600,7 @@ ol > p, ul#listaDePedidos > p{
   background-color: #2ec050;
   border-radius: 50px;
 }
+
+#extratoCliente > p{
+  text-align: center;
+}

@@ -91,6 +91,8 @@ Este front-end foi construído com **HTML**, **CSS** e **JavaScript** para ofere
 - Adição de alguns itens
 - Ajustes gerais de layout com links do menu possivel adição de novos
 - Adição de regras para indicações
+- Implementar responsividade para mobile de testes 980px wv / 1028px hv
+- Ajustar distância do topo dos forms
 
 
 ---

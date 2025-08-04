@@ -50,8 +50,8 @@ async function carregarDetalhesProduto() {
                     <p><strong>ID:</strong> ${produto.id} | <strong>Quantidade disponível:</strong> ${produto.quantidade_estoque}</p>
                     <p><strong>Marca:</strong> ${produto.marca}</p>
                     <p><strong>Descrição:</strong> ${produto.descricao}</p>
-                    <p class="descontoDe"><strong>De:</strong> R$ ${precoOriginal}</p>
-                    <p><strong>Preço:</strong> R$ ${precoFormatado}</p>
+                    <p class="descontoDe"><strong>De:</strong> ${precoOriginal}</p>
+                    <p><strong>Preço:</strong> ${precoFormatado}</p>
                     <label for="quantidade">Quantidade:</label>
                     <input type="number" id="quantidade" min="1" value="1">
                     <button class="btn" id="btnAdicionarCarrinho">Adicionar ao Carrinho</button>

@@ -8,9 +8,7 @@ form#formPC {
 
 .form-wrapper {
     display: flex;
-    flex-wrap: wrap;
     gap: 30px;
-    align-items: flex-start;
 }
 
 
