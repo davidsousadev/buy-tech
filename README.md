@@ -86,13 +86,14 @@ Este front-end foi construído com **HTML**, **CSS** e **JavaScript** para ofere
 - 🧪 Testes gerais  
 - 🖌️ Melhorar o visual de produtos com desconto e demonstrar isso na finalização do pedido
 - 🖌️ Melhotar o visual das listagens 
-- 🎨 Ajustes no layout do rodapé
 - 🖌️ Arredondamentos de alguns cantos
 - Adição de alguns itens
 - Ajustes gerais de layout com links do menu possivel adição de novos
 - Adição de regras para indicações
 - Implementar responsividade para mobile de testes 980px wv / 1028px hv
 - Ajustar distância do topo dos forms
+- 🎨 Ajustes no layout do rodapé
+- Apenas logados no monte seu equipamento
 
 
 ---

@@ -47,6 +47,9 @@
     <!-- Styles -->
     <link rel="stylesheet" href="src/styles/style.css">
     <link rel="stylesheet" href="src/styles/menu.css">
+
+    <link rel="stylesheet" href="src/styles/recuperar.css">
+
     <link rel="stylesheet" href="src/styles/responsivo/main.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
@@ -60,41 +63,46 @@
 <body>
     <div id="loader" class="loader"><img src="src/imagens/loading.gif" alt="Carregando"></div>
     <header>
-        <div class="logo-search">
-            <a href="index.html">
-                <h1>BUY TECH</h1>
-            </a>
 
-        </div>
+        <a href="index.html">
+            <h1>BUY TECH</h1>
+        </a>
+
+
+        <h5>Recuperar Login</h5>
         <div class="icones">
-            <a href="#" id="btnCart"><i class='bx bx-cart'></i></a>
-            <a href="#" id="theme-toggle"><i class='bx bx-sun'></i></a>
-            <a href="logar.html" id="btnLogin"><i class='bx bx-user' id="avatar"></i></a>
+           
+            <a href="#" id="theme-toggle">
+                <i class='bx bx-sun'></i>
+            </a>
+            <a href="logar.html" id="btnLogin">
+                <i class='bx bx-user' id="avatar"></i>
+            </a>
         </div>
-        
+
     </header>
-    <h5>Recuperar Login</h5>
 
     <main>
-        <div class="container">
-            <h2>Recuperar Senha</h2>
-            <!-- Formulário para Recuperação de Senha -->
-            <form id="formRecuperarSenha">
-                <input type="text" id="termo" name="termo" placeholder="CPF ou CNPJ ou e-mail">
-                <input type="submit" id="submitButtonSenha" value="Recuperar senha">
-            </form>
+        <div class="container container-recuperar">
+            <!-- Coluna 1: Recuperar Senha -->
+            <div class="form-coluna">
+                <h2>Recuperar Senha</h2>
+                <form id="formRecuperarSenha">
+                    <input type="text" id="termo" name="termo" placeholder="CPF ou CNPJ ou e-mail">
+                    <input type="submit" id="submitButtonSenha" value="Recuperar senha">
+                </form>
+            </div>
 
-
-
-            <h2>Recuperar E-mail</h2>
-            <!-- Formulário para Recuperação de E-mail -->
-            <form id="formRecuperarEmail">
-                <input type="text" id="email" name="email" placeholder="E-mail">
-                <input type="submit" id="submitButtonEmail" value="Recuperar E-mail">
-            </form>
-
-
+            <!-- Coluna 2: Recuperar Email -->
+            <div class="form-coluna">
+                <h2>Recuperar E-mail</h2>
+                <form id="formRecuperarEmail">
+                    <input type="text" id="email" name="email" placeholder="E-mail">
+                    <input type="submit" id="submitButtonEmail" value="Recuperar E-mail">
+                </form>
+            </div>
         </div>
+
     </main>
 
     <footer><span>Contato: <a href="email:contato.buytech@gmail.com"

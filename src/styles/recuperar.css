@@ -1,0 +1,33 @@
+/* recuperar.css */
+
+.container-recuperar {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    margin-top: -10px;
+
+    .form-coluna {
+        width: 100%;
+        max-width: 300px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+    }
+
+    input {
+        margin-bottom: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
