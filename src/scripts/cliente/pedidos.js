@@ -100,7 +100,7 @@ export async function extrato() {
                     const li = document.createElement("li");
                     li.classList.add("card");
                     li.innerHTML = `
-                        <div class="card-body">
+                        <div class="card-body pedidos">
                             <h3 class="card-title">Pedido #${pedido.id}</h3>
                             <p><strong>Cliente:</strong> ${pedido.cliente}</p>
                             <p><strong>Código:</strong> ${codigoPedido || "Cancelado"}</p>

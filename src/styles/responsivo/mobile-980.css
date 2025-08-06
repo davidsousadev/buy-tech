@@ -1,5 +1,5 @@
-/* mobile-720.css */
-@media (min-width: 720px) and (max-width: 980px) {
+/* mobile-980.css */
+@media (min-width: 980px) and (max-width: 1080px) {
 
     /* Reset básico - sem unset para nav e filhos! */
     main,
@@ -14,7 +14,8 @@
     .itens_carrinho,
     .opcoes_perfil,
     footer,
-    footer span, img {
+    footer span,
+    img {
         all: unset;
         display: revert;
     }
@@ -32,7 +33,7 @@
     nav ul {
         list-style: none;
         padding-left: 10px;
-        display: flex; 
+        display: flex;
         font-size: 15px;
     }
 
@@ -118,16 +119,16 @@
         box-sizing: border-box;
         height: auto !important;
         overflow: visible !important;
-        i {
-                padding-top: 0px;
-            }
-        
-            li {
-                width: 100%;
-                padding: 10px;
-        
-                white-space: nowrap;
-            }
+
+        i{
+            padding-top: 0px;
+        }
+        li{
+            width: 100%;
+            padding: 10px;
+            
+            white-space: nowrap;
+        }
     }
 
     .destaques {
@@ -149,7 +150,7 @@
         width: 100%;
         padding: 10px;
         box-sizing: border-box;
-        
+
     }
 
     .itens_carrinho,
@@ -177,7 +178,7 @@
         box-sizing: border-box;
     }
 
-    
+
 
     .monte-pc img {
         all: unset;
@@ -211,13 +212,14 @@
         margin-top: 20px;
     }
 
-    h5{
+    h5 {
         font-size: 1.7rem;
         margin: 14px 0;
         text-align: center;
         margin-left: -30px;
     }
-    ul#listaDePedidos > p{
+
+    ul#listaDePedidos>p {
         text-align: center;
         font-size: 1.2rem;
     }

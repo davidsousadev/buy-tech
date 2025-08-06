@@ -11,20 +11,44 @@
   /* border: red 1px solid; */
 }
 
-/* Tema claro */
-body.light-mode {
+/* Chrome, Edge, Safari */
+
+
+body {
+  overflow-x: hidden;
+}
+
+/* Firefox */
+body {
+  scrollbar-width: thin;
+  /* thin | auto | none */
+  scrollbar-color: #FFF #004AAD;
+  /* thumb | track */
+}
+
+/* Tema escuro */
+body.dark-mode {
   background-color: #004AAD;
   color: #FFF;
+
+  .formContainer {
+    color: #007bff;
+  }
 
   .carrinho-vazio-texto,
   .opcoes-perfil {
     color: #FFF;
   }
 
+  .pedidos,
+  .card-title {
+    color: #004AAD;
+  }
 }
 
-/* Tema escuro */
-body.dark-mode {
+/* Tema claro */
+body.light-mode {
+
   background-color: #FFF;
   color: #004AAD;
 
@@ -35,12 +59,29 @@ body.dark-mode {
   }
 
   #itens_carrinho li,
-  .carrinho-vazio-texto,
   .opcoes-perfil {
     color: #FFF;
   }
 
+  .carrinho-vazio-texto {
+    color: #004AAD;
+  }
+
+  #cards ul a {
+    background-color: #004AAD;
+
+    i {
+      color: #FFF;
+    }
+  }
+
+  ul#lista_produtos li {
+    border: #004AAD 1px solid;
+    border-radius: 10px;
+  }
+
 }
+
 
 a {
   text-decoration: none;
@@ -52,13 +93,9 @@ a:visited {
   color: inherit;
 }
 
-
-body::-webkit-scrollbar {
-  display: none;
+a:hover {
+  color: inherit;
 }
-
-
-
 
 /* Main e Footer */
 main {
@@ -86,6 +123,27 @@ footer span {
   margin-bottom: 10px;
 }
 
+.portifolio {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.portifolio::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #00f7ff;
+  transition: width 0.4s ease;
+}
+
+.portifolio:hover::after {
+  width: 100%;
+}
+
 /* Formulário */
 .container {
   width: 65%;
@@ -99,11 +157,6 @@ footer span {
     list-style: none;
   }
 }
-
-/* .fromcadastro, #formCadastroCliente {
-  height: 100%;
-  display: block;
-} */
 
 h2 {
   text-align: center;
@@ -200,26 +253,6 @@ td {
   box-sizing: border-box;
 }
 
-/* td {
-  padding: 15px;
-  vertical-align: top;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  input {
-    width: 50%;
-    margin-top: 15px;
-  }
-
-  button {
-    width: 50%;
-
-  }
-} */
-
-
 td:first-child,
 td:last-child {
   height: 100%;
@@ -251,8 +284,6 @@ input:invalid {
 input:valid {
   border-color: green;
 }
-
-
 
 button#btnCep {
   margin-top: 42px;
@@ -600,10 +631,24 @@ ul#listaDePedidos>p {
   border-radius: 50px;
 }
 
-#extratoCliente > p {
+#extratoCliente>p {
   text-align: center;
 }
 
-.container-no-menu{
+.container-no-menu {
   margin-top: 0px;
+}
+
+#formCadastroAdminAtualizar {
+  button#btnCep {
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+}
+
+#formCadastroCliente {
+  #submitButton {
+    margin-left: -5px;
+    width: 101%;
+  }
 }
