@@ -1,5 +1,5 @@
-/* mobile-980.css */
-@media (min-width: 980px) and (max-width: 1080px) {
+/* mobile-720-980.css */
+@media (min-width: 720px) and (max-width: 980px) {
 
     /* Reset básico - sem unset para nav e filhos! */
     main,
@@ -120,13 +120,14 @@
         height: auto !important;
         overflow: visible !important;
 
-        i{
+        i {
             padding-top: 0px;
         }
-        li{
+
+        li {
             width: 100%;
             padding: 10px;
-            
+
             white-space: nowrap;
         }
     }
@@ -222,5 +223,84 @@
     ul#listaDePedidos>p {
         text-align: center;
         font-size: 1.2rem;
+    }
+
+    #carrossel-container {
+        display: none;
+    }
+
+    .carrossel-1x1-container {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .carrossel-1x1 {
+        width: 100%;
+        padding-top: 100%;
+        /* 1x1 ratio */
+        position: relative;
+        overflow: hidden;
+    }
+
+    .img-wrapper-1x1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .img-wrapper-1x1 img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: none;
+        cursor: pointer;
+    }
+
+    .skeleton-1x1 {
+        width: 100%;
+        height: 100%;
+        background: #ccc;
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            opacity: 0.6;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0.6;
+        }
+    }
+
+    #dots-1x1 {
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+    }
+
+    #dots-1x1 .dot {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        background: #fff;
+        border-radius: 50%;
+        margin: 0 5px;
+        cursor: pointer;
+        opacity: 0.5;
+    }
+
+    #dots-1x1 .dot.active {
+        opacity: 1;
+        background: #000;
     }
 }

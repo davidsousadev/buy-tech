@@ -1,11 +1,5 @@
-/* mobile-501.css */
-@media (max-width: 720px) {
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        
-    }
+/* mobile-980-1080.css */
+@media (min-width: 980px) and (max-width: 1080px) {
 
     /* Reset básico - sem unset para nav e filhos! */
     main,
@@ -26,10 +20,6 @@
         display: revert;
     }
 
-    h1 {
-        font-size: 150%;
-    }
-
     nav,
     nav ul,
     nav ul li,
@@ -48,8 +38,7 @@
     }
 
     nav ul li {
-        margin: 10px;
-
+        margin-bottom: 10px;
     }
 
     nav ul li a {
@@ -57,8 +46,6 @@
         text-decoration: none;
         padding: 6px 10px;
         display: inline-block;
-        width: 100%;
-        margin: 0px;
     }
 
     main {
@@ -94,8 +81,6 @@
     #search {
         display: flex;
         justify-content: center;
-        width: 100%;
-
     }
 
     #search input {
@@ -113,13 +98,8 @@
     .icones {
         display: flex;
         justify-content: center;
-        gap: 5px;
+        gap: 15px;
         align-items: center;
-        font-size: 100%;
-
-        a {
-            margin: 0px;
-        }
     }
 
     .opcoes {
@@ -135,7 +115,7 @@
     .menu-main {
         display: block;
         width: 100%;
-
+        padding: 10px;
         box-sizing: border-box;
         height: auto !important;
         overflow: visible !important;
@@ -145,31 +125,12 @@
         }
 
         li {
-            width: 70%;
-            padding: 0px;
-            margin: 0px;
-            font-size: 70%;
+            width: 100%;
+            padding: 10px;
+
             white-space: nowrap;
-
-        }
-
-        li:nth-child(2) {
-
-            margin-left: -20px;
-        }
-
-        .menu-sun {
-            margin-left: -10px;
-
         }
     }
-
-    #cards>ul>a {
-        margin-bottom: 100px;
-
-    }
-
-
 
     .destaques {
         display: flex;
@@ -253,13 +214,10 @@
     }
 
     h5 {
+        font-size: 1.7rem;
         margin: 14px 0;
         text-align: center;
         margin-left: -30px;
-        font-size: 1rem;
-        white-space: nowrap;
-        overflow: hidden;
-        max-width: 100%;
     }
 
     ul#listaDePedidos>p {
@@ -272,7 +230,6 @@
     }
 
     .carrossel-1x1-container {
-        display: block;
         width: 100%;
         max-width: 400px;
         margin: 0 auto;
@@ -331,24 +288,19 @@
         text-align: center;
     }
 
-
     #dots-1x1 .dot {
         display: inline-block;
-        width: 50px;
-        height: 30px;
-        background-color: #ddd;
-        border-radius: 20px;
-        margin: 0 4px;
+        width: 10px;
+        height: 10px;
+        background: #fff;
+        border-radius: 50%;
+        margin: 0 5px;
         cursor: pointer;
-        opacity: 0.6;
-        transition: all 0.3s ease;
+        opacity: 0.5;
     }
 
     #dots-1x1 .dot.active {
-        background-color: #333;
         opacity: 1;
-        transform: scale(1.1);
+        background: #000;
     }
-
-   
 }

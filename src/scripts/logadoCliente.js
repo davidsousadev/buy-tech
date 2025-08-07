@@ -11,7 +11,7 @@ const getCookie = (name) => {
 const tokenCliente = getCookie('authTokenCliente');
 const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
 
-if (tokenCliente || tokenClienteRefresh) {
+if (tokenCliente && tokenClienteRefresh) {
   const avatar = document.getElementById('avatar');
   avatar.classList.remove('bx-user');
   avatar.classList.add('bxs-user-circle');

@@ -95,15 +95,27 @@
       </nav>
     </div>
     <div class="destaques">
+
       <a href="monte_seu_equipamento.html">
         <div class="monte-pc">
           <img src="src/imagens/pc-gamer.jpg" alt="pc-gamer">
           <span>Monte seu PC Gamer</span>
         </div>
-
       </a>
 
+      <!-- Novo carrossel 1x1 -->
+      <div class="carrossel-1x1-container">
+        <div class="carrossel-1x1">
+          <div class="img-wrapper-1x1">
+            <img id="img-1x1" alt="Imagem 1x1" />
+            <div class="skeleton-1x1" id="skeleton-1x1"></div>
+            <nav id="dots-1x1"></nav>
+          </div>
+        </div>
+      </div>
+
     </div>
+
     <div class="container">
       <ul id="lista_produtos"></ul>
     </div>
@@ -125,7 +137,19 @@
           <li><button onclick="logoutCliente(0)"><i class='bx bx-exit'></i> Sair</button></li>
         </ul>
       </div>
+
+      <!-- Container do carrossel -->
+      <div id="carrossel-container">
+        <div id="carrossel">
+          <div class="img-wrapper" role="region" aria-label="Carrossel de imagens">
+            <img id="carrossel-img" alt="Imagem do carrossel" tabindex="0" />
+            <div class="skeleton" id="skeleton" aria-hidden="true"></div>
+            <nav id="carrossel-nav" aria-label="Navegação do carrossel"></nav>
+          </div>
+        </div>
+      </div>
     </div>
+
   </main>
   <footer><span>Contato: <a href="email:contato.buytech@gmail.com" target="_blank">contato.buytech@gmail.com</a></span>
     <span>Desenvolvido por: <a href="https://cutme.vercel.app/portifolio" target="_blank" class="portifolio">David

@@ -1,7 +1,10 @@
 /* main.css */
 
-/* Mobile 720 px */
+/* Mobile - 720 px */
 @import url('./mobile-720.css');
 
-/* Mobile 980 px */
-@import url('./mobile-980.css');
+/* Mobile 720 px a 980 px */
+@import url('./mobile-720-980.css');
+
+/* Mobile 980 px a 1080 px */
+@import url('./mobile-980-1080.css');

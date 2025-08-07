@@ -652,3 +652,7 @@ ul#listaDePedidos>p {
     width: 101%;
   }
 }
+
+.carrossel-1x1-container{
+  display: none;
+}

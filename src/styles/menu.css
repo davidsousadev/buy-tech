@@ -7,14 +7,16 @@ header {
   width: 100%;
 }
 
-header > h1, header > a {
+header>h1,
+header>a {
   word-wrap: none;
   display: block;
   width: 25%;
 }
 
-h1{
+h1 {
   font-style: italic;
+  white-space: nowrap;
 }
 
 h5 {
@@ -114,15 +116,17 @@ i.bx.bxs-exit {
   margin-left: 0;
   left: 0;
   margin: 10px;
-   i{
-            padding-top: 0px;
-        }
-        li{
-            
-            padding: 10px;
-            
-            white-space: nowrap;
-        }
+
+  i {
+    padding-top: 0px;
+  }
+
+  li {
+
+    padding: 10px;
+
+    white-space: nowrap;
+  }
 }
 
 nav {
@@ -177,10 +181,24 @@ nav ul li a i {
 
 .opcoes,
 .destaques {
+  top: 20px;
   width: 25%;
   height: 90vh;
   overflow-x: scroll;
   scrollbar-width: none;
+  position: relative;
+}
+
+div#carossel {
+  position: relative;
+  /* ou static */
+  z-index: 1;
+}
+
+div#carossel>img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
 }
 
 .destaques {
@@ -211,14 +229,24 @@ nav ul li a i {
 
 #opcoes_perfil,
 #itens_carrinho {
-  border: 1px #999 solid;
+  padding: 10px;
   background-color: #002752;
   display: none;
-  width: 90%;
+  width: 98%;
   margin: auto;
   overflow: hidden;
   z-index: 10;
   border-radius: 10px;
+  position: absolute;
+  top: 0px;
+  
+}
+
+#opcoes_perfil{
+  left: 0px;
+}
+#itens_carrinho{
+  right: 0px;
 }
 
 #opcoes_perfil li,
@@ -236,6 +264,7 @@ nav ul li a i {
 
 #finalizar_pedido {
   display: none;
+  margin-left: 5px;
 }
 
 #opcoes_perfil a:hover,
@@ -356,4 +385,129 @@ p.carrinho-vazio-texto {
 
 .btn-cart:hover {
   background-color: #0056b3;
+}
+
+/* Container geral das opções */
+.opcoes {
+  position: relative;
+  
+}
+
+/* Carrossel */
+#carrossel-container {
+  border-radius: 10px;
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 1080px;
+  margin: auto;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Imagem e Skeleton */
+.img-wrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9/16;
+  /* Para manter 1080x1920 corretamente */
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+#carrossel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.skeleton {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Discos ogivais sobre a imagem */
+#carrossel-nav {
+  position: absolute;
+  bottom: 12px;
+  /* mais para baixo */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  /* espaçamento entre discos */
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.carrossel-dot {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  /* larguras e alturas serão definidas pelo JS para serem dinâmicas */
+  width: 28px;
+  /* fallback */
+  height: 14px;
+  /* fallback */
+}
+
+.carrossel-dot:hover,
+.carrossel-dot:focus {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.carrossel-dot.active {
+  background-color: white;
+  transform: scale(1.1);
+}
+
+/* Itens flutuantes do carrinho */
+.itens_carrinho {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: white;
+  padding: 10px;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+/* Outras opções flutuantes (perfil, etc.) */
+.opcoes_perfil {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: white;
+  padding: 10px;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: none;
 }
