@@ -1,4 +1,3 @@
-// detalhesProduto.js
 import * as config from './consts.js';
 
 function getCookie(nome) {
@@ -10,6 +9,27 @@ function getCookie(nome) {
 
 const urlParams = new URLSearchParams(window.location.search);
 const idCarrinho = urlParams.get("id");
+
+// Função para copiar o código do link
+export function copiarCodigo(linkCompartilhamento) {
+    navigator.clipboard.writeText(linkCompartilhamento).then(() => {
+        mostrarNotificacao("Link copiado com sucesso!", {
+            cor: "#4CAF50",
+            duracao: 4000,
+            movimentoEntrada: "deslizar",
+            movimentoSaida: "esvair",
+            posicao: "bottom-right"
+        });
+    }).catch(() => {
+        mostrarNotificacao("Erro ao copiar link!", {
+            cor: "#F44336",
+            duracao: 4000,
+            movimentoEntrada: "deslizar",
+            movimentoSaida: "esvair",
+            posicao: "bottom-right"
+        });
+    });
+}
 
 async function carregarDetalhesProduto() {
     const container = document.getElementById("detalhesProduto");
@@ -41,12 +61,17 @@ async function carregarDetalhesProduto() {
             maximumFractionDigits: 2
         });
 
-
+        const linkCompartilhamento = `${config.FRONT_URL}/produto.html?id=${produto.id}`;
+        
         container.innerHTML = `
             <div class="produto-detalhes ${promoClass}">
                 <img src="${produto.foto}" alt="${produto.nome}" class="produto-imagem">
                 <div class="produto-info">
-                    <h2>${produto.nome}</h2>
+                    <h2>
+                        ${produto.nome} | 
+                        <a href="#" id="btnCompartilhar"><i class='bx bx-paper-plane'></i></a>
+                        <a href="#" id="btnWhatsapp"><i class='bx bxl-whatsapp'></i></a>
+                    </h2>
                     <p><strong>ID:</strong> ${produto.id} | <strong>Quantidade disponível:</strong> ${produto.quantidade_estoque}</p>
                     <p><strong>Marca:</strong> ${produto.marca}</p>
                     <p><strong>Descrição:</strong> ${produto.descricao}</p>
@@ -54,14 +79,32 @@ async function carregarDetalhesProduto() {
                     <p><strong>Preço:</strong> ${precoFormatado}</p>
                     <label for="quantidade">Quantidade:</label>
                     <input type="number" id="quantidade" min="1" value="1">
+                    
                     <button class="btn" id="btnAdicionarCarrinho">Adicionar ao Carrinho</button>
                 </div>
             </div>
         `;
 
+        // Evento para copiar link
+        document.getElementById("btnCompartilhar").addEventListener("click", (e) => {
+            e.preventDefault();
+            copiarCodigo(linkCompartilhamento);
+        });
+
+        // Evento para WhatsApp
+        document.getElementById("btnWhatsapp").addEventListener("click", (e) => {
+            e.preventDefault();
+            const mensagem = `Olá! Gostaria de saber mais sobre este produto: ${linkCompartilhamento}`;
+            const numero = "5599988288032";
+            const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, "_blank");
+        });
+
+        // Evento para adicionar ao carrinho
         document.getElementById("btnAdicionarCarrinho").addEventListener("click", () => {
             adicionarAoCarrinho(produto.id);
         });
+
         displayLoader(false);
     } catch (error) {
         displayLoader(false);

@@ -44,6 +44,9 @@ body.dark-mode {
   .card-title {
     color: #004AAD;
   }
+  .produto-detalhes a{
+    color: #004AAD;
+  }
 }
 
 /* Tema claro */
@@ -637,6 +640,7 @@ ul#listaDePedidos>p {
 
 .container-no-menu {
   margin-top: 0px;
+  width: 70%;
 }
 
 #formCadastroAdminAtualizar {

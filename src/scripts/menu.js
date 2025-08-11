@@ -402,6 +402,24 @@ export const displayLoader = (isLoading) => {
     }
 };
 
+export function mudarPlaceholder() {
+
+    var produtos = [
+        'Computador',
+        'Notebook',
+        'Video Game',
+        'Celular',
+        'PC Gamer',
+        'GoPro'
+    ]
+    if (document.querySelector("#barSearch")) {
+        document.querySelector("#barSearch").placeholder = `${produtos[Math.floor(Math.random() * produtos.length)]}`;
+    }
+
+}
+
+mudarPlaceholder();
+
 listaItensCarrinho();
 
 window.logoutAdmin = logoutAdmin;
