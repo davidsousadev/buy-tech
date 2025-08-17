@@ -509,3 +509,98 @@ p.carrinho-vazio-texto {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: none;
 }
+
+/* Novo Menu */
+
+/* CSS */
+.destaques-sem-links{
+  margin-top: 0;
+}
+.sidebar {
+  top: 0;
+  left: 0;
+  width: 250px;
+  background: #0b3d91;
+  transition: 0.3s;
+  overflow: hidden;
+}
+
+.sidebar.close {
+  width: 70px;
+}
+
+.sidebar .logo-details {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 0 20px;
+}
+
+.sidebar i {
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.logo-details {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar .logo_name {
+  font-size: 22px;
+  color: #fff;
+  margin-left: 10px;
+  transition: 0.3s;
+}
+
+.sidebar.close .logo_name {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebar ul.nav-list {
+  margin-top: 20px;
+}
+
+.sidebar ul.nav-list li {
+  position: relative;
+  list-style: none;
+  width: 100%;
+}
+
+.sidebar ul.nav-list li a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  padding: 15px 20px;
+  transition: 0.3s;
+}
+
+.sidebar ul.nav-list li a i {
+  min-width: 30px;
+  font-size: 24px;
+}
+
+.sidebar ul.nav-list li a .links_name {
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.sidebar.close ul.nav-list li a .links_name {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.home-content {
+  position: relative;
+  left: 250px;
+  width: calc(100% - 250px);
+  padding: 20px;
+  transition: 0.3s;
+}
+
+.sidebar.close~.home-content {
+  left: 70px;
+  width: calc(100% - 70px);
+}

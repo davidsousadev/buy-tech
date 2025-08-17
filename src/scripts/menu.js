@@ -19,6 +19,17 @@ function getCookie(name) {
 const tokenCliente = getCookie('authTokenCliente');
 const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
 
+
+// JS
+const sidebar = document.getElementById('sidebar');
+const toggleBtn = document.getElementById('btn-toggle');
+
+toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('close');
+});
+
+
+
 export async function listaItensCarrinho() {
     if (tokenCliente || tokenClienteRefresh) {
         try {
@@ -417,6 +428,9 @@ export function mudarPlaceholder() {
     }
 
 }
+
+
+
 
 mudarPlaceholder();
 

@@ -74,3 +74,35 @@
 #search {
     display: none;
 }
+
+/* Novo menu */
+
+/* Estilo dos canvas */
+canvas {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-width: 650px;
+    max-height: 400px;
+    display: block;
+}
+
+/* Contêiner de gráficos */
+.graficos {
+    display: flex;
+    
+    flex-direction: row;
+    
+    justify-content: space-between;
+    gap: 20px;
+    align-items: stretch;
+    
+}
+
+/* Garantir que os canvas ocupem o mesmo tamanho */
+.graficos canvas {
+    flex: 1;
+    /* Ambos ocupam o mesmo espaço */
+    height: 300px;
+    /* Altura fixa */
+}
