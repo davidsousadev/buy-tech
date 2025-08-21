@@ -113,6 +113,17 @@ Este front-end foi construído com **HTML**, **CSS** e **JavaScript** para ofere
 - ⚠️ Remover ajustando com o backend todos os response.ok
 - 🚩 Adicionar logica de banners
 
+- ~~📦 Cálculo de frete integrado (Correios / transportadoras)~~
+- 💳 Integração com gateways de pagamento (Pix, cartão, boleto)  (Simulado)
+- 🧾 Emissão automática de nota fiscal via integração externa  (Simulado)
+- 📧 Automação de e-mails transacionais (pedido criado, enviado, entregue, cancelado)  (Aumentar as atualizações)
+- ⭐ Avaliações e comentários em produtos  
+- 🗂️ Lista de desejos (wishlist)  
+- 🔄 Histórico de produtos visualizados recentemente  
+- 🤝 Programa de fidelidade (pontuação por compra e descontos)  (Avaliar as regras)
+- 🛡️ Regras antifraude em pedidos  
+- 📊 Dashboard de administrador com KPIs (vendas, clientes ativos, produtos mais vendidos)  (Aumentar os diagnosticos)
+- 📲 Notificações push para usuários logados no mobile  (Ajustar e implementar o app mobile)
 ---
 
 ## 📂 Estrutura Inicial

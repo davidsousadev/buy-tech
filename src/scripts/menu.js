@@ -23,10 +23,11 @@ const tokenClienteRefresh = getCookie('authTokenClienteRefresh');
 // JS
 const sidebar = document.getElementById('sidebar');
 const toggleBtn = document.getElementById('btn-toggle');
-
-toggleBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('close');
-});
+if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('close');
+    });
+}
 
 
 
