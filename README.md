@@ -1,20 +1,38 @@
 # 🖥️ Front-end do Projeto — BUY TECH - Seu Comércio de Eletrônicos
 
+---
+
 ![Banner](https://raw.githubusercontent.com/davidsousadev/buy-tech/refs/heads/main/src/imagens/banner.png)
 
-## 📄 Descrição
+---
 
-Este front-end foi construído com **HTML**, **CSS** e **JavaScript** para oferecer uma experiência completa de e-commerce. 
+## Sumário
 
-## 📚 Bibliotecas Utilizadas
+- 0 - [Descrição](#0----descrição)
+- 1 - [Bibliotecas Utilizada](#1----bibliotecas-utilizadas)
+- 2 - [O que foi implementado no Sistema](#2----o-que-foi-implementado-no-sistema)
+- 3 - [O que está sendo implementado no Sistema](#3----o-que-está-sendo-implementado-no-sistema)
+- 4 - [O que vai ser implementado no Sistema](#4----o-que-vai-ser-implementado-no-sistema)
+- 5 - [Estrutura Inicial](#-5---estrutura-inicial)
+- 6 - [Contribuições](#-6---contribuições)
+
+---
+
+## 0 - 📄 Descrição
+
+Este projeto front-end foi construído com **HTML**, **CSS** e **JavaScript** para oferecer uma experiência completa de e-commerce. Alimentado pela [api-buy-tech](https://github.com/davidsousadev/api-buy-tech) e integração futura com [CUT ME](https://github.com/davidsousadev/cutme) e [Cash Bank.Me](https://github.com/davidsousadev/cashbankme).
+
+---
+
+## 1 - 📚 Bibliotecas Utilizadas
 
 - [Notify](https://libsme.vercel.app/src/notify/v3/index.js)
 - [Box Icons](https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css)
 - [Chart.js](https://cdn.jsdelivr.net/npm/chart.js) *Experimental
 
-👉 **Funcionalidades prontas para uso** e **próximos passos** indicados abaixo.  
+---
 
-## ✅ O que foi implementado no Sistema
+## 2 - ✅ O que foi implementado no Sistema
 
 - 🏠 Página inicial com listagem de produtos  
 - 🔍 Campo de busca por termo de produto  
@@ -77,7 +95,7 @@ Este front-end foi construído com **HTML**, **CSS** e **JavaScript** para ofere
 
 ---
 
-## 🔄 O que está sendo implementado no Sistema
+# 3 - 🔄 O que está sendo implementado no Sistema
 
 - 🔗 Ajustar URLs dos cadastros  
 - 🛡️ Minimização de erros com a API  
@@ -95,10 +113,9 @@ Este front-end foi construído com **HTML**, **CSS** e **JavaScript** para ofere
 - 🎨 Ajustes no layout do rodapé
 - Apenas logados no monte seu equipamento
 
-
 ---
 
-## 🚀 O que vai ser implementado no Sistema
+## 4 - 🚀 O que vai ser implementado no Sistema
 
 - 🖌️ Tornar a plataforma mais agradevel ao mobile
 - 🌘 Ajuste no icone do darkmode
@@ -124,9 +141,36 @@ Este front-end foi construído com **HTML**, **CSS** e **JavaScript** para ofere
 - 🛡️ Regras antifraude em pedidos  
 - 📊 Dashboard de administrador com KPIs (vendas, clientes ativos, produtos mais vendidos)  (Aumentar os diagnosticos)
 - 📲 Notificações push para usuários logados no mobile  (Ajustar e implementar o app mobile)
+
+**Novas ideias**
+
+- 📝 Criar página de FAQ / Perguntas Frequentes / Termos de Uso  
+- 📬 Adicionar página de contato / créditos do desenvolvedor  
+- 🔍 Ajustar detalhes da página de produto (melhorar apresentação e usabilidade)
+  - ⭐ Sistema de avaliações por estrelas
+  - 👁️ Visualizações - total e únicas
+  - 💬 Comentários: permitir edição apenas uma vez; depois bloquear edição
+  - 🔎 Lupa nas imagens para ver detalhes do produto
+  - 🖼️ Grupo padrão de fotos: carrossel / galeria
+  - 🛍️ Página de vendas personalizada para campanhas
+  - 📝 Avaliação por texto e por imagens
+- 🏷️ Banners personalizados para promoções com uso de cookies para evitar spam
+- 🔖 Tags de produtos para melhor agrupamento e busca
+- 💸 Desconto no Pix e integração com [Cash Bank.Me](https://github.com/davidsousadev/cashbankme) (token único)
+- 📚 Atualizar a documentação e diagramas
+- 🧭 Reestruturar os filtros da página inicial, criando filtros relacionados quando aplicável
+- 🔗 Implementar estrutura de tags (metadados)
+- 🎯 Página de vendas / pop-ups para lançamentos, controlados por cookies
+- 🔗 Adicionar links de compartilhamento em redes sociais com mensagens personalizadas
+- 🤖 Chatbot interativo
+- 🚚 Avançado: criar projeto logístico para integrar status de pedidos/produtos
+- 🛠️ Painel administrativo: aperfeiçoar fluxo de adição de produtos (mais fotos, vinculação a grupos)
+- 🔁 Integrar corretamente paginação e interações com o [backend](https://github.com/davidsousadev/api-buy-tech)
+- 🗂️ Notas de versão: definir política de versionamento (grupos de funcionalidades vs. correções isoladas), comunicar grandes atualizações e registrar versão ao atingir o MVP
+  
 ---
 
-## 📂 Estrutura Inicial
+## 📂 5 - Estrutura Inicial
 
 ```plaintext
 buy-tech/
@@ -253,4 +297,8 @@ buy-tech/
 
 ---
 
+## 🤝 6 - Contribuições
+
 🤝 Contribuições e ajuda no desenvolvimento são sempre bem-vindas! Sinta-se à vontade para abrir issues ou pull requests.
+
+---
