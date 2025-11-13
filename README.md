@@ -1,4 +1,4 @@
-# 🖥️ Front-end do Projeto — BUY TECH - Seu Comércio de Eletrônicos
+# 🖥️ Front-end do Projeto - BUY TECH - Seu Comércio de Eletrônicos
 
 ---
 

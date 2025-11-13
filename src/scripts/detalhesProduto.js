@@ -125,7 +125,7 @@ export async function adicionarAoCarrinho(produtoId) {
     const quantidadeInput = document.getElementById("quantidade");
     const quantidade = quantidadeInput ? parseInt(quantidadeInput.value) : 0;
 
-    if (!tokenCliente && !tokenClienteRefresh) {
+    if (!tokenCliente || !tokenClienteRefresh) {
         window.location.href = 'logar.html';
         return;
     }

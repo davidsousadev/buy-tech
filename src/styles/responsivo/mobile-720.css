@@ -4,7 +4,7 @@
         box-sizing: border-box;
         margin: 0;
         padding: 0;
-        
+
     }
 
     /* Reset básico - sem unset para nav e filhos! */
@@ -19,8 +19,7 @@
     .opcoes,
     .itens_carrinho,
     .opcoes_perfil,
-    .esquecer-cadastrar
-    .recuperar,
+    .esquecer-cadastrar .recuperar,
     .btn_cadastrar,
     footer,
     footer span,
@@ -254,7 +253,7 @@
         box-sizing: border-box;
         margin-top: 20px;
     }
-    
+
     h5 {
         margin: 0;
         text-align: center;
@@ -263,7 +262,7 @@
         overflow: hidden;
         max-width: 100%;
     }
-  
+
     ul#listaDePedidos>p {
         text-align: center;
         font-size: 1.2rem;
@@ -351,19 +350,22 @@
         opacity: 1;
         transform: scale(1.1);
     }
-.esquecer-cadastrar{
-  display: block;
-  flex-direction:column;
-  align-items: center;
-  justify-content: center;
-  
-}
- #recuperar{
-   margin-left: 0;
- }  
- #btn_cadastrar{
-   margin-top: 20px ;
-   margin-left: 23%;
-   width: 50%;
- }
+
+    .esquecer-cadastrar {
+        display: block;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    #recuperar {
+        margin-left: 0;
+    }
+
+    #btn_cadastrar {
+        margin-top: 20px;
+        margin-left: 23%;
+        width: 50%;
+    }
 }

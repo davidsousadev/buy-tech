@@ -229,7 +229,7 @@ export async function atualizarQuantidade(produtoCodigo, codigoCarrinho, idClien
 }
 
 export function buyCart() {
-    if (tokenCliente || tokenClienteRefresh) {
+    if (tokenCliente && tokenClienteRefresh) {
         opcoes_perfil.style.display = 'none';
         if (itens_carrinho.style.display === 'block') {
             itens_carrinho.style.display = 'none';
@@ -241,7 +241,7 @@ export function buyCart() {
 }
 
 function toggleDrawer() {
-    if (tokenCliente || tokenClienteRefresh) {
+    if (tokenCliente && tokenClienteRefresh) {
         itens_carrinho.style.display = 'none';
         if (opcoes_perfil.style.display === 'block') {
             opcoes_perfil.style.display = 'none';
