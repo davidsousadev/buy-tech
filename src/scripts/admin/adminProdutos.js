@@ -65,10 +65,10 @@ function listarProdutos(editar) {
                         lista_de_produtos_admin.appendChild(li);
                     });
                     displayLoader(false);
-
+                    
                 }
                 else {
-                    lista_de_produtos_admin.innerHTML = "<li>Nenhum produto encontrado.</li>";
+                    lista_de_produtos_admin.innerHTML = "<li class='nenhum'>Nenhum produto encontrado.</li>";
                     displayLoader(false);
 
                 }
@@ -340,6 +340,24 @@ export async function carregarCatagorias() {
 
 carregarCatagorias();
 
+export const pre = () => {
+    const foto = document.getElementById('foto');
+    const visualizacao = document.getElementById('preVisualizacao');
+    
+    foto.addEventListener('blur', () => {
+      visualizacao.style.display="block";
+        const value = foto.value.trim();
+        visualizacao.innerHTML = "";
+        if (value !== '') {
+          
+            visualizacao.innerHTML +=`Pré-visualização<img src="${foto.value}" />`;
+            return;
+        }
+        
+    });
+}
+
+pre();
 window.carregarCatagorias = carregarCatagorias;
 window.listarProdutos = listarProdutos;
 window.editarProduto = editarProduto;

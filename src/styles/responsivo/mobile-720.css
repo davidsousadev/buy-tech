@@ -19,8 +19,10 @@
     .opcoes,
     .itens_carrinho,
     .opcoes_perfil,
-    .esquecer-cadastrar .recuperar,
+    .esquecer-cadastrar, 
+    .recuperar,
     .btn_cadastrar,
+    .form-coluna,
     footer,
     footer span,
     img {
@@ -50,7 +52,7 @@
     }
 
     nav ul li {
-        margin: 10px;
+        margin: 0px;
 
     }
 
@@ -61,6 +63,7 @@
         display: inline-block;
         width: 100%;
         margin: 0px;
+        
     }
 
     main {
@@ -135,43 +138,55 @@
     }
 
     .menu-main {
-        display: block;
         width: 100%;
-
         box-sizing: border-box;
         height: auto !important;
         overflow: visible !important;
+    }
 
-        i {
-            padding-top: 0px;
-        }
+    .menu-main nav ul {
+        display: flex;
+        flex-wrap: wrap;  
+        justify-content: space-between;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        width: 98%;
+        
+    }
 
-        li {
-            width: 70%;
-            padding: 0px;
-            margin: 0px;
-            font-size: 70%;
-            white-space: nowrap;
+    .menu-main nav ul li {
+        margin: 0;
+        padding: 0;
+        font-size: 70%;
+        white-space: nowrap;
 
-        }
+        flex: 0 0 16%;
+        text-align: center;
+        box-sizing: border-box;
+        
+    }
 
-        li:nth-child(2) {
+    .menu-main nav ul li a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 4px;
+        width: 100%;
+        text-decoration: none;
+        color: inherit;
+    }
 
-            margin-left: -20px;
-        }
-
-        .menu-sun {
-            margin-left: -10px;
-
-        }
+    .menu-main i {
+        padding-top: 0px;
+        font-size: 1.3em;
+        line-height: 1;
     }
 
     #cards>ul>a {
         margin-bottom: 100px;
-
     }
-
-
 
     .destaques {
         display: flex;
@@ -185,14 +200,13 @@
         box-sizing: border-box;
         order: 2;
     }
-
+    
     .container {
         display: block !important;
         order: 0;
         width: 100%;
         padding: 10px;
         box-sizing: border-box;
-
     }
 
     .itens_carrinho,
@@ -220,8 +234,6 @@
         box-sizing: border-box;
     }
 
-
-
     .monte-pc img {
         all: unset;
         display: block;
@@ -233,7 +245,6 @@
         box-sizing: border-box;
         margin-top: 20px;
     }
-
 
     .monte-pc span {
         display: block;
@@ -367,5 +378,22 @@
         margin-top: 20px;
         margin-left: 23%;
         width: 50%;
+    }
+      .form-coluna{
+        margin: auto;
+      }
+    }
+    #confirmado{
+      display: block;
+      width: 100%;
+      height: 50px;
+      text-align: center;
+    }
+    header i.bx.bx-user,
+    i.bx.bxs-user-circle,
+    i.bx.bxs-exit {
+      
+      border: none;
+      
     }
 }
