@@ -6,6 +6,8 @@ const urlParams = new URLSearchParams(window.location.search);
 const idProduto = urlParams.get("id");
 const formCadastroProdutoAdmin = document.getElementById('formCadastroProdutoAdmin');
 
+var imagemValida = false;
+
 //.container
 const container = document.querySelector('.container');
 
@@ -65,7 +67,7 @@ function listarProdutos(editar) {
                         lista_de_produtos_admin.appendChild(li);
                     });
                     displayLoader(false);
-                    
+
                 }
                 else {
                     lista_de_produtos_admin.innerHTML = "<li class='nenhum'>Nenhum produto encontrado.</li>";
@@ -150,6 +152,14 @@ if (formCadastroProdutoAdmin) {
             // Evento para atualizar produto
             formCadastroProdutoAdmin.addEventListener('submit', async (event) => {
                 event.preventDefault();
+                if (!imagemValida) {
+                    mostrarNotificacao("O link da imagem é inválido. Insira uma imagem válida antes de cadastrar.", {
+                        cor: "#F44336",
+                        duracao: 4000,
+                        posicao: "bottom-right"
+                    });
+                    return;
+                }
                 let formData = {
                     nome: document.getElementById('nome').value,
                     preco: document.getElementById('preco').value,
@@ -213,7 +223,14 @@ if (formCadastroProdutoAdmin) {
             // Cadastro de novo produto
             formCadastroProdutoAdmin.addEventListener('submit', async (event) => {
                 event.preventDefault();
-
+                if (!imagemValida) {
+                    mostrarNotificacao("O link da imagem é inválido. Insira uma imagem válida antes de cadastrar.", {
+                        cor: "#F44336",
+                        duracao: 4000,
+                        posicao: "bottom-right"
+                    });
+                    return;
+                }
                 let formData = {
                     nome: document.getElementById('nome').value,
                     preco: document.getElementById('preco').value,
@@ -298,31 +315,19 @@ export async function carregarCatagorias() {
 
             if (categorias.length === 0) {
                 formCadastroProdutoAdmin.style.display = 'none';
-
+                displayLoader(false);
                 mostrarNotificacao("Nenhuma categoria encontrada. Por favor, crie uma categoria antes de cadastrar produtos.", {
                     cor: "#F44336",
-                    duracao: 4000,
+                    duracao: 3000,
                     posicao: "bottom-right"
                 });
-                container.innerHTML = `
-                <h2>Cadastro de produto - Admin</h2>
-                <div id="cards">
-                <ul
-                    <a href="../categorias/cadastrar_categorias.html">
-                        <i class='bx bx-list-plus'></i>
-                        <li>Cadastrar Categorias</li>
-                    </a>
-                    <a href="../gerenciar_produtos.html">
-                        <i class='bx bx-arrow-back'></i>
-                        <li>Voltar</li>
-                    </a>
-                </ul>
-            </div>`;
-                displayLoader(false);
+                setTimeout(() => {
+                    window.location.href = `../categorias/cadastrar_categorias.html`;
+                }, 2000);
+
                 return;
             }
 
-            // Adiciona as categorias ao select
             categorias.forEach(categoria => {
                 const option = document.createElement("option");
                 option.value = categoria.id;
@@ -337,27 +342,57 @@ export async function carregarCatagorias() {
         }
     }
 }
-
 carregarCatagorias();
 
 export const pre = () => {
     const foto = document.getElementById('foto');
     const visualizacao = document.getElementById('preVisualizacao');
-    
+
+    if (!foto || !visualizacao) return;
+
     foto.addEventListener('blur', () => {
-      visualizacao.style.display="block";
         const value = foto.value.trim();
         visualizacao.innerHTML = "";
-        if (value !== '') {
-          
-            visualizacao.innerHTML +=`Pré-visualização<img src="${foto.value}" />`;
+        imagemValida = false;
+
+        if (value === "") {
+            visualizacao.style.display = "none";
             return;
         }
-        
-    });
-}
 
-pre();
+        visualizacao.style.display = "block";
+
+        displayLoader(true);
+
+        const img = new Image();
+
+        img.onload = () => {
+            imagemValida = true;
+
+            visualizacao.innerHTML = `
+                <p>Pré-visualização</p>
+                <img src="${value}" alt="prévia"/>
+            `;
+            displayLoader(false);
+        };
+
+        img.onerror = () => {
+            imagemValida = false;
+            visualizacao.innerHTML = `
+                <p>Imagem inválida ou link quebrado.</p>
+            `;
+            displayLoader(false);
+        };
+
+        img.src = value;
+    });
+};
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    pre();
+});
+
 window.carregarCatagorias = carregarCatagorias;
 window.listarProdutos = listarProdutos;
 window.editarProduto = editarProduto;

@@ -303,4 +303,41 @@
         opacity: 1;
         background: #000;
     }
+
+    .esquecer-cadastrar {
+        display: block;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    #recuperar {
+        margin-left: 0;
+    }
+
+    #btn_cadastrar {
+        margin-top: 20px;
+        margin-left: 23%;
+        width: 50%;
+    }
+
+    .form-coluna {
+        margin: auto;
+    }
+
+    #confirmado {
+        display: block;
+        width: 100%;
+        height: 50px;
+        text-align: center;
+    }
+
+    header i.bx.bx-user,
+    i.bx.bxs-user-circle,
+    i.bx.bxs-exit {
+
+        border: none;
+
+    }
 }

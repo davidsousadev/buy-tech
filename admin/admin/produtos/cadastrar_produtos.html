@@ -70,58 +70,80 @@
 
         <div class="container">
             <h2>Cadastro de produto - Admin</h2>
-            <form id="formCadastroProdutoAdmin">
-                <table>
-                    <tr>
-                        <td>
-                            <label for="nome">Nome do Produto:</label>
-                            <input type="text" id="nome" name="nome" placeholder="Ex. PC Gamer" required>
+            <div class="form-container">
+                <form id="formCadastroProdutoAdmin">
+                    <table class="form-grid">
+                        <tr>
+                            <td>
+                                <div class="form-row">
+                                    <label for="nome">Nome do Produto:</label>
+                                    <input type="text" id="nome" name="nome" placeholder="Ex. PC Gamer" required>
+                                </div>
+            
+                                <div class="form-row">
+                                    <label for="preco">Preço:</label>
+                                    <input type="number" id="preco" name="preco" placeholder="1500" min="0" step="0.01" required>
+                                </div>
+            
+                                <div class="form-row">
+                                    <label for="foto">Link da foto do produto:</label>
+                                    <input type="text" id="foto" name="foto" placeholder="Ex. https://imagem.com/pc-gamer.png"
+                                        required>
+                                    <p id="preVisualizacao" class="preVisualizacao"></p>
+                                </div>
+                            </td>
+            
+                            <td>
+                                <div class="form-row">
+                                    <label for="marca">Marca:</label>
+                                    <input type="text" id="marca" name="marca" placeholder="Ex. NPC - New PC" required>
+                                </div>
+            
+                                <div class="form-row">
+                                    <label for="categoria">Categoria:</label>
+                                    <select id="categoria" name="categoria" required>
+                                        <option value="">Selecione uma categoria</option>
+                                    </select>
+                                </div>
+            
+                                <div class="form-row">
+                                    <label for="descricao">Descrição:</label>
+                                    <input type="text" id="descricao" name="descricao" required placeholder="...">
+                                </div>
+            
+                                <div class="form-row">
+                                    <label for="quantidade_estoque">Quantidade:</label>
+                                    <input type="number" id="quantidade_estoque" name="quantidade_estoque" required>
+                                </div>
+            
+                                <div class="form-row">
+                                    <label for="opcao_de_personalizado">Personalizado:</label>
+                                    <select id="opcao_de_personalizado" name="opcao_de_personalizado">
+                                        <option value="false" selected>Não</option>
+                                        <option value="true">Sim</option>
+                                    </select>
+                                </div>
+            
+                                <div class="form-row">
+                                    <label for="opcao_de_status">Produto com promoção:</label>
+                                    <select id="opcao_de_status" name="opcao_de_status">
+                                        <option value="false" selected>Não</option>
+                                        <option value="true">Sim</option>
+                                    </select>
+                                </div>
+            
+                            </td>
+                        </tr>
+            
+                        <tr>
+                            <td colspan="2" style="padding: 12px;">
+                                <button type="submit" id="submitButton">Cadastrar</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
 
-                            <label for="preco">Preço:</label>
-                            <input type="number" id="preco" name="preco" placeholder="1500" min="0" step="0.01"
-                                required>
-
-                            <label for="foto">Link da foto do produto:</label>
-                            <input type="text" id="foto" name="foto" placeholder="Ex. https://imagem.com/pc-gamer.png"
-                                required>
-                            <p id="preVisualizacao" class="preVisualizacao">
-                            </p>
-                            <label for="marca">Marca:</label>
-                            <input type="text" id="marca" name="marca" placeholder="Ex. NPC - New PC" required>
-
-                            <label for="categoria">Categoria:</label>
-                            <select id="categoria" name="categoria" required>
-                                <option value="">...</option>
-                            </select>
-
-                            <label for="descricao">Descrição:</label>
-                            <input type="text" id="descricao"
-                                placeholder="PC GAMER AMD RYZEN 5 5600GT+A520M+16GB 3200+NVME 500GB+500W BIVOLT+GABINETE GAMER 3 FANS+MONITOR 21,5 100HZ HDMI+TECLADO E MOUSE GAMER RGB"
-                                name="descricao" required>
-
-                            <label for="quantidade_estoque">Quantidade:</label>
-                            <input type="number" id="quantidade_estoque" name="quantidade_estoque" required>
-
-                            <div class="input-group">
-                                <label for="opcao_de_personalizado">Personalizado:</label>
-                                <select id="opcao_de_personalizado" name="opcao_de_personalizado">
-                                    <option value="false" selected>Não</option>
-                                    <option value="true">Sim</option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <label for="opcao_de_status">Produto com promoção:</label>
-                                <select id="opcao_de_status" name="opcao_de_status">
-                                    <option value="false" selected>Não</option>
-                                    <option value="true">Sim</option>
-                                </select>
-                            </div>
-
-                            <button type="submit" id="submitButton">Cadastrar</button>
-                        </td>
-                    </tr>
-                </table>
-            </form>
             <div id="cards">
                 <ul>
                     <a href="../gerenciar_produtos.html"><i class='bx bx-arrow-back'></i>

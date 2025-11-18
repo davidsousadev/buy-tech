@@ -1,4 +1,4 @@
-/* mobile-501.css */
+/* mobile-720.css */
 @media (max-width: 720px) {
     * {
         box-sizing: border-box;
@@ -382,7 +382,7 @@
       .form-coluna{
         margin: auto;
       }
-    }
+
     #confirmado{
       display: block;
       width: 100%;
