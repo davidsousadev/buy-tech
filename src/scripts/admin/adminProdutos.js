@@ -71,6 +71,8 @@ function listarProdutos(editar) {
                 }
                 else {
                     lista_de_produtos_admin.innerHTML = "<li class='nenhum'>Nenhum produto encontrado.</li>";
+                    document.getElementById("cards").innerHTML = "";
+                    document.getElementById("cards").innerHTML = "<ul><a href='./cadastrar_produtos.html'><i class='bx bx-list-plus'></i><li>Cadastrar Produtos</li></a> <a href='../gerenciar_produtos.html'><i class='bx bx-arrow-back'></i><li>Voltar</li></a></ul>";
                     displayLoader(false);
 
                 }

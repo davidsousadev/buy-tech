@@ -57,7 +57,9 @@ function listarCategorias(editar) {
                     displayLoader(false);
 
                 } else {
-                    lista_de_categorias.innerHTML = "<li>Nenhuma categoria encontrada.</li>";
+                    lista_de_categorias.innerHTML = "<li class='nenhum'>Nenhuma categoria encontrada.</li>";
+                    document.getElementById("cards").innerHTML = "";
+                    document.getElementById("cards").innerHTML = "<ul> <a href = './cadastrar_categorias.html'><i class='bx bx-list-plus'></i><li>Cadastrar Categorias</li></a><a href = '../gerenciar_categorias.html' ><i class='bx bx-arrow-back'></i><li>Voltar</li></a></ul> ";
                     displayLoader(false);
 
                 }
