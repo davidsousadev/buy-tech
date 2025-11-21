@@ -37,7 +37,7 @@ export function listarCategorias() {
                     lista_categorias_cliente.appendChild(li);
                 });
             } else {
-                lista_categorias_cliente.innerHTML = '<p>Nenhuma categoria encontrada!</p>';
+                lista_categorias_cliente.innerHTML = '<p class="nenhum">Nenhuma categoria encontrada!</p>';
             }
         } catch (error) {
             setTimeout(() => {
