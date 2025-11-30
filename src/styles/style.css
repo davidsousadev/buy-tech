@@ -8,7 +8,7 @@
 * {
   margin: 0;
   padding: 0;
-  /*border: red 1px solid; */
+  /* border: red 1px solid; */
 }
 
 /* Chrome, Edge, Safari */
@@ -92,10 +92,12 @@ body.light-mode {
     color: #004AAD;
   }
 
-  .form-container *{
+  .form-container * {
     color: #004AAD;
   }
-  .form-container select, .form-row input{
+
+  .form-container select,
+  .form-row input {
     border: #004AAD 1px solid;
   }
 }
@@ -134,7 +136,7 @@ footer {
   text-align: center;
   bottom: 0;
   width: 100%;
-  margin-bottom: 20px;
+  margin: 20px 0 20px 0;
 }
 
 footer span {
@@ -213,14 +215,6 @@ button[type="submit"]:hover {
 
 button:hover {
   background-color: #0056b3;
-}
-
-#recuperar {
-  display: block;
-  width: 100%;
-  word-break: break-all;
-  border-radius: 10px;
-  text-align: center;
 }
 
 /*Login formLogin formLoginAdmin*/
@@ -543,6 +537,7 @@ h6 {
 textarea#enviar_email {
   height: 150px;
   width: 100%;
+  border-radius: 10px;
 }
 
 textarea::placeholder {
@@ -555,28 +550,34 @@ textarea {
 }
 
 .esquecer-cadastrar {
+
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   margin-top: 20px;
-
-  div#recuperar {
-    display: block;
-    width: 100%;
-  }
-
-  .btn_cadastrar {
-    padding: 10px;
-    display: block;
-    text-align: center;
-    background-color: #2ec050;
-    border-radius: 50px;
-    width: 50%;
-    margin-left: 25%;
-  }
 }
+
+.recuperar {
+  display: block;
+  word-break: break-all;
+  text-align: center;
+  padding: 10px;
+  margin: 5px;
+}
+
+
+.btn_cadastrar {
+  padding: 10px;
+  display: block;
+  text-align: center;
+  background-color: #2ec050;
+  border-radius: 50px;
+  width: 20%;
+  margin: 5px;
+}
+
 
 #lista_de_cupons {
   p {
@@ -586,7 +587,7 @@ textarea {
 }
 
 select#tipo {
-  width: 50%;
+  width: 100%;
 }
 
 #formCadastroCliente table {
@@ -634,7 +635,7 @@ ul#listaDePedidos>p {
 
 .btn_cadastrar_admin {
   margin: 10px auto;
-  width: 50%;
+  width: 25%;
   display: flex;
   color: white;
   font-weight: bold;

@@ -63,6 +63,8 @@ Este projeto front-end foi construído com **HTML**, **CSS** e **JavaScript** pa
 - Ajustes em textos de listagens vazias
 - Correção de bug no banco: alterado tipo de cod_indicacao de int para string (local e remoto)
 - Remoção de pastas de testes
+- 🛡️ Minimização de erros com a API  
+- Implementar responsividade para mobile de testes 980px wv / 1028px hv
 
 **👤 Dashboard Administrativo de Cliente:**  
 - 📊 Extrato  
@@ -98,7 +100,6 @@ Este projeto front-end foi construído com **HTML**, **CSS** e **JavaScript** pa
 # 3 - 🔄 O que está sendo implementado no Sistema
 
 - 🔗 Ajustar URLs dos cadastros  
-- 🛡️ Minimização de erros com a API  
 - 📦 Em pedidos de cliente logado  
 - 🔧 Ajustes no fluxo de Revendedor  
 - 🧪 Testes gerais  
@@ -108,7 +109,6 @@ Este projeto front-end foi construído com **HTML**, **CSS** e **JavaScript** pa
 - Adição de alguns itens
 - Ajustes gerais de layout com links do menu possivel adição de novos
 - Adição de regras para indicações
-- Implementar responsividade para mobile de testes 980px wv / 1028px hv
 - Ajustar distância do topo dos forms
 - 🎨 Ajustes no layout do rodapé
 - Apenas logados no monte seu equipamento
@@ -167,6 +167,16 @@ Este projeto front-end foi construído com **HTML**, **CSS** e **JavaScript** pa
 - 🛠️ Painel administrativo: aperfeiçoar fluxo de adição de produtos (mais fotos, vinculação a grupos)
 - 🔁 Integrar corretamente paginação e interações com o [backend](https://github.com/davidsousadev/api-buy-tech)
 - 🗂️ Notas de versão: definir política de versionamento (grupos de funcionalidades vs. correções isoladas), comunicar grandes atualizações e registrar versão ao atingir o MVP
+- 📄 Adicionar paginação na área administrativa
+- 🔍 Listar produtos mais buscados
+- 🔗 Exibir produtos relacionados
+- 🛣️ Criar rota alternativa na API
+- 🎨 Adicionar filtros visuais com ícones, incluindo opção de filtro retrátil e visual mais limpo
+- 💾 Usar LocalStorage para manter preferências e estados de filtros
+- 🔧 Melhorar retorno da API em casos de cancelamento de pedido, evitando o bug onde o cancelamento devolve mais do que foi descontado
+- 🔐 Tokenizar todas as operações, com tokens de no mínimo 20 caracteres para evitar repetições e garantir segurança
+- 📊 Organizar os registros em tabelas para facilitar a visualização de dados
+- ⏳ Adicionar feedback de carregamento (loader) sempre que dados forem buscados ou atualizados
   
 ---
 
