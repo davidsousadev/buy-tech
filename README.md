@@ -112,6 +112,9 @@ Este projeto front-end foi construído com **HTML**, **CSS** e **JavaScript** pa
 - Ajustar distância do topo dos forms
 - 🎨 Ajustes no layout do rodapé
 - Apenas logados no monte seu equipamento
+- Exibir/ocultar senha no campo de senha.
+- Ajustar mensagens de feedback do back-end
+- Ajustar atualização de cadastro/erro de cookies
 
 ---
 
